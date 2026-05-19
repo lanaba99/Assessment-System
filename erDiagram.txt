@@ -1,0 +1,1629 @@
+erDiagram
+    %% ================================================
+    %% CENTRAL MANAGEMENT DATABASE (SUPER ADMIN LEVEL)
+    %% ================================================
+    
+    CENTRAL_TENANTS {
+        uuid tenant_id PK
+        string subdomain UK
+        string organization_name
+        string organization_type
+        string primary_contact_email
+        string primary_contact_phone
+        json deployment_config
+        string deployment_mode
+        string data_residency_location
+        integer max_concurrent_users
+        integer max_storage_quota_mb
+        json feature_flags
+        string status
+        json security_policies
+        datetime contract_start_date
+        datetime contract_end_date
+        timestamp created_at
+        timestamp updated_at
+        timestamp suspended_at
+    }
+    
+    CENTRAL_API_KEYS {
+        uuid key_id PK
+        uuid tenant_id FK
+        string key_prefix
+        string key_hash
+        string secret_hash
+        string key_description
+        json granted_permissions
+        timestamp issued_at
+        timestamp expires_at
+        timestamp last_used_at
+        string status
+        string ip_restriction
+        timestamp created_at
+    }
+    
+    CENTRAL_GLOBAL_SETTINGS {
+        uuid setting_id PK
+        json ksa_global_template
+        json mandatory_password_policy
+        json mandatory_security_protocols
+        json mandatory_mfa_config
+        json ip_whitelist_global
+        integer session_timeout_minutes
+        integer max_failed_login_attempts
+        integer password_expiry_days
+        boolean enforce_https
+        json backup_schedule
+        timestamp updated_at
+    }
+    
+    CENTRAL_AUDIT_TRAILS {
+        uuid audit_id PK
+        uuid tenant_id FK
+        uuid super_admin_id FK
+        string action_type
+        string resource_type
+        uuid resource_id
+        json old_values
+        json new_values
+        string ip_address
+        string user_agent
+        string session_id
+        string audit_hash
+        timestamp created_at
+    }
+    
+    CENTRAL_ADMIN_USERS {
+        uuid admin_user_id PK
+        string email UK
+        string password_hash
+        string first_name
+        string last_name
+        json admin_permissions
+        boolean is_super_admin
+        boolean mfa_enabled
+        json mfa_settings
+        timestamp last_login_at
+        string status
+        timestamp created_at
+    }
+    
+    CENTRAL_TENANTS ||--o{ CENTRAL_API_KEYS : "issues"
+    CENTRAL_TENANTS ||--o{ CENTRAL_AUDIT_TRAILS : "audited"
+    CENTRAL_ADMIN_USERS ||--o{ CENTRAL_AUDIT_TRAILS : "performs"
+    
+    %% ================================================
+    %% TENANT DATABASE - IDENTITY & ACCESS CONTROL CONTEXT
+    %% ================================================
+    
+    USERS {
+        uuid user_id PK
+        uuid tenant_id FK
+        string external_employee_id UK
+        string email UK
+        string password_hash
+        string first_name
+        string last_name
+        string user_type
+        uuid department_id FK
+        string status
+        boolean is_active
+        datetime activated_at
+        datetime deactivated_at
+        json user_attributes
+        timestamp created_at
+        timestamp updated_at
+        timestamp last_login_at
+    }
+    
+    USER_ROLES {
+        uuid user_id FK
+        uuid role_id FK
+        timestamp assigned_at
+    }
+    
+    USER_SUBTYPES {
+        uuid user_id PK FK
+        string super_admin_scope
+        string tenant_admin_organization
+        string evaluator_specialization
+        string examinee_employee_position
+        boolean is_proctor
+        examinee_manager_id FK
+    }
+    
+    ROLES {
+        uuid role_id PK
+        uuid tenant_id FK
+        string role_name UK
+        string description
+        string role_category
+        boolean is_custom_role
+        boolean is_system_role
+        json role_metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    PERMISSIONS {
+        uuid permission_id PK
+        uuid tenant_id FK
+        string permission_name UK
+        string resource_type
+        string action_type
+        string description
+        timestamp created_at
+    }
+    
+    ROLE_PERMISSIONS {
+        uuid role_id FK
+        uuid permission_id FK
+    }
+    
+    DEPARTMENTS {
+        uuid department_id PK
+        uuid tenant_id FK
+        uuid parent_department_id FK
+        string department_name
+        string department_code UK
+        uuid department_manager_id FK
+        integer hierarchy_level
+        json department_attributes
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    USER_SESSIONS {
+        uuid session_id PK
+        uuid user_id FK
+        uuid tenant_id FK
+        string device_fingerprint UK
+        string device_id
+        string device_type
+        string browser_name
+        string browser_version
+        string os_name
+        string os_version
+        integer screen_width
+        integer screen_height
+        string timezone
+        string language_code
+        string ip_address
+        string user_agent
+        string session_state
+        timestamp login_at
+        timestamp last_activity_at
+        timestamp logout_at
+        timestamp version
+    }
+    
+    LOGIN_ATTEMPTS {
+        uuid attempt_id PK
+        uuid tenant_id FK
+        string email_attempted
+        string ip_address
+        boolean is_successful
+        string failure_reason
+        string device_info
+        timestamp attempted_at
+    }
+    
+    MFA_DEVICES {
+        uuid mfa_device_id PK
+        uuid user_id FK
+        uuid tenant_id FK
+        string device_type
+        string device_identifier
+        string device_name
+        string secret_key_hash
+        boolean is_backup_code
+        boolean is_verified
+        integer backup_codes_count
+        timestamp verified_at
+        timestamp created_at
+        timestamp last_used_at
+    }
+    
+    IP_WHITELIST {
+        uuid whitelist_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string ip_address UK
+        string ip_description
+        string ip_range_end
+        boolean is_active
+        timestamp created_at
+        timestamp expires_at
+    }
+    
+    SECURITY_POLICIES {
+        uuid policy_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        boolean mfa_enabled
+        string mfa_method
+        integer password_min_length
+        boolean password_require_uppercase
+        boolean password_require_lowercase
+        boolean password_require_numbers
+        boolean password_require_special_chars
+        integer password_expiry_days
+        integer password_history_count
+        integer session_timeout_minutes
+        integer session_absolute_timeout_hours
+        boolean session_force_reauth_on_privilege_change
+        boolean ip_whitelisting_enabled
+        boolean enable_biometric_auth
+        boolean enforce_tls_1_3_minimum
+        boolean disable_weak_ciphers
+        json allowed_ip_ranges
+        timestamp updated_at
+    }
+    
+    USER_PREFERENCES {
+        uuid preference_id PK
+        uuid user_id FK
+        uuid tenant_id FK
+        string theme_preference
+        string language_preference
+        string date_format
+        string time_format
+        boolean email_notifications_enabled
+        boolean push_notifications_enabled
+        boolean sms_notifications_enabled
+        json additional_preferences
+        timestamp updated_at
+    }
+    
+    USERS ||--o{ USER_ROLES : "assigned"
+    USERS ||--o{ USER_SUBTYPES : "has"
+    USERS ||--o{ USER_SESSIONS : "creates"
+    USERS ||--o{ LOGIN_ATTEMPTS : "attempts"
+    USERS ||--o{ MFA_DEVICES : "registers"
+    USERS ||--o{ USER_PREFERENCES : "has"
+    USERS ||--o{ DEPARTMENTS : "belongs"
+    ROLES ||--o{ USER_ROLES : "has"
+    ROLES ||--o{ ROLE_PERMISSIONS : "grants"
+    PERMISSIONS ||--o{ ROLE_PERMISSIONS : "assigned"
+    DEPARTMENTS ||--o{ DEPARTMENTS : "hierarchy"
+    DEPARTMENTS ||--o{ USERS : "manages"
+    IP_WHITELIST ||--o{ USERS : "created_by"
+    SECURITY_POLICIES ||--o{ USERS : "created_by"
+    
+    %% ================================================
+    %% TENANT DATABASE - QUESTION BANK CONTEXT
+    %% ================================================
+    
+    CATEGORIES {
+        uuid category_id PK
+        uuid tenant_id FK
+        uuid parent_category_id FK
+        string category_name
+        string category_code UK
+        string category_description
+        integer display_order
+        integer hierarchy_level
+        boolean is_locked
+        boolean is_active
+        json category_metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    QUESTIONS {
+        uuid question_id PK
+        uuid tenant_id FK
+        uuid category_id FK
+        uuid created_by_user_id FK
+        uuid current_version_id FK
+        string question_title
+        string question_type
+        integer difficulty_level
+        integer cognitive_level
+        boolean is_randomizable
+        boolean requires_media_attachment
+        boolean is_deprecated
+        boolean is_archived
+        integer total_usage_count
+        json question_metadata
+        timestamp created_at
+        timestamp updated_at
+        timestamp archived_at
+    }
+    
+    QUESTION_VERSIONS {
+        uuid version_id PK
+        uuid question_id FK
+        uuid created_by_user_id FK
+        integer ver_num
+        string question_text
+        string question_type
+        string question_stem
+        json options_json
+        string correct_answer_json
+        json explanation_text
+        json evaluator_instructions
+        string approval_status
+        uuid approved_by_user_id FK
+        integer usage_count_in_exams
+        string content_hash
+        json version_metadata
+        timestamp created_at
+        timestamp approved_at
+    }
+    
+    MEDIA_ASSETS {
+        uuid asset_id PK
+        uuid tenant_id FK
+        uuid question_id FK
+        uuid uploaded_by_user_id FK
+        string asset_type
+        string file_name
+        string file_path
+        string file_url
+        integer file_size_bytes
+        string storage_location
+        string mime_type
+        string virus_scan_status
+        json asset_metadata
+        timestamp uploaded_at
+        timestamp scanned_at
+    }
+    
+    QUESTION_OPTIONS {
+        uuid option_id PK
+        uuid version_id FK
+        integer option_sequence
+        string option_text
+        boolean is_correct
+        json option_metadata
+    }
+    
+    QUESTION_TAGS {
+        uuid tag_id PK
+        uuid tenant_id FK
+        uuid question_id FK
+        string tag_name
+        timestamp created_at
+    }
+    
+    QUESTION_IMPORT_LOGS {
+        uuid import_log_id PK
+        uuid tenant_id FK
+        uuid imported_by_user_id FK
+        string import_source
+        integer total_questions_imported
+        integer successful_imports
+        integer failed_imports
+        json error_details
+        timestamp import_started_at
+        timestamp import_completed_at
+    }
+    
+    BULK_IMPORT_TEMPLATES {
+        uuid template_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string template_name
+        string template_format
+        json template_mapping
+        json validation_rules
+        timestamp created_at
+    }
+    
+    CATEGORIES ||--o{ CATEGORIES : "parent"
+    CATEGORIES ||--o{ QUESTIONS : "contains"
+    QUESTIONS ||--o{ QUESTION_VERSIONS : "versions"
+    QUESTIONS ||--o{ MEDIA_ASSETS : "has"
+    QUESTIONS ||--o{ QUESTION_TAGS : "tagged"
+    QUESTION_VERSIONS ||--o{ QUESTION_OPTIONS : "has"
+    QUESTIONS ||--o{ USERS : "created_by"
+    QUESTION_VERSIONS ||--o{ USERS : "created_by"
+    MEDIA_ASSETS ||--o{ USERS : "uploaded_by"
+    QUESTION_IMPORT_LOGS ||--o{ USERS : "imported_by"
+    BULK_IMPORT_TEMPLATES ||--o{ USERS : "created_by"
+    
+    %% ================================================
+    %% TENANT DATABASE - KSA & COMPETENCY CONTEXT
+    %% ================================================
+    
+    COMPETENCIES {
+        uuid competency_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string competency_name UK
+        string competency_code
+        string competency_type
+        string competency_category
+        string description
+        json competency_attributes
+        boolean is_mandatory
+        boolean is_active
+        integer proficiency_level_count
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    COMPETENCY_LEVELS {
+        uuid level_id PK
+        uuid competency_id FK
+        integer level_number
+        string level_name
+        string level_description
+        decimal min_score_threshold
+        decimal max_score_threshold
+        json assessment_criteria
+        json learning_resources
+        timestamp created_at
+    }
+    
+    QUESTION_COMPETENCY_WEIGHTS {
+        uuid weight_id PK
+        uuid question_id FK
+        uuid competency_id FK
+        decimal weight_percentage
+        string skill_category
+        string skill_gap_trigger
+        boolean is_primary_competency
+        json weighting_metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    SKILL_GAPS {
+        uuid gap_id PK
+        uuid tenant_id FK
+        uuid candidate_user_id FK
+        uuid competency_id FK
+        decimal current_proficiency_score
+        decimal target_proficiency_score
+        decimal gap_percentage
+        string gap_severity
+        string recommended_training_module
+        string training_status
+        timestamp identified_at
+        timestamp training_started_at
+        timestamp resolved_at
+    }
+    
+    SKILL_GAP_MAPPINGS {
+        uuid mapping_id PK
+        uuid question_id FK
+        uuid skill_gap_id FK
+        string gap_trigger_condition
+        json recommended_resources
+        timestamp created_at
+    }
+    
+    KSA_MATRIX_TEMPLATES {
+        uuid template_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string template_name
+        string template_description
+        json competency_structure
+        json default_weights
+        boolean is_global_template
+        timestamp created_at
+    }
+    
+    COMPETENCIES ||--o{ COMPETENCY_LEVELS : "has"
+    COMPETENCIES ||--o{ QUESTION_COMPETENCY_WEIGHTS : "weighted"
+    QUESTIONS ||--o{ QUESTION_COMPETENCY_WEIGHTS : "weights"
+    COMPETENCIES ||--o{ SKILL_GAPS : "measured"
+    SKILL_GAPS ||--o{ USERS : "candidate"
+    SKILL_GAPS ||--o{ SKILL_GAP_MAPPINGS : "has"
+    QUESTIONS ||--o{ SKILL_GAP_MAPPINGS : "triggers"
+    COMPETENCIES ||--o{ USERS : "created_by"
+    KSA_MATRIX_TEMPLATES ||--o{ USERS : "created_by"
+    
+    %% ================================================
+    %% TENANT DATABASE - ASSESSMENT EXECUTION CONTEXT
+    %% ================================================
+    
+    EXAMS {
+        uuid exam_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string exam_name
+        string exam_code UK
+        string exam_description
+        string exam_type
+        string assessment_mode
+        integer total_questions
+        integer total_duration_minutes
+        decimal pass_mark_percentage
+        integer difficulty_tier_level
+        boolean is_adaptive_exam
+        boolean is_randomized
+        boolean allow_review_after_submit
+        boolean allow_flagging_for_review
+        boolean timer_visible_to_candidate
+        boolean show_correct_answers_after
+        json security_protocols
+        json exam_metadata
+        boolean is_published
+        string exam_status
+        timestamp published_at
+        timestamp created_at
+        timestamp updated_at
+        timestamp archived_at
+    }
+    
+    EXAM_BLUEPRINTS {
+        uuid blueprint_id PK
+        uuid exam_id FK
+        uuid competency_id FK
+        integer min_questions_count
+        integer max_questions_count
+        decimal min_weight_percentage
+        decimal max_weight_percentage
+        integer difficulty_distribution_easy_count
+        integer difficulty_distribution_medium_count
+        integer difficulty_distribution_hard_count
+        json blueprint_metadata
+        timestamp created_at
+    }
+    
+    EXAM_SECTIONS {
+        uuid section_id PK
+        uuid exam_id FK
+        string section_name
+        string section_code
+        integer section_sequence
+        integer questions_in_section
+        integer time_limit_minutes
+        json branching_logic
+        json section_metadata
+        timestamp created_at
+    }
+    
+    EXAM_ENROLLMENTS {
+        uuid enrollment_id PK
+        uuid exam_id FK
+        uuid candidate_user_id FK
+        uuid tenant_id FK
+        uuid cohort_id FK
+        string enrollment_status
+        datetime enrollment_date
+        datetime start_window_date
+        datetime end_window_date
+        datetime start_eligibility_date
+        datetime end_eligibility_date
+        boolean can_retake_exam
+        integer max_attempts_allowed
+        integer attempts_used
+        integer attempts_remaining
+        decimal highest_score_achieved
+        string highest_score_status
+        string enrollment_notes
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    EXAM_SESSIONS {
+        uuid session_id PK
+        uuid exam_id FK
+        uuid enrollment_id FK
+        uuid candidate_user_id FK
+        uuid tenant_id FK
+        uuid proctor_user_id FK
+        string session_state
+        string current_question_reference
+        integer current_question_index
+        integer total_questions_responded
+        integer total_questions_flagged
+        json session_progress_json
+        json candidate_device_metadata
+        string device_fingerprint
+        string device_id
+        string device_type
+        string browser_type
+        string operating_system
+        string ip_address
+        string initial_ip_address
+        decimal gps_latitude
+        decimal gps_longitude
+        string session_start_location
+        datetime session_started_at
+        datetime session_resumed_at
+        datetime session_ended_at
+        integer total_session_duration_seconds
+        integer actual_response_time_seconds
+        string completion_method
+        timestamp version_lock
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    QUESTION_RESPONSES {
+        uuid response_id PK
+        uuid session_id FK
+        uuid question_version_id FK
+        uuid candidate_user_id FK
+        uuid tenant_id FK
+        integer question_sequence_number
+        string response_type
+        json response_data
+        string response_text
+        json selected_options_json
+        string file_upload_url
+        integer time_spent_seconds
+        integer time_elapsed_from_start_seconds
+        boolean is_flagged_for_review
+        boolean is_correct
+        decimal raw_score
+        decimal normalized_score
+        decimal final_score
+        json scoring_metadata
+        string integrity_status
+        json response_metadata
+        timestamp response_submitted_at
+        timestamp version_lock
+    }
+    
+    SESSION_INTEGRITY_LOGS {
+        uuid log_id PK
+        uuid session_id FK
+        uuid candidate_user_id FK
+        uuid tenant_id FK
+        datetime event_timestamp
+        string event_type
+        json event_payload
+        string integrity_check_type
+        string integrity_status
+        string flag_reason
+        string severity_level
+        boolean requires_manual_review
+        json log_metadata
+        timestamp created_at
+    }
+    
+    PROCTORING_EVENTS {
+        uuid event_id PK
+        uuid session_id FK
+        uuid candidate_user_id FK
+        uuid tenant_id FK
+        uuid reviewing_proctor_id FK
+        datetime event_timestamp
+        string event_type
+        string event_category
+        json event_payload
+        json detection_parameters
+        string severity_level
+        decimal detection_confidence_score
+        string screenshot_url
+        string video_segment_url
+        boolean requires_investigation
+        boolean is_escalated
+        string investigation_status
+        json investigation_notes
+        timestamp created_at
+    }
+    
+    DEVICE_FINGERPRINTS {
+        uuid fingerprint_id PK
+        uuid session_id FK
+        uuid candidate_user_id FK
+        uuid tenant_id FK
+        string device_fingerprint_hash
+        string device_id_hash
+        integer screen_resolution_width
+        integer screen_resolution_height
+        string browser_user_agent
+        string browser_language
+        string device_timezone
+        json hardware_metadata
+        json software_metadata
+        boolean is_jailbroken_or_rooted
+        boolean is_emulator_detected
+        string fingerprint_verification_status
+        timestamp captured_at
+        timestamp verified_at
+    }
+    
+    BEHAVIORAL_ANALYTICS {
+        uuid analytics_id PK
+        uuid session_id FK
+        uuid candidate_user_id FK
+        uuid tenant_id FK
+        integer average_response_time_seconds
+        integer fastest_response_time_seconds
+        integer slowest_response_time_seconds
+        decimal response_time_variance
+        integer tab_switch_count
+        integer window_blur_count
+        integer copy_paste_attempts
+        integer right_click_attempts
+        integer keyboard_navigation_count
+        integer mouse_movement_count
+        json movement_patterns
+        json keystroke_dynamics
+        string behavioral_score
+        string anomaly_detection_result
+        json behavioral_metadata
+        timestamp calculated_at
+    }
+    
+    EXAMS ||--o{ EXAM_BLUEPRINTS : "defines"
+    EXAMS ||--o{ EXAM_SECTIONS : "has"
+    EXAMS ||--o{ EXAM_ENROLLMENTS : "has"
+    EXAM_ENROLLMENTS ||--o{ EXAM_SESSIONS : "creates"
+    EXAM_SESSIONS ||--o{ QUESTION_RESPONSES : "contains"
+    EXAM_SESSIONS ||--o{ SESSION_INTEGRITY_LOGS : "generates"
+    EXAM_SESSIONS ||--o{ PROCTORING_EVENTS : "tracks"
+    EXAM_SESSIONS ||--o{ DEVICE_FINGERPRINTS : "captures"
+    EXAM_SESSIONS ||--o{ BEHAVIORAL_ANALYTICS : "analyzes"
+    COMPETENCIES ||--o{ EXAM_BLUEPRINTS : "maps"
+    QUESTIONS ||--o{ QUESTION_RESPONSES : "answered"
+    QUESTION_VERSIONS ||--o{ QUESTION_RESPONSES : "responds"
+    EXAM_ENROLLMENTS ||--o{ USERS : "candidate"
+    EXAM_SESSIONS ||--o{ USERS : "proctor"
+    EXAMS ||--o{ USERS : "created_by"
+    
+    %% ================================================
+    %% TENANT DATABASE - GRADING & RESULTS CONTEXT
+    %% ================================================
+    
+    ANSWER_EVALUATIONS {
+        uuid evaluation_id PK
+        uuid session_id FK
+        uuid question_id FK
+        uuid evaluator_user_id FK
+        uuid tenant_id FK
+        uuid rubric_id FK
+        string evaluation_type
+        json rubric_criteria_json
+        decimal score_awarded
+        decimal max_score_possible
+        string evaluation_status
+        json evaluator_comments
+        json evaluation_metadata
+        boolean requires_secondary_review
+        uuid secondary_reviewer_id FK
+        timestamp evaluated_at
+        timestamp secondary_reviewed_at
+        timestamp created_at
+    }
+    
+    GRADES {
+        uuid grade_id PK
+        uuid session_id FK
+        uuid candidate_user_id FK
+        uuid exam_id FK
+        uuid tenant_id FK
+        decimal raw_score
+        decimal weighted_score
+        decimal normalized_score
+        decimal final_score
+        string grade_letter
+        boolean is_passing_grade
+        boolean requires_second_marking
+        boolean is_final_grade
+        json grading_metadata
+        timestamp graded_at
+        timestamp finalized_at
+        timestamp version_lock
+        timestamp created_at
+    }
+    
+    COMPETENCY_SCORES {
+        uuid score_id PK
+        uuid candidate_user_id FK
+        uuid session_id FK
+        uuid competency_id FK
+        uuid tenant_id FK
+        decimal score_achieved
+        decimal score_target
+        decimal score_maximum
+        integer proficiency_level_achieved
+        decimal gap_percentage
+        string gap_status
+        json score_metadata
+        timestamp calculated_at
+    }
+    
+    ASSESSMENT_RESULTS {
+        uuid result_id PK
+        uuid candidate_user_id FK
+        uuid session_id FK
+        uuid exam_id FK
+        uuid tenant_id FK
+        string result_status
+        json skill_radar_data_json
+        json benchmark_comparison_data
+        string ai_recommendation_text
+        decimal ai_recommendation_confidence
+        json performance_insights
+        json learning_path_recommendations
+        datetime result_calculated_at
+        string publication_status
+        datetime published_at
+        json result_metadata
+        timestamp created_at
+    }
+    
+    CERTIFICATES {
+        uuid certificate_id PK
+        uuid candidate_user_id FK
+        uuid assessment_result_id FK
+        uuid exam_id FK
+        uuid tenant_id FK
+        string certificate_code UK
+        string qr_code_data
+        string digital_signature
+        json certificate_metadata
+        datetime issued_at
+        datetime expires_at
+        string verification_status
+        json additional_credentials
+        timestamp created_at
+    }
+    
+    RESULT_PUBLICATION_WORKFLOW {
+        uuid workflow_id PK
+        uuid assessment_result_id FK
+        uuid exam_id FK
+        uuid tenant_id FK
+        integer current_approval_step
+        json approval_chain_json
+        string current_approval_status
+        datetime submitted_for_approval_at
+        datetime published_at
+        json publication_metadata
+        timestamp created_at
+    }
+    
+    RUBRICS {
+        uuid rubric_id PK
+        uuid exam_id FK
+        uuid created_by_user_id FK
+        uuid tenant_id FK
+        string rubric_name
+        string rubric_type
+        string rubric_description
+        json rubric_structure
+        boolean is_mandatory_rubric
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    RUBRIC_CRITERIA {
+        uuid criteria_id PK
+        uuid rubric_id FK
+        integer criteria_sequence
+        string criteria_name
+        string criteria_description
+        integer criteria_weight_percentage
+        json scoring_levels
+        json assessment_guidelines
+        timestamp created_at
+    }
+    
+    EXAM_SESSIONS ||--o{ GRADES : "produces"
+    EXAM_SESSIONS ||--o{ COMPETENCY_SCORES : "generates"
+    EXAM_SESSIONS ||--o{ ASSESSMENT_RESULTS : "creates"
+    EXAM_SESSIONS ||--o{ ANSWER_EVALUATIONS : "evaluated"
+    GRADES ||--o{ CERTIFICATES : "qualifies"
+    ASSESSMENT_RESULTS ||--o{ CERTIFICATES : "generates"
+    ASSESSMENT_RESULTS ||--o{ RESULT_PUBLICATION_WORKFLOW : "submits"
+    COMPETENCIES ||--o{ COMPETENCY_SCORES : "measures"
+    ANSWER_EVALUATIONS ||--o{ USERS : "evaluator"
+    ANSWER_EVALUATIONS ||--o{ USERS : "secondary_reviewer"
+    ANSWER_EVALUATIONS ||--o{ RUBRICS : "uses"
+    RUBRICS ||--o{ RUBRIC_CRITERIA : "has"
+    RUBRICS ||--o{ USERS : "created_by"
+    
+    %% ================================================
+    %% TENANT DATABASE - RULES ENGINE CONTEXT
+    %% ================================================
+    
+    RULES {
+        uuid rule_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string rule_name UK
+        string rule_type
+        string rule_scope
+        string rule_category
+        json condition_tree_json
+        json action_payload_json
+        boolean is_active
+        int execution_order
+        json rule_metadata
+        timestamp created_at
+        timestamp updated_at
+        timestamp last_executed_at
+    }
+    
+    RULE_CONDITIONS {
+        uuid condition_id PK
+        uuid rule_id FK
+        string condition_type
+        json condition_definition
+        string comparison_operator
+        string logical_operator
+        integer nesting_level
+        json condition_metadata
+    }
+    
+    RULE_ACTIONS {
+        uuid action_id PK
+        uuid rule_id FK
+        string action_type
+        json action_parameters
+        decimal action_value
+        int execution_sequence
+        json action_metadata
+    }
+    
+    ELIGIBILITY_CHAINS {
+        uuid chain_id PK
+        uuid tenant_id FK
+        uuid exam_id FK
+        uuid created_by_user_id FK
+        integer chain_step_number
+        uuid prerequisite_exam_id FK
+        string condition_type
+        json condition_data
+        string logical_operator
+        decimal min_score_required
+        boolean is_satisfied_override_available
+        uuid override_authorized_by_user_id FK
+        json chain_metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    PENALTY_RULES {
+        uuid penalty_rule_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string penalty_name
+        string penalty_type
+        string trigger_condition
+        json trigger_parameters
+        decimal penalty_points
+        decimal penalty_percentage
+        boolean is_cumulative
+        json penalty_metadata
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    PENALTY_SANCTIONS {
+        uuid sanction_id PK
+        uuid session_id FK
+        uuid candidate_user_id FK
+        uuid penalty_rule_id FK
+        uuid tenant_id FK
+        datetime sanction_applied_at
+        string sanction_reason
+        decimal sanction_amount
+        string sanction_type
+        json sanction_metadata
+        timestamp created_at
+    }
+    
+    RULE_TEMPLATES {
+        uuid template_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string template_name
+        string template_description
+        json rule_template_definition
+        json action_template_definition
+        boolean is_global_template
+        timestamp created_at
+    }
+    
+    RULES ||--o{ RULE_CONDITIONS : "has"
+    RULES ||--o{ RULE_ACTIONS : "performs"
+    EXAMS ||--o{ ELIGIBILITY_CHAINS : "requires"
+    ELIGIBILITY_CHAINS ||--o{ EXAMS : "prerequisites"
+    PENALTY_RULES ||--o{ PENALTY_SANCTIONS : "applies"
+    EXAM_SESSIONS ||--o{ PENALTY_SANCTIONS : "tracks"
+    RULES ||--o{ USERS : "created_by"
+    ELIGIBILITY_CHAINS ||--o{ USERS : "created_by"
+    ELIGIBILITY_CHAINS ||--o{ USERS : "override_authorized"
+    PENALTY_RULES ||--o{ USERS : "created_by"
+    RULE_TEMPLATES ||--o{ USERS : "created_by"
+    
+    %% ================================================
+    %% TENANT DATABASE - HYBRID ASSESSMENT CONTEXT
+    %% ================================================
+    
+    MANUAL_ASSESSMENTS {
+        uuid assessment_id PK
+        uuid exam_id FK
+        uuid evaluator_user_id FK
+        uuid candidate_user_id FK
+        uuid tenant_id FK
+        uuid correlated_session_id FK
+        string assessment_type
+        string assessment_mode
+        json assessment_data_json
+        datetime assessment_conducted_at
+        string assessment_status
+        json assessment_metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    EVALUATOR_OBSERVATIONS {
+        uuid observation_id PK
+        uuid manual_assessment_id FK
+        uuid evaluator_user_id FK
+        uuid tenant_id FK
+        string observation_category
+        json observation_data
+        string severity_level
+        boolean affects_final_score
+        string observation_status
+        json observation_metadata
+        timestamp observed_at
+        timestamp created_at
+    }
+    
+    ASSESSMENT_CHECKLIST_ITEMS {
+        uuid checklist_item_id PK
+        uuid exam_id FK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string item_description
+        json item_assessment_criteria
+        integer item_weight_percentage
+        integer display_sequence
+        string item_category
+        json item_metadata
+        timestamp created_at
+    }
+    
+    CHECKLIST_RESPONSES {
+        uuid response_id PK
+        uuid manual_assessment_id FK
+        uuid checklist_item_id FK
+        boolean item_checked
+        json response_evidence_json
+        json response_notes
+        string evaluator_comment
+        timestamp evaluated_at
+    }
+    
+    BRIDGE_ENTRY_HYBRID {
+        uuid bridge_id PK
+        uuid tenant_id FK
+        uuid exam_id FK
+        uuid candidate_user_id FK
+        uuid correlated_session_id FK
+        string entry_source_system
+        json paper_assessment_data
+        json digital_assessment_data
+        json merged_assessment_data
+        string merge_status
+        json merge_metadata
+        timestamp paper_data_received_at
+        timestamp digital_data_received_at
+        timestamp merged_at
+        timestamp created_at
+    }
+    
+    MANUAL_ASSESSMENTS ||--o{ EVALUATOR_OBSERVATIONS : "has"
+    MANUAL_ASSESSMENTS ||--o{ CHECKLIST_RESPONSES : "has"
+    ASSESSMENT_CHECKLIST_ITEMS ||--o{ CHECKLIST_RESPONSES : "evaluated"
+    MANUAL_ASSESSMENTS ||--o{ USERS : "evaluator"
+    MANUAL_ASSESSMENTS ||--o{ USERS : "candidate"
+    EVALUATOR_OBSERVATIONS ||--o{ USERS : "evaluator"
+    ASSESSMENT_CHECKLIST_ITEMS ||--o{ USERS : "created_by"
+    EXAMS ||--o{ ASSESSMENT_CHECKLIST_ITEMS : "has"
+    EXAMS ||--o{ BRIDGE_ENTRY_HYBRID : "uses"
+    
+    %% ================================================
+    %% TENANT DATABASE - GOVERNANCE & WORKFLOW CONTEXT
+    %% ================================================
+    
+    APPROVAL_WORKFLOWS {
+        uuid workflow_id PK
+        uuid tenant_id FK
+        uuid initiated_by_user_id FK
+        uuid resource_id
+        string resource_type
+        string workflow_type
+        json workflow_stages_json
+        string current_stage_key
+        string current_workflow_status
+        datetime workflow_initiated_at
+        datetime workflow_completed_at
+        json workflow_metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    WORKFLOW_STATES {
+        uuid state_id PK
+        uuid workflow_id FK
+        integer state_sequence
+        string state_key
+        string state_name
+        string state_description
+        json required_approvals_json
+        string approval_pattern
+        json state_metadata
+    }
+    
+    WORKFLOW_APPROVALS {
+        uuid approval_id PK
+        uuid workflow_id FK
+        uuid approver_user_id FK
+        integer approval_stage_number
+        string approval_status
+        json approval_evidence_json
+        json approval_comments
+        datetime approved_at
+        datetime approval_deadline_at
+        boolean can_reject
+        boolean can_request_changes
+        timestamp created_at
+    }
+    
+    WORKFLOW_HISTORY {
+        uuid history_id PK
+        uuid workflow_id FK
+        uuid actor_user_id FK
+        string action_type
+        string old_state
+        string new_state
+        json transition_metadata
+        timestamp created_at
+    }
+    
+    AUDIT_TRAILS {
+        uuid audit_id PK
+        uuid tenant_id FK
+        uuid actor_user_id FK
+        uuid session_id FK
+        string entity_type
+        uuid entity_id
+        string action_type
+        string action_description
+        json old_values_json
+        json new_values_json
+        json affected_fields_json
+        string ip_address
+        string user_agent
+        string user_location
+        string audit_hash
+        timestamp created_at
+    }
+    
+    FORENSIC_EVIDENCE {
+        uuid evidence_id PK
+        uuid tenant_id FK
+        uuid session_id FK
+        uuid candidate_user_id FK
+        string evidence_type
+        json evidence_payload
+        string evidence_status
+        string evidence_chain_of_custody
+        datetime evidence_collected_at
+        datetime evidence_preserved_at
+        json hash_verification_json
+        boolean is_tamper_detected
+        string tamper_detection_method
+        json forensic_metadata
+        timestamp created_at
+    }
+    
+    FORENSIC_HASH_VERIFICATION {
+        uuid verification_id PK
+        uuid evidence_id FK
+        string hash_algorithm
+        string hash_value
+        string original_hash
+        boolean hash_match
+        datetime hash_verified_at
+        json verification_metadata
+    }
+    
+    APPROVAL_WORKFLOWS ||--o{ WORKFLOW_STATES : "has"
+    APPROVAL_WORKFLOWS ||--o{ WORKFLOW_APPROVALS : "requires"
+    APPROVAL_WORKFLOWS ||--o{ WORKFLOW_HISTORY : "tracks"
+    WORKFLOW_APPROVALS ||--o{ USERS : "approver"
+    APPROVAL_WORKFLOWS ||--o{ USERS : "initiated_by"
+    WORKFLOW_HISTORY ||--o{ USERS : "actor"
+    USERS ||--o{ AUDIT_TRAILS : "actor"
+    EXAM_SESSIONS ||--o{ AUDIT_TRAILS : "correlates"
+    EXAM_SESSIONS ||--o{ FORENSIC_EVIDENCE : "generates"
+    FORENSIC_EVIDENCE ||--o{ FORENSIC_HASH_VERIFICATION : "verified"
+    
+    %% ================================================
+    %% TENANT DATABASE - COHORT & GROUPING CONTEXT
+    %% ================================================
+    
+    COHORTS {
+        uuid cohort_id PK
+        uuid tenant_id FK
+        uuid parent_cohort_id FK
+        uuid created_by_user_id FK
+        string cohort_name
+        string cohort_code UK
+        string cohort_type
+        string cohort_description
+        integer hierarchy_level
+        json cohort_attributes
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    COHORT_MEMBERS {
+        uuid member_id PK
+        uuid cohort_id FK
+        uuid user_id FK
+        uuid tenant_id FK
+        string membership_role
+        timestamp added_at
+        timestamp removed_at
+        boolean is_active_member
+    }
+    
+    GROUP_DASHBOARDS {
+        uuid dashboard_id PK
+        uuid cohort_id FK
+        uuid created_by_user_id FK
+        uuid tenant_id FK
+        string dashboard_name
+        json dashboard_config
+        json dashboard_widgets
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    COHORTS ||--o{ COHORTS : "hierarchy"
+    COHORTS ||--o{ COHORT_MEMBERS : "contains"
+    USERS ||--o{ COHORT_MEMBERS : "members"
+    COHORTS ||--o{ GROUP_DASHBOARDS : "has"
+    EXAM_ENROLLMENTS ||--o{ COHORTS : "assigned"
+    COHORTS ||--o{ USERS : "created_by"
+    GROUP_DASHBOARDS ||--o{ USERS : "created_by"
+    
+    %% ================================================
+    %% TENANT DATABASE - SYNCHRONIZATION & API CONTEXT
+    %% ================================================
+    
+    SYNC_LOGS {
+        uuid sync_log_id PK
+        uuid tenant_id FK
+        uuid initiated_by_user_id FK
+        string sync_type
+        string sync_direction
+        string sync_target_system
+        json sync_payload_metadata
+        string sync_status
+        datetime sync_started_at
+        datetime sync_completed_at
+        integer records_synced_count
+        integer records_failed_count
+        json error_details_json
+        timestamp created_at
+    }
+    
+    API_KEYS {
+        uuid api_key_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string key_prefix
+        string key_hash
+        string secret_hash
+        string key_description
+        json api_permissions_json
+        string api_endpoint_scope
+        timestamp key_issued_at
+        timestamp key_expires_at
+        timestamp key_last_used_at
+        string key_status
+        json key_metadata
+        timestamp created_at
+    }
+    
+    API_AUDIT_LOGS {
+        uuid api_log_id PK
+        uuid tenant_id FK
+        uuid api_key_id FK
+        uuid user_id FK
+        string api_endpoint
+        string http_method
+        string request_path
+        json request_headers
+        json request_body_summary
+        json response_body_summary
+        integer response_status_code
+        integer response_time_milliseconds
+        string ip_address
+        string user_agent
+        boolean is_successful_request
+        json error_details_json
+        timestamp created_at
+    }
+    
+    WEBHOOK_EVENTS {
+        uuid webhook_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string webhook_name
+        string webhook_url
+        json event_subscriptions
+        json webhook_headers
+        string webhook_auth_type
+        string webhook_status
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    WEBHOOK_LOGS {
+        uuid log_id PK
+        uuid webhook_id FK
+        uuid triggering_event_id FK
+        string event_type
+        json event_payload
+        int http_status_code
+        json http_response
+        int retry_count
+        string delivery_status
+        timestamp delivered_at
+        timestamp created_at
+    }
+    
+    EXTERNAL_IDENTITY_MAPPING {
+        uuid mapping_id PK
+        uuid tenant_id FK
+        uuid user_id FK
+        string external_system_name
+        string external_user_id
+        string external_email
+        json external_attributes
+        datetime last_synced_at
+        string sync_status
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    SYNC_LOGS ||--o{ USERS : "initiated_by"
+    API_KEYS ||--o{ USERS : "created_by"
+    API_AUDIT_LOGS ||--o{ API_KEYS : "uses"
+    API_AUDIT_LOGS ||--o{ USERS : "user"
+    WEBHOOK_EVENTS ||--o{ USERS : "created_by"
+    WEBHOOK_LOGS ||--o{ WEBHOOK_EVENTS : "tracks"
+    USERS ||--o{ EXTERNAL_IDENTITY_MAPPING : "maps"
+    
+    %% ================================================
+    %% TENANT DATABASE - SETTINGS & CONFIGURATION CONTEXT
+    %% ================================================
+    
+    TENANT_SETTINGS {
+        uuid setting_id PK
+        uuid tenant_id FK
+        uuid updated_by_user_id FK
+        json organization_settings
+        json email_settings
+        json notification_settings
+        json integration_settings
+        json advanced_settings
+        timestamp updated_at
+        timestamp created_at
+    }
+    
+    WHITE_LABEL_SETTINGS {
+        uuid label_id PK
+        uuid tenant_id FK
+        uuid updated_by_user_id FK
+        string primary_color_hex
+        string secondary_color_hex
+        string accent_color_hex
+        string logo_file_url
+        string favicon_file_url
+        string company_name_display
+        string company_logo_alt_text
+        json font_settings
+        json ui_theme_settings
+        json branding_metadata
+        timestamp updated_at
+    }
+    
+    EMAIL_TEMPLATES {
+        uuid template_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string template_name
+        string template_code
+        string template_type
+        string email_subject
+        string email_body_html
+        string email_body_text
+        json template_variables
+        boolean is_default_template
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    NOTIFICATION_SETTINGS {
+        uuid setting_id PK
+        uuid tenant_id FK
+        uuid user_id FK
+        boolean email_notifications_enabled
+        boolean push_notifications_enabled
+        boolean sms_notifications_enabled
+        boolean in_app_notifications_enabled
+        json notification_preferences
+        timestamp updated_at
+    }
+    
+    FEATURE_FLAGS {
+        uuid flag_id PK
+        uuid tenant_id FK
+        string feature_name
+        string feature_description
+        boolean is_enabled
+        decimal rollout_percentage
+        json feature_config
+        timestamp updated_at
+        timestamp created_at
+    }
+    
+    SYSTEM_HEALTH_LOGS {
+        uuid log_id PK
+        uuid tenant_id FK
+        datetime health_check_timestamp
+        decimal cpu_usage_percentage
+        decimal memory_usage_percentage
+        decimal disk_usage_percentage
+        integer active_sessions_count
+        integer pending_jobs_count
+        integer database_query_time_milliseconds
+        string system_status
+        json health_metadata
+        timestamp created_at
+    }
+    
+    TENANT_SETTINGS ||--o{ USERS : "updated_by"
+    WHITE_LABEL_SETTINGS ||--o{ USERS : "updated_by"
+    EMAIL_TEMPLATES ||--o{ USERS : "created_by"
+    USERS ||--o{ NOTIFICATION_SETTINGS : "has"
+    FEATURE_FLAGS ||--o{ CENTRAL_TENANTS : "controls"
+    
+    %% ================================================
+    %% TENANT DATABASE - ANALYTICS & REPORTING CONTEXT
+    %% ================================================
+    
+    REPORT_DEFINITIONS {
+        uuid report_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string report_name
+        string report_type
+        string report_description
+        json report_query_definition
+        json report_filters
+        json report_columns
+        boolean is_system_report
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    SCHEDULED_REPORTS {
+        uuid scheduled_id PK
+        uuid report_id FK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string schedule_frequency
+        json schedule_cron_expression
+        string delivery_method
+        json delivery_recipients_json
+        string report_format
+        boolean is_scheduled_active
+        datetime last_executed_at
+        datetime next_execution_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    REPORT_EXECUTIONS {
+        uuid execution_id PK
+        uuid report_id FK
+        uuid scheduled_report_id FK
+        uuid tenant_id FK
+        uuid requested_by_user_id FK
+        datetime execution_started_at
+        datetime execution_completed_at
+        integer execution_duration_seconds
+        int total_records_generated
+        string execution_status
+        string output_file_url
+        json execution_metadata
+        timestamp created_at
+    }
+    
+    ANALYTICS_CACHE {
+        uuid cache_id PK
+        uuid tenant_id FK
+        string cache_key
+        json cached_data_json
+        integer cache_ttl_seconds
+        datetime cache_expires_at
+        int cache_hit_count
+        int cache_miss_count
+        timestamp created_at
+        timestamp last_accessed_at
+    }
+    
+    REPORT_DEFINITIONS ||--o{ USERS : "created_by"
+    REPORT_DEFINITIONS ||--o{ SCHEDULED_REPORTS : "has"
+    SCHEDULED_REPORTS ||--o{ USERS : "created_by"
+    SCHEDULED_REPORTS ||--o{ REPORT_EXECUTIONS : "triggers"
+    REPORT_EXECUTIONS ||--o{ USERS : "requested_by"
+    REPORT_EXECUTIONS ||--o{ REPORT_DEFINITIONS : "generates"
+    
+    %% ================================================
+    %% TENANT DATABASE - BACKUP & RECOVERY CONTEXT
+    %% ================================================
+    
+    BACKUP_JOBS {
+        uuid job_id PK
+        uuid tenant_id FK
+        uuid initiated_by_user_id FK
+        string backup_type
+        string backup_scope
+        datetime backup_started_at
+        datetime backup_completed_at
+        integer backup_size_bytes
+        string backup_location
+        string backup_encryption_status
+        string backup_verification_status
+        json backup_metadata
+        string backup_status
+        timestamp created_at
+    }
+    
+    BACKUP_SCHEDULES {
+        uuid schedule_id PK
+        uuid tenant_id FK
+        uuid created_by_user_id FK
+        string schedule_name
+        string schedule_frequency
+        json schedule_cron_expression
+        string backup_type
+        string backup_retention_policy
+        int retention_days_count
+        boolean is_schedule_active
+        datetime last_backup_at
+        datetime next_backup_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    DATA_MIGRATION_LOGS {
+        uuid migration_id PK
+        uuid tenant_id FK
+        uuid initiated_by_user_id FK
+        string migration_type
+        string source_environment
+        string target_environment
+        datetime migration_started_at
+        datetime migration_completed_at
+        int records_migrated_count
+        int records_failed_count
+        string migration_status
+        json migration_error_details
+        json migration_metadata
+        timestamp created_at
+    }
+    
+    BACKUP_JOBS ||--o{ USERS : "initiated_by"
+    BACKUP_SCHEDULES ||--o{ USERS : "created_by"
+    BACKUP_SCHEDULES ||--o{ BACKUP_JOBS : "triggers"
+    DATA_MIGRATION_LOGS ||--o{ USERS : "initiated_by"
