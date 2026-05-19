@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class QuestionVersion extends Model
 {
@@ -78,5 +79,10 @@ class QuestionVersion extends Model
     public function options(): HasMany
     {
         return $this->hasMany(QuestionOption::class, 'version_id', 'version_id');
+    }
+
+    public function psychometrics(): HasOne
+    {
+        return $this->hasOne(QuestionPsychometrics::class, 'question_version_id', 'version_id');
     }
 }

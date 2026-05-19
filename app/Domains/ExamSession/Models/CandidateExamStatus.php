@@ -63,6 +63,8 @@ class CandidateExamStatus extends Model
         'total_session_duration_seconds',
         'actual_response_time_seconds',
         'completion_method',
+        'last_heartbeat_at',
+        'heartbeat_metadata',
         'version_lock',
     ];
 
@@ -81,6 +83,8 @@ class CandidateExamStatus extends Model
             'session_ended_at' => 'datetime',
             'total_session_duration_seconds' => 'integer',
             'actual_response_time_seconds' => 'integer',
+            'last_heartbeat_at' => 'datetime',
+            'heartbeat_metadata' => 'array',
             'version_lock' => 'datetime',
         ];
     }
@@ -108,6 +112,11 @@ class CandidateExamStatus extends Model
     public function responses(): HasMany
     {
         return $this->hasMany(QuestionResponse::class, 'session_id', 'session_id');
+    }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(ExamSessionItem::class, 'session_id', 'session_id');
     }
 
     public function evaluations(): HasMany

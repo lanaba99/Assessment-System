@@ -13,7 +13,33 @@ class DomainServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // هون بنقدر نسجل الـ Providers الخاصة بكل دومين مستقبلاً
+        $domainsPath = app_path('Domains');
+
+        if (!File::exists($domainsPath)) {
+            return;
+        }
+
+        foreach (File::directories($domainsPath) as $domain) {
+            $domainName = basename($domain);
+
+            if ($domainName === 'Shared') {
+                continue;
+            }
+
+            $providersPath = $domain . '/Providers';
+
+            if (!File::exists($providersPath)) {
+                continue;
+            }
+
+            foreach (File::files($providersPath) as $providerFile) {
+                $providerClass = 'App\\Domains\\' . $domainName . '\\Providers\\' . $providerFile->getFilenameWithoutExtension();
+
+                if (class_exists($providerClass)) {
+                    $this->app->register($providerClass);
+                }
+            }
+        }
     }
 
     /**

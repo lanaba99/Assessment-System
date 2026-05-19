@@ -90,6 +90,11 @@ class Exam extends Model
         return $this->hasMany(ExamConfig::class, 'exam_id', 'exam_id');
     }
 
+    public function blueprints(): HasMany
+    {
+        return $this->hasMany(ExamBlueprint::class, 'exam_id', 'exam_id');
+    }
+
     public function eligibleCandidates(): HasMany
     {
         return $this->hasMany(ExamCandidateEligible::class, 'exam_id', 'exam_id');
