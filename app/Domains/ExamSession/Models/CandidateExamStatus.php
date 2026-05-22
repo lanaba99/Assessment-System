@@ -85,7 +85,7 @@ class CandidateExamStatus extends Model
             'actual_response_time_seconds' => 'integer',
             'last_heartbeat_at' => 'datetime',
             'heartbeat_metadata' => 'array',
-            'version_lock' => 'datetime',
+            'version_lock' => 'integer',
         ];
     }
 

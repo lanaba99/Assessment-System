@@ -45,7 +45,7 @@ class ExamSessionItem extends Model
             'first_viewed_at' => 'datetime',
             'answered_at' => 'datetime',
             'is_flagged' => 'boolean',
-            'version_lock' => 'datetime',
+            'version_lock' => 'integer',
         ];
     }
 

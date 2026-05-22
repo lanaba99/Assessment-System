@@ -48,7 +48,6 @@ class QuestionResponse extends Model
         'integrity_status',
         'response_metadata',
         'response_submitted_at',
-        'version_lock',
     ];
 
     protected function casts(): array
@@ -67,7 +66,6 @@ class QuestionResponse extends Model
             'scoring_metadata' => 'array',
             'response_metadata' => 'array',
             'response_submitted_at' => 'datetime',
-            'version_lock' => 'datetime',
         ];
     }
 
