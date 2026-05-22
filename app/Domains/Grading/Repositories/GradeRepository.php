@@ -22,6 +22,26 @@ class GradeRepository
             ->first();
     }
 
+    /**
+     * Cross-domain read consumed by Rules' eligibility chain (prerequisite_exam condition).
+     * Returns the candidate's final passing grade for an exam, optionally gated by a score threshold.
+     */
+    public function findPassingGradeForCandidate(string $candidateId, string $examId, ?float $minScore = null): ?Grade
+    {
+        $query = $this->model
+            ->newQuery()
+            ->where('candidate_user_id', $candidateId)
+            ->where('exam_id', $examId)
+            ->where('is_passing_grade', true)
+            ->where('is_final_grade', true);
+
+        if ($minScore !== null) {
+            $query->where('normalized_score', '>=', $minScore);
+        }
+
+        return $query->orderByDesc('finalized_at')->first();
+    }
+
     public function upsertFromSummary(AssessmentSummary $summary): Grade
     {
         $now = now();
