@@ -32,6 +32,46 @@ class AnswerEvaluationRepository
             ->get();
     }
 
+    /**
+     * Cross-domain read consumed by QuestionBank's PsychometricAnalysisService.
+     * Filters by the `question_version_id` denormalized into evaluation_metadata.
+     */
+    public function findByQuestionVersionId(string $questionVersionId): Collection
+    {
+        return $this->model
+            ->newQuery()
+            ->where('evaluation_metadata->question_version_id', $questionVersionId)
+            ->get();
+    }
+
+    /**
+     * Aggregate session-total scores in SQL for the given session ids.
+     *
+     * @param  array<int, string>  $sessionIds
+     * @return array<string, float>  keyed by session_id
+     */
+    public function getSessionTotalScores(array $sessionIds): array
+    {
+        if ($sessionIds === []) {
+            return [];
+        }
+
+        $rows = $this->model
+            ->newQuery()
+            ->select('session_id')
+            ->selectRaw('SUM(score_awarded) AS total_score')
+            ->whereIn('session_id', $sessionIds)
+            ->groupBy('session_id')
+            ->get();
+
+        $map = [];
+        foreach ($rows as $row) {
+            $map[(string) $row->session_id] = (float) $row->total_score;
+        }
+
+        return $map;
+    }
+
     public function record(GradingResult $result, string $tenantId): AnswerEvaluation
     {
         $now = now();

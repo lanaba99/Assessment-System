@@ -13,6 +13,7 @@ class ItemResolutionStrategyResolver
         private readonly StratifiedBloomStrategy $stratified,
         private readonly GreedyDiscriminationStrategy $greedy,
         private readonly AdaptiveCATStrategy $adaptive,
+        private readonly WeightedQuestionSelectionStrategy $weighted,
     ) {
     }
 
@@ -23,6 +24,7 @@ class ItemResolutionStrategyResolver
             'stratified' => $this->stratified,
             'greedy' => $this->greedy,
             'adaptive' => $this->adaptive,
+            'weighted' => $this->weighted,
             default => throw new InvalidArgumentException("Unknown item-resolution strategy: {$name}"),
         };
     }
