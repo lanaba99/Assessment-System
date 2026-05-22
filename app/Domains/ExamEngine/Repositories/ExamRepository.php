@@ -8,8 +8,14 @@ use App\Domains\ExamEngine\Models\Exam;
 
 class ExamRepository
 {
-    public function __construct(private readonly Exam $exam)
+    public function __construct(
+        private readonly Exam $exam,
+    ) {
+    }
+
+    public function findById(string $examId): ?Exam
     {
+        return $this->exam->newQuery()->find($examId);
     }
 
     public function findWithSectionsAndQuestions(string $examId): ?Exam
@@ -18,5 +24,17 @@ class ExamRepository
             ->newQuery()
             ->with(['sections'])
             ->find($examId);
+    }
+
+    public function create(array $attributes): Exam
+    {
+        return $this->exam->newQuery()->create($attributes);
+    }
+
+    public function update(Exam $exam, array $attributes): Exam
+    {
+        $exam->fill($attributes)->save();
+
+        return $exam;
     }
 }
