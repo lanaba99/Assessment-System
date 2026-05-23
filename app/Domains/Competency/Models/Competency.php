@@ -8,6 +8,7 @@ use App\Domains\ExamEngine\Models\ExamConfig;
 use App\Domains\Grading\Models\CompetencyScore;
 use App\Domains\Identity\Models\User;
 use App\Domains\QuestionBank\Models\Question;
+use App\Domains\Shared\Traits\AutoFillsTenantId;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Competency extends Model
 {
+    use AutoFillsTenantId;
     use HasFactory;
     use UsesUuid;
 

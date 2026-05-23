@@ -23,7 +23,10 @@ class ThrottleLoginMiddleware
 
     public function handle(Request $request, Closure $next): Response
     {
-        $tenantId = (string) $request->input('tenant_id', '');
+        // Tenant context is established by InitializeTenancyBySubdomain on the route
+        // group; if tenancy isn't initialized (e.g. central request), skip throttling here.
+        $bound = function_exists('tenant') ? tenant() : null;
+        $tenantId = $bound !== null ? (string) $bound->getKey() : '';
         $email = (string) $request->input('email', '');
 
         if ($tenantId === '' || $email === '') {

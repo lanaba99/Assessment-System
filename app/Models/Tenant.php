@@ -28,7 +28,6 @@ class Tenant extends BaseTenant implements TenantWithDatabase
     {
         return [
             'id',
-            'subdomain',
             'organization_name',
             'organization_type',
             'primary_contact_email',

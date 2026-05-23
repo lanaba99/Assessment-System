@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\QuestionBank\Models;
 
+use App\Domains\Shared\Traits\AutoFillsTenantId;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class QuestionTag extends Model
 {
+    use AutoFillsTenantId;
     use HasFactory;
     use UsesUuid;
 

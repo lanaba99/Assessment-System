@@ -20,7 +20,6 @@ class CreateExamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tenant_id' => ['required', 'uuid'],
             'created_by_user_id' => ['required', 'uuid'],
             'exam_name' => ['required', 'string', 'max:255'],
             'exam_code' => ['required', 'string', 'max:64'],
@@ -50,7 +49,7 @@ class CreateExamRequest extends FormRequest
         $v = $this->validated();
 
         return new CreateExamCommand(
-            tenantId: (string) $v['tenant_id'],
+            tenantId: (string) tenant()->getKey(),
             createdByUserId: (string) $v['created_by_user_id'],
             examName: (string) $v['exam_name'],
             examCode: (string) $v['exam_code'],

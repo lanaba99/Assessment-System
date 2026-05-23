@@ -6,6 +6,7 @@ namespace App\Domains\Cohorts\Models;
 
 use App\Domains\ExamSession\Models\ExamCandidateEligible;
 use App\Domains\Identity\Models\User;
+use App\Domains\Shared\Traits\AutoFillsTenantId;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cohort extends Model
 {
+    use AutoFillsTenantId;
     use HasFactory;
     use UsesUuid;
 

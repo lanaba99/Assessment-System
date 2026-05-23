@@ -6,6 +6,7 @@ namespace App\Domains\Identity\Repositories;
 
 use App\Domains\Identity\Models\UserSession;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class UserSessionRepository
 {
@@ -44,6 +45,9 @@ class UserSessionRepository
         $attributes['login_at'] = $attributes['login_at'] ?? now();
         $attributes['last_activity_at'] = $attributes['last_activity_at'] ?? now();
         $attributes['session_state'] = $attributes['session_state'] ?? 'active';
+        // device_fingerprint is NOT NULL + UNIQUE; callers that have a real
+        // fingerprint (e.g. a JS client posting a hash) should override this.
+        $attributes['device_fingerprint'] = $attributes['device_fingerprint'] ?? (string) Str::uuid();
 
         return $this->model->newQuery()->create($attributes);
     }

@@ -31,7 +31,7 @@ class UserController extends Controller
         $this->authorize('create', User::class);
 
         $actor = $request->user();
-        $tenantId = (string) $actor->tenant_id;
+        $tenantId = (string) tenant()->getKey();
 
         $newUserId = $this->userService->createUser(
             tenantId: $tenantId,
@@ -60,7 +60,7 @@ class UserController extends Controller
         $this->authorize('resetPassword', $target);
 
         $this->userService->resetPassword(
-            tenantId: (string) $actor->tenant_id,
+            tenantId: (string) tenant()->getKey(),
             userId: $userId,
             newPlaintextPassword: $request->newPassword(),
             resetByUserId: (string) $actor->id,
@@ -84,7 +84,7 @@ class UserController extends Controller
         $this->authorize('deactivate', $target);
 
         $this->userService->deactivateUser(
-            tenantId: (string) $actor->tenant_id,
+            tenantId: (string) tenant()->getKey(),
             userId: $userId,
             deactivatedByUserId: (string) $actor->id,
         );
@@ -101,7 +101,7 @@ class UserController extends Controller
             return $this->error('not_authenticated', 'Authentication required.', Response::HTTP_UNAUTHORIZED);
         }
 
-        $target = $this->users->findById((string) $actor->tenant_id, $userId);
+        $target = $this->users->findById((string) tenant()->getKey(), $userId);
 
         if ($target === null) {
             return $this->error('user_not_found', "User {$userId} not found.", Response::HTTP_NOT_FOUND);

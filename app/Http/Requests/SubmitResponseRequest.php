@@ -20,7 +20,6 @@ class SubmitResponseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tenant_id' => ['required', 'uuid'],
             'candidate_id' => ['required', 'uuid'],
             'session_item_id' => ['required', 'uuid'],
             'response_type' => ['required', 'string', 'max:64'],
@@ -40,7 +39,7 @@ class SubmitResponseRequest extends FormRequest
         $validated = $this->validated();
 
         return new SubmitResponseCommand(
-            tenantId: $validated['tenant_id'],
+            tenantId: (string) tenant()->getKey(),
             sessionId: $sessionId,
             sessionItemId: $validated['session_item_id'],
             candidateId: $validated['candidate_id'],

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Domains\Identity\Contracts\AuthenticationService;
+use App\Domains\Identity\DTOs\AuthenticationResult;
 use App\Domains\Identity\Exceptions\AuthenticationFailedException;
 use App\Domains\Identity\Exceptions\MfaVerificationFailedException;
+use App\Domains\Identity\Models\User;
 use App\Http\Requests\Identity\LoginRequest;
 use App\Http\Resources\AuthenticationResultResource;
 use Illuminate\Http\JsonResponse;
@@ -34,22 +36,33 @@ class AuthController extends Controller
             return $this->authError($e->reasonCode, $e->getMessage(), Response::HTTP_UNAUTHORIZED);
         }
 
-        return AuthenticationResultResource::make($result)
+        $response = AuthenticationResultResource::make($result)
             ->response()
             ->setStatusCode(Response::HTTP_OK);
+
+        if ($result->status === AuthenticationResult::STATUS_AUTHENTICATED && $result->userId !== null) {
+            $user = User::query()->find($result->userId);
+            if ($user !== null) {
+                $token = $user->createToken('api')->plainTextToken;
+                $payload = $response->getData(true);
+                $payload['data']['token'] = $token;
+                $response->setData($payload);
+            }
+        }
+
+        return $response;
     }
 
     public function verifyMfa(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'tenant_id' => ['required', 'uuid'],
             'session_id' => ['required', 'uuid'],
             'one_time_code' => ['required', 'string', 'max:32'],
         ]);
 
         try {
             $result = $this->authService->verifyMfaForSession(
-                tenantId: (string) $validated['tenant_id'],
+                tenantId: (string) tenant()->getKey(),
                 sessionId: (string) $validated['session_id'],
                 oneTimeCode: (string) $validated['one_time_code'],
             );
@@ -76,7 +89,7 @@ class AuthController extends Controller
             return $this->authError('missing_session_id', 'session_id is required.', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $this->authService->logout((string) $actor->tenant_id, $sessionId);
+        $this->authService->logout((string) tenant()->getKey(), $sessionId);
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
@@ -93,7 +106,7 @@ class AuthController extends Controller
             return $this->authError('missing_session_id', 'session_id is required.', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $this->authService->refreshSessionActivity((string) $actor->tenant_id, $sessionId);
+        $this->authService->refreshSessionActivity((string) tenant()->getKey(), $sessionId);
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Domains\Analytics\Models;
 
+use App\Domains\Shared\Traits\AutoFillsTenantId;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AnalyticsCache extends Model
 {
+    use AutoFillsTenantId;
     use HasFactory;
     use UsesUuid;
 

@@ -14,6 +14,7 @@ use App\Domains\Penalties\Models\PenaltySanction;
 use App\Domains\Proctoring\Models\BrowserLockdownEvent;
 use App\Domains\Proctoring\Models\DeviceFingerprint;
 use App\Domains\Proctoring\Models\ProctorLog;
+use App\Domains\Shared\Traits\AutoFillsTenantId;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class CandidateExamStatus extends Model
 {
+    use AutoFillsTenantId;
     use HasFactory;
     use UsesUuid;
 

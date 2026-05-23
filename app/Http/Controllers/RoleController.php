@@ -61,7 +61,7 @@ class RoleController extends Controller
         $this->authorize('assignToUser', $role);
 
         $this->roleService->assignRoleToUser(
-            tenantId: (string) $actor->tenant_id,
+            tenantId: (string) tenant()->getKey(),
             userId: $userId,
             roleId: $roleId,
             assignedByUserId: (string) $actor->id,
@@ -81,7 +81,7 @@ class RoleController extends Controller
         $this->authorize('assignToUser', $role);
 
         $this->roleService->removeRoleFromUser(
-            tenantId: (string) $actor->tenant_id,
+            tenantId: (string) tenant()->getKey(),
             userId: $userId,
             roleId: $roleId,
             removedByUserId: (string) $actor->id,
@@ -101,7 +101,7 @@ class RoleController extends Controller
             ], Response::HTTP_UNAUTHORIZED);
         }
 
-        $role = $this->roles->findById((string) $actor->tenant_id, $roleId);
+        $role = $this->roles->findById((string) tenant()->getKey(), $roleId);
 
         if ($role === null) {
             return new JsonResponse([

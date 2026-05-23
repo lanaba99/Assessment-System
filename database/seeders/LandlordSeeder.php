@@ -17,7 +17,6 @@ class LandlordSeeder extends Seeder
         $now = now();
 
         $tenant = Tenant::create([
-            'subdomain' => 'alpha-engine',
             'organization_name' => 'Alpha Global Assessment Corp',
             'organization_type' => 'enterprise',
             'primary_contact_email' => 'contact@alpha-engine.example',
@@ -45,6 +44,13 @@ class LandlordSeeder extends Seeder
             'contract_end_date' => $now->copy()->addYear(),
         ]);
 
+        // InitializeTenancyBySubdomain extracts the leftmost label off the request
+        // host and looks THAT up in the `domains` table, so we store just the label —
+        // not the full `alpha-engine.localhost` hostname.
+        $tenant->domains()->create([
+            'domain' => 'alpha-engine',
+        ]);
+
         DB::table('central_admin_users')->insert([
             'admin_user_id' => (string) Str::uuid(),
             'email' => 'superadmin@alpha-engine.example',
@@ -59,6 +65,6 @@ class LandlordSeeder extends Seeder
             'created_at' => $now,
         ]);
 
-        $this->command?->info("Landlord seeded. Tenant id: {$tenant->id}");
+        $this->command?->info("Landlord seeded. Tenant id: {$tenant->id} (alpha-engine.localhost)");
     }
 }

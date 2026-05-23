@@ -8,6 +8,7 @@ use App\Domains\ExamEngine\Models\Exam;
 use App\Domains\ExamSession\Models\CandidateExamStatus;
 use App\Domains\Workflows\Models\ApprovalWorkflow;
 use App\Domains\Identity\Models\User;
+use App\Domains\Shared\Traits\AutoFillsTenantId;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class AssessmentResult extends Model
 {
+    use AutoFillsTenantId;
     use HasFactory;
     use UsesUuid;
 
