@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Tenant;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,39 +16,33 @@ class LandlordSeeder extends Seeder
     {
         $now = now();
 
-        $tenantId = (string) Str::uuid();
-
-        DB::table('tenants')->insert([
-            'id' => $tenantId,
+        $tenant = Tenant::create([
             'subdomain' => 'alpha-engine',
             'organization_name' => 'Alpha Global Assessment Corp',
             'organization_type' => 'enterprise',
             'primary_contact_email' => 'contact@alpha-engine.example',
             'primary_contact_phone' => '+1-555-0100',
-            'deployment_config' => json_encode([
+            'deployment_config' => [
                 'region' => 'us-east-1',
                 'tier' => 'premium',
-            ]),
+            ],
             'deployment_mode' => 'multi_database',
             'data_residency_location' => 'US',
             'max_concurrent_users' => 1000,
             'max_storage_quota_mb' => 102400,
-            'feature_flags' => json_encode([
+            'feature_flags' => [
                 'adaptive_exams' => true,
                 'live_proctoring' => true,
                 'ai_recommendations' => true,
                 'white_labeling' => true,
-            ]),
+            ],
             'status' => 'active',
-            'security_policies' => json_encode([
+            'security_policies' => [
                 'mfa_required' => true,
                 'session_timeout_minutes' => 60,
-            ]),
+            ],
             'contract_start_date' => $now,
             'contract_end_date' => $now->copy()->addYear(),
-            'created_at' => $now,
-            'updated_at' => $now,
-            'data' => json_encode([]),
         ]);
 
         DB::table('central_admin_users')->insert([
@@ -64,6 +59,6 @@ class LandlordSeeder extends Seeder
             'created_at' => $now,
         ]);
 
-        $this->command?->info("Landlord seeded. Tenant id: {$tenantId}");
+        $this->command?->info("Landlord seeded. Tenant id: {$tenant->id}");
     }
 }

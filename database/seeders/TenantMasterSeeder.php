@@ -387,18 +387,20 @@ class TenantMasterSeeder extends Seeder
         $blueprintRows = [];
         foreach ($this->competencyIds as $name => $competencyId) {
             $blueprintRows[] = [
-                'blueprint_id'                            => (string) Str::uuid(),
-                'exam_id'                                 => $this->examId,
-                'competency_id'                           => $competencyId,
-                'min_questions_count'                     => 2,
-                'max_questions_count'                     => 4,
-                'min_weight_percentage'                   => 20,
-                'max_weight_percentage'                   => 50,
-                'difficulty_distribution_easy_count'      => 1,
-                'difficulty_distribution_medium_count'    => 1,
-                'difficulty_distribution_hard_count'      => 1,
-                'blueprint_metadata'                      => json_encode(['competency' => $name]),
-                'created_at'                              => now(),
+                'blueprint_id'           => (string) Str::uuid(),
+                'exam_id'                => $this->examId,
+                'competency_id'          => $competencyId,
+                'min_questions_count'    => 2,
+                'max_questions_count'    => 4,
+                'min_weight_percentage'  => 20,
+                'max_weight_percentage'  => 50,
+                'bloom_distribution'     => json_encode([
+                    'remember'   => 1,
+                    'understand' => 1,
+                    'apply'      => 1,
+                ]),
+                'blueprint_metadata'     => json_encode(['competency' => $name]),
+                'created_at'             => now(),
             ];
         }
         DB::table('exam_blueprints')->insert($blueprintRows);
