@@ -9,6 +9,7 @@ use App\Domains\Grading\Models\CompetencyScore;
 use App\Domains\Identity\Models\User;
 use App\Domains\QuestionBank\Models\Question;
 use App\Domains\Shared\Traits\UsesUuid;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -54,6 +55,24 @@ class Competency extends Model
             'is_active' => 'boolean',
             'proficiency_level_count' => 'integer',
         ];
+    }
+
+    /**
+     * Parent reference is persisted in competency_attributes JSON because
+     * the schema does not (yet) have a dedicated FK column. Read/write
+     * exclusively through this accessor so the storage detail stays here.
+     */
+    protected function parentCompetencyId(): Attribute
+    {
+        return Attribute::make(
+            get: function (mixed $_, array $attributes): ?string {
+                $raw = $attributes['competency_attributes'] ?? null;
+                $decoded = is_string($raw) ? json_decode($raw, true) : $raw;
+                $parent = is_array($decoded) ? ($decoded['parent_competency_id'] ?? null) : null;
+
+                return is_string($parent) ? $parent : null;
+            },
+        );
     }
 
     public function createdBy(): BelongsTo
