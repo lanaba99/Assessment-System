@@ -47,51 +47,51 @@ class AuthenticationServiceImpl implements AuthenticationService
         string $ipAddress,
         string $userAgent,
     ): AuthenticationResult {
-        return DB::transaction(function () use (
-            $tenantId,
-            $emailOrEmployeeId,
-            $plaintextPassword,
-            $ipAddress,
-            $userAgent,
-        ): AuthenticationResult {
-            $user = $this->resolveUser($tenantId, $emailOrEmployeeId);
+        // Validation runs OUTSIDE the transaction. Failure-path audit writes
+        // (recordFailure) must survive even when we throw — wrapping them in
+        // a transaction that the same throw rolls back wipes the audit trail
+        // exactly when investigators need it most.
+        $user = $this->resolveUser($tenantId, $emailOrEmployeeId);
 
-            if ($user === null) {
-                $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'user_not_found', $userAgent);
-                throw InvalidCredentialsException::forUnknownIdentifier();
-            }
+        if ($user === null) {
+            $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'user_not_found', $userAgent);
+            throw InvalidCredentialsException::forUnknownIdentifier();
+        }
 
-            if (! (bool) $user->is_active) {
-                $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'user_inactive', $userAgent);
-                throw UserInactiveException::forUser((string) $user->id);
-            }
+        if (! (bool) $user->is_active) {
+            $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'user_inactive', $userAgent);
+            throw UserInactiveException::forUser((string) $user->id);
+        }
 
-            if (! $this->hasher->check($plaintextPassword, (string) $user->password_hash)) {
-                $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'invalid_password', $userAgent);
-                throw InvalidCredentialsException::forWrongPassword();
-            }
+        if (! $this->hasher->check($plaintextPassword, (string) $user->password_hash)) {
+            $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'invalid_password', $userAgent);
+            throw InvalidCredentialsException::forWrongPassword();
+        }
 
-            if ($this->hasher->needsRehash((string) $user->password_hash)) {
-                $this->users->update($user, [
-                    'password_hash' => $this->hasher->make($plaintextPassword),
-                ]);
-            }
+        if ($this->hasher->needsRehash((string) $user->password_hash)) {
+            $this->users->update($user, [
+                'password_hash' => $this->hasher->make($plaintextPassword),
+            ]);
+        }
 
-            $policy = $this->policies->findActiveForTenant($tenantId);
+        $policy = $this->policies->findActiveForTenant($tenantId);
 
-            if ((bool) ($policy?->ip_whitelisting_enabled ?? false)
-                && $this->ipWhitelist->findExactMatch($tenantId, $ipAddress) === null) {
-                $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'ip_not_allowed', $userAgent);
-                throw IpNotAllowedException::forIp($ipAddress);
-            }
+        if ((bool) ($policy?->ip_whitelisting_enabled ?? false)
+            && $this->ipWhitelist->findExactMatch($tenantId, $ipAddress) === null) {
+            $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'ip_not_allowed', $userAgent);
+            throw IpNotAllowedException::forIp($ipAddress);
+        }
 
-            $mfaRequiredByPolicy = (bool) ($policy?->mfa_enabled ?? false);
-            $userHasVerifiedDevice = $this->mfaDevices
-                ->listVerifiedForUser($tenantId, (string) $user->id)
-                ->isNotEmpty();
+        $mfaRequiredByPolicy = (bool) ($policy?->mfa_enabled ?? false);
+        $userHasVerifiedDevice = $this->mfaDevices
+            ->listVerifiedForUser($tenantId, (string) $user->id)
+            ->isNotEmpty();
 
-            $challengeMfa = $mfaRequiredByPolicy && $userHasVerifiedDevice;
+        $challengeMfa = $mfaRequiredByPolicy && $userHasVerifiedDevice;
 
+        // Success path: session creation + success-audit + last_login update
+        // are atomically related — all or none.
+        return DB::transaction(function () use ($user, $tenantId, $ipAddress, $userAgent, $challengeMfa): AuthenticationResult {
             $session = $this->sessions->create($tenantId, (string) $user->id, [
                 'ip_address' => $ipAddress,
                 'user_agent' => $userAgent,

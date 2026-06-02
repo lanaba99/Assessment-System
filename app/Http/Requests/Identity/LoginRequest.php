@@ -27,19 +27,39 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    /**
+     * Fail-closed: a login request without a resolvable tenant is invalid.
+     * Either tenancy middleware bound a tenant or the caller passed tenant_id
+     * explicitly. Falling through to an empty string would let queries run
+     * with `tenant_id = ''` and silently miss every user.
+     */
+    protected function prepareForValidation(): void
+    {
+        if ($this->resolveTenantId() === null) {
+            abort(422, 'Tenant context could not be resolved. Provide tenant_id explicitly or invoke this endpoint through a tenant-scoped host.');
+        }
+    }
+
     public function tenantId(): string
     {
-        $explicit = $this->validated('tenant_id');
+        return (string) $this->resolveTenantId();
+    }
+
+    private function resolveTenantId(): ?string
+    {
+        $explicit = $this->input('tenant_id');
         if (is_string($explicit) && $explicit !== '') {
             return $explicit;
         }
 
         $bound = function_exists('tenant') ? tenant() : null;
         if ($bound === null) {
-            return '';
+            return null;
         }
 
-        return (string) $bound->getKey();
+        $key = $bound->getKey();
+
+        return $key === null ? null : (string) $key;
     }
 
     public function emailOrEmployeeId(): string
