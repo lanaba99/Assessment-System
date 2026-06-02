@@ -7,9 +7,14 @@ namespace App\Http\Controllers;
 use App\Domains\Identity\Contracts\AuthenticationService;
 use App\Domains\Identity\DTOs\AuthenticationResult;
 use App\Domains\Identity\Exceptions\AuthenticationFailedException;
+use App\Domains\Identity\Exceptions\InvalidInviteTokenException;
 use App\Domains\Identity\Exceptions\MfaVerificationFailedException;
+use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
 use App\Domains\Identity\Models\User;
+use App\Http\Requests\Identity\AcceptInviteRequest;
+use App\Http\Requests\Identity\ForgotPasswordRequest;
 use App\Http\Requests\Identity\LoginRequest;
+use App\Http\Requests\Identity\ResetForgottenPasswordRequest;
 use App\Http\Resources\AuthenticationResultResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -107,6 +112,87 @@ class AuthController extends Controller
         }
 
         $this->authService->refreshSessionActivity((string) tenant()->getKey(), $sessionId);
+
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function acceptInvite(AcceptInviteRequest $request): JsonResponse
+    {
+        $tenantId = (string) tenant()->getKey();
+
+        try {
+            $userId = $this->authService->acceptInvite(
+                tenantId: $tenantId,
+                email: $request->emailValue(),
+                token: $request->tokenValue(),
+                plaintextPassword: $request->passwordValue(),
+            );
+        } catch (InvalidInviteTokenException $e) {
+            return $this->authError('invalid_invite_token', $e->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (PasswordPolicyViolationException $e) {
+            return new JsonResponse([
+                'error' => [
+                    'code' => 'password_policy_violation',
+                    'message' => $e->getMessage(),
+                    'violations' => $e->violations,
+                ],
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $user = User::query()->where('tenant_id', $tenantId)->find($userId);
+        if ($user === null) {
+            return $this->authError('user_not_found', 'Activated user could not be loaded.', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        $token = $user->createToken('api')->plainTextToken;
+
+        return new JsonResponse([
+            'data' => [
+                'user_id' => $userId,
+                'tenant_id' => $tenantId,
+                'status' => 'active',
+                'token' => $token,
+            ],
+        ], Response::HTTP_OK);
+    }
+
+    public function forgotPassword(ForgotPasswordRequest $request): JsonResponse
+    {
+        $this->authService->requestPasswordReset((string) tenant()->getKey(), $request->emailValue());
+
+        return new JsonResponse([
+            'data' => [
+                'message' => 'If the account exists, a password reset link has been sent.',
+            ],
+        ], Response::HTTP_ACCEPTED);
+    }
+
+    public function resetPassword(ResetForgottenPasswordRequest $request): JsonResponse
+    {
+        try {
+            $reset = $this->authService->resetPasswordWithToken(
+                tenantId: (string) tenant()->getKey(),
+                email: $request->emailValue(),
+                token: $request->tokenValue(),
+                newPassword: $request->passwordValue(),
+            );
+        } catch (PasswordPolicyViolationException $e) {
+            return new JsonResponse([
+                'error' => [
+                    'code' => 'password_policy_violation',
+                    'message' => $e->getMessage(),
+                    'violations' => $e->violations,
+                ],
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        if (! $reset) {
+            return $this->authError(
+                code: 'invalid_reset_token',
+                message: 'The password reset token is invalid or expired.',
+                status: Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }

@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Domains\Identity\Contracts\RoleManagementService;
 use App\Domains\Identity\Models\Role;
 use App\Domains\Identity\Repositories\RoleRepository;
+use App\Http\Requests\Identity\PaginatedIndexRequest;
 use App\Http\Requests\Identity\UpdateRoleRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
@@ -46,6 +47,22 @@ class RoleController extends Controller
                 'role_name' => (string) $role->role_name,
                 'role_category' => (string) $role->role_category,
                 'description' => $role->description,
+            ],
+        ], Response::HTTP_OK);
+    }
+
+    public function index(PaginatedIndexRequest $request): JsonResponse
+    {
+        $tenantId = (string) tenant()->getKey();
+        $roles = $this->roleService->listRoles($tenantId, $request->perPage());
+
+        return new JsonResponse([
+            'data' => $roles->items(),
+            'meta' => [
+                'current_page' => $roles->currentPage(),
+                'per_page' => $roles->perPage(),
+                'total' => $roles->total(),
+                'last_page' => $roles->lastPage(),
             ],
         ], Response::HTTP_OK);
     }

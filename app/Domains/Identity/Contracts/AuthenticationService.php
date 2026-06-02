@@ -32,4 +32,22 @@ interface AuthenticationService
     public function logout(string $tenantId, string $sessionId): void;
 
     public function revokeAllSessionsForUser(string $tenantId, string $userId): int;
+
+    /**
+     * @return array<int, array<string, mixed>>
+     */
+    public function listSessionsForUser(string $tenantId, string $userId): array;
+
+    public function revokeSessionForUser(string $tenantId, string $userId, string $sessionId): bool;
+
+    public function requestPasswordReset(string $tenantId, string $email): void;
+
+    public function resetPasswordWithToken(string $tenantId, string $email, string $token, string $newPassword): bool;
+
+    /**
+     * Activates a pending invited user after token + password validation.
+     *
+     * @return string Activated user id.
+     */
+    public function acceptInvite(string $tenantId, string $email, string $token, string $plaintextPassword): string;
 }

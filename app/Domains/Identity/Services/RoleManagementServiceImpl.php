@@ -7,6 +7,7 @@ namespace App\Domains\Identity\Services;
 use App\Domains\Identity\Contracts\RoleManagementService;
 use App\Domains\Identity\Repositories\PermissionRepository;
 use App\Domains\Identity\Repositories\RoleRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
@@ -86,5 +87,10 @@ class RoleManagementServiceImpl implements RoleManagementService
         string $changedByUserId,
     ): void {
         $this->permissions->syncRolePermissions($tenantId, $roleId, $permissionIds);
+    }
+
+    public function listRoles(string $tenantId, int $perPage = 15): LengthAwarePaginator
+    {
+        return $this->roles->paginateForTenant($tenantId, $perPage);
     }
 }

@@ -87,4 +87,20 @@ class UserSessionRepository
                 'logout_at' => now(),
             ]);
     }
+
+    public function revokeForUser(string $tenantId, string $userId, string $sessionId): bool
+    {
+        $updated = $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('user_id', $userId)
+            ->whereKey($sessionId)
+            ->whereNull('logout_at')
+            ->update([
+                'session_state' => 'revoked',
+                'logout_at' => now(),
+            ]);
+
+        return $updated > 0;
+    }
 }

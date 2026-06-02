@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domains\Identity\Contracts;
 
+use App\Domains\Identity\DTOs\UserInviteResult;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
 /**
  * User lifecycle (create, update, deactivate) + org-structure linkage.
  * Password handling lives here too: implementations must enforce SecurityPolicyService
@@ -12,6 +15,11 @@ namespace App\Domains\Identity\Contracts;
  */
 interface UserManagementService
 {
+    /**
+     * @return array<string, mixed>|null
+     */
+    public function getProfile(string $tenantId, string $userId): ?array;
+
     /**
      * @param  array<string, mixed>  $profile  first_name, last_name, external_employee_id, user_type, department_id, user_attributes
      */
@@ -22,6 +30,16 @@ interface UserManagementService
         array $profile,
         string $createdByUserId,
     ): string;
+
+    /**
+     * @param  array<string, mixed>  $profile
+     */
+    public function inviteUser(
+        string $tenantId,
+        string $email,
+        array $profile,
+        string $invitedByUserId,
+    ): UserInviteResult;
 
     /**
      * @param  array<string, mixed>  $changes
@@ -50,4 +68,6 @@ interface UserManagementService
      * @param  array<string, mixed>  $subtypeAttributes
      */
     public function setSubtype(string $tenantId, string $userId, array $subtypeAttributes): void;
+
+    public function listUsers(string $tenantId, int $perPage = 15): LengthAwarePaginator;
 }

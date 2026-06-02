@@ -6,24 +6,34 @@ namespace App\Domains\Identity\Services;
 
 use App\Domains\Identity\Contracts\AuthenticationService;
 use App\Domains\Identity\Contracts\MfaService;
+use App\Domains\Identity\Contracts\SecurityPolicyService;
 use App\Domains\Identity\DTOs\AuthenticationResult;
 use App\Domains\Identity\Exceptions\InvalidCredentialsException;
+use App\Domains\Identity\Exceptions\InvalidInviteTokenException;
 use App\Domains\Identity\Exceptions\IpNotAllowedException;
 use App\Domains\Identity\Exceptions\MfaVerificationFailedException;
+use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
 use App\Domains\Identity\Exceptions\UserInactiveException;
 use App\Domains\Identity\Models\User;
 use App\Domains\Identity\Repositories\IpWhitelistRepository;
 use App\Domains\Identity\Repositories\LoginAttemptRepository;
 use App\Domains\Identity\Repositories\MfaDeviceRepository;
+use App\Domains\Identity\Repositories\PasswordResetTokenRepository;
 use App\Domains\Identity\Repositories\SecurityPolicyRepository;
+use App\Domains\Identity\Repositories\UserInvitationTokenRepository;
 use App\Domains\Identity\Repositories\UserRepository;
 use App\Domains\Identity\Repositories\UserSessionRepository;
 use DateTimeImmutable;
 use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class AuthenticationServiceImpl implements AuthenticationService
 {
+    private const PASSWORD_RESET_TTL_MINUTES = 60;
+
+    private const INVITE_TOKEN_TTL_DAYS = 7;
+
     private const SESSION_STATE_PENDING_MFA = 'pending_mfa';
 
     private const SESSION_STATE_ACTIVE = 'active';
@@ -37,6 +47,9 @@ class AuthenticationServiceImpl implements AuthenticationService
         private readonly LoginAttemptRepository $loginAttempts,
         private readonly MfaService $mfaService,
         private readonly Hasher $hasher,
+        private readonly PasswordResetTokenRepository $passwordResetTokens,
+        private readonly UserInvitationTokenRepository $invitationTokens,
+        private readonly SecurityPolicyService $securityPolicyService,
     ) {
     }
 
@@ -184,6 +197,111 @@ class AuthenticationServiceImpl implements AuthenticationService
     public function revokeAllSessionsForUser(string $tenantId, string $userId): int
     {
         return $this->sessions->revokeAllForUser($tenantId, $userId);
+    }
+
+    public function listSessionsForUser(string $tenantId, string $userId): array
+    {
+        return $this->sessions
+            ->listActiveForUser($tenantId, $userId)
+            ->map(static fn ($session): array => [
+                'session_id' => (string) $session->session_id,
+                'session_state' => (string) $session->session_state,
+                'ip_address' => $session->ip_address,
+                'user_agent' => $session->user_agent,
+                'login_at' => $session->login_at?->toIso8601String(),
+                'last_activity_at' => $session->last_activity_at?->toIso8601String(),
+                'device_type' => $session->device_type,
+                'browser_name' => $session->browser_name,
+                'os_name' => $session->os_name,
+            ])
+            ->values()
+            ->all();
+    }
+
+    public function revokeSessionForUser(string $tenantId, string $userId, string $sessionId): bool
+    {
+        return $this->sessions->revokeForUser($tenantId, $userId, $sessionId);
+    }
+
+    public function requestPasswordReset(string $tenantId, string $email): void
+    {
+        $user = $this->users->findByEmail($tenantId, $email);
+        if ($user === null) {
+            return;
+        }
+
+        $plainToken = Str::random(64);
+        $this->passwordResetTokens->upsertToken((string) $user->email, $this->hasher->make($plainToken));
+        // TODO: dispatch notification/email with the plaintext token.
+    }
+
+    public function resetPasswordWithToken(string $tenantId, string $email, string $token, string $newPassword): bool
+    {
+        $user = $this->users->findByEmail($tenantId, $email);
+        $stored = $this->passwordResetTokens->findByEmail($email);
+
+        if ($user === null || $stored === null) {
+            return false;
+        }
+
+        $isExpired = $stored->created_at === null
+            || $stored->created_at->addMinutes(self::PASSWORD_RESET_TTL_MINUTES)->isPast();
+
+        if ($isExpired || ! $this->hasher->check($token, (string) $stored->token)) {
+            return false;
+        }
+
+        $validation = $this->securityPolicyService->validatePassword($tenantId, $newPassword);
+        if (! $validation->passed) {
+            throw new PasswordPolicyViolationException($validation->violations);
+        }
+
+        DB::transaction(function () use ($user, $email, $newPassword): void {
+            $this->users->update($user, [
+                'password_hash' => $this->hasher->make($newPassword),
+            ]);
+            $this->passwordResetTokens->deleteByEmail($email);
+        });
+
+        return true;
+    }
+
+    public function acceptInvite(string $tenantId, string $email, string $token, string $plaintextPassword): string
+    {
+        $user = $this->users->findByEmail($tenantId, $email);
+        $stored = $this->invitationTokens->findByEmail($email);
+
+        if ($user === null || $stored === null || (string) $stored->user_id !== (string) $user->id) {
+            throw InvalidInviteTokenException::invalidOrExpired();
+        }
+
+        if ((string) $user->status !== 'pending' || (bool) $user->is_active) {
+            throw InvalidInviteTokenException::userNotPending();
+        }
+
+        $isExpired = $stored->created_at === null
+            || $stored->created_at->addDays(self::INVITE_TOKEN_TTL_DAYS)->isPast();
+
+        if ($isExpired || ! $this->hasher->check($token, (string) $stored->token)) {
+            throw InvalidInviteTokenException::invalidOrExpired();
+        }
+
+        $validation = $this->securityPolicyService->validatePassword($tenantId, $plaintextPassword);
+        if (! $validation->passed) {
+            throw new PasswordPolicyViolationException($validation->violations);
+        }
+
+        return DB::transaction(function () use ($user, $email, $plaintextPassword): string {
+            $this->users->update($user, [
+                'password_hash' => $this->hasher->make($plaintextPassword),
+                'is_active' => true,
+                'status' => 'active',
+                'activated_at' => now(),
+            ]);
+            $this->invitationTokens->deleteByEmail($email);
+
+            return (string) $user->id;
+        });
     }
 
     private function resolveUser(string $tenantId, string $emailOrEmployeeId): ?User

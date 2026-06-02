@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domains\Identity\Repositories;
 
 use App\Domains\Identity\Models\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 class UserRepository
@@ -83,5 +84,14 @@ class UserRepository
         ])->save();
 
         return $user;
+    }
+
+    public function paginateForTenant(string $tenantId, int $perPage = 15): LengthAwarePaginator
+    {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->orderBy('created_at', 'desc')
+            ->paginate($perPage);
     }
 }

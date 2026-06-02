@@ -9,11 +9,17 @@ use App\Domains\Identity\Models\IpWhitelist;
 use App\Domains\Identity\Models\LoginAttempt;
 use App\Domains\Identity\Models\MfaDevice;
 use App\Domains\Identity\Models\SecurityPolicy;
+use App\Domains\Identity\Models\Permission;
+use App\Domains\Identity\Models\Role;
 use App\Domains\Identity\Models\User;
 use App\Domains\Identity\Models\UserSession;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Stancl\Tenancy\Contracts\Tenant;
+use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /**
  * Test-side support for Identity feature tests.
@@ -45,18 +51,24 @@ trait UsesIdentitySchema
      */
     protected function bootIdentitySchema(): void
     {
-        config([
-            'database.default' => 'sqlite',
-            'database.connections.sqlite' => [
-                'driver' => 'sqlite',
-                'database' => ':memory:',
-                'prefix' => '',
-                'foreign_key_constraints' => true,
-            ],
-        ]);
+        if (extension_loaded('pdo_sqlite')) {
+            config([
+                'database.default' => 'sqlite',
+                'database.connections.sqlite' => [
+                    'driver' => 'sqlite',
+                    'database' => ':memory:',
+                    'prefix' => '',
+                    'foreign_key_constraints' => true,
+                ],
+            ]);
 
-        DB::purge('sqlite');
-        DB::reconnect('sqlite');
+            DB::purge('sqlite');
+            DB::reconnect('sqlite');
+        } else {
+            config(['database.default' => 'mysql']);
+            DB::purge('mysql');
+            DB::reconnect('mysql');
+        }
 
         $this->migrateIdentityTables();
 
@@ -74,6 +86,24 @@ trait UsesIdentitySchema
     {
         $files = glob(database_path('migrations/tenant/01_identity_and_access/*.php')) ?: [];
         sort($files);
+
+        $connection = (string) config('database.default');
+
+        if ($connection !== 'sqlite') {
+            Schema::connection($connection)->disableForeignKeyConstraints();
+
+            foreach (array_reverse($files) as $file) {
+                $migration = require $file;
+
+                try {
+                    $migration->down();
+                } catch (\Throwable) {
+                    // Fresh databases have nothing to roll back.
+                }
+            }
+
+            Schema::connection($connection)->enableForeignKeyConstraints();
+        }
 
         foreach ($files as $file) {
             $migration = require $file;
@@ -153,5 +183,63 @@ trait UsesIdentitySchema
     protected function sessions(string $tenantId): \Illuminate\Database\Eloquent\Collection
     {
         return UserSession::query()->where('tenant_id', $tenantId)->get();
+    }
+
+    protected function initializeTenantContext(string $tenantId): void
+    {
+        $tenant = \Mockery::mock(Tenant::class);
+        $tenant->shouldReceive('getTenantKey')->andReturn($tenantId);
+        $tenant->shouldReceive('getKey')->andReturn($tenantId);
+
+        app()->instance(Tenant::class, $tenant);
+    }
+
+    protected function withoutTenancyIdentificationMiddleware(): void
+    {
+        $this->withoutMiddleware([
+            InitializeTenancyBySubdomain::class,
+            PreventAccessFromCentralDomains::class,
+        ]);
+    }
+
+    /**
+     * @param  array<int, string>  $permissionNames
+     */
+    protected function grantPermissionsToUser(User $user, array $permissionNames): void
+    {
+        $tenantId = (string) $user->tenant_id;
+        $permissionIds = [];
+
+        foreach ($permissionNames as $permissionName) {
+            [$resource, $action] = array_pad(explode('.', $permissionName, 2), 2, 'access');
+
+            $permission = Permission::query()->firstOrCreate(
+                ['permission_name' => $permissionName],
+                [
+                    'permission_id' => (string) Str::uuid(),
+                    'tenant_id' => $tenantId,
+                    'resource_type' => $resource,
+                    'action_type' => $action,
+                    'created_at' => now(),
+                ],
+            );
+
+            $permissionIds[] = (string) $permission->permission_id;
+        }
+
+        $role = Role::query()->firstOrCreate(
+            ['role_name' => "test-admin-{$tenantId}"],
+            [
+                'role_id' => (string) Str::uuid(),
+                'tenant_id' => $tenantId,
+                'description' => 'Test administrator',
+                'role_category' => 'admin',
+                'is_custom_role' => true,
+                'is_system_role' => false,
+            ],
+        );
+
+        $role->permissions()->sync($permissionIds);
+        $user->roles()->sync([(string) $role->role_id]);
     }
 }

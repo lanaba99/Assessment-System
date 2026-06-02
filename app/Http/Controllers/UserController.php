@@ -7,8 +7,11 @@ namespace App\Http\Controllers;
 use App\Domains\Identity\Contracts\UserManagementService;
 use App\Domains\Identity\Models\User;
 use App\Domains\Identity\Repositories\UserRepository;
+use App\Http\Requests\Identity\InviteUserRequest;
+use App\Http\Requests\Identity\PaginatedIndexRequest;
 use App\Http\Requests\Identity\RegisterRequest;
 use App\Http\Requests\Identity\ResetPasswordRequest;
+use RuntimeException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -49,6 +52,22 @@ class UserController extends Controller
         ], Response::HTTP_CREATED);
     }
 
+    public function index(PaginatedIndexRequest $request): JsonResponse
+    {
+        $tenantId = (string) tenant()->getKey();
+        $users = $this->userService->listUsers($tenantId, $request->perPage());
+
+        return new JsonResponse([
+            'data' => $users->items(),
+            'meta' => [
+                'current_page' => $users->currentPage(),
+                'per_page' => $users->perPage(),
+                'total' => $users->total(),
+                'last_page' => $users->lastPage(),
+            ],
+        ], Response::HTTP_OK);
+    }
+
     public function resetPassword(ResetPasswordRequest $request, string $userId): JsonResponse
     {
         $actor = $request->user();
@@ -67,6 +86,34 @@ class UserController extends Controller
         );
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function invite(InviteUserRequest $request): JsonResponse
+    {
+        $this->authorize('create', User::class);
+
+        $actor = $request->user();
+        $tenantId = (string) tenant()->getKey();
+
+        try {
+            $result = $this->userService->inviteUser(
+                tenantId: $tenantId,
+                email: $request->emailValue(),
+                profile: $request->profile(),
+                invitedByUserId: (string) $actor->id,
+            );
+        } catch (RuntimeException $e) {
+            return $this->error('user_already_exists', $e->getMessage(), Response::HTTP_CONFLICT);
+        }
+
+        return new JsonResponse([
+            'data' => [
+                'user_id' => $result->userId,
+                'tenant_id' => $tenantId,
+                'invite_token' => $result->inviteToken,
+                'status' => 'pending',
+            ],
+        ], Response::HTTP_CREATED);
     }
 
     public function deactivate(Request $request, string $userId): JsonResponse

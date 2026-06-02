@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domains\Identity\Contracts;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+
 /**
  * Write-side RBAC administration. Mutating operations should be wrapped in DB::transaction
  * by implementations and should emit audit events on every change.
@@ -29,4 +31,6 @@ interface RoleManagementService
      * @param  array<int, string>  $permissionIds
      */
     public function syncRolePermissions(string $tenantId, string $roleId, array $permissionIds, string $changedByUserId): void;
+
+    public function listRoles(string $tenantId, int $perPage = 15): LengthAwarePaginator;
 }

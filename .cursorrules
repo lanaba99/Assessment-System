@@ -1,0 +1,9 @@
+# Project Architectural Rules
+- This is a Multi-tenant Laravel SaaS project using `stancl/tenancy`.
+- ALWAYS ensure every API route and Controller action respects the tenant context.
+- When creating routes, they MUST be added to `routes/tenant.php` and protected by `InitializeTenancyBySubdomain`.
+- Always use Type Hinting and strict typing (declare(strict_types=1);).
+- Follow Domain-Driven Design (DDD): Controllers should only coordinate between Requests, Services, and Resources. Do not put business logic in Controllers.
+- Security First: Always authorize actions using Policies. Use `$this->authorize()` in controllers.
+- Multi-tenancy: Never query global tables (like `users` or `exams`) without filtering by `tenant_id` or using the `tenant()` helper/facade.
+- API Structure: All APIs should follow the `/api/v1` prefix.
