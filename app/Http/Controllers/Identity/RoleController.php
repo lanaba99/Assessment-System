@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Identity;
 
 use App\Domains\Identity\Contracts\RoleManagementService;
 use App\Domains\Identity\Models\Role;
+use App\Domains\Identity\Models\User;
 use App\Domains\Identity\Repositories\RoleRepository;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Identity\PaginatedIndexRequest;
 use App\Http\Requests\Identity\UpdateRoleRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -110,7 +112,7 @@ class RoleController extends Controller
     /**
      * @return Role|JsonResponse
      */
-    private function loadOwnedRoleOr404(?\App\Domains\Identity\Models\User $actor, string $roleId)
+    private function loadOwnedRoleOr404(?User $actor, string $roleId)
     {
         if ($actor === null) {
             return new JsonResponse([

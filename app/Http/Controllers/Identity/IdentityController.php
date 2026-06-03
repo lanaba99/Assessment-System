@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Identity;
 
 use App\Domains\Identity\Contracts\AuthenticationService;
 use App\Domains\Identity\Contracts\AuthorizationService;
 use App\Domains\Identity\Contracts\UserManagementService;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Identity\UpdateProfileRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

@@ -2,19 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Identity;
 
 use App\Domains\Identity\Contracts\UserManagementService;
 use App\Domains\Identity\Models\User;
 use App\Domains\Identity\Repositories\UserRepository;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Identity\InviteUserRequest;
 use App\Http\Requests\Identity\PaginatedIndexRequest;
 use App\Http\Requests\Identity\RegisterRequest;
 use App\Http\Requests\Identity\ResetPasswordRequest;
-use RuntimeException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller

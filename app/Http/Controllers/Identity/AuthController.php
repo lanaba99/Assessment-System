@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Identity;
 
 use App\Domains\Identity\Contracts\AuthenticationService;
 use App\Domains\Identity\DTOs\AuthenticationResult;
@@ -11,6 +11,7 @@ use App\Domains\Identity\Exceptions\InvalidInviteTokenException;
 use App\Domains\Identity\Exceptions\MfaVerificationFailedException;
 use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
 use App\Domains\Identity\Models\User;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Identity\AcceptInviteRequest;
 use App\Http\Requests\Identity\ForgotPasswordRequest;
 use App\Http\Requests\Identity\LoginRequest;

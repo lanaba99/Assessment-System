@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\QuestionBank;
 
 use App\Domains\QuestionBank\Contracts\CategoryTreeService;
 use App\Domains\QuestionBank\Exceptions\CategoryNotEmptyException;
 use App\Domains\QuestionBank\Models\QuestionBank;
 use App\Domains\QuestionBank\Repositories\CategoryRepository;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\QuestionBank\MoveCategoryRequest;
 use App\Http\Requests\QuestionBank\StoreCategoryRequest;
 use App\Http\Resources\CategoryResource;

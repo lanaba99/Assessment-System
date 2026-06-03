@@ -3,16 +3,16 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AssessmentResultController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamSessionController;
-use App\Http\Controllers\IdentityController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SecurityController;
-use App\Http\Controllers\SystemController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Identity\AuthController;
+use App\Http\Controllers\Identity\IdentityController;
+use App\Http\Controllers\Identity\RoleController;
+use App\Http\Controllers\Identity\SecurityController;
+use App\Http\Controllers\Identity\SystemController;
+use App\Http\Controllers\Identity\UserController;
+use App\Http\Controllers\QuestionBank\CategoryController;
+use App\Http\Controllers\QuestionBank\QuestionController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;

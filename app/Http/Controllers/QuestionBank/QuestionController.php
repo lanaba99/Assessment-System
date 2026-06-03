@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\QuestionBank;
 
 use App\Domains\QuestionBank\Contracts\QuestionManagementService;
 use App\Domains\QuestionBank\Models\Question;
 use App\Domains\QuestionBank\Repositories\QuestionRepository;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\QuestionBank\ListQuestionsRequest;
 use App\Http\Requests\QuestionBank\StoreQuestionRequest;
 use App\Http\Requests\QuestionBank\UpdateQuestionRequest;
