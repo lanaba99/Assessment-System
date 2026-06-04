@@ -6,8 +6,21 @@ namespace App\Http\Requests\Identity;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Self-update only. Tightly restricted to non-authorization-bearing fields so
+ * a user cannot escalate their own user_type, status, or department via this
+ * endpoint. Admin-only fields must be edited through admin-scoped routes that
+ * pass the UserPolicy@update authorization gate.
+ */
 class UpdateProfileRequest extends FormRequest
 {
+    /** @var array<int, string> */
+    public const SELF_EDITABLE_FIELDS = [
+        'first_name',
+        'last_name',
+        'external_employee_id',
+    ];
+
     public function authorize(): bool
     {
         return $this->user() !== null;
@@ -22,10 +35,6 @@ class UpdateProfileRequest extends FormRequest
             'first_name' => ['sometimes', 'string', 'max:100'],
             'last_name' => ['sometimes', 'string', 'max:100'],
             'external_employee_id' => ['nullable', 'string', 'max:64'],
-            'user_type' => ['sometimes', 'string', 'max:64'],
-            'department_id' => ['nullable', 'uuid'],
-            'status' => ['sometimes', 'string', 'max:32'],
-            'user_attributes' => ['nullable', 'array'],
         ];
     }
 
@@ -36,7 +45,7 @@ class UpdateProfileRequest extends FormRequest
     {
         return array_intersect_key(
             $this->validated(),
-            array_flip(['first_name', 'last_name', 'external_employee_id', 'user_type', 'department_id', 'status', 'user_attributes'])
+            array_flip(self::SELF_EDITABLE_FIELDS),
         );
     }
 }

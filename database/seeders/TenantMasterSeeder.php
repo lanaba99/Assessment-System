@@ -33,6 +33,7 @@ class TenantMasterSeeder extends Seeder
             $this->seedPermissions();
             $this->seedRolePermissions();
             $this->seedUserRoles();
+            $this->seedSecurityPolicy();
             $this->seedCompetenciesAndLevels();
             $this->seedQuestionCategory();
             $this->seedQuestionsAndVersions();
@@ -108,7 +109,27 @@ class TenantMasterSeeder extends Seeder
 
     private function seedPermissions(): void
     {
-        $permissions = [
+        // Granular Identity-domain permissions checked by UserPolicy / RolePolicy /
+        // SecurityPolicyPolicy. Must stay in lockstep with IdentityPermissionsSeeder.
+        $identityPermissions = [
+            ['name' => 'users.viewAny',              'resource' => 'users',             'action' => 'viewAny'],
+            ['name' => 'users.view',                 'resource' => 'users',             'action' => 'view'],
+            ['name' => 'users.create',               'resource' => 'users',             'action' => 'create'],
+            ['name' => 'users.update',               'resource' => 'users',             'action' => 'update'],
+            ['name' => 'users.deactivate',           'resource' => 'users',             'action' => 'deactivate'],
+            ['name' => 'users.resetPassword',        'resource' => 'users',             'action' => 'resetPassword'],
+            ['name' => 'roles.viewAny',              'resource' => 'roles',             'action' => 'viewAny'],
+            ['name' => 'roles.view',                 'resource' => 'roles',             'action' => 'view'],
+            ['name' => 'roles.create',               'resource' => 'roles',             'action' => 'create'],
+            ['name' => 'roles.update',               'resource' => 'roles',             'action' => 'update'],
+            ['name' => 'roles.delete',               'resource' => 'roles',             'action' => 'delete'],
+            ['name' => 'roles.assign',               'resource' => 'roles',             'action' => 'assign'],
+            ['name' => 'security_policies.view',     'resource' => 'security_policies', 'action' => 'view'],
+            ['name' => 'security_policies.update',   'resource' => 'security_policies', 'action' => 'update'],
+        ];
+
+        // Coarser domain-action permissions kept for downstream domains.
+        $domainPermissions = [
             ['name' => 'exams.manage',          'resource' => 'exam',     'action' => 'manage'],
             ['name' => 'exams.publish',         'resource' => 'exam',     'action' => 'publish'],
             ['name' => 'exams.take',            'resource' => 'exam',     'action' => 'take'],
@@ -118,6 +139,8 @@ class TenantMasterSeeder extends Seeder
             ['name' => 'users.manage',          'resource' => 'user',     'action' => 'manage'],
             ['name' => 'cohorts.manage',        'resource' => 'cohort',   'action' => 'manage'],
         ];
+
+        $permissions = array_merge($identityPermissions, $domainPermissions);
 
         $rows = [];
         foreach ($permissions as $p) {
@@ -166,6 +189,39 @@ class TenantMasterSeeder extends Seeder
             'user_id'     => $this->adminUserId,
             'role_id'     => $this->roleIds['Super Admin'],
             'assigned_at' => now(),
+        ]);
+    }
+
+    /**
+     * Tenants need an active SecurityPolicy row before SecurityController can
+     * read or update it (otherwise GET returns 404, PATCH 404). Defaults are
+     * deliberately permissive for dev seeding — MFA disabled, IP whitelisting
+     * disabled. Tenants tighten these via PATCH /security/policies later.
+     */
+    private function seedSecurityPolicy(): void
+    {
+        DB::table('security_policies')->insert([
+            'policy_id'                                 => (string) Str::uuid(),
+            'tenant_id'                                 => $this->tenantId,
+            'created_by_user_id'                        => $this->adminUserId,
+            'mfa_enabled'                               => false,
+            'mfa_method'                                => null,
+            'password_min_length'                       => 12,
+            'password_require_uppercase'                => true,
+            'password_require_lowercase'                => true,
+            'password_require_numbers'                  => true,
+            'password_require_special_chars'            => true,
+            'password_expiry_days'                      => null,
+            'password_history_count'                    => null,
+            'session_timeout_minutes'                   => 60,
+            'session_absolute_timeout_hours'            => 12,
+            'session_force_reauth_on_privilege_change'  => true,
+            'ip_whitelisting_enabled'                   => false,
+            'enable_biometric_auth'                     => false,
+            'enforce_tls_1_3_minimum'                   => true,
+            'disable_weak_ciphers'                      => true,
+            'allowed_ip_ranges'                         => null,
+            'updated_at'                                => now(),
         ]);
     }
 

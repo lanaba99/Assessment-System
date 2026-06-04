@@ -27,9 +27,9 @@ interface AuthenticationService
         string $oneTimeCode,
     ): AuthenticationResult;
 
-    public function refreshSessionActivity(string $tenantId, string $sessionId): void;
+    public function refreshSessionActivity(string $tenantId, string $sessionId, ?string $userId = null): void;
 
-    public function logout(string $tenantId, string $sessionId): void;
+    public function logout(string $tenantId, string $sessionId, ?string $userId = null): void;
 
     public function revokeAllSessionsForUser(string $tenantId, string $userId): int;
 

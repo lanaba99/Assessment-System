@@ -21,7 +21,6 @@ class SystemController extends Controller
                 'status' => $databaseConnected ? 'ok' : 'degraded',
                 'tenant_id' => $tenantId,
                 'database' => $databaseConnected ? 'connected' : 'unavailable',
-                'environment' => app()->environment(),
                 'timestamp' => now()->toIso8601String(),
             ],
         ], $databaseConnected ? Response::HTTP_OK : Response::HTTP_SERVICE_UNAVAILABLE);

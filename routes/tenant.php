@@ -63,7 +63,11 @@ Route::middleware([
         // -----------------------------------------------------------------
         // Identity — session-bound
         // -----------------------------------------------------------------
-        Route::middleware('auth')->group(function (): void {
+        // `auth:sanctum` is the guard that actually validates the Bearer
+        // tokens minted by AuthController. The bare `auth` middleware fell
+        // back to the default `web` (session) guard, which never inspected
+        // the token — every authenticated request 401'd.
+        Route::middleware('auth:sanctum')->group(function (): void {
             Route::post('auth/logout', [AuthController::class, 'logout'])
                 ->name('api.v1.auth.logout');
 
@@ -79,6 +83,10 @@ Route::middleware([
             Route::post('users/invite', [UserController::class, 'invite'])
                 ->name('api.v1.users.invite');
 
+            Route::get('users/{userId}', [UserController::class, 'show'])
+                ->whereUuid('userId')
+                ->name('api.v1.users.show');
+
             Route::post('users/{userId}/reset-password', [UserController::class, 'resetPassword'])
                 ->whereUuid('userId')
                 ->name('api.v1.users.reset-password');
@@ -91,9 +99,16 @@ Route::middleware([
                 Route::get('/', [RoleController::class, 'index'])
                     ->name('api.v1.roles.index');
 
+                Route::post('/', [RoleController::class, 'store'])
+                    ->name('api.v1.roles.store');
+
                 Route::patch('{roleId}', [RoleController::class, 'update'])
                     ->whereUuid('roleId')
                     ->name('api.v1.roles.update');
+
+                Route::delete('{roleId}', [RoleController::class, 'destroy'])
+                    ->whereUuid('roleId')
+                    ->name('api.v1.roles.destroy');
 
                 Route::post('{roleId}/users/{userId}', [RoleController::class, 'assignToUser'])
                     ->whereUuid('roleId')

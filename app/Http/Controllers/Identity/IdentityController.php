@@ -44,6 +44,9 @@ class IdentityController extends Controller
             return $this->error('not_authenticated', 'Authentication required.', Response::HTTP_UNAUTHORIZED);
         }
 
+        // updateProfile is the SELF path — service strips any authorization-bearing
+        // field (user_type, status, department_id) regardless of what the
+        // FormRequest let through, as defense-in-depth.
         $this->userService->updateProfile(
             tenantId: (string) tenant()->getKey(),
             userId: (string) $actor->id,
@@ -113,6 +116,11 @@ class IdentityController extends Controller
         }
 
         $this->authenticationService->revokeAllSessionsForUser((string) tenant()->getKey(), (string) $actor->id);
+
+        // Wholesale session revocation must end every bearer token too,
+        // otherwise sessions are closed but holders of any prior token can
+        // continue to authenticate.
+        $actor->tokens()->delete();
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }

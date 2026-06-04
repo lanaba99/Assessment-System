@@ -114,7 +114,12 @@ class User extends Authenticatable
 
     public function loginAttempts(): HasMany
     {
-        return $this->hasMany(LoginAttempt::class, 'email_attempted', 'email');
+        // The natural key (`email_attempted` → `email`) is not unique across
+        // tenants. Scope the relationship by tenant_id so collapsed-DB tests
+        // and any future shared-DB fallback can't surface another tenant's
+        // failed-login audit rows under this user.
+        return $this->hasMany(LoginAttempt::class, 'email_attempted', 'email')
+            ->where('login_attempts.tenant_id', $this->tenant_id);
     }
 
     public function mfaDevices(): HasMany

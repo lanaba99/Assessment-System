@@ -95,7 +95,8 @@ it('returns tenant-aware system status for health checks', function (): void {
         ->assertJsonPath('data.status', 'ok')
         ->assertJsonPath('data.tenant_id', $this->tenantA)
         ->assertJsonPath('data.database', 'connected')
-        ->assertJsonStructure(['data' => ['timestamp', 'environment']]);
+        ->assertJsonStructure(['data' => ['timestamp']])
+        ->assertJsonMissingPath('data.environment');
 });
 
 it('updates the active security policy for authorized users', function (): void {

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Identity;
 
 use App\Domains\Identity\Contracts\UserManagementService;
+use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
 use App\Domains\Identity\Models\User;
 use App\Domains\Identity\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
@@ -37,13 +38,22 @@ class UserController extends Controller
         $actor = $request->user();
         $tenantId = (string) tenant()->getKey();
 
-        $newUserId = $this->userService->createUser(
-            tenantId: $tenantId,
-            email: $request->emailValue(),
-            plaintextPassword: $request->plaintextPassword(),
-            profile: $request->profile(),
-            createdByUserId: (string) $actor->id,
-        );
+        try {
+            $newUserId = $this->userService->createUser(
+                tenantId: $tenantId,
+                email: $request->emailValue(),
+                plaintextPassword: $request->plaintextPassword(),
+                profile: $request->profile(),
+                createdByUserId: (string) $actor->id,
+            );
+        } catch (PasswordPolicyViolationException $e) {
+            return $this->error(
+                'password_policy_violation',
+                $e->getMessage(),
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ['violations' => $e->violations],
+            );
+        }
 
         return new JsonResponse([
             'data' => [
@@ -55,6 +65,8 @@ class UserController extends Controller
 
     public function index(PaginatedIndexRequest $request): JsonResponse
     {
+        $this->authorize('viewAny', User::class);
+
         $tenantId = (string) tenant()->getKey();
         $users = $this->userService->listUsers($tenantId, $request->perPage());
 
@@ -69,6 +81,21 @@ class UserController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function show(Request $request, string $userId): JsonResponse
+    {
+        $actor = $request->user();
+        $target = $this->loadOwnedUserOr404($actor, $userId);
+        if ($target instanceof JsonResponse) {
+            return $target;
+        }
+
+        $this->authorize('view', $target);
+
+        $profile = $this->userService->getProfile((string) tenant()->getKey(), $userId);
+
+        return new JsonResponse(['data' => $profile], Response::HTTP_OK);
+    }
+
     public function resetPassword(ResetPasswordRequest $request, string $userId): JsonResponse
     {
         $actor = $request->user();
@@ -79,12 +106,21 @@ class UserController extends Controller
 
         $this->authorize('resetPassword', $target);
 
-        $this->userService->resetPassword(
-            tenantId: (string) tenant()->getKey(),
-            userId: $userId,
-            newPlaintextPassword: $request->newPassword(),
-            resetByUserId: (string) $actor->id,
-        );
+        try {
+            $this->userService->resetPassword(
+                tenantId: (string) tenant()->getKey(),
+                userId: $userId,
+                newPlaintextPassword: $request->newPassword(),
+                resetByUserId: (string) $actor->id,
+            );
+        } catch (PasswordPolicyViolationException $e) {
+            return $this->error(
+                'password_policy_violation',
+                $e->getMessage(),
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ['violations' => $e->violations],
+            );
+        }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
@@ -158,10 +194,13 @@ class UserController extends Controller
         return $target;
     }
 
-    private function error(string $code, string $message, int $status): JsonResponse
+    /**
+     * @param  array<string, mixed>  $extras
+     */
+    private function error(string $code, string $message, int $status, array $extras = []): JsonResponse
     {
         return new JsonResponse([
-            'error' => ['code' => $code, 'message' => $message],
+            'error' => array_merge(['code' => $code, 'message' => $message], $extras),
         ], $status);
     }
 }

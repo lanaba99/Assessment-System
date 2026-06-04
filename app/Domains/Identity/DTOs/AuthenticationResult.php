@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domains\Identity\DTOs;
 
+use App\Domains\Identity\Models\User;
 use DateTimeImmutable;
 
-final readonly class AuthenticationResult
+final class AuthenticationResult
 {
     public const STATUS_AUTHENTICATED = 'authenticated';
 
@@ -15,12 +16,13 @@ final readonly class AuthenticationResult
     public const STATUS_REJECTED = 'rejected';
 
     public function __construct(
-        public string $status,
-        public ?string $userId,
-        public ?string $sessionId,
-        public ?string $rejectionReason,
-        public ?DateTimeImmutable $authenticatedAt,
-        public bool $mfaRequired = false,
+        public readonly string $status,
+        public readonly ?string $userId,
+        public readonly ?string $sessionId,
+        public readonly ?string $rejectionReason,
+        public readonly ?DateTimeImmutable $authenticatedAt,
+        public readonly bool $mfaRequired = false,
+        public ?User $user = null,
     ) {
     }
 

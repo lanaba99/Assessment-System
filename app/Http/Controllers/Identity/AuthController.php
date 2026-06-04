@@ -10,21 +10,24 @@ use App\Domains\Identity\Exceptions\AuthenticationFailedException;
 use App\Domains\Identity\Exceptions\InvalidInviteTokenException;
 use App\Domains\Identity\Exceptions\MfaVerificationFailedException;
 use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
-use App\Domains\Identity\Models\User;
+use App\Domains\Identity\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Identity\AcceptInviteRequest;
 use App\Http\Requests\Identity\ForgotPasswordRequest;
 use App\Http\Requests\Identity\LoginRequest;
+use App\Http\Requests\Identity\LogoutRequest;
+use App\Http\Requests\Identity\RefreshSessionRequest;
 use App\Http\Requests\Identity\ResetForgottenPasswordRequest;
+use App\Http\Requests\Identity\VerifyMfaRequest;
 use App\Http\Resources\AuthenticationResultResource;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
     public function __construct(
         private readonly AuthenticationService $authService,
+        private readonly UserRepository $users,
     ) {
     }
 
@@ -46,31 +49,23 @@ class AuthController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_OK);
 
-        if ($result->status === AuthenticationResult::STATUS_AUTHENTICATED && $result->userId !== null) {
-            $user = User::query()->find($result->userId);
-            if ($user !== null) {
-                $token = $user->createToken('api')->plainTextToken;
-                $payload = $response->getData(true);
-                $payload['data']['token'] = $token;
-                $response->setData($payload);
-            }
+        if ($result->status === AuthenticationResult::STATUS_AUTHENTICATED && $result->user !== null) {
+            $token = $result->user->createToken('api')->plainTextToken;
+            $payload = $response->getData(true);
+            $payload['data']['token'] = $token;
+            $response->setData($payload);
         }
 
         return $response;
     }
 
-    public function verifyMfa(Request $request): JsonResponse
+    public function verifyMfa(VerifyMfaRequest $request): JsonResponse
     {
-        $validated = $request->validate([
-            'session_id' => ['required', 'uuid'],
-            'one_time_code' => ['required', 'string', 'max:32'],
-        ]);
-
         try {
             $result = $this->authService->verifyMfaForSession(
                 tenantId: (string) tenant()->getKey(),
-                sessionId: (string) $validated['session_id'],
-                oneTimeCode: (string) $validated['one_time_code'],
+                sessionId: $request->sessionIdValue(),
+                oneTimeCode: $request->oneTimeCodeValue(),
             );
         } catch (MfaVerificationFailedException $e) {
             return $this->authError($e->reasonCode, $e->getMessage(), Response::HTTP_UNAUTHORIZED);
@@ -78,43 +73,75 @@ class AuthController extends Controller
             return $this->authError($e->reasonCode, $e->getMessage(), Response::HTTP_UNAUTHORIZED);
         }
 
-        return AuthenticationResultResource::make($result)
+        $response = AuthenticationResultResource::make($result)
             ->response()
             ->setStatusCode(Response::HTTP_OK);
-    }
 
-    public function logout(Request $request): JsonResponse
-    {
-        $actor = $request->user();
-        if ($actor === null) {
-            return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+        if ($result->status === AuthenticationResult::STATUS_AUTHENTICATED && $result->user !== null) {
+            $token = $result->user->createToken('api')->plainTextToken;
+            $payload = $response->getData(true);
+            $payload['data']['token'] = $token;
+            $response->setData($payload);
         }
 
-        $sessionId = (string) $request->input('session_id', '');
-        if ($sessionId === '') {
-            return $this->authError('missing_session_id', 'session_id is required.', Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
-
-        $this->authService->logout((string) tenant()->getKey(), $sessionId);
-
-        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+        return $response;
     }
 
-    public function refresh(Request $request): JsonResponse
+    public function logout(LogoutRequest $request): JsonResponse
     {
         $actor = $request->user();
         if ($actor === null) {
             return $this->authError('not_authenticated', 'Authentication required.', Response::HTTP_UNAUTHORIZED);
         }
 
-        $sessionId = (string) $request->input('session_id', '');
-        if ($sessionId === '') {
-            return $this->authError('missing_session_id', 'session_id is required.', Response::HTTP_UNPROCESSABLE_ENTITY);
+        $this->authService->logout(
+            tenantId: (string) tenant()->getKey(),
+            sessionId: $request->sessionIdValue(),
+            userId: (string) $actor->id,
+        );
+
+        // Containment: the bearer token that just authenticated this request
+        // must not survive logout. Without this the session row closes but
+        // the token keeps working until natural expiry.
+        $currentToken = $actor->currentAccessToken();
+        if ($currentToken !== null && method_exists($currentToken, 'delete')) {
+            $currentToken->delete();
         }
 
-        $this->authService->refreshSessionActivity((string) tenant()->getKey(), $sessionId);
-
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function refresh(RefreshSessionRequest $request): JsonResponse
+    {
+        $actor = $request->user();
+        if ($actor === null) {
+            return $this->authError('not_authenticated', 'Authentication required.', Response::HTTP_UNAUTHORIZED);
+        }
+
+        $tenantId = (string) tenant()->getKey();
+
+        $this->authService->refreshSessionActivity(
+            tenantId: $tenantId,
+            sessionId: $request->sessionIdValue(),
+            userId: (string) $actor->id,
+        );
+
+        // Bearer-token rotation: invalidate the inbound token and issue a
+        // fresh one. Short-lived rotation narrows the blast radius of a
+        // leaked token versus an indefinitely valid one.
+        $currentToken = $actor->currentAccessToken();
+        if ($currentToken !== null && method_exists($currentToken, 'delete')) {
+            $currentToken->delete();
+        }
+
+        $newToken = $actor->createToken('api')->plainTextToken;
+
+        return new JsonResponse([
+            'data' => [
+                'token' => $newToken,
+                'session_id' => $request->sessionIdValue(),
+            ],
+        ], Response::HTTP_OK);
     }
 
     public function acceptInvite(AcceptInviteRequest $request): JsonResponse
@@ -131,16 +158,15 @@ class AuthController extends Controller
         } catch (InvalidInviteTokenException $e) {
             return $this->authError('invalid_invite_token', $e->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
         } catch (PasswordPolicyViolationException $e) {
-            return new JsonResponse([
-                'error' => [
-                    'code' => 'password_policy_violation',
-                    'message' => $e->getMessage(),
-                    'violations' => $e->violations,
-                ],
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return $this->authError(
+                'password_policy_violation',
+                $e->getMessage(),
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ['violations' => $e->violations],
+            );
         }
 
-        $user = User::query()->where('tenant_id', $tenantId)->find($userId);
+        $user = $this->users->findById($tenantId, $userId);
         if ($user === null) {
             return $this->authError('user_not_found', 'Activated user could not be loaded.', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -178,33 +204,39 @@ class AuthController extends Controller
                 newPassword: $request->passwordValue(),
             );
         } catch (PasswordPolicyViolationException $e) {
-            return new JsonResponse([
-                'error' => [
-                    'code' => 'password_policy_violation',
-                    'message' => $e->getMessage(),
-                    'violations' => $e->violations,
-                ],
-            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return $this->authError(
+                'password_policy_violation',
+                $e->getMessage(),
+                Response::HTTP_UNPROCESSABLE_ENTITY,
+                ['violations' => $e->violations],
+            );
         }
 
         if (! $reset) {
             return $this->authError(
                 code: 'invalid_reset_token',
                 message: 'The password reset token is invalid or expired.',
-                status: Response::HTTP_UNPROCESSABLE_ENTITY
+                status: Response::HTTP_UNPROCESSABLE_ENTITY,
             );
         }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
     }
 
-    private function authError(string $code, string $message, int $status): JsonResponse
+    /**
+     * Unified API error envelope: { "error": { "code", "message", ...extras } }.
+     * Every error path in this controller routes through here so login,
+     * password-reset, invite-accept, etc. respond with the same shape.
+     *
+     * @param  array<string, mixed>  $extras
+     */
+    private function authError(string $code, string $message, int $status, array $extras = []): JsonResponse
     {
         return new JsonResponse([
-            'error' => [
+            'error' => array_merge([
                 'code' => $code,
                 'message' => $message,
-            ],
+            ], $extras),
         ], $status);
     }
 }

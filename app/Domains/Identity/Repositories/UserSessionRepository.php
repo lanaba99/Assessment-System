@@ -24,6 +24,16 @@ class UserSessionRepository
             ->first();
     }
 
+    public function findForUser(string $tenantId, string $userId, string $sessionId): ?UserSession
+    {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('user_id', $userId)
+            ->whereKey($sessionId)
+            ->first();
+    }
+
     /**
      * @return Collection<int, UserSession>
      */
@@ -59,9 +69,22 @@ class UserSessionRepository
         return $session;
     }
 
-    public function close(string $tenantId, string $sessionId): ?UserSession
+    /**
+     * Close a session. When $userId is provided the update is additionally
+     * scoped by user_id, blocking cross-user logout-by-session-id attacks.
+     */
+    public function close(string $tenantId, string $sessionId, ?string $userId = null): ?UserSession
     {
-        $session = $this->findById($tenantId, $sessionId);
+        $query = $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->whereKey($sessionId);
+
+        if ($userId !== null) {
+            $query->where('user_id', $userId);
+        }
+
+        $session = $query->first();
 
         if ($session === null) {
             return null;

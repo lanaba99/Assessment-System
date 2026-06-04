@@ -25,7 +25,7 @@ class AcceptInviteRequest extends FormRequest
             'password' => [
                 'required',
                 'string',
-                Password::min(8),
+                Password::min(12)->mixedCase()->letters()->numbers()->symbols(),
                 'confirmed',
             ],
         ];

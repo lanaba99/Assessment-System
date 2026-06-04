@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace App\Domains\Identity\Services;
 
+use App\Domains\Identity\Contracts\SecurityPolicyService;
 use App\Domains\Identity\Contracts\UserManagementService;
 use App\Domains\Identity\DTOs\UserInviteResult;
 use App\Domains\Identity\Exceptions\InvalidCredentialsException;
+use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
 use App\Domains\Identity\Repositories\UserInvitationTokenRepository;
 use App\Domains\Identity\Repositories\UserRepository;
+use App\Domains\Identity\Repositories\UserSessionRepository;
 use App\Domains\Identity\Repositories\UserSubtypeRepository;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Http\Requests\Identity\UpdateProfileRequest;
 use Illuminate\Contracts\Hashing\Hasher;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use RuntimeException;
@@ -20,7 +24,12 @@ class UserManagementServiceImpl implements UserManagementService
 {
     private const INVITE_PLACEHOLDER_PASSWORD_LENGTH = 64;
 
-    private const ALLOWED_PROFILE_FIELDS = [
+    /**
+     * Admin-scoped profile fields. Includes authorization-bearing attributes
+     * (user_type, status, department_id) that self-update MUST NOT touch.
+     * Self-update goes through self-editable fields exposed by UpdateProfileRequest.
+     */
+    private const ADMIN_EDITABLE_FIELDS = [
         'first_name',
         'last_name',
         'external_employee_id',
@@ -28,12 +37,15 @@ class UserManagementServiceImpl implements UserManagementService
         'department_id',
         'user_attributes',
         'status',
+        'is_active',
     ];
 
     public function __construct(
         private readonly UserRepository $users,
         private readonly UserSubtypeRepository $subtypes,
         private readonly UserInvitationTokenRepository $invitationTokens,
+        private readonly UserSessionRepository $sessions,
+        private readonly SecurityPolicyService $securityPolicyService,
         private readonly Hasher $hasher,
     ) {
     }
@@ -46,7 +58,7 @@ class UserManagementServiceImpl implements UserManagementService
         string $createdByUserId,
     ): string {
         return DB::transaction(function () use ($tenantId, $email, $plaintextPassword, $profile): string {
-            $sanitized = $this->sanitizeProfile($profile);
+            $sanitized = $this->sanitizeAdminProfile($profile);
 
             $user = $this->users->create($tenantId, array_merge($sanitized, [
                 'email' => $email,
@@ -78,7 +90,7 @@ class UserManagementServiceImpl implements UserManagementService
                 $existing->delete();
             }
 
-            $sanitized = $this->sanitizeProfile($profile);
+            $sanitized = $this->sanitizeAdminProfile($profile);
             $placeholderPassword = Str::random(self::INVITE_PLACEHOLDER_PASSWORD_LENGTH);
 
             $user = $this->users->create($tenantId, array_merge($sanitized, [
@@ -131,6 +143,11 @@ class UserManagementServiceImpl implements UserManagementService
         ];
     }
 
+    /**
+     * Self-update path. Always strips authorization-bearing fields (user_type,
+     * status, department_id) — those are admin-only. Callers that need to
+     * update those fields must use updateProfileByAdmin().
+     */
     public function updateProfile(string $tenantId, string $userId, array $changes): void
     {
         DB::transaction(function () use ($tenantId, $userId, $changes): void {
@@ -140,7 +157,20 @@ class UserManagementServiceImpl implements UserManagementService
                 throw new RuntimeException("User {$userId} not found in tenant {$tenantId}.");
             }
 
-            $this->users->update($user, $this->sanitizeProfile($changes));
+            $this->users->update($user, $this->sanitizeSelfProfile($changes));
+        });
+    }
+
+    public function updateProfileByAdmin(string $tenantId, string $userId, array $changes): void
+    {
+        DB::transaction(function () use ($tenantId, $userId, $changes): void {
+            $user = $this->users->findById($tenantId, $userId);
+
+            if ($user === null) {
+                throw new RuntimeException("User {$userId} not found in tenant {$tenantId}.");
+            }
+
+            $this->users->update($user, $this->sanitizeAdminProfile($changes));
         });
     }
 
@@ -150,6 +180,11 @@ class UserManagementServiceImpl implements UserManagementService
         string $currentPlaintextPassword,
         string $newPlaintextPassword,
     ): void {
+        $validation = $this->securityPolicyService->validatePassword($tenantId, $newPlaintextPassword);
+        if (! $validation->passed) {
+            throw new PasswordPolicyViolationException($validation->violations);
+        }
+
         DB::transaction(function () use ($tenantId, $userId, $currentPlaintextPassword, $newPlaintextPassword): void {
             $user = $this->users->findById($tenantId, $userId);
 
@@ -164,6 +199,9 @@ class UserManagementServiceImpl implements UserManagementService
             $this->users->update($user, [
                 'password_hash' => $this->hasher->make($newPlaintextPassword),
             ]);
+
+            $this->sessions->revokeAllForUser($tenantId, (string) $user->id);
+            $user->tokens()->delete();
         });
     }
 
@@ -173,6 +211,11 @@ class UserManagementServiceImpl implements UserManagementService
         string $newPlaintextPassword,
         string $resetByUserId,
     ): void {
+        $validation = $this->securityPolicyService->validatePassword($tenantId, $newPlaintextPassword);
+        if (! $validation->passed) {
+            throw new PasswordPolicyViolationException($validation->violations);
+        }
+
         DB::transaction(function () use ($tenantId, $userId, $newPlaintextPassword): void {
             $user = $this->users->findById($tenantId, $userId);
 
@@ -183,6 +226,12 @@ class UserManagementServiceImpl implements UserManagementService
             $this->users->update($user, [
                 'password_hash' => $this->hasher->make($newPlaintextPassword),
             ]);
+
+            // Admin-initiated reset is also a containment action: drop every
+            // active session and revoke every bearer token belonging to the
+            // target user.
+            $this->sessions->revokeAllForUser($tenantId, (string) $user->id);
+            $user->tokens()->delete();
         });
     }
 
@@ -194,12 +243,16 @@ class UserManagementServiceImpl implements UserManagementService
             if ($user === null) {
                 throw new RuntimeException("User {$userId} not found in tenant {$tenantId}.");
             }
+
+            // A deactivated user must not retain valid auth artifacts.
+            $this->sessions->revokeAllForUser($tenantId, (string) $user->id);
+            $user->tokens()->delete();
         });
     }
 
     public function assignToDepartment(string $tenantId, string $userId, string $departmentId): void
     {
-        $this->updateProfile($tenantId, $userId, ['department_id' => $departmentId]);
+        $this->updateProfileByAdmin($tenantId, $userId, ['department_id' => $departmentId]);
     }
 
     public function setSubtype(string $tenantId, string $userId, array $subtypeAttributes): void
@@ -224,8 +277,20 @@ class UserManagementServiceImpl implements UserManagementService
      * @param  array<string, mixed>  $profile
      * @return array<string, mixed>
      */
-    private function sanitizeProfile(array $profile): array
+    private function sanitizeAdminProfile(array $profile): array
     {
-        return array_intersect_key($profile, array_flip(self::ALLOWED_PROFILE_FIELDS));
+        return array_intersect_key($profile, array_flip(self::ADMIN_EDITABLE_FIELDS));
+    }
+
+    /**
+     * @param  array<string, mixed>  $profile
+     * @return array<string, mixed>
+     */
+    private function sanitizeSelfProfile(array $profile): array
+    {
+        return array_intersect_key(
+            $profile,
+            array_flip(UpdateProfileRequest::SELF_EDITABLE_FIELDS),
+        );
     }
 }

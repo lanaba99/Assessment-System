@@ -14,7 +14,9 @@ use App\Domains\Identity\Exceptions\IpNotAllowedException;
 use App\Domains\Identity\Exceptions\MfaVerificationFailedException;
 use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
 use App\Domains\Identity\Exceptions\UserInactiveException;
+use App\Domains\Identity\Models\SecurityPolicy;
 use App\Domains\Identity\Models\User;
+use App\Domains\Identity\Notifications\PasswordResetRequested;
 use App\Domains\Identity\Repositories\IpWhitelistRepository;
 use App\Domains\Identity\Repositories\LoginAttemptRepository;
 use App\Domains\Identity\Repositories\MfaDeviceRepository;
@@ -23,10 +25,13 @@ use App\Domains\Identity\Repositories\SecurityPolicyRepository;
 use App\Domains\Identity\Repositories\UserInvitationTokenRepository;
 use App\Domains\Identity\Repositories\UserRepository;
 use App\Domains\Identity\Repositories\UserSessionRepository;
+use App\Http\Middleware\ThrottleLoginMiddleware;
 use DateTimeImmutable;
 use Illuminate\Contracts\Hashing\Hasher;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\IpUtils;
 
 class AuthenticationServiceImpl implements AuthenticationService
 {
@@ -67,17 +72,17 @@ class AuthenticationServiceImpl implements AuthenticationService
         $user = $this->resolveUser($tenantId, $emailOrEmployeeId);
 
         if ($user === null) {
-            $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'user_not_found', $userAgent);
+            $this->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'user_not_found', $userAgent);
             throw InvalidCredentialsException::forUnknownIdentifier();
         }
 
         if (! (bool) $user->is_active) {
-            $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'user_inactive', $userAgent);
+            $this->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'user_inactive', $userAgent);
             throw UserInactiveException::forUser((string) $user->id);
         }
 
         if (! $this->hasher->check($plaintextPassword, (string) $user->password_hash)) {
-            $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'invalid_password', $userAgent);
+            $this->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'invalid_password', $userAgent);
             throw InvalidCredentialsException::forWrongPassword();
         }
 
@@ -90,8 +95,8 @@ class AuthenticationServiceImpl implements AuthenticationService
         $policy = $this->policies->findActiveForTenant($tenantId);
 
         if ((bool) ($policy?->ip_whitelisting_enabled ?? false)
-            && $this->ipWhitelist->findExactMatch($tenantId, $ipAddress) === null) {
-            $this->loginAttempts->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'ip_not_allowed', $userAgent);
+            && ! $this->ipIsPermitted($tenantId, $ipAddress, $policy)) {
+            $this->recordFailure($tenantId, $emailOrEmployeeId, $ipAddress, 'ip_not_allowed', $userAgent);
             throw IpNotAllowedException::forIp($ipAddress);
         }
 
@@ -113,6 +118,7 @@ class AuthenticationServiceImpl implements AuthenticationService
 
             if ($challengeMfa) {
                 $this->loginAttempts->recordSuccess($tenantId, (string) $user->email, $ipAddress, $userAgent);
+                $this->clearRateLimiter($tenantId, (string) $user->email, $ipAddress);
 
                 return new AuthenticationResult(
                     status: AuthenticationResult::STATUS_MFA_REQUIRED,
@@ -121,11 +127,13 @@ class AuthenticationServiceImpl implements AuthenticationService
                     rejectionReason: null,
                     authenticatedAt: null,
                     mfaRequired: true,
+                    user: $user,
                 );
             }
 
             $this->users->update($user, ['last_login_at' => now()]);
             $this->loginAttempts->recordSuccess($tenantId, (string) $user->email, $ipAddress, $userAgent);
+            $this->clearRateLimiter($tenantId, (string) $user->email, $ipAddress);
 
             return new AuthenticationResult(
                 status: AuthenticationResult::STATUS_AUTHENTICATED,
@@ -134,6 +142,7 @@ class AuthenticationServiceImpl implements AuthenticationService
                 rejectionReason: null,
                 authenticatedAt: new DateTimeImmutable(),
                 mfaRequired: false,
+                user: $user,
             );
         });
     }
@@ -174,13 +183,16 @@ class AuthenticationServiceImpl implements AuthenticationService
                 rejectionReason: null,
                 authenticatedAt: new DateTimeImmutable(),
                 mfaRequired: false,
+                user: $user,
             );
         });
     }
 
-    public function refreshSessionActivity(string $tenantId, string $sessionId): void
+    public function refreshSessionActivity(string $tenantId, string $sessionId, ?string $userId = null): void
     {
-        $session = $this->sessions->findById($tenantId, $sessionId);
+        $session = $userId !== null
+            ? $this->sessions->findForUser($tenantId, $userId, $sessionId)
+            : $this->sessions->findById($tenantId, $sessionId);
 
         if ($session === null) {
             return;
@@ -189,9 +201,9 @@ class AuthenticationServiceImpl implements AuthenticationService
         $this->sessions->touchActivity($session);
     }
 
-    public function logout(string $tenantId, string $sessionId): void
+    public function logout(string $tenantId, string $sessionId, ?string $userId = null): void
     {
-        $this->sessions->close($tenantId, $sessionId);
+        $this->sessions->close($tenantId, $sessionId, $userId);
     }
 
     public function revokeAllSessionsForUser(string $tenantId, string $userId): int
@@ -232,7 +244,12 @@ class AuthenticationServiceImpl implements AuthenticationService
 
         $plainToken = Str::random(64);
         $this->passwordResetTokens->upsertToken((string) $user->email, $this->hasher->make($plainToken));
-        // TODO: dispatch notification/email with the plaintext token.
+
+        // Dispatch via the user's `Notifiable` trait. With MAIL_MAILER=log
+        // (dev/CI) the plaintext token is written to storage/logs/laravel.log;
+        // with a real mailer (prod) it's emailed. The hash in the DB never
+        // changes shape — only the delivery channel does.
+        $user->notify(new PasswordResetRequested($plainToken, self::PASSWORD_RESET_TTL_MINUTES));
     }
 
     public function resetPasswordWithToken(string $tenantId, string $email, string $token, string $newPassword): bool
@@ -256,11 +273,17 @@ class AuthenticationServiceImpl implements AuthenticationService
             throw new PasswordPolicyViolationException($validation->violations);
         }
 
-        DB::transaction(function () use ($user, $email, $newPassword): void {
+        DB::transaction(function () use ($user, $tenantId, $email, $newPassword): void {
             $this->users->update($user, [
                 'password_hash' => $this->hasher->make($newPassword),
             ]);
             $this->passwordResetTokens->deleteByEmail($email);
+
+            // Compromised-credential containment: a successful reset must end
+            // every prior session and revoke every issued bearer token, so an
+            // attacker who knew the old password can't keep riding existing auth.
+            $this->sessions->revokeAllForUser($tenantId, (string) $user->id);
+            $user->tokens()->delete();
         });
 
         return true;
@@ -308,5 +331,61 @@ class AuthenticationServiceImpl implements AuthenticationService
     {
         return $this->users->findByEmail($tenantId, $emailOrEmployeeId)
             ?? $this->users->findByExternalEmployeeId($tenantId, $emailOrEmployeeId);
+    }
+
+    private function ipIsPermitted(string $tenantId, string $ipAddress, ?SecurityPolicy $policy): bool
+    {
+        if ($this->ipWhitelist->findMatchForIp($tenantId, $ipAddress) !== null) {
+            return true;
+        }
+
+        $policyRanges = $policy?->allowed_ip_ranges;
+        if (is_array($policyRanges) && $policyRanges !== []) {
+            $normalized = array_values(array_filter(array_map(
+                static fn ($range): string => trim((string) $range),
+                $policyRanges,
+            ), static fn (string $range): bool => $range !== ''));
+
+            if ($normalized !== [] && IpUtils::checkIp($ipAddress, $normalized)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function recordFailure(
+        string $tenantId,
+        string $emailAttempted,
+        string $ipAddress,
+        string $reason,
+        string $userAgent,
+    ): void {
+        $this->loginAttempts->recordFailure($tenantId, $emailAttempted, $ipAddress, $reason, $userAgent);
+
+        $emailKey = ThrottleLoginMiddleware::emailKey($tenantId, $emailAttempted);
+        $ipKey = ThrottleLoginMiddleware::ipKey($tenantId, $ipAddress);
+
+        if ($emailKey !== null) {
+            RateLimiter::hit($emailKey, ThrottleLoginMiddleware::DECAY_SECONDS);
+        }
+
+        if ($ipKey !== null) {
+            RateLimiter::hit($ipKey, ThrottleLoginMiddleware::DECAY_SECONDS);
+        }
+    }
+
+    private function clearRateLimiter(string $tenantId, string $email, string $ipAddress): void
+    {
+        $emailKey = ThrottleLoginMiddleware::emailKey($tenantId, $email);
+        $ipKey = ThrottleLoginMiddleware::ipKey($tenantId, $ipAddress);
+
+        if ($emailKey !== null) {
+            RateLimiter::clear($emailKey);
+        }
+
+        if ($ipKey !== null) {
+            RateLimiter::clear($ipKey);
+        }
     }
 }
