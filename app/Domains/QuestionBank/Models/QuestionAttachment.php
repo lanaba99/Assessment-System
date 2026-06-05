@@ -5,16 +5,18 @@ declare(strict_types=1);
 namespace App\Domains\QuestionBank\Models;
 
 use App\Domains\Identity\Models\User;
-use App\Domains\Shared\Traits\AutoFillsTenantId;
+use App\Domains\Shared\Traits\BelongsToTenant;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class QuestionAttachment extends Model
 {
-    use AutoFillsTenantId;
+    use BelongsToTenant;
     use HasFactory;
+    use SoftDeletes;
     use UsesUuid;
 
     protected $table = 'media_assets';
@@ -27,10 +29,9 @@ class QuestionAttachment extends Model
 
     public $timestamps = false;
 
+    // tenant_id (auto-filled) and uploaded_by_user_id are set server-side.
     protected $fillable = [
-        'tenant_id',
         'question_id',
-        'uploaded_by_user_id',
         'asset_type',
         'file_name',
         'file_path',

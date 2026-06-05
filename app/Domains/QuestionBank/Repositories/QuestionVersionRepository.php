@@ -9,6 +9,12 @@ use App\Domains\QuestionBank\Models\QuestionPsychometrics;
 use App\Domains\QuestionBank\Models\QuestionVersion;
 use Illuminate\Support\Collection;
 
+/**
+ * Versions are append-only. There is deliberately no method that mutates the
+ * content (text/stem/options) of an existing version — content edits create a
+ * brand-new version row via the service. `update()` exists only for
+ * version-level metadata transitions (e.g. approval status).
+ */
 class QuestionVersionRepository
 {
     public function __construct(
@@ -18,33 +24,59 @@ class QuestionVersionRepository
     ) {
     }
 
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
     public function create(array $attributes): QuestionVersion
     {
-        return $this->versionModel->newQuery()->create($attributes);
+        // Trusted boundary — forceCreate writes server-controlled columns
+        // (question_id, ver_num, content_hash, approval_status, …) that are
+        // intentionally excluded from $fillable.
+        return $this->versionModel->newQuery()->forceCreate($attributes);
     }
 
+    /**
+     * Metadata-only updates (approval transitions, usage counters). NEVER call
+     * this to change question content — spawn a new version instead.
+     *
+     * @param  array<string, mixed>  $attributes
+     */
     public function update(QuestionVersion $version, array $attributes): QuestionVersion
     {
-        $version->fill($attributes);
-        $version->save();
+        $version->forceFill($attributes)->save();
 
         return $version;
     }
 
     /**
-     * @param  array<int, array{option_text: string, is_correct: bool, option_sequence?: int, option_metadata?: array|null}>  $choices
+     * The next sequential version number for a question. Counts trashed rows
+     * (`withTrashed`) so numbering stays strictly monotonic and never collides
+     * with the unique(question_id, ver_num) index after a soft delete.
      */
-    public function replaceOptions(QuestionVersion $version, array $choices): Collection
+    public function nextVersionNumber(string $questionId): int
     {
-        $this->optionModel
+        $max = (int) $this->versionModel
             ->newQuery()
-            ->where('version_id', $version->version_id)
-            ->delete();
+            ->withTrashed()
+            ->where('question_id', $questionId)
+            ->max('ver_num');
 
+        return $max + 1;
+    }
+
+    /**
+     * Insert the option set for a (fresh) version. Versions are immutable, so
+     * we only ever create options — never delete-and-replace on a live row.
+     *
+     * @param  array<int, array{option_text: string, is_correct: bool, option_sequence?: int, option_metadata?: array<string, mixed>|null}>  $choices
+     * @return Collection<int, QuestionOption>
+     */
+    public function createOptions(QuestionVersion $version, array $choices): Collection
+    {
         $created = collect();
 
-        foreach ($choices as $index => $choice) {
-            $created->push($this->optionModel->newQuery()->create([
+        foreach (array_values($choices) as $index => $choice) {
+            $created->push($this->optionModel->newQuery()->forceCreate([
                 'version_id' => $version->version_id,
                 'option_sequence' => $choice['option_sequence'] ?? ($index + 1),
                 'option_text' => $choice['option_text'],
@@ -56,27 +88,30 @@ class QuestionVersionRepository
         return $created;
     }
 
-    public function createPsychometrics(string $tenantId, string $versionId, array $attributes): QuestionPsychometrics
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
+    public function createPsychometrics(string $versionId, array $attributes): QuestionPsychometrics
     {
-        return $this->psychometricsModel->newQuery()->create(array_merge([
-            'tenant_id' => $tenantId,
+        return $this->psychometricsModel->newQuery()->forceCreate(array_merge([
             'question_version_id' => $versionId,
         ], $attributes));
     }
 
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
     public function updatePsychometrics(QuestionPsychometrics $psychometrics, array $attributes): QuestionPsychometrics
     {
-        $psychometrics->fill($attributes);
-        $psychometrics->save();
+        $psychometrics->forceFill($attributes)->save();
 
         return $psychometrics;
     }
 
-    public function findPsychometricsByVersionId(string $tenantId, string $versionId): ?QuestionPsychometrics
+    public function findPsychometricsByVersionId(string $versionId): ?QuestionPsychometrics
     {
         return $this->psychometricsModel
             ->newQuery()
-            ->where('tenant_id', $tenantId)
             ->where('question_version_id', $versionId)
             ->first();
     }

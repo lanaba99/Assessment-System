@@ -6,7 +6,7 @@ namespace App\Http\Controllers\QuestionBank;
 
 use App\Domains\QuestionBank\Contracts\CategoryTreeService;
 use App\Domains\QuestionBank\Exceptions\CategoryNotEmptyException;
-use App\Domains\QuestionBank\Models\QuestionBank;
+use App\Domains\QuestionBank\Models\Category;
 use App\Domains\QuestionBank\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\QuestionBank\MoveCategoryRequest;
@@ -31,7 +31,7 @@ class CategoryController extends Controller
 
     public function tree(Request $request): JsonResponse
     {
-        $this->authorize('viewAny', QuestionBank::class);
+        $this->authorize('viewAny', Category::class);
 
         $tenantId = (string) tenant()->getKey();
         $tree = $this->categoryTree->getTree($tenantId);
@@ -43,7 +43,7 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request): JsonResponse
     {
-        $this->authorize('create', QuestionBank::class);
+        $this->authorize('create', Category::class);
 
         $tenantId = (string) tenant()->getKey();
 

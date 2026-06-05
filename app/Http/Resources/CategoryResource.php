@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Domains\QuestionBank\Models\QuestionBank;
+use App\Domains\QuestionBank\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin QuestionBank
+ * @mixin Category
  */
 class CategoryResource extends JsonResource
 {

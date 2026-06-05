@@ -233,16 +233,7 @@ class TenantMasterSeeder extends Seeder
             ['name' => 'Risk Management',       'type' => 'behavioral', 'category' => 'advanced',  'code' => 'COMP-RM'],
         ];
 
-        $levelLabels = [
-            1 => ['name' => 'Novice',        'min' => 0,  'max' => 20],
-            2 => ['name' => 'Beginner',      'min' => 21, 'max' => 40],
-            3 => ['name' => 'Intermediate',  'min' => 41, 'max' => 60],
-            4 => ['name' => 'Advanced',      'min' => 61, 'max' => 80],
-            5 => ['name' => 'Expert',        'min' => 81, 'max' => 100],
-        ];
-
         $competencyRows = [];
-        $levelRows = [];
 
         foreach ($competencies as $c) {
             $id = (string) Str::uuid();
@@ -264,25 +255,9 @@ class TenantMasterSeeder extends Seeder
                 'created_at'              => now(),
                 'updated_at'              => now(),
             ];
-
-            foreach ($levelLabels as $num => $level) {
-                $levelRows[] = [
-                    'level_id'            => (string) Str::uuid(),
-                    'competency_id'       => $id,
-                    'level_number'        => $num,
-                    'level_name'          => $level['name'],
-                    'level_description'   => "{$level['name']} level of {$c['name']}.",
-                    'min_score_threshold' => $level['min'],
-                    'max_score_threshold' => $level['max'],
-                    'assessment_criteria' => json_encode(['min' => $level['min'], 'max' => $level['max']]),
-                    'learning_resources'  => json_encode([]),
-                    'created_at'          => now(),
-                ];
-            }
         }
 
         DB::table('competencies')->insert($competencyRows);
-        DB::table('competency_levels')->insert($levelRows);
     }
 
     private function seedQuestionCategory(): void
@@ -342,12 +317,8 @@ class TenantMasterSeeder extends Seeder
                 'question_text'        => "What is the correct answer to seeded question #{$i}?",
                 'question_type'        => 'mcq',
                 'question_stem'        => "Sample stem for question #{$i}.",
-                'options_json'         => json_encode([
-                    ['key' => 'A', 'text' => 'Option A'],
-                    ['key' => 'B', 'text' => 'Option B'],
-                    ['key' => 'C', 'text' => 'Option C'],
-                    ['key' => 'D', 'text' => 'Option D'],
-                ]),
+                // options live in the normalized question_options table (below);
+                // the dead options_json column was dropped.
                 'correct_answer_json'  => json_encode(['correct' => 'B']),
                 'explanation_text'     => json_encode(['rationale' => 'Option B is correct by design of the seed.']),
                 'evaluator_instructions' => json_encode([]),

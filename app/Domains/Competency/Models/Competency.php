@@ -4,23 +4,30 @@ declare(strict_types=1);
 
 namespace App\Domains\Competency\Models;
 
-use App\Domains\ExamEngine\Models\ExamConfig;
-use App\Domains\Grading\Models\CompetencyScore;
 use App\Domains\Identity\Models\User;
 use App\Domains\QuestionBank\Models\Question;
-use App\Domains\Shared\Traits\AutoFillsTenantId;
+use App\Domains\Shared\Traits\BelongsToTenant;
 use App\Domains\Shared\Traits\UsesUuid;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Database\Factories\CompetencyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * A node in the competency tree (table: `competencies`).
+ *
+ * Mirrors the QuestionBank Category "gold standard": tenant-scoped via the
+ * BelongsToTenant global scope, soft-deletable, UUID-keyed, with a
+ * self-referencing parent/children hierarchy.
+ */
 class Competency extends Model
 {
-    use AutoFillsTenantId;
+    use BelongsToTenant;
     use HasFactory;
+    use SoftDeletes;
     use UsesUuid;
 
     public const TYPE_KNOWLEDGE = 'knowledge';
@@ -35,66 +42,55 @@ class Competency extends Model
 
     protected $keyType = 'string';
 
+    /**
+     * tenant_id (auto-filled) and created_by_user_id are server-controlled and
+     * never mass-assignable; the repository writes them via forceCreate.
+     */
     protected $fillable = [
-        'tenant_id',
-        'created_by_user_id',
+        'parent_competency_id',
         'competency_name',
         'competency_code',
         'competency_type',
         'competency_category',
         'description',
         'competency_attributes',
-        'is_mandatory',
+        'hierarchy_level',
         'is_active',
-        'proficiency_level_count',
     ];
 
     protected function casts(): array
     {
         return [
-            'competency_attributes' => 'array',
-            'is_mandatory' => 'boolean',
+            'hierarchy_level' => 'integer',
             'is_active' => 'boolean',
+            'is_mandatory' => 'boolean',
             'proficiency_level_count' => 'integer',
+            'competency_attributes' => 'array',
         ];
     }
 
     /**
-     * Parent reference is persisted in competency_attributes JSON because
-     * the schema does not (yet) have a dedicated FK column. Read/write
-     * exclusively through this accessor so the storage detail stays here.
+     * Explicit factory binding: the model lives outside App\Models, so the
+     * default factory-name guesser cannot find CompetencyFactory.
      */
-    protected function parentCompetencyId(): Attribute
+    protected static function newFactory(): CompetencyFactory
     {
-        return Attribute::make(
-            get: function (mixed $_, array $attributes): ?string {
-                $raw = $attributes['competency_attributes'] ?? null;
-                $decoded = is_string($raw) ? json_decode($raw, true) : $raw;
-                $parent = is_array($decoded) ? ($decoded['parent_competency_id'] ?? null) : null;
+        return CompetencyFactory::new();
+    }
 
-                return is_string($parent) ? $parent : null;
-            },
-        );
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'parent_competency_id', 'competency_id');
+    }
+
+    public function children(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_competency_id', 'competency_id');
     }
 
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by_user_id', 'id');
-    }
-
-    public function levels(): HasMany
-    {
-        return $this->hasMany(CompetencyLevel::class, 'competency_id', 'competency_id');
-    }
-
-    public function examConfigs(): HasMany
-    {
-        return $this->hasMany(ExamConfig::class, 'competency_id', 'competency_id');
-    }
-
-    public function competencyScores(): HasMany
-    {
-        return $this->hasMany(CompetencyScore::class, 'competency_id', 'competency_id');
     }
 
     public function questions(): BelongsToMany

@@ -41,32 +41,42 @@ return new class extends Migration
             $table->index('is_active');
         });
 
-        Schema::table('exam_blueprints', function (Blueprint $table) {
-            $table->foreign('competency_id')
-                ->references('competency_id')
-                ->on('competencies')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
-        });
+        // Guarded so this migration runs against a partial schema (e.g. the
+        // focused competency test harness) that has not built these tables.
+        if (Schema::hasTable('exam_blueprints')) {
+            Schema::table('exam_blueprints', function (Blueprint $table) {
+                $table->foreign('competency_id')
+                    ->references('competency_id')
+                    ->on('competencies')
+                    ->onUpdate('cascade')
+                    ->onDelete('restrict');
+            });
+        }
 
-        Schema::table('competency_scores', function (Blueprint $table) {
-            $table->foreign('competency_id')
-                ->references('competency_id')
-                ->on('competencies')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
-        });
+        if (Schema::hasTable('competency_scores')) {
+            Schema::table('competency_scores', function (Blueprint $table) {
+                $table->foreign('competency_id')
+                    ->references('competency_id')
+                    ->on('competencies')
+                    ->onUpdate('cascade')
+                    ->onDelete('restrict');
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('competency_scores', function (Blueprint $table) {
-            $table->dropForeign(['competency_id']);
-        });
+        if (Schema::hasTable('competency_scores')) {
+            Schema::table('competency_scores', function (Blueprint $table) {
+                $table->dropForeign(['competency_id']);
+            });
+        }
 
-        Schema::table('exam_blueprints', function (Blueprint $table) {
-            $table->dropForeign(['competency_id']);
-        });
+        if (Schema::hasTable('exam_blueprints')) {
+            Schema::table('exam_blueprints', function (Blueprint $table) {
+                $table->dropForeign(['competency_id']);
+            });
+        }
 
         Schema::dropIfExists('competencies');
     }

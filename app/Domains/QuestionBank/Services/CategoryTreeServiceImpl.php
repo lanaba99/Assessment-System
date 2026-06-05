@@ -6,7 +6,7 @@ namespace App\Domains\QuestionBank\Services;
 
 use App\Domains\QuestionBank\Contracts\CategoryTreeService;
 use App\Domains\QuestionBank\Exceptions\CategoryNotEmptyException;
-use App\Domains\QuestionBank\Models\QuestionBank;
+use App\Domains\QuestionBank\Models\Category;
 use App\Domains\QuestionBank\Repositories\CategoryRepository;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -31,7 +31,7 @@ class CategoryTreeServiceImpl implements CategoryTreeService
         string $title,
         ?string $parentId = null,
         ?string $description = null,
-    ): QuestionBank {
+    ): Category {
         $parent = null;
         $hierarchyLevel = 0;
 
@@ -57,7 +57,7 @@ class CategoryTreeServiceImpl implements CategoryTreeService
         ]);
     }
 
-    public function moveCategory(string $tenantId, string $categoryId, ?string $parentId): QuestionBank
+    public function moveCategory(string $tenantId, string $categoryId, ?string $parentId): Category
     {
         $category = $this->categories->findById($tenantId, $categoryId);
 
@@ -110,15 +110,15 @@ class CategoryTreeServiceImpl implements CategoryTreeService
     }
 
     /**
-     * @param  Collection<int, QuestionBank>  $nodes
+     * @param  Collection<int, Category>  $nodes
      * @return array<int, array<string, mixed>>
      */
     private function buildTree(Collection $nodes, ?string $parentId = null): array
     {
         return $nodes
-            ->filter(static fn (QuestionBank $node): bool => $node->parent_category_id === $parentId)
+            ->filter(static fn (Category $node): bool => $node->parent_category_id === $parentId)
             ->values()
-            ->map(function (QuestionBank $node) use ($nodes): array {
+            ->map(function (Category $node) use ($nodes): array {
                 return [
                     'id' => (string) $node->category_id,
                     'title' => (string) $node->category_name,

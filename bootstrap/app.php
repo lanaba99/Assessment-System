@@ -1,5 +1,6 @@
 <?php
 
+use App\Domains\Competency\Exceptions\CompetencyNotEmptyException;
 use App\Domains\ExamEngine\Exceptions\InvalidExamStateException;
 use App\Domains\Identity\Exceptions\InvalidInviteTokenException;
 use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
@@ -72,6 +73,21 @@ return Application::configure(basePath: dirname(__DIR__))
             return response()->json([
                 'error' => [
                     'code' => 'category_not_empty',
+                    'message' => $e->getMessage(),
+                    'has_children' => $e->hasChildren,
+                    'has_questions' => $e->hasQuestions,
+                ],
+            ], Response::HTTP_CONFLICT);
+        });
+
+        $exceptions->render(function (CompetencyNotEmptyException $e, Request $request) {
+            if (! $request->expectsJson() && ! $request->is('api/*')) {
+                return null;
+            }
+
+            return response()->json([
+                'error' => [
+                    'code' => 'competency_not_empty',
                     'message' => $e->getMessage(),
                     'has_children' => $e->hasChildren,
                     'has_questions' => $e->hasQuestions,

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Domains\QuestionBank\Models\Category;
 use App\Domains\QuestionBank\Models\Question;
-use App\Domains\QuestionBank\Models\QuestionBank;
 use Laravel\Sanctum\Sanctum;
 use Tests\Feature\QuestionBank\UsesQuestionBankSchema;
 
@@ -159,5 +159,5 @@ it('deletes an empty leaf category', function (): void {
     $this->deleteJson('/api/v1/categories/' . $leaf->category_id)
         ->assertNoContent();
 
-    expect(QuestionBank::query()->whereKey($leaf->category_id)->exists())->toBeFalse();
+    expect(Category::query()->whereKey($leaf->category_id)->exists())->toBeFalse();
 });

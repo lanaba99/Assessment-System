@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature\QuestionBank;
 
-use App\Domains\QuestionBank\Models\QuestionBank;
+use App\Domains\QuestionBank\Models\Category;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Tests\Feature\Identity\UsesIdentitySchema;
@@ -21,12 +21,21 @@ trait UsesQuestionBankSchema
 
     private function migrateQuestionBankTables(): void
     {
+        // NOTE: keep this list in lockstep with production. Any new migration
+        // that alters a QuestionBank table (e.g. adding deleted_at) MUST be
+        // appended here, or the in-memory test schema drifts from the models
+        // and queries fail with "Unknown column". The schema-integrity test in
+        // QuestionLifecycleTest guards exactly this.
         $files = [
             '2026_05_16_000140_create_categories_table.php',
             '2026_05_16_000150_create_questions_table.php',
             '2026_05_16_000160_create_question_versions_table.php',
             '2026_05_16_000180_create_question_options_table.php',
             '2026_05_19_000010_create_question_psychometrics_table.php',
+            // Alters (run after the create migrations above). Guarded with
+            // hasTable()/hasColumn() so they no-op against tables the harness
+            // does not build (e.g. media_assets).
+            '2026_06_05_000010_add_soft_deletes_to_question_bank_tables.php',
         ];
 
         $basePath = database_path('migrations/tenant/02_assessment_and_exams');
@@ -59,8 +68,8 @@ trait UsesQuestionBankSchema
         string $title,
         ?string $parentId = null,
         array $overrides = [],
-    ): QuestionBank {
-        return QuestionBank::query()->create(array_merge([
+    ): Category {
+        return Category::query()->create(array_merge([
             'category_id' => (string) Str::uuid(),
             'tenant_id' => $tenantId,
             'parent_category_id' => $parentId,

@@ -89,6 +89,6 @@ class QuestionPsychometricsRepository
 
         $attributes['question_version_id'] = $metrics->questionVersionId;
 
-        return $this->model->newQuery()->create($attributes);
+        return $this->model->newQuery()->forceCreate($attributes);
     }
 }

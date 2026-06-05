@@ -20,8 +20,7 @@ class UpdateQuestionRequest extends FormRequest
             return false;
         }
 
-        $tenantId = (string) tenant()->getKey();
-        $question = app(QuestionRepository::class)->findById($tenantId, (string) $this->route('id'));
+        $question = app(QuestionRepository::class)->findById((string) $this->route('id'));
 
         if ($question === null) {
             return false;
@@ -46,6 +45,13 @@ class UpdateQuestionRequest extends FormRequest
             'choices.*.option_text' => ['required_with:choices', 'string'],
             'choices.*.is_correct' => ['required_with:choices', 'boolean'],
             'choices.*.option_sequence' => ['nullable', 'integer', 'min:1'],
+
+            'correct_answer' => ['sometimes', 'boolean'],
+            'accepted_answers' => ['sometimes', 'array', 'min:1'],
+            'accepted_answers.*' => ['required_with:accepted_answers', 'string', 'max:1000'],
+            'match_mode' => ['sometimes', 'string', Rule::in(['exact', 'case_insensitive'])],
+            'evaluator_instructions' => ['sometimes', 'array'],
+
             'psychometrics.p_value' => ['nullable', 'numeric', 'between:0,1'],
             'psychometrics.discrimination_index' => ['nullable', 'numeric', 'between:-1,1'],
             'psychometrics.usage_count' => ['nullable', 'integer', 'min:0'],
@@ -54,9 +60,7 @@ class UpdateQuestionRequest extends FormRequest
 
     public function question(): Question
     {
-        $tenantId = (string) tenant()->getKey();
-
-        return app(QuestionRepository::class)->findById($tenantId, (string) $this->route('id'))
+        return app(QuestionRepository::class)->findById((string) $this->route('id'))
             ?? abort(404, 'Question not found.');
     }
 
@@ -132,5 +136,39 @@ class UpdateQuestionRequest extends FormRequest
         }
 
         return $this->validated('psychometrics') ?? [];
+    }
+
+    /**
+     * Type-specific answer payload. Null when the request carries no answer
+     * change (so the service preserves the current version's answer).
+     *
+     * @return array<string, mixed>|null
+     */
+    public function answer(): ?array
+    {
+        $answer = [];
+
+        if ($this->has('correct_answer')) {
+            $answer['correct_answer'] = $this->boolean('correct_answer');
+        }
+
+        if ($this->has('accepted_answers')) {
+            $answer['accepted_answers'] = $this->validated('accepted_answers') ?? [];
+            $answer['match_mode'] = $this->validated('match_mode') ?? 'case_insensitive';
+        }
+
+        return $answer === [] ? null : $answer;
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    public function evaluatorInstructions(): ?array
+    {
+        if (! $this->has('evaluator_instructions')) {
+            return null;
+        }
+
+        return $this->validated('evaluator_instructions') ?? [];
     }
 }

@@ -54,6 +54,10 @@ class QuestionResource extends JsonResource
                     'discrimination_index' => $psychometrics->discrimination_index,
                 ]
                 : null,
+            // Admin-only fields. The candidate-facing resource (Priority #5)
+            // must omit correct_answer / is_correct / psychometrics.
+            'correct_answer' => $version?->correct_answer_json,
+            'evaluator_instructions' => $version?->evaluator_instructions,
             'created_at' => $question->created_at?->toIso8601String(),
             'updated_at' => $question->updated_at?->toIso8601String(),
         ];

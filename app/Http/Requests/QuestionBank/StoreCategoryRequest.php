@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\QuestionBank;
 
-use App\Domains\QuestionBank\Models\QuestionBank;
+use App\Domains\QuestionBank\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCategoryRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return $this->user() !== null && $this->user()->can('create', QuestionBank::class);
+        return $this->user() !== null && $this->user()->can('create', Category::class);
     }
 
     /**

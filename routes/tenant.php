@@ -11,6 +11,7 @@ use App\Http\Controllers\Identity\RoleController;
 use App\Http\Controllers\Identity\SecurityController;
 use App\Http\Controllers\Identity\SystemController;
 use App\Http\Controllers\Identity\UserController;
+use App\Http\Controllers\Competency\CompetencyController;
 use App\Http\Controllers\QuestionBank\CategoryController;
 use App\Http\Controllers\QuestionBank\QuestionController;
 use Illuminate\Support\Facades\Route;
@@ -185,6 +186,25 @@ Route::middleware([
                 Route::delete('{id}', [QuestionController::class, 'destroy'])
                     ->whereUuid('id')
                     ->name('api.v1.questions.destroy');
+            });
+
+            // -------------------------------------------------------------
+            // Competency framework — tree CRUD
+            // -------------------------------------------------------------
+            Route::prefix('competencies')->group(function (): void {
+                Route::get('tree', [CompetencyController::class, 'tree'])
+                    ->name('api.v1.competencies.tree');
+
+                Route::post('/', [CompetencyController::class, 'store'])
+                    ->name('api.v1.competencies.store');
+
+                Route::patch('{id}/move', [CompetencyController::class, 'move'])
+                    ->whereUuid('id')
+                    ->name('api.v1.competencies.move');
+
+                Route::delete('{id}', [CompetencyController::class, 'destroy'])
+                    ->whereUuid('id')
+                    ->name('api.v1.competencies.destroy');
             });
         });
 

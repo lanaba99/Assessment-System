@@ -11,10 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class QuestionVersion extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     use UsesUuid;
 
     protected $table = 'question_versions';
@@ -27,31 +29,27 @@ class QuestionVersion extends Model
 
     public $timestamps = false;
 
+    /**
+     * Versions are written exclusively by the repository/service (forceCreate),
+     * so identity/workflow columns (question_id, created_by_user_id, ver_num,
+     * approval_status, approved_by_user_id, usage_count_in_exams, content_hash,
+     * timestamps) are kept out of $fillable as a mass-assignment tripwire.
+     */
     protected $fillable = [
-        'question_id',
-        'created_by_user_id',
-        'ver_num',
         'question_text',
         'question_type',
         'question_stem',
-        'options_json',
         'correct_answer_json',
         'explanation_text',
         'evaluator_instructions',
-        'approval_status',
-        'approved_by_user_id',
-        'usage_count_in_exams',
-        'content_hash',
         'version_metadata',
-        'created_at',
-        'approved_at',
     ];
 
     protected function casts(): array
     {
         return [
             'ver_num' => 'integer',
-            'options_json' => 'array',
+            'correct_answer_json' => 'array',
             'explanation_text' => 'array',
             'evaluator_instructions' => 'array',
             'usage_count_in_exams' => 'integer',

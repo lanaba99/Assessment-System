@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\QuestionBank;
 
 use App\Domains\QuestionBank\Enums\BloomLevel;
+use App\Domains\QuestionBank\Enums\QuestionType;
 use App\Domains\QuestionBank\Models\Question;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -24,7 +25,7 @@ class ListQuestionsRequest extends FormRequest
         return [
             'category_id' => ['nullable', 'uuid'],
             'bloom_level' => ['nullable', 'integer', Rule::in(BloomLevel::values())],
-            'type' => ['nullable', 'string', Rule::in(['mcq', 'essay', 'true_false', 'short_answer'])],
+            'type' => ['nullable', 'string', Rule::in(QuestionType::values())],
             'per_page' => ['nullable', 'integer', 'min:1', 'max:100'],
         ];
     }

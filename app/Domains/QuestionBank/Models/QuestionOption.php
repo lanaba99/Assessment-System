@@ -24,8 +24,8 @@ class QuestionOption extends Model
 
     public $timestamps = false;
 
+    // version_id is set by the repository when options are created for a version.
     protected $fillable = [
-        'version_id',
         'option_sequence',
         'option_text',
         'is_correct',

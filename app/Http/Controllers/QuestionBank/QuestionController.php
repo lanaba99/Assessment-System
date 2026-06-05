@@ -32,11 +32,9 @@ class QuestionController extends Controller
         $this->authorize('create', Question::class);
 
         $actor = $request->user();
-        $tenantId = (string) tenant()->getKey();
 
         try {
             $question = $this->questions->createQuestion(
-                tenantId: $tenantId,
                 categoryId: $request->categoryId(),
                 createdByUserId: (string) $actor->id,
                 title: $request->title(),
@@ -46,6 +44,8 @@ class QuestionController extends Controller
                 bloomLevel: $request->bloomLevel(),
                 difficultyLevel: $request->difficultyLevel(),
                 choices: $request->choices(),
+                answer: $request->answer(),
+                evaluatorInstructions: $request->evaluatorInstructions(),
                 psychometrics: $request->psychometrics(),
             );
         } catch (RuntimeException $e) {
@@ -59,9 +59,7 @@ class QuestionController extends Controller
 
     public function index(ListQuestionsRequest $request): JsonResponse
     {
-        $tenantId = (string) tenant()->getKey();
         $paginator = $this->questions->listQuestions(
-            tenantId: $tenantId,
             filters: $request->filters(),
             perPage: $request->perPage(),
         );
@@ -79,8 +77,7 @@ class QuestionController extends Controller
 
     public function show(string $id): JsonResponse
     {
-        $tenantId = (string) tenant()->getKey();
-        $question = $this->questionRepository->findByIdWithDetails($tenantId, $id);
+        $question = $this->questionRepository->findByIdWithDetails($id);
 
         if ($question === null) {
             return $this->errorResponse('question_not_found', 'Question not found.', Response::HTTP_NOT_FOUND);
@@ -98,15 +95,15 @@ class QuestionController extends Controller
         $question = $request->question();
         $this->authorize('update', $question);
 
-        $tenantId = (string) tenant()->getKey();
-
         try {
             $updated = $this->questions->updateQuestion(
-                tenantId: $tenantId,
                 questionId: $id,
+                editedByUserId: (string) $request->user()->id,
                 questionAttributes: $request->questionAttributes(),
                 versionAttributes: $request->versionAttributes(),
                 choices: $request->choices(),
+                answer: $request->answer(),
+                evaluatorInstructions: $request->evaluatorInstructions(),
                 psychometrics: $request->psychometrics(),
             );
         } catch (RuntimeException $e) {
@@ -120,8 +117,7 @@ class QuestionController extends Controller
 
     public function destroy(string $id): JsonResponse
     {
-        $tenantId = (string) tenant()->getKey();
-        $question = $this->questionRepository->findById($tenantId, $id);
+        $question = $this->questionRepository->findById($id);
 
         if ($question === null) {
             return $this->errorResponse('question_not_found', 'Question not found.', Response::HTTP_NOT_FOUND);
@@ -130,7 +126,7 @@ class QuestionController extends Controller
         $this->authorize('delete', $question);
 
         try {
-            $this->questions->deleteQuestion($tenantId, $id);
+            $this->questions->deleteQuestion($id);
         } catch (RuntimeException $e) {
             return $this->errorResponse('question_delete_failed', $e->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }

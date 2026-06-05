@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\QuestionBank\Models;
 
-use App\Domains\Shared\Traits\AutoFillsTenantId;
+use App\Domains\Shared\Traits\BelongsToTenant;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class QuestionPsychometrics extends Model
 {
-    use AutoFillsTenantId;
+    use BelongsToTenant;
     use HasFactory;
     use UsesUuid;
 
@@ -24,9 +24,8 @@ class QuestionPsychometrics extends Model
 
     protected $keyType = 'string';
 
+    // question_version_id and tenant_id (auto-filled) are set server-side.
     protected $fillable = [
-        'question_version_id',
-        'tenant_id',
         'difficulty_index',
         'discrimination_index',
         'point_biserial',

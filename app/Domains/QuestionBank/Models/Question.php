@@ -6,18 +6,20 @@ namespace App\Domains\QuestionBank\Models;
 
 use App\Domains\Competency\Models\Competency;
 use App\Domains\Identity\Models\User;
-use App\Domains\Shared\Traits\AutoFillsTenantId;
+use App\Domains\Shared\Traits\BelongsToTenant;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Question extends Model
 {
-    use AutoFillsTenantId;
+    use BelongsToTenant;
     use HasFactory;
+    use SoftDeletes;
     use UsesUuid;
 
     protected $table = 'questions';
@@ -28,11 +30,13 @@ class Question extends Model
 
     protected $keyType = 'string';
 
+    /**
+     * Server-controlled columns (tenant_id, created_by_user_id,
+     * current_version_id, total_usage_count) are intentionally excluded — they
+     * are written explicitly by the repositories, never mass-assigned.
+     */
     protected $fillable = [
-        'tenant_id',
         'category_id',
-        'created_by_user_id',
-        'current_version_id',
         'question_title',
         'question_type',
         'difficulty_level',
@@ -41,7 +45,6 @@ class Question extends Model
         'requires_media_attachment',
         'is_deprecated',
         'is_archived',
-        'total_usage_count',
         'question_metadata',
         'archived_at',
     ];
@@ -61,9 +64,9 @@ class Question extends Model
         ];
     }
 
-    public function bank(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(QuestionBank::class, 'category_id', 'category_id');
+        return $this->belongsTo(Category::class, 'category_id', 'category_id');
     }
 
     public function createdBy(): BelongsTo

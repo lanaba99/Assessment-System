@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\QuestionBank;
 
-use App\Domains\QuestionBank\Models\QuestionBank;
+use App\Domains\QuestionBank\Models\Category;
 use App\Domains\QuestionBank\Repositories\CategoryRepository;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -45,7 +45,7 @@ class MoveCategoryRequest extends FormRequest
         return $parentId !== null ? (string) $parentId : null;
     }
 
-    public function category(): QuestionBank
+    public function category(): Category
     {
         $tenantId = (string) tenant()->getKey();
 

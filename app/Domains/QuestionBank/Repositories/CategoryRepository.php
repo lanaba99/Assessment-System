@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Domains\QuestionBank\Repositories;
 
-use App\Domains\QuestionBank\Models\QuestionBank;
+use App\Domains\QuestionBank\Models\Category;
 use Illuminate\Support\Collection;
 
 class CategoryRepository
 {
     public function __construct(
-        private readonly QuestionBank $model,
+        private readonly Category $model,
     ) {
     }
 
     /**
-     * @return Collection<int, QuestionBank>
+     * @return Collection<int, Category>
      */
     public function allForTenant(string $tenantId): Collection
     {
@@ -27,7 +27,7 @@ class CategoryRepository
             ->get();
     }
 
-    public function findById(string $tenantId, string $categoryId): ?QuestionBank
+    public function findById(string $tenantId, string $categoryId): ?Category
     {
         return $this->model
             ->newQuery()
@@ -36,22 +36,30 @@ class CategoryRepository
             ->first();
     }
 
-    public function create(string $tenantId, array $attributes): QuestionBank
+    /**
+     * Tenant-safe existence check that relies on the BelongsToTenant global
+     * scope (audit Option A) rather than a hand-written tenant_id clause.
+     */
+    public function exists(string $categoryId): bool
+    {
+        return $this->model->newQuery()->whereKey($categoryId)->exists();
+    }
+
+    public function create(string $tenantId, array $attributes): Category
     {
         $attributes['tenant_id'] = $tenantId;
 
-        return $this->model->newQuery()->create($attributes);
+        return $this->model->newQuery()->forceCreate($attributes);
     }
 
-    public function update(QuestionBank $category, array $attributes): QuestionBank
+    public function update(Category $category, array $attributes): Category
     {
-        $category->fill($attributes);
-        $category->save();
+        $category->forceFill($attributes)->save();
 
         return $category;
     }
 
-    public function delete(QuestionBank $category): void
+    public function delete(Category $category): void
     {
         $category->delete();
     }

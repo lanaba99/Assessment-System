@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\QuestionBank\Models;
 
-use App\Domains\Shared\Traits\AutoFillsTenantId;
+use App\Domains\Shared\Traits\BelongsToTenant;
 use App\Domains\Shared\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class QuestionTag extends Model
 {
-    use AutoFillsTenantId;
+    use BelongsToTenant;
     use HasFactory;
     use UsesUuid;
 
@@ -26,8 +26,8 @@ class QuestionTag extends Model
 
     public $timestamps = false;
 
+    // tenant_id is auto-filled by BelongsToTenant.
     protected $fillable = [
-        'tenant_id',
         'question_id',
         'tag_name',
         'created_at',
