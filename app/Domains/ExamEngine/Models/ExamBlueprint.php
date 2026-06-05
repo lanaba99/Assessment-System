@@ -6,6 +6,7 @@ namespace App\Domains\ExamEngine\Models;
 
 use App\Domains\Competency\Models\Competency;
 use App\Domains\Shared\Traits\UsesUuid;
+use Database\Factories\ExamBlueprintFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,6 +15,11 @@ class ExamBlueprint extends Model
 {
     use HasFactory;
     use UsesUuid;
+
+    protected static function newFactory(): ExamBlueprintFactory
+    {
+        return ExamBlueprintFactory::new();
+    }
 
     protected $table = 'exam_blueprints';
 

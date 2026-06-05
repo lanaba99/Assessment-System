@@ -9,8 +9,10 @@ use App\Domains\ExamSession\Models\ExamCandidateEligible;
 use App\Domains\Grading\Models\Rubric;
 use App\Domains\Identity\Models\User;
 use App\Domains\Rules\Models\EligibilityChain;
-use App\Domains\Shared\Traits\AutoFillsTenantId;
+use App\Domains\ExamEngine\Enums\ExamStatus;
+use App\Domains\Shared\Traits\BelongsToTenant;
 use App\Domains\Shared\Traits\UsesUuid;
+use Database\Factories\ExamFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,9 +20,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Exam extends Model
 {
-    use AutoFillsTenantId;
+    use BelongsToTenant;
     use HasFactory;
     use UsesUuid;
+
+    protected static function newFactory(): ExamFactory
+    {
+        return ExamFactory::new();
+    }
 
     protected $table = 'exams';
 
@@ -30,9 +37,11 @@ class Exam extends Model
 
     protected $keyType = 'string';
 
+    /**
+     * tenant_id and created_by_user_id are server-controlled; the repository
+     * writes them via forceCreate/forceFill so they are never mass-assignable.
+     */
     protected $fillable = [
-        'tenant_id',
-        'created_by_user_id',
         'exam_name',
         'exam_code',
         'exam_description',
@@ -59,6 +68,7 @@ class Exam extends Model
     protected function casts(): array
     {
         return [
+            'exam_status' => ExamStatus::class,
             'total_questions' => 'integer',
             'total_duration_minutes' => 'integer',
             'pass_mark_percentage' => 'decimal:2',
@@ -85,11 +95,6 @@ class Exam extends Model
     public function sections(): HasMany
     {
         return $this->hasMany(ExamSection::class, 'exam_id', 'exam_id');
-    }
-
-    public function configs(): HasMany
-    {
-        return $this->hasMany(ExamConfig::class, 'exam_id', 'exam_id');
     }
 
     public function blueprints(): HasMany

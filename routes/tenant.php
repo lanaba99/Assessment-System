@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AssessmentResultController;
-use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExamEngine\ExamController;
 use App\Http\Controllers\ExamSessionController;
 use App\Http\Controllers\Identity\AuthController;
 use App\Http\Controllers\Identity\IdentityController;
@@ -206,25 +206,38 @@ Route::middleware([
                     ->whereUuid('id')
                     ->name('api.v1.competencies.destroy');
             });
+
+            // -------------------------------------------------------------
+            // Exam Engine — template lifecycle
+            // -------------------------------------------------------------
+            Route::prefix('exams')->group(function (): void {
+                Route::get('/', [ExamController::class, 'index'])
+                    ->name('api.v1.exams.index');
+
+                Route::post('/', [ExamController::class, 'store'])
+                    ->name('api.v1.exams.store');
+
+                Route::get('{examId}', [ExamController::class, 'show'])
+                    ->whereUuid('examId')
+                    ->name('api.v1.exams.show');
+
+                Route::patch('{examId}', [ExamController::class, 'update'])
+                    ->whereUuid('examId')
+                    ->name('api.v1.exams.update');
+
+                Route::delete('{examId}', [ExamController::class, 'destroy'])
+                    ->whereUuid('examId')
+                    ->name('api.v1.exams.destroy');
+
+                Route::post('{examId}/publish', [ExamController::class, 'publish'])
+                    ->whereUuid('examId')
+                    ->name('api.v1.exams.publish');
+
+                Route::post('{examId}/archive', [ExamController::class, 'archive'])
+                    ->whereUuid('examId')
+                    ->name('api.v1.exams.archive');
+            });
         });
-
-        // -----------------------------------------------------------------
-        // Assessment & exams (auth wiring TBD per domain)
-        // -----------------------------------------------------------------
-        Route::post('exams', [ExamController::class, 'store'])
-            ->name('api.v1.exams.store');
-
-        Route::get('exams/{examId}', [ExamController::class, 'show'])
-            ->whereUuid('examId')
-            ->name('api.v1.exams.show');
-
-        Route::post('exams/{examId}/publish', [ExamController::class, 'publish'])
-            ->whereUuid('examId')
-            ->name('api.v1.exams.publish');
-
-        Route::post('exams/{examId}/archive', [ExamController::class, 'archive'])
-            ->whereUuid('examId')
-            ->name('api.v1.exams.archive');
 
         Route::post('exam-sessions', [ExamSessionController::class, 'start'])
             ->name('api.v1.exam-sessions.start');

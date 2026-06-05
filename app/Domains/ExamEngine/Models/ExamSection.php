@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domains\ExamEngine\Models;
 
+use App\Domains\Shared\Traits\BelongsToTenant;
 use App\Domains\Shared\Traits\UsesUuid;
+use Database\Factories\ExamSectionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,8 +14,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ExamSection extends Model
 {
+    use BelongsToTenant;
     use HasFactory;
     use UsesUuid;
+
+    protected static function newFactory(): ExamSectionFactory
+    {
+        return ExamSectionFactory::new();
+    }
 
     protected $table = 'exam_sections';
 
@@ -25,6 +33,10 @@ class ExamSection extends Model
 
     public $timestamps = false;
 
+    /**
+     * tenant_id is server-controlled and auto-filled by BelongsToTenant on
+     * creation; it is intentionally absent from $fillable.
+     */
     protected $fillable = [
         'exam_id',
         'section_name',

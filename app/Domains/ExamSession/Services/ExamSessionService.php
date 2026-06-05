@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\ExamSession\Services;
 
+use App\Domains\ExamEngine\Contracts\QuestionSelectionService;
 use App\Domains\ExamEngine\Repositories\ExamRepository;
 use App\Domains\ExamSession\DTOs\ExamSessionView;
 use App\Domains\ExamSession\DTOs\SubmitResponseCommand;
@@ -34,12 +35,15 @@ class ExamSessionService
         private readonly SessionRepository $sessionRepository,
         private readonly ExamSessionItemRepository $itemRepository,
         private readonly ExamSessionStateFactory $stateFactory,
+        private readonly QuestionSelectionService $questionSelection,
     ) {
     }
 
     public function startSession(string $candidateId, string $examId): ExamSessionView
     {
-        $exam = $this->examRepository->findWithSectionsAndQuestions($examId);
+        // Use the session-context loader: no explicit tenantId needed because
+        // BelongsToTenant global scope is always active in tenant HTTP context.
+        $exam = $this->examRepository->findWithSectionsAndBlueprintsForSession($examId);
 
         if ($exam === null) {
             throw new RuntimeException("Exam {$examId} not found.");
@@ -61,16 +65,39 @@ class ExamSessionService
             throw new RuntimeException("Candidate {$candidateId} is not enrolled in exam {$examId}.");
         }
 
-        $activated = (new PendingState())->transitionOnStart();
+        $session = DB::transaction(function () use ($exam, $candidateId, $examId, $enrollment) {
+            $activated = (new PendingState())->transitionOnStart();
 
-        $session = $this->sessionRepository->createSession([
-            'exam_id' => $examId,
-            'enrollment_id' => $enrollment->enrollment_id,
-            'candidate_user_id' => $candidateId,
-            'tenant_id' => $exam->tenant_id,
-            'session_state' => $activated->name(),
-            'session_started_at' => now(),
-        ]);
+            $session = $this->sessionRepository->createSession([
+                'exam_id' => $examId,
+                'enrollment_id' => $enrollment->enrollment_id,
+                'candidate_user_id' => $candidateId,
+                'tenant_id' => $exam->tenant_id,
+                'session_state' => $activated->name(),
+                'session_started_at' => now(),
+            ]);
+
+            // Adaptive exams load items one at a time via resolveNextAdaptiveItem;
+            // bulk pre-population only applies to fixed/randomised exams.
+            if (! $exam->is_adaptive_exam) {
+                $items = $this->questionSelection->resolveQuestionsForSession(
+                    $exam,
+                    $candidateId,
+                );
+
+                foreach ($items->values() as $sequence => $item) {
+                    $this->itemRepository->create([
+                        'session_id' => (string) $session->session_id,
+                        'section_id' => $item->sectionId,
+                        'question_version_id' => $item->questionVersionId,
+                        'sequence_number' => $sequence + 1,
+                        'item_state' => 'pending',
+                    ]);
+                }
+            }
+
+            return $session;
+        });
 
         return $this->toView($session);
     }

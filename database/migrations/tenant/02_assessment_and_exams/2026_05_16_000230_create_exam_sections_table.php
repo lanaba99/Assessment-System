@@ -10,8 +10,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('exam_sections', function (Blueprint $table) {
+        Schema::create('exam_sections', function (Blueprint $table): void {
             $table->uuid('section_id')->primary();
+            $table->uuid('tenant_id');
             $table->uuid('exam_id');
 
             $table->string('section_name');
@@ -32,6 +33,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            $table->index('tenant_id');
             $table->unique(['exam_id', 'section_sequence']);
         });
     }
