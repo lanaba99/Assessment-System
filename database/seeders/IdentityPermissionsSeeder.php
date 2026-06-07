@@ -30,6 +30,9 @@ class IdentityPermissionsSeeder extends Seeder
         'roles.assign',
         'security_policies.view',
         'security_policies.update',
+        'cohorts.view',
+        'cohorts.manage',
+        'cohorts.members.manage',
     ];
 
     public function run(): void

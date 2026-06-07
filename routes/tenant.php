@@ -14,6 +14,8 @@ use App\Http\Controllers\Identity\UserController;
 use App\Http\Controllers\Competency\CompetencyController;
 use App\Http\Controllers\QuestionBank\CategoryController;
 use App\Http\Controllers\QuestionBank\QuestionController;
+use App\Http\Controllers\Cohorts\CohortController;
+use App\Http\Controllers\Cohorts\CohortMemberController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -236,6 +238,44 @@ Route::middleware([
                 Route::post('{examId}/archive', [ExamController::class, 'archive'])
                     ->whereUuid('examId')
                     ->name('api.v1.exams.archive');
+            });
+
+            // -------------------------------------------------------------
+            // Cohorts — group management and membership
+            // -------------------------------------------------------------
+            Route::prefix('cohorts')->group(function (): void {
+                Route::get('/', [CohortController::class, 'index'])
+                    ->name('api.v1.cohorts.index');
+
+                Route::post('/', [CohortController::class, 'store'])
+                    ->name('api.v1.cohorts.store');
+
+                Route::get('{cohortId}', [CohortController::class, 'show'])
+                    ->whereUuid('cohortId')
+                    ->name('api.v1.cohorts.show');
+
+                Route::patch('{cohortId}', [CohortController::class, 'update'])
+                    ->whereUuid('cohortId')
+                    ->name('api.v1.cohorts.update');
+
+                Route::delete('{cohortId}', [CohortController::class, 'destroy'])
+                    ->whereUuid('cohortId')
+                    ->name('api.v1.cohorts.destroy');
+
+                Route::prefix('{cohortId}/members')->group(function (): void {
+                    Route::get('/', [CohortMemberController::class, 'index'])
+                        ->whereUuid('cohortId')
+                        ->name('api.v1.cohorts.members.index');
+
+                    Route::post('/', [CohortMemberController::class, 'store'])
+                        ->whereUuid('cohortId')
+                        ->name('api.v1.cohorts.members.store');
+
+                    Route::delete('{userId}', [CohortMemberController::class, 'destroy'])
+                        ->whereUuid('cohortId')
+                        ->whereUuid('userId')
+                        ->name('api.v1.cohorts.members.destroy');
+                });
             });
         });
 
