@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AssessmentResultController;
 use App\Http\Controllers\ExamEngine\ExamController;
-use App\Http\Controllers\ExamSessionController;
+use App\Http\Controllers\ExamSession\ExamSessionController;
+use App\Http\Controllers\ExamSession\EnrollmentController;
 use App\Http\Controllers\Identity\AuthController;
 use App\Http\Controllers\Identity\IdentityController;
 use App\Http\Controllers\Identity\RoleController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\QuestionBank\CategoryController;
 use App\Http\Controllers\QuestionBank\QuestionController;
 use App\Http\Controllers\Cohorts\CohortController;
 use App\Http\Controllers\Cohorts\CohortMemberController;
+use App\Http\Controllers\Proctoring\ProctorEventController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -277,24 +279,73 @@ Route::middleware([
                         ->name('api.v1.cohorts.members.destroy');
                 });
             });
+
+            // -------------------------------------------------------------
+            // Exam Sessions — candidate lifecycle
+            // -------------------------------------------------------------
+            Route::prefix('exam-sessions')->group(function (): void {
+                Route::post('/', [ExamSessionController::class, 'start'])
+                    ->name('api.v1.exam-sessions.start');
+
+                Route::get('{sessionId}', [ExamSessionController::class, 'show'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.show');
+
+                Route::post('{sessionId}/responses', [ExamSessionController::class, 'submitResponse'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.submit-response');
+
+                Route::post('{sessionId}/suspend', [ExamSessionController::class, 'suspend'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.suspend');
+
+                Route::post('{sessionId}/resume', [ExamSessionController::class, 'resume'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.resume');
+
+                Route::post('{sessionId}/complete', [ExamSessionController::class, 'complete'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.complete');
+
+                Route::post('{sessionId}/terminate', [ExamSessionController::class, 'terminate'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.terminate');
+
+                Route::get('{sessionId}/result', [AssessmentResultController::class, 'index'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.result');
+
+                // Heartbeat — candidate keep-alive; does NOT bump version_lock
+                Route::post('{sessionId}/heartbeat', [ExamSessionController::class, 'heartbeat'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.heartbeat');
+
+                // Proctoring events — submitted by the browser agent during the session
+                Route::post('{sessionId}/proctor-events', [ProctorEventController::class, 'store'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.proctor-events.store');
+
+                Route::get('{sessionId}/proctor-events', [ProctorEventController::class, 'index'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.proctor-events.index');
+            });
+
+            // -------------------------------------------------------------
+            // Exam Enrollments — admin enrollment management
+            // -------------------------------------------------------------
+            Route::prefix('exams/{examId}/enrollments')->group(function (): void {
+                Route::get('/', [EnrollmentController::class, 'index'])
+                    ->whereUuid('examId')
+                    ->name('api.v1.enrollments.index');
+
+                Route::post('/', [EnrollmentController::class, 'store'])
+                    ->whereUuid('examId')
+                    ->name('api.v1.enrollments.store');
+
+                Route::delete('{enrollmentId}', [EnrollmentController::class, 'destroy'])
+                    ->whereUuid('examId')
+                    ->whereUuid('enrollmentId')
+                    ->name('api.v1.enrollments.destroy');
+            });
         });
-
-        Route::post('exam-sessions', [ExamSessionController::class, 'start'])
-            ->name('api.v1.exam-sessions.start');
-
-        Route::get('exam-sessions/{sessionId}', [ExamSessionController::class, 'show'])
-            ->whereUuid('sessionId')
-            ->name('api.v1.exam-sessions.show');
-
-        Route::post('exam-sessions/{sessionId}/responses', [ExamSessionController::class, 'submitResponse'])
-            ->whereUuid('sessionId')
-            ->name('api.v1.exam-sessions.submit-response');
-
-        Route::post('exam-sessions/{sessionId}/terminate', [ExamSessionController::class, 'terminate'])
-            ->whereUuid('sessionId')
-            ->name('api.v1.exam-sessions.terminate');
-
-        Route::get('exam-sessions/{sessionId}/result', [AssessmentResultController::class, 'index'])
-            ->whereUuid('sessionId')
-            ->name('api.v1.exam-sessions.result');
     });

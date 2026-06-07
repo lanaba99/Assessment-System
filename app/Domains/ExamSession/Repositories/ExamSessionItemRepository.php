@@ -50,11 +50,29 @@ class ExamSessionItemRepository
             ->first();
     }
 
+    /**
+     * Returns the lowest-sequence pending item for the session, or null when
+     * all items have been answered (or the session has no items yet).
+     * Used to populate the ExamSessionView's current-item fields.
+     */
+    public function findNextPending(string $sessionId): ?ExamSessionItem
+    {
+        return $this->item
+            ->newQuery()
+            ->where('session_id', $sessionId)
+            ->where('item_state', 'pending')
+            ->orderBy('sequence_number')
+            ->first();
+    }
+
+    /**
+     * @param  array<string, mixed>  $attributes
+     */
     public function create(array $attributes): ExamSessionItem
     {
         $attributes['version_lock'] = $attributes['version_lock'] ?? 0;
 
-        return $this->item->newQuery()->create($attributes);
+        return $this->item->newQuery()->forceCreate($attributes);
     }
 
     /**

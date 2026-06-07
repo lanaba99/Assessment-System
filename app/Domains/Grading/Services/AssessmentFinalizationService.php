@@ -32,7 +32,7 @@ class AssessmentFinalizationService
     {
         /** @var array{summary: AssessmentSummary, shouldFire: bool} $outcome */
         $outcome = DB::transaction(function () use ($event): array {
-            $evaluations = $this->evaluations->findBySession($event->sessionId);
+            $evaluations = $this->evaluations->findBySession($event->tenantId, $event->sessionId);
 
             $summary = $this->aggregate($evaluations, $event);
 

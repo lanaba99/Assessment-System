@@ -60,7 +60,7 @@ class PenaltyEvaluationService
             $ruleId = (string) $rule->penalty_rule_id;
 
             // Idempotency: same rule + same session + same source event → skip.
-            if ($this->sanctions->existsForSessionRuleAndEvent($event->sessionId, $ruleId, $event->eventId)) {
+            if ($this->sanctions->existsForSessionRuleAndEvent($event->tenantId, $event->sessionId, $ruleId, $event->eventId)) {
                 return null;
             }
 

@@ -8,6 +8,15 @@ use App\Domains\Grading\DTOs\GradingResult;
 use App\Domains\Grading\Models\AnswerEvaluation;
 use Illuminate\Support\Collection;
 
+/**
+ * Tenant isolation is enforced by explicit where('tenant_id') on every query.
+ * AnswerEvaluation uses AutoFillsTenantId (no global scope), so this repository
+ * is the primary isolation layer for grading data.
+ *
+ * All read methods require $tenantId as their first parameter — this prevents
+ * cross-tenant data access if a session_id UUID were ever to collide, and makes
+ * tenant ownership explicit at every call site.
+ */
 class AnswerEvaluationRepository
 {
     public function __construct(
@@ -15,42 +24,55 @@ class AnswerEvaluationRepository
     ) {
     }
 
-    public function findForSessionAndQuestion(string $sessionId, string $questionId): ?AnswerEvaluation
-    {
+    public function findForSessionAndQuestion(
+        string $tenantId,
+        string $sessionId,
+        string $questionId,
+    ): ?AnswerEvaluation {
         return $this->model
             ->newQuery()
+            ->where('tenant_id', $tenantId)
             ->where('session_id', $sessionId)
             ->where('question_id', $questionId)
             ->first();
     }
 
-    public function findBySession(string $sessionId): Collection
+    /**
+     * @return Collection<int, AnswerEvaluation>
+     */
+    public function findBySession(string $tenantId, string $sessionId): Collection
     {
         return $this->model
             ->newQuery()
+            ->where('tenant_id', $tenantId)
             ->where('session_id', $sessionId)
             ->get();
     }
 
     /**
      * Cross-domain read consumed by QuestionBank's PsychometricAnalysisService.
-     * Filters by the `question_version_id` denormalized into evaluation_metadata.
+     * Scoped to a single tenant so psychometric stats remain per-tenant.
+     *
+     * @return Collection<int, AnswerEvaluation>
      */
-    public function findByQuestionVersionId(string $questionVersionId): Collection
+    public function findByQuestionVersionId(string $tenantId, string $questionVersionId): Collection
     {
         return $this->model
             ->newQuery()
+            ->where('tenant_id', $tenantId)
             ->where('evaluation_metadata->question_version_id', $questionVersionId)
             ->get();
     }
 
     /**
      * Aggregate session-total scores in SQL for the given session ids.
+     * The tenant filter ensures scores from other tenants never pollute the
+     * psychometric calculations even if session UUIDs were to collide.
      *
      * @param  array<int, string>  $sessionIds
      * @return array<string, float>  keyed by session_id
      */
-    public function getSessionTotalScores(array $sessionIds): array
+    public function getSessionTotalScores(string $tenantId, array $sessionIds): array
     {
         if ($sessionIds === []) {
             return [];
@@ -60,6 +82,7 @@ class AnswerEvaluationRepository
             ->newQuery()
             ->select('session_id')
             ->selectRaw('SUM(score_awarded) AS total_score')
+            ->where('tenant_id', $tenantId)
             ->whereIn('session_id', $sessionIds)
             ->groupBy('session_id')
             ->get();
@@ -101,7 +124,10 @@ class AnswerEvaluationRepository
             'created_at' => $now,
         ];
 
-        $existing = $this->findForSessionAndQuestion($result->sessionId, $result->questionId);
+        // Pass $tenantId through to the scoped idempotency check so that an
+        // unlikely UUID collision with another tenant's session cannot cause
+        // the wrong row to be overwritten.
+        $existing = $this->findForSessionAndQuestion($tenantId, $result->sessionId, $result->questionId);
 
         if ($existing !== null) {
             $existing->forceFill($attributes)->save();

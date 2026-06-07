@@ -48,14 +48,14 @@ class PsychometricAnalysisService
             ->all();
 
         foreach ($versionIds as $versionId) {
-            $this->recalibrateVersion($versionId, $tenantId);
+            $this->recalibrateVersion($tenantId, $versionId);
         }
     }
 
-    private function recalibrateVersion(string $versionId, string $tenantId): void
+    private function recalibrateVersion(string $tenantId, string $versionId): void
     {
-        DB::transaction(function () use ($versionId, $tenantId): void {
-            $samples = $this->buildSamples($versionId);
+        DB::transaction(function () use ($tenantId, $versionId): void {
+            $samples = $this->buildSamples($tenantId, $versionId);
             $metrics = $this->computeMetrics($versionId, $samples);
             $this->psychometricsRepository->upsert($tenantId, $metrics);
         });
@@ -64,9 +64,9 @@ class PsychometricAnalysisService
     /**
      * @return array<int, array{session_id: string, is_correct: bool, session_total: float}>
      */
-    private function buildSamples(string $versionId): array
+    private function buildSamples(string $tenantId, string $versionId): array
     {
-        $evaluations = $this->evaluationRepository->findByQuestionVersionId($versionId);
+        $evaluations = $this->evaluationRepository->findByQuestionVersionId($tenantId, $versionId);
 
         if ($evaluations->isEmpty()) {
             return [];
@@ -79,7 +79,7 @@ class PsychometricAnalysisService
             ->values()
             ->all();
 
-        $sessionTotals = $this->evaluationRepository->getSessionTotalScores($sessionIds);
+        $sessionTotals = $this->evaluationRepository->getSessionTotalScores($tenantId, $sessionIds);
 
         $samples = [];
         foreach ($evaluations as $eval) {

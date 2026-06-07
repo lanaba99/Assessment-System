@@ -33,6 +33,11 @@ class IdentityPermissionsSeeder extends Seeder
         'cohorts.view',
         'cohorts.manage',
         'cohorts.members.manage',
+        'exam_sessions.start',
+        'exam_sessions.view',
+        'exam_sessions.manage',
+        'proctoring.ingest',
+        'proctoring.view',
     ];
 
     public function run(): void
