@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Domains\Grading\Listeners;
 
 use App\Domains\ExamSession\Events\ExamSessionCompleted;
-use App\Domains\Grading\Services\AssessmentFinalizationService;
+use App\Domains\Grading\Contracts\AssessmentFinalizationService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 

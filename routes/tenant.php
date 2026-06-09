@@ -17,6 +17,7 @@ use App\Http\Controllers\QuestionBank\CategoryController;
 use App\Http\Controllers\QuestionBank\QuestionController;
 use App\Http\Controllers\Cohorts\CohortController;
 use App\Http\Controllers\Cohorts\CohortMemberController;
+use App\Http\Controllers\Grading\ManualEvaluationController;
 use App\Http\Controllers\Proctoring\ProctorEventController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
@@ -329,6 +330,23 @@ Route::middleware([
                     ->whereUuid('sessionId')
                     ->name('api.v1.exam-sessions.proctor-events.index');
             });
+
+            // -------------------------------------------------------------
+            // Manual Grading — evaluator workflow
+            // -------------------------------------------------------------
+            Route::get(
+                'exam-sessions/{sessionId}/pending-evaluations',
+                [ManualEvaluationController::class, 'pending']
+            )
+                ->whereUuid('sessionId')
+                ->name('api.v1.exam-sessions.pending-evaluations');
+
+            Route::patch(
+                'answer-evaluations/{evaluationId}/score',
+                [ManualEvaluationController::class, 'score']
+            )
+                ->whereUuid('evaluationId')
+                ->name('api.v1.answer-evaluations.score');
 
             // -------------------------------------------------------------
             // Exam Enrollments — admin enrollment management

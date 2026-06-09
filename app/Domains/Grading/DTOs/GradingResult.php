@@ -8,6 +8,8 @@ final readonly class GradingResult
 {
     public const EVAL_TYPE_AUTO = 'auto';
     public const EVAL_TYPE_MANUAL_PENDING = 'manual_pending';
+    // Set by ManualEvaluationServiceImpl after a human evaluator submits a score.
+    public const EVAL_TYPE_MANUAL = 'manual';
 
     public const STATUS_SCORED = 'scored';
     public const STATUS_PENDING_REVIEW = 'pending_review';

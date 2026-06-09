@@ -62,7 +62,11 @@ class Grade extends Model
             'grading_metadata' => 'array',
             'graded_at' => 'datetime',
             'finalized_at' => 'datetime',
-            'version_lock' => 'datetime',
+            // version_lock must be integer so the optimistic-locking increment pattern
+            // (WHERE version_lock = expected → UPDATE version_lock = expected + 1) works
+            // correctly. Casting as 'datetime' was a bug: the column is a timestamp but the
+            // semantics require an integer counter, not a time value.
+            'version_lock' => 'integer',
             'created_at' => 'datetime',
         ];
     }

@@ -24,6 +24,44 @@ class AnswerEvaluationRepository
     ) {
     }
 
+    public function findById(string $tenantId, string $evaluationId): ?AnswerEvaluation
+    {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->whereKey($evaluationId)
+            ->first();
+    }
+
+    /**
+     * Persist a set of attribute changes on an existing evaluation row.
+     * Uses forceFill so evaluator_user_id and other server-controlled columns
+     * are written regardless of the model's $fillable list.
+     *
+     * @param  array<string, mixed>  $attributes
+     */
+    public function update(AnswerEvaluation $eval, array $attributes): AnswerEvaluation
+    {
+        $eval->forceFill($attributes)->save();
+
+        return $eval;
+    }
+
+    /**
+     * Count evaluations still awaiting human review for the given session.
+     * Used by ManualEvaluationServiceImpl to decide whether to trigger
+     * grade re-finalization after a score is submitted.
+     */
+    public function countPendingForSession(string $tenantId, string $sessionId): int
+    {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('session_id', $sessionId)
+            ->where('evaluation_status', 'pending_review')
+            ->count();
+    }
+
     public function findForSessionAndQuestion(
         string $tenantId,
         string $sessionId,

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domains\Penalties\Repositories;
 
 use App\Domains\Penalties\Models\PenaltySanction;
+use Illuminate\Support\Collection;
 
 /**
  * Tenant isolation: every query carries an explicit tenant_id filter.
@@ -19,6 +20,22 @@ class PenaltySanctionRepository
     public function __construct(
         private readonly PenaltySanction $model,
     ) {
+    }
+
+    /**
+     * Return all sanctions for a session within the given tenant.
+     * Read-only — used by the Grading domain to compute penalty deductions without
+     * touching any Penalties domain write paths.
+     *
+     * @return Collection<int, PenaltySanction>
+     */
+    public function findForSession(string $tenantId, string $sessionId): Collection
+    {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('session_id', $sessionId)
+            ->get();
     }
 
     /**

@@ -7,6 +7,11 @@ namespace App\Domains\Grading\Repositories;
 use App\Domains\Grading\DTOs\AssessmentSummary;
 use App\Domains\Grading\Models\AssessmentResult;
 
+/**
+ * Tenant isolation: explicit where('tenant_id') on every query.
+ * AssessmentResult uses AutoFillsTenantId (no global scope), so this
+ * repository is the primary isolation layer for result data.
+ */
 class AssessmentResultRepository
 {
     public function __construct(
@@ -14,10 +19,11 @@ class AssessmentResultRepository
     ) {
     }
 
-    public function findBySession(string $sessionId): ?AssessmentResult
+    public function findBySession(string $tenantId, string $sessionId): ?AssessmentResult
     {
         return $this->model
             ->newQuery()
+            ->where('tenant_id', $tenantId)
             ->where('session_id', $sessionId)
             ->first();
     }
@@ -46,7 +52,9 @@ class AssessmentResultRepository
             ],
         ];
 
-        $existing = $this->findBySession($summary->sessionId);
+        // Pass tenantId to the scoped read so the upsert only matches
+        // the correct tenant's row even when session UUIDs are non-unique.
+        $existing = $this->findBySession($summary->tenantId, $summary->sessionId);
 
         if ($existing !== null) {
             $existing->forceFill($attributes)->save();

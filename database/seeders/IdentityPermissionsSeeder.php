@@ -38,6 +38,8 @@ class IdentityPermissionsSeeder extends Seeder
         'exam_sessions.manage',
         'proctoring.ingest',
         'proctoring.view',
+        'grading.evaluate',
+        'grading.view',
     ];
 
     public function run(): void
