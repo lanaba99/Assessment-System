@@ -6,6 +6,7 @@ namespace App\Domains\Grading\Services;
 
 use App\Domains\Grading\DTOs\PenaltyDeductionResult;
 use App\Domains\Penalties\Repositories\PenaltySanctionRepository;
+use App\Domains\Proctoring\Models\ProctorLog;
 
 /**
  * Read-only service: resolves penalty deductions for a graded session.
@@ -27,6 +28,7 @@ class PenaltyApplicationService
 
     public function __construct(
         private readonly PenaltySanctionRepository $sanctions,
+        private readonly ProctorLog $proctorLogs,
     ) {
     }
 
@@ -69,5 +71,46 @@ class PenaltyApplicationService
             totalDeduction: round($totalDeduction, 4),
             sanctionsApplied: $audit,
         );
+    }
+
+    public function hasPenaltyInputs(string $tenantId, string $sessionId): bool
+    {
+        return $this->sanctions->findForSession($tenantId, $sessionId)->isNotEmpty()
+            || $this->proctorLogs->newQuery()
+                ->where('tenant_id', $tenantId)
+                ->where('session_id', $sessionId)
+                ->exists();
+    }
+
+    public function hasPendingProcessing(string $tenantId, string $sessionId): bool
+    {
+        return $this->proctorLogs
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('session_id', $sessionId)
+            ->where(function ($query): void {
+                $query
+                    ->where(function ($q): void {
+                        $q->where('requires_investigation', true)
+                            ->whereNotIn('investigation_status', [
+                                'closed',
+                                'resolved',
+                                'dismissed',
+                                'cleared',
+                                'no_action',
+                            ]);
+                    })
+                    ->orWhere(function ($q): void {
+                        $q->where('is_escalated', true)
+                            ->whereNotIn('investigation_status', [
+                                'closed',
+                                'resolved',
+                                'dismissed',
+                                'cleared',
+                                'no_action',
+                            ]);
+                    });
+            })
+            ->exists();
     }
 }

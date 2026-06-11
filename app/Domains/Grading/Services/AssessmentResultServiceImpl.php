@@ -33,6 +33,32 @@ class AssessmentResultServiceImpl implements AssessmentResultService
 
         $grade = $this->grades->findBySession($tenantId, $sessionId);
 
+        return $this->buildView($result, $grade);
+    }
+
+    public function getPublishedForCandidateSession(
+        string $tenantId,
+        string $sessionId,
+        string $candidateId,
+    ): ?AssessmentResultView {
+        $result = $this->results->findPublishedForCandidateSession($tenantId, $sessionId, $candidateId);
+
+        if ($result === null) {
+            return null;
+        }
+
+        $grade = $this->grades->findBySession($tenantId, $sessionId);
+
+        return $this->buildView($result, $grade);
+    }
+
+    public function viewFromModels(AssessmentResult $result, ?Grade $grade): AssessmentResultView
+    {
+        return $this->buildView($result, $grade);
+    }
+
+    private function buildView(AssessmentResult $result, ?Grade $grade): AssessmentResultView
+    {
         return new AssessmentResultView(
             resultId: (string) $result->result_id,
             sessionId: (string) $result->session_id,
@@ -59,7 +85,7 @@ class AssessmentResultServiceImpl implements AssessmentResultService
             tenantId: (string) $result->tenant_id,
             rawScore: (float) $grade->raw_score,
             maxScore: (float) ($metadata['max_score'] ?? 0.0),
-            percentage: (float) $grade->normalized_score,
+            percentage: (float) $grade->final_score,
             gradeLetter: (string) ($grade->grade_letter ?? 'N/A'),
             isPassing: (bool) $grade->is_passing_grade,
             isFinal: (bool) $grade->is_final_grade,
@@ -68,6 +94,13 @@ class AssessmentResultServiceImpl implements AssessmentResultService
             correctCount: (int) ($metadata['correct_count'] ?? 0),
             incorrectCount: (int) ($metadata['incorrect_count'] ?? 0),
             breakdown: is_array($metadata['breakdown'] ?? null) ? $metadata['breakdown'] : [],
+            weightedScore: (bool) ($metadata['blueprint_weighted'] ?? false)
+                ? (float) $grade->normalized_score
+                : null,
+            penaltyDeduction: (float) ($metadata['penalty_deduction'] ?? 0.0),
+            sanctionsApplied: is_array($metadata['sanctions_applied'] ?? null)
+                ? $metadata['sanctions_applied']
+                : [],
         );
     }
 

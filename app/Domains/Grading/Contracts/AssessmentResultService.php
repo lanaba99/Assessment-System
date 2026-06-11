@@ -18,4 +18,16 @@ interface AssessmentResultService
      * it belongs to the given tenant.
      */
     public function getForSession(string $tenantId, string $sessionId): ?AssessmentResultView;
+
+    /**
+     * Candidate-facing read path.
+     *
+     * Returns null unless the result belongs to the tenant, belongs to the
+     * candidate, and has been explicitly published.
+     */
+    public function getPublishedForCandidateSession(
+        string $tenantId,
+        string $sessionId,
+        string $candidateId,
+    ): ?AssessmentResultView;
 }

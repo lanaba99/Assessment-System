@@ -7,6 +7,7 @@ namespace Tests\Feature\Grading;
 use App\Domains\ExamSession\Events\ExamSessionCompleted;
 use App\Domains\Grading\DTOs\AssessmentSummary;
 use App\Domains\Grading\Models\AnswerEvaluation;
+use App\Domains\Grading\Models\AssessmentResult;
 use App\Domains\Grading\Models\Grade;
 use DateTimeImmutable;
 use Illuminate\Database\Schema\Blueprint;
@@ -25,8 +26,10 @@ use Tests\Feature\ExamSession\UsesExamSessionSchema;
  * grading-focused tests.
  *
  * Tables built (dependency order):
- *   categories (stub) → questions (stub) → answer_evaluations →
- *   grades → assessment_results → penalty_rules → penalty_sanctions
+ *   categories (stub) → questions (stub) → competencies (stub) →
+ *   question_competency_weights → answer_evaluations → grades →
+ *   assessment_results → competency_scores → proctoring_events →
+ *   penalty_rules → penalty_sanctions
  *
  * Tables inherited from UsesExamSessionSchema:
  *   users, exams, exam_sections, exam_blueprints, exam_sessions, …
@@ -51,9 +54,13 @@ trait UsesGradingSchema
             foreach ([
                 'penalty_sanctions',
                 'penalty_rules',
+                'proctoring_events',
+                'competency_scores',
                 'assessment_results',
                 'grades',
                 'answer_evaluations',
+                'question_competency_weights',
+                'competencies',
                 'questions',
                 'categories',
             ] as $table) {
@@ -76,6 +83,12 @@ trait UsesGradingSchema
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
+
+        if (! Schema::hasColumn('question_versions', 'question_id')) {
+            Schema::table('question_versions', function (Blueprint $table): void {
+                $table->uuid('question_id')->nullable();
+            });
+        }
 
         // ── questions (stub) ────────────────────────────────────────────────
         Schema::create('questions', function (Blueprint $table): void {
@@ -100,6 +113,45 @@ trait UsesGradingSchema
             $table->foreign('created_by_user_id')
                 ->references('id')->on('users')
                 ->onUpdate('cascade')->onDelete('restrict');
+        });
+
+        // ── competencies (stub) ─────────────────────────────────────────────
+        Schema::create('competencies', function (Blueprint $table): void {
+            $table->uuid('competency_id')->primary();
+            $table->uuid('tenant_id');
+            $table->uuid('parent_competency_id')->nullable();
+            $table->string('competency_name');
+            $table->string('competency_code')->unique();
+            $table->string('competency_type')->default('knowledge');
+            $table->unsignedInteger('display_order')->default(0);
+            $table->unsignedInteger('hierarchy_level')->default(0);
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+
+            $table->index('tenant_id');
+        });
+
+        // ── question_competency_weights ─────────────────────────────────────
+        Schema::create('question_competency_weights', function (Blueprint $table): void {
+            $table->uuid('weight_id')->primary();
+            $table->uuid('question_id');
+            $table->uuid('competency_id');
+            $table->decimal('weight_percentage', 5, 2)->default(0);
+            $table->string('skill_category')->nullable();
+            $table->string('skill_gap_trigger')->nullable();
+            $table->boolean('is_primary_competency')->default(false);
+            $table->json('weighting_metadata')->nullable();
+            $table->timestamps();
+
+            $table->foreign('question_id')
+                ->references('question_id')->on('questions')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('competency_id')
+                ->references('competency_id')->on('competencies')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unique(['question_id', 'competency_id']);
+            $table->index('is_primary_competency');
         });
 
         // ── answer_evaluations ──────────────────────────────────────────────
@@ -228,6 +280,76 @@ trait UsesGradingSchema
             $table->index('tenant_id');
             $table->index('result_status');
             $table->index('publication_status');
+        });
+
+        // ── competency_scores ───────────────────────────────────────────────
+        Schema::create('competency_scores', function (Blueprint $table): void {
+            $table->uuid('score_id')->primary();
+            $table->uuid('candidate_user_id');
+            $table->uuid('session_id');
+            $table->uuid('competency_id');
+            $table->uuid('tenant_id');
+
+            $table->decimal('score_achieved', 8, 2)->nullable();
+            $table->decimal('score_target', 8, 2)->nullable();
+            $table->decimal('score_maximum', 8, 2)->nullable();
+            $table->unsignedTinyInteger('proficiency_level_achieved')->nullable();
+            $table->decimal('gap_percentage', 5, 2)->nullable();
+            $table->string('gap_status')->nullable();
+            $table->json('score_metadata')->nullable();
+            $table->timestamp('calculated_at')->nullable();
+
+            $table->foreign('candidate_user_id')
+                ->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('session_id')
+                ->references('session_id')->on('exam_sessions')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->index('tenant_id');
+            $table->index('competency_id');
+            $table->index('gap_status');
+        });
+
+        // ── proctoring_events ───────────────────────────────────────────────
+        Schema::create('proctoring_events', function (Blueprint $table): void {
+            $table->uuid('event_id')->primary();
+            $table->uuid('session_id');
+            $table->uuid('candidate_user_id');
+            $table->uuid('tenant_id');
+            $table->uuid('reviewing_proctor_id')->nullable();
+            $table->dateTime('event_timestamp');
+            $table->string('event_type');
+            $table->string('event_category')->nullable();
+            $table->json('event_payload')->nullable();
+            $table->json('detection_parameters')->nullable();
+            $table->string('severity_level')->default('info');
+            $table->decimal('detection_confidence_score', 5, 4)->nullable();
+            $table->string('screenshot_url')->nullable();
+            $table->string('video_segment_url')->nullable();
+            $table->boolean('requires_investigation')->default(false);
+            $table->boolean('is_escalated')->default(false);
+            $table->string('investigation_status')->default('open');
+            $table->json('investigation_notes')->nullable();
+            $table->timestamp('created_at')->nullable();
+
+            $table->foreign('session_id')
+                ->references('session_id')->on('exam_sessions')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('candidate_user_id')
+                ->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('reviewing_proctor_id')
+                ->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('set null');
+
+            $table->index('tenant_id');
+            $table->index('event_type');
+            $table->index('event_category');
+            $table->index('severity_level');
+            $table->index('investigation_status');
+            $table->index('requires_investigation');
+            $table->index('is_escalated');
         });
 
         // ── penalty_rules ───────────────────────────────────────────────────
@@ -405,6 +527,41 @@ trait UsesGradingSchema
             ],
             'graded_at' => now(),
             'finalized_at' => null,
+            'created_at' => now(),
+        ], $overrides));
+    }
+
+    /**
+     * @param  array<string, mixed>  $overrides
+     */
+    protected function createAssessmentResult(
+        string $tenantId,
+        string $sessionId,
+        string $candidateUserId,
+        string $examId,
+        array $overrides = [],
+    ): AssessmentResult {
+        return AssessmentResult::query()->forceCreate(array_merge([
+            'result_id' => (string) Str::uuid(),
+            'candidate_user_id' => $candidateUserId,
+            'session_id' => $sessionId,
+            'exam_id' => $examId,
+            'tenant_id' => $tenantId,
+            'result_status' => AssessmentSummary::STATUS_FINAL,
+            'result_calculated_at' => now(),
+            'publication_status' => 'unpublished',
+            'published_at' => null,
+            'result_metadata' => [
+                'raw_score' => 8.0,
+                'max_score' => 10.0,
+                'percentage' => 80.0,
+                'grade_letter' => 'B',
+                'is_passing' => true,
+                'total_evaluations' => 1,
+                'pending_evaluations' => 0,
+                'correct_count' => 1,
+                'incorrect_count' => 0,
+            ],
             'created_at' => now(),
         ], $overrides));
     }

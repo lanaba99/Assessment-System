@@ -11,18 +11,23 @@ use App\Domains\Grading\Contracts\AssessmentFinalizationService;
 use App\Domains\Grading\Contracts\AssessmentResultService;
 use App\Domains\Grading\Contracts\GradingService;
 use App\Domains\Grading\Contracts\ManualEvaluationService;
+use App\Domains\Grading\Contracts\ResultPublicationService;
 use App\Domains\Grading\Events\ResultGenerated;
 use App\Domains\Grading\Repositories\CompetencyScoreRepository;
+use App\Domains\Grading\Services\CompetencyAggregationService;
 use App\Domains\Grading\Services\CompetencyScoringService;
 use App\Domains\Grading\Services\WeightedScoringService;
 use App\Domains\Grading\Listeners\ExamSessionCompletedListener;
 use App\Domains\Grading\Listeners\LogResultGeneratedListener;
+use App\Domains\Grading\Listeners\ProcessFinalGradeListener;
 use App\Domains\Grading\Listeners\ResponseSubmittedListener;
 use App\Domains\Grading\Services\AssessmentFinalizationServiceImpl;
 use App\Domains\Grading\Services\AssessmentResultServiceImpl;
+use App\Domains\Grading\Services\FinalGradeProcessingService;
 use App\Domains\Grading\Services\GradingServiceImpl;
 use App\Domains\Grading\Services\ManualEvaluationServiceImpl;
 use App\Domains\Grading\Services\PenaltyApplicationService;
+use App\Domains\Grading\Services\ResultPublicationServiceImpl;
 use App\Domains\Grading\Models\AnswerEvaluation;
 use App\Domains\Grading\Policies\GradingPolicy;
 use App\Domains\Grading\Strategies\GradingStrategyResolver;
@@ -55,11 +60,14 @@ class GradingServiceProvider extends ServiceProvider
         $this->app->bind(GradingService::class, GradingServiceImpl::class);
         $this->app->bind(AssessmentFinalizationService::class, AssessmentFinalizationServiceImpl::class);
         $this->app->bind(AssessmentResultService::class, AssessmentResultServiceImpl::class);
+        $this->app->bind(ResultPublicationService::class, ResultPublicationServiceImpl::class);
 
         // Phase B supporting services — concrete classes, auto-resolvable by Laravel's
         // container, but registered here for discoverability and explicit documentation.
         $this->app->bind(WeightedScoringService::class);         // pure domain logic, stateless
         $this->app->bind(CompetencyScoringService::class);       // depends on CompetencyScoreRepository
+        $this->app->bind(CompetencyAggregationService::class);   // response × competency-weight aggregation
+        $this->app->bind(FinalGradeProcessingService::class);    // final-grade penalty/competency glue
         $this->app->bind(ExamBlueprintRepository::class);        // cross-domain read from ExamEngine
         $this->app->bind(CompetencyScoreRepository::class);
 
@@ -80,5 +88,6 @@ class GradingServiceProvider extends ServiceProvider
         // Temporary placeholder — see LogResultGeneratedListener for the TODO.
         // Replace with an Analytics module listener when that domain is built.
         Event::listen(ResultGenerated::class, [LogResultGeneratedListener::class, 'handle']);
+        Event::listen(ResultGenerated::class, [ProcessFinalGradeListener::class, 'handle']);
     }
 }

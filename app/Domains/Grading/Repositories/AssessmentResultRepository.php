@@ -28,6 +28,62 @@ class AssessmentResultRepository
             ->first();
     }
 
+    public function findPublishedBySession(string $tenantId, string $sessionId): ?AssessmentResult
+    {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('session_id', $sessionId)
+            ->where('publication_status', 'published')
+            ->first();
+    }
+
+    public function findPublishedForCandidateSession(
+        string $tenantId,
+        string $sessionId,
+        string $candidateId,
+    ): ?AssessmentResult {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('session_id', $sessionId)
+            ->where('candidate_user_id', $candidateId)
+            ->where('publication_status', 'published')
+            ->first();
+    }
+
+    public function lockBySessionForPublication(string $tenantId, string $sessionId): ?AssessmentResult
+    {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('session_id', $sessionId)
+            ->lockForUpdate()
+            ->first();
+    }
+
+    public function publish(AssessmentResult $result, ?string $publishedByUserId = null): AssessmentResult
+    {
+        if ($result->publication_status === 'published') {
+            return $result;
+        }
+
+        $publishedAt = now();
+        $metadata = is_array($result->result_metadata) ? $result->result_metadata : [];
+        $metadata['publication'] = array_filter([
+            'published_by_user_id' => $publishedByUserId,
+            'published_at' => $publishedAt->toISOString(),
+        ], static fn (mixed $value): bool => $value !== null);
+
+        $result->forceFill([
+            'publication_status' => 'published',
+            'published_at' => $publishedAt,
+            'result_metadata' => $metadata,
+        ])->save();
+
+        return $result;
+    }
+
     public function upsertFromSummary(AssessmentSummary $summary): AssessmentResult
     {
         $now = now();
