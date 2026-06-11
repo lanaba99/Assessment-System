@@ -13,6 +13,7 @@ use App\Domains\Grading\DTOs\PenaltyDeductionResult;
 use App\Domains\Grading\DTOs\WeightedScoreResult;
 use App\Domains\Grading\Events\ResultGenerated;
 use App\Domains\Grading\Models\AnswerEvaluation;
+use App\Domains\Grading\Models\Grade;
 use App\Domains\Grading\Repositories\AnswerEvaluationRepository;
 use App\Domains\Grading\Repositories\AssessmentResultRepository;
 use App\Domains\Grading\Repositories\GradeRepository;
