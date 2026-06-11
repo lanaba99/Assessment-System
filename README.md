@@ -1,58 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Assessment System Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This repository serves as the central API and Grading Engine for the Assessment System. It is built using **Laravel** and runs on **Docker (via Laravel Sail)** to ensure a consistent, reproducible environment across the team.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Prerequisites
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Before you start, ensure you have the following installed on your machine:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **[Docker Desktop](https://www.docker.com/products/docker-desktop/)**: Ensure it is running before launching the application.
+* **Git**: To clone the repository.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Getting Started
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Clone the repository
 
 ```bash
-composer require laravel/boost --dev
+git clone <your-repo-url>
+cd assessment-system
 
-php artisan boost:install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Configure Environment
 
-## Contributing
+Copy the example environment file to create your local configuration:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+cp .env.example .env
 
-## Code of Conduct
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+*(No changes are typically required for local development unless you need to override default database ports).* 
+DO NOT CHANGE ANYTHING
 
-## Security Vulnerabilities
+### 3. Install PHP Dependencies
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+You do not need to install PHP or Composer locally. Use the official Laravel Sail image to install the required packages:
 
-## License
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php83-composer:latest \
+    composer install --ignore-platform-reqs
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+
+### 4. Start the Application
+
+Spin up the Docker containers in the background:
+
+```bash
+./vendor/bin/sail up -d
+
+```
+
+*(The first run may take a few minutes as it downloads the database and PHP images).*
+
+---
+
+## Database Setup (Multi-Tenancy)
+
+Because this system uses a **multi-tenant architecture**, you must initialize both the system-level (Landlord) database and the individual tenant databases. **You must run these in order.**
+
+### Part 1: Landlord Setup (System Base)
+
+These commands set up the shared infrastructure, tenant registry, and administrative tables.
+
+```bash
+# Run migrations for the Landlord
+./vendor/bin/sail artisan migrate --path=database/migrations/landlord
+
+# Seed the Landlord database
+./vendor/bin/sail artisan db:seed --class=LandlordSeeder
+
+```
+
+### Part 2: Tenant Setup
+
+Once the Landlord is initialized, you must apply the schemas to the tenant databases.
+
+```bash
+# Run migrations for all tenants
+./vendor/bin/sail artisan tenants:migrate
+
+# Seed the tenant databases with initial data
+./vendor/bin/sail artisan tenants:seed --class=TenantMasterSeeder
+
+```
+
+---
+
+## Common Commands (Cheat Sheet)
+
+| Task | Command |
+| --- | --- |
+| **Start Containers** | `./vendor/bin/sail up -d` |
+| **Stop Containers** | `./vendor/bin/sail down` |
+| **List All Tenants** | `./vendor/bin/sail artisan tenants:list` |
+| **Run Tests** | `./vendor/bin/sail artisan test` |
+| **Clear Cache** | `./vendor/bin/sail artisan optimize:clear` |
+| **View Logs** | `./vendor/bin/sail logs -f` |
+
+---
+
+## API Access
+
+* **Base URL:** `http://localhost/api/v1`
+* **Credentials:** Default test credentials can be found in `database/seeders/TenantMasterSeeder.php`.
+
+---
+
+## Troubleshooting
+
+* **"Connection Refused" (MySQL):**
+Ensure Docker Desktop is fully running. If it is, run `./vendor/bin/sail down` followed by `./vendor/bin/sail up -d` to refresh the network stack.
+* **"Table Not Found" Errors:**
+This usually means the Tenant migrations were not run, or they were run *before* the Landlord migrations. Run the migration commands listed in the "Database Setup" section above in order.
+* **Port Conflicts:**
+If you have another service running on port 80 or 3306, you will need to edit the `docker-compose.yml` file to map to different host ports (e.g., change `80:80` to `8080:80`).
+
+---
+
+## Need Help?
+
+If you are blocked, reach out.
