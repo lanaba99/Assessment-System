@@ -10,9 +10,11 @@ use App\Domains\Grading\DTOs\AssessmentSummary;
 use App\Domains\Grading\Exceptions\AssessmentResultNotFoundException;
 use App\Domains\Grading\Exceptions\PenaltyProcessingPendingException;
 use App\Domains\Grading\Exceptions\ResultNotFinalizedException;
+use App\Domains\Grading\Exceptions\WorkflowNotApprovedException;
 use App\Domains\Grading\Models\AssessmentResult;
 use App\Domains\Grading\Repositories\AssessmentResultRepository;
 use App\Domains\Grading\Repositories\GradeRepository;
+use App\Domains\Workflows\Services\ApprovalWorkflowService;
 use Illuminate\Support\Facades\DB;
 
 class ResultPublicationServiceImpl implements ResultPublicationService
@@ -22,6 +24,7 @@ class ResultPublicationServiceImpl implements ResultPublicationService
         private readonly GradeRepository $grades,
         private readonly AssessmentResultServiceImpl $resultViews,
         private readonly PenaltyApplicationService $penalties,
+        private readonly ApprovalWorkflowService $workflows,
     ) {
     }
 
@@ -51,6 +54,10 @@ class ResultPublicationServiceImpl implements ResultPublicationService
 
             if ($this->penalties->hasPendingProcessing($tenantId, $sessionId)) {
                 throw PenaltyProcessingPendingException::forSession($sessionId);
+            }
+
+            if (! $this->workflows->isPublicationApprovedForResult($tenantId, (string) $result->result_id)) {
+                throw WorkflowNotApprovedException::forSession($sessionId);
             }
 
             return $this->results->publish($result, $publishedByUserId);

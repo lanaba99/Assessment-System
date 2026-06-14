@@ -68,4 +68,13 @@ class PenaltySanctionRepository
     {
         return $this->model->newQuery()->forceCreate($attributes);
     }
+
+    public function findById(string $tenantId, string $sanctionId): ?PenaltySanction
+    {
+        return $this->model
+            ->newQuery()
+            ->where('tenant_id', $tenantId)
+            ->where('sanction_id', $sanctionId)
+            ->first();
+    }
 }

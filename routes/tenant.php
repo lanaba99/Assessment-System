@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Analytics\AnalyticsDashboardController;
 use App\Http\Controllers\AssessmentResultController;
 use App\Http\Controllers\ExamEngine\ExamController;
 use App\Http\Controllers\ExamSession\ExamSessionController;
@@ -18,6 +19,10 @@ use App\Http\Controllers\QuestionBank\QuestionController;
 use App\Http\Controllers\Cohorts\CohortController;
 use App\Http\Controllers\Cohorts\CohortMemberController;
 use App\Http\Controllers\Grading\ManualEvaluationController;
+use App\Http\Controllers\Grading\ResultPublicationController;
+use App\Http\Controllers\Penalties\PenaltyRuleController;
+use App\Http\Controllers\Penalties\PenaltySanctionController;
+use App\Http\Controllers\Workflows\ApprovalWorkflowController;
 use App\Http\Controllers\Proctoring\ProctorEventController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
@@ -347,6 +352,81 @@ Route::middleware([
             )
                 ->whereUuid('evaluationId')
                 ->name('api.v1.answer-evaluations.score');
+
+            Route::post(
+                'exam-sessions/{sessionId}/result/publish',
+                [ResultPublicationController::class, 'publish']
+            )
+                ->whereUuid('sessionId')
+                ->name('api.v1.exam-sessions.result.publish');
+
+            Route::get(
+                'exam-sessions/{sessionId}/result/publication-status',
+                [ResultPublicationController::class, 'showPublicationStatus']
+            )
+                ->whereUuid('sessionId')
+                ->name('api.v1.exam-sessions.result.publication-status');
+
+            // -------------------------------------------------------------
+            // Penalties — rule management and sanction review
+            // -------------------------------------------------------------
+            Route::prefix('penalty-rules')->group(function (): void {
+                Route::get('/', [PenaltyRuleController::class, 'index'])
+                    ->name('api.v1.penalty-rules.index');
+
+                Route::post('/', [PenaltyRuleController::class, 'store'])
+                    ->name('api.v1.penalty-rules.store');
+
+                Route::get('{ruleId}', [PenaltyRuleController::class, 'show'])
+                    ->whereUuid('ruleId')
+                    ->name('api.v1.penalty-rules.show');
+
+                Route::patch('{ruleId}', [PenaltyRuleController::class, 'update'])
+                    ->whereUuid('ruleId')
+                    ->name('api.v1.penalty-rules.update');
+
+                Route::delete('{ruleId}', [PenaltyRuleController::class, 'destroy'])
+                    ->whereUuid('ruleId')
+                    ->name('api.v1.penalty-rules.destroy');
+
+                Route::post('{ruleId}/activate', [PenaltyRuleController::class, 'activate'])
+                    ->whereUuid('ruleId')
+                    ->name('api.v1.penalty-rules.activate');
+
+                Route::post('{ruleId}/deactivate', [PenaltyRuleController::class, 'deactivate'])
+                    ->whereUuid('ruleId')
+                    ->name('api.v1.penalty-rules.deactivate');
+            });
+
+            Route::get('exam-sessions/{sessionId}/sanctions', [PenaltySanctionController::class, 'index'])
+                ->whereUuid('sessionId')
+                ->name('api.v1.exam-sessions.sanctions.index');
+
+            Route::post('sanctions/{sanctionId}/void', [PenaltySanctionController::class, 'void'])
+                ->whereUuid('sanctionId')
+                ->name('api.v1.sanctions.void');
+
+            // -------------------------------------------------------------
+            // Workflows — approval gating for result publication
+            // -------------------------------------------------------------
+            Route::prefix('workflows')->group(function (): void {
+                Route::post('/', [ApprovalWorkflowController::class, 'initiate'])
+                    ->name('api.v1.workflows.initiate');
+
+                Route::get('{workflowId}', [ApprovalWorkflowController::class, 'show'])
+                    ->whereUuid('workflowId')
+                    ->name('api.v1.workflows.show');
+
+                Route::post('{workflowId}/approve', [ApprovalWorkflowController::class, 'approve'])
+                    ->whereUuid('workflowId')
+                    ->name('api.v1.workflows.approve');
+            });
+
+            // -------------------------------------------------------------
+            // Analytics — dashboard metrics
+            // -------------------------------------------------------------
+            Route::get('analytics/dashboard', [AnalyticsDashboardController::class, 'summary'])
+                ->name('api.v1.analytics.dashboard');
 
             // -------------------------------------------------------------
             // Exam Enrollments — admin enrollment management

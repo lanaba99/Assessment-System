@@ -38,4 +38,9 @@ class EligibilityViolationException extends RuntimeException
             "Candidate [{$candidateId}] is not an active member of cohort [{$cohortId}]."
         );
     }
+
+    public static function prerequisiteChainFailed(string $reason): self
+    {
+        return new self($reason);
+    }
 }

@@ -40,6 +40,7 @@ class PrerequisiteExamConditionEvaluator implements ConditionEvaluator
         $minScore = $step->min_score_required !== null ? (float) $step->min_score_required : null;
 
         $grade = $this->grades->findPassingGradeForCandidate(
+            $context->tenantId,
             $context->candidateId,
             (string) $prerequisiteExamId,
             $minScore,

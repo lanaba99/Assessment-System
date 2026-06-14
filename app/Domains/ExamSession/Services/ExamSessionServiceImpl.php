@@ -28,6 +28,8 @@ use App\Domains\ExamSession\States\ExamSessionStateFactory;
 use App\Domains\ExamSession\States\PendingState;
 use App\Domains\ExamSession\States\SuspendedState;
 use App\Domains\ExamSession\States\TerminatedState;
+use App\Domains\Rules\DTOs\EligibilityContext;
+use App\Domains\Rules\Services\EligibilityEvaluatorService;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +46,7 @@ class ExamSessionServiceImpl implements ExamSessionService
         private readonly ExamRepository $examRepository,
         private readonly CohortMemberRepository $cohortMemberRepository,
         private readonly QuestionSelectionService $questionSelection,
+        private readonly EligibilityEvaluatorService $eligibilityEvaluator,
     ) {
     }
 
@@ -144,6 +147,18 @@ class ExamSessionServiceImpl implements ExamSessionService
                             (string) $enrollment->cohort_id,
                         );
                     }
+                }
+
+                // --- Gate 6: exam eligibility chain (Rules domain) ---------------
+                $eligibilityResult = $this->eligibilityEvaluator->evaluate(
+                    new EligibilityContext($tenantId, $candidateId, $examId),
+                );
+
+                if (! $eligibilityResult->isEligible) {
+                    throw EligibilityViolationException::prerequisiteChainFailed(
+                        $eligibilityResult->rejectionReason
+                            ?? 'Eligibility requirements for this exam have not been met.',
+                    );
                 }
 
                 // --- All gates passed: create session and pre-populate items --

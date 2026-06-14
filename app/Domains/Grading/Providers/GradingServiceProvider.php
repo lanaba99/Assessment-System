@@ -29,6 +29,7 @@ use App\Domains\Grading\Services\ManualEvaluationServiceImpl;
 use App\Domains\Grading\Services\PenaltyApplicationService;
 use App\Domains\Grading\Services\ResultPublicationServiceImpl;
 use App\Domains\Grading\Models\AnswerEvaluation;
+use App\Domains\Grading\Models\AssessmentResult;
 use App\Domains\Grading\Policies\GradingPolicy;
 use App\Domains\Grading\Strategies\GradingStrategyResolver;
 use App\Domains\Grading\Strategies\ManualReviewStrategy;
@@ -81,13 +82,14 @@ class GradingServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::policy(AnswerEvaluation::class, GradingPolicy::class);
+        Gate::policy(AssessmentResult::class, GradingPolicy::class);
 
         Event::listen(ResponseSubmitted::class, [ResponseSubmittedListener::class, 'handle']);
         Event::listen(ExamSessionCompleted::class, [ExamSessionCompletedListener::class, 'handle']);
 
-        // Temporary placeholder — see LogResultGeneratedListener for the TODO.
-        // Replace with an Analytics module listener when that domain is built.
+        // Temporary placeholder — see LogResultGeneratedListener for observability only.
         Event::listen(ResultGenerated::class, [LogResultGeneratedListener::class, 'handle']);
+        // Analytics ingestion is registered in AnalyticsServiceProvider.
         Event::listen(ResultGenerated::class, [ProcessFinalGradeListener::class, 'handle']);
     }
 }

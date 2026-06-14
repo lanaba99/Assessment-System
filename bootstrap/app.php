@@ -22,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'throttle.login' => ThrottleLoginMiddleware::class,
+            'central.admin' => \App\Http\Middleware\EnsureCentralAdmin::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

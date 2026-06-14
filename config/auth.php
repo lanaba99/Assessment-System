@@ -1,6 +1,7 @@
 <?php
 
 use App\Domains\Identity\Models\User;
+use App\Domains\Central\Models\CentralAdminUser;
 
 return [
 
@@ -47,6 +48,11 @@ return [
             'driver' => 'sanctum',
             'provider' => 'users',
         ],
+
+        'central' => [
+            'driver' => 'sanctum',
+            'provider' => 'central_admins',
+        ],
     ],
 
     /*
@@ -70,6 +76,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', User::class),
+        ],
+
+        'central_admins' => [
+            'driver' => 'eloquent',
+            'model' => CentralAdminUser::class,
         ],
 
         // 'users' => [
