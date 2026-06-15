@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Tests\Feature\ExamSession\UsesExamSessionSchema;
+use Tests\Feature\Workflows\UsesWorkflowsSchema;
 
 /**
  * Builds the Grading table stack on top of the ExamSession schema.
@@ -37,11 +38,13 @@ use Tests\Feature\ExamSession\UsesExamSessionSchema;
 trait UsesGradingSchema
 {
     use UsesExamSessionSchema;
+    use UsesWorkflowsSchema;
 
     protected function bootGradingSchema(): void
     {
         $this->bootExamSessionSchema();
         $this->migrateGradingTables();
+        $this->migrateWorkflowTables();
     }
 
     private function migrateGradingTables(): void

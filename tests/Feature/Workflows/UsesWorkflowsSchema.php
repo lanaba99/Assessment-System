@@ -11,6 +11,12 @@ trait UsesWorkflowsSchema
 {
     protected function migrateWorkflowTables(): void
     {
+        $connection = (string) config('database.default');
+
+        if ($connection !== 'sqlite') {
+            Schema::connection($connection)->dropIfExists('approval_workflows');
+        }
+
         if (! Schema::hasTable('approval_workflows')) {
             Schema::create('approval_workflows', function (Blueprint $table): void {
                 $table->uuid('workflow_id')->primary();

@@ -132,10 +132,10 @@ class TenantMasterSeeder extends Seeder
         $domainPermissions = [
             ['name' => 'exams.manage',          'resource' => 'exam',     'action' => 'manage'],
             ['name' => 'exams.publish',         'resource' => 'exam',     'action' => 'publish'],
-            ['name' => 'exams.take',            'resource' => 'exam',     'action' => 'take'],
+            ['name' => 'exams.view',            'resource' => 'exam',     'action' => 'view'], // تم التعديل
             ['name' => 'questions.manage',      'resource' => 'question', 'action' => 'manage'],
-            ['name' => 'evaluations.score',     'resource' => 'response', 'action' => 'evaluate'],
-            ['name' => 'sessions.proctor',      'resource' => 'session',  'action' => 'proctor'],
+            ['name' => 'grading.evaluate',      'resource' => 'response', 'action' => 'evaluate'], // تم التعديل
+            ['name' => 'exam_sessions.start',   'resource' => 'session',  'action' => 'start'],    // تم التعديل
             ['name' => 'users.manage',          'resource' => 'user',     'action' => 'manage'],
             ['name' => 'cohorts.manage',        'resource' => 'cohort',   'action' => 'manage'],
         ];
@@ -165,9 +165,9 @@ class TenantMasterSeeder extends Seeder
     {
         $matrix = [
             'Super Admin' => array_keys($this->permissionIds),
-            'Proctor'     => ['sessions.proctor'],
-            'Technical Evaluator' => ['evaluations.score', 'questions.manage'],
-            'Candidate'   => ['exams.take'],
+            'Proctor'     => ['exam_sessions.start'], // التسمية الجديدة
+            'Technical Evaluator' => ['grading.evaluate', 'questions.manage'], // التسمية الجديدة
+            'Candidate'   => ['exams.view'], // التسمية الجديدة
         ];
 
         $rows = [];

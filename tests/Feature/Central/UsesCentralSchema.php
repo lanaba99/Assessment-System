@@ -11,29 +11,39 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Stancl\Tenancy\Events\TenantCreated;
+use Tests\Feature\Identity\UsesIdentitySchema;
 
 trait UsesCentralSchema
 {
+    use UsesIdentitySchema {
+        configureTestDatabaseConnection as configureIdentityTestDatabaseConnection;
+    }
+
     protected function bootCentralSchema(): void
     {
-        config([
-            'database.default' => 'sqlite',
-            'database.connections.sqlite' => [
-                'driver' => 'sqlite',
-                'database' => ':memory:',
-                'prefix' => '',
-                'foreign_key_constraints' => true,
-            ],
-        ]);
+        $this->clearTenantContext();
+        $this->configureIdentityTestDatabaseConnection();
 
-        DB::purge('sqlite');
-        DB::reconnect('sqlite');
+        DB::purge((string) config('database.default'));
+        DB::reconnect((string) config('database.default'));
 
         $this->migrateCentralTables();
     }
 
     private function migrateCentralTables(): void
     {
+        $connection = (string) config('database.default');
+
+        if ($connection !== 'sqlite') {
+            Schema::connection($connection)->disableForeignKeyConstraints();
+
+            foreach (['personal_access_tokens', 'central_admin_users', 'domains', 'tenants'] as $table) {
+                Schema::connection($connection)->dropIfExists($table);
+            }
+
+            Schema::connection($connection)->enableForeignKeyConstraints();
+        }
+
         if (! Schema::hasTable('tenants')) {
             Schema::create('tenants', function (Blueprint $table): void {
                 $table->string('id')->primary();

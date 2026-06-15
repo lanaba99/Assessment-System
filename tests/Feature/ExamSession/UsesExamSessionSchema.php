@@ -62,6 +62,7 @@ trait UsesExamSessionSchema
             foreach ([
                 'question_responses', 'exam_session_items', 'exam_sessions',
                 'exam_enrollments', 'cohort_members', 'cohorts', 'question_versions',
+                'eligibility_chains',
             ] as $table) {
                 Schema::connection($connection)->dropIfExists($table);
             }
@@ -303,6 +304,39 @@ trait UsesExamSessionSchema
 
             $table->unique(['session_id', 'sequence_number']);
             $table->index('item_state');
+        });
+
+        // ── eligibility_chains (stub) ─────────────────────────────────────────
+        // Required by EligibilityEvaluatorService during startSession (Gate 6).
+        // Full Rules schema lives in UsesRulesSchema; this empty table is enough
+        // for exams with no configured prerequisite chain.
+        Schema::create('eligibility_chains', function (Blueprint $table): void {
+            $table->uuid('chain_id')->primary();
+            $table->uuid('tenant_id');
+            $table->uuid('exam_id');
+            $table->uuid('created_by_user_id');
+            $table->unsignedInteger('chain_step_number');
+            $table->uuid('prerequisite_exam_id')->nullable();
+            $table->string('condition_type');
+            $table->json('condition_data')->nullable();
+            $table->string('logical_operator')->nullable();
+            $table->decimal('min_score_required', 6, 2)->nullable();
+            $table->boolean('is_satisfied_override_available')->default(false);
+            $table->uuid('override_authorized_by_user_id')->nullable();
+            $table->json('chain_metadata')->nullable();
+            $table->timestamps();
+
+            $table->foreign('exam_id')
+                ->references('exam_id')->on('exams')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('prerequisite_exam_id')
+                ->references('exam_id')->on('exams')
+                ->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('created_by_user_id')
+                ->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('restrict');
+
+            $table->unique(['exam_id', 'chain_step_number']);
         });
     }
 

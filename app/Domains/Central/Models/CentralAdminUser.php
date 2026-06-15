@@ -25,6 +25,8 @@ class CentralAdminUser extends Authenticatable
 
     protected $keyType = 'string';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'email',
         'password_hash',

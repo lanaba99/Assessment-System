@@ -46,6 +46,12 @@ class IdentityPermissionsSeeder extends Seeder
         'workflows.manage',
         'workflows.approve',
         'analytics.view',
+        'categories.manage',
+        'questions.manage',
+        'competencies.manage',
+        'exams.view',
+        'exams.manage',
+        'exams.publish',
     ];
 
     public function run(): void

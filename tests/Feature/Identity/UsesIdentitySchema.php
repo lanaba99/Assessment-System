@@ -13,6 +13,7 @@ use App\Domains\Identity\Models\Permission;
 use App\Domains\Identity\Models\Role;
 use App\Domains\Identity\Models\User;
 use App\Domains\Identity\Models\UserSession;
+use Database\Seeders\IdentityPermissionsSeeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
@@ -27,10 +28,9 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
  * Under production this app is per-database multi-tenant via stancl/tenancy:
  * one tenant_<uuid> database per tenant, with `tenant_id` columns as a
  * defense-in-depth tripwire. For tests we collapse both tenants into a
- * single in-memory SQLite database and rely on the application-layer scope
- * (every repo query is `where('tenant_id', $tid)`) to enforce isolation —
- * that's the layer we want to exercise. The connection-level separation is
- * provided by the tenancy package and is its problem to test.
+ * single MySQL testing database (Sail `testing` schema) and rely on the
+ * application-layer scope (every repo query is `where('tenant_id', $tid)`)
+ * to enforce isolation — that's the layer we want to exercise.
  *
  * Implemented as a trait rather than a TestCase subclass because Pest's
  * `pest()->extend(TestCase::class)->in('Feature')` catch-all in Pest.php
@@ -51,12 +51,29 @@ trait UsesIdentitySchema
      */
     protected function bootIdentitySchema(): void
     {
-        if (extension_loaded('pdo_sqlite')) {
+        $this->clearTenantContext();
+        $this->configureTestDatabaseConnection();
+        $this->migrateIdentityTables();
+
+        $this->tenantA = (string) Str::uuid();
+        $this->tenantB = (string) Str::uuid();
+    }
+
+    /**
+     * Honour phpunit.xml / Sail env vars. Prefer MySQL (Sail `testing` DB).
+     * Fall back to in-memory SQLite only when MySQL is unavailable and
+     * pdo_sqlite is present — e.g. local runs without Sail.
+     */
+    protected function configureTestDatabaseConnection(): void
+    {
+        $preferred = (string) env('DB_CONNECTION', 'mysql');
+
+        if ($preferred === 'sqlite' && extension_loaded('pdo_sqlite')) {
             config([
                 'database.default' => 'sqlite',
                 'database.connections.sqlite' => [
                     'driver' => 'sqlite',
-                    'database' => ':memory:',
+                    'database' => env('DB_DATABASE', ':memory:'),
                     'prefix' => '',
                     'foreign_key_constraints' => true,
                 ],
@@ -64,16 +81,30 @@ trait UsesIdentitySchema
 
             DB::purge('sqlite');
             DB::reconnect('sqlite');
-        } else {
-            config(['database.default' => 'mysql']);
-            DB::purge('mysql');
-            DB::reconnect('mysql');
+
+            return;
         }
 
-        $this->migrateIdentityTables();
+        $host = env('LARAVEL_SAIL') ? 'mysql' : (string) env('DB_HOST', '127.0.0.1');
+        $port = env('LARAVEL_SAIL') ? '3306' : (string) env('DB_PORT', '33060');
 
-        $this->tenantA = (string) Str::uuid();
-        $this->tenantB = (string) Str::uuid();
+        config([
+            'database.default' => 'mysql',
+            'database.connections.mysql' => array_merge(
+                config('database.connections.mysql', []),
+                [
+                    'driver' => 'mysql',
+                    'host' => $host,
+                    'port' => $port,
+                    'database' => (string) env('DB_DATABASE', 'testing'),
+                    'username' => (string) env('DB_USERNAME', 'sail'),
+                    'password' => (string) env('DB_PASSWORD', 'password'),
+                ],
+            ),
+        ]);
+
+        DB::purge('mysql');
+        DB::reconnect('mysql');
     }
 
     /**
@@ -90,25 +121,36 @@ trait UsesIdentitySchema
         $connection = (string) config('database.default');
 
         if ($connection !== 'sqlite') {
-            Schema::connection($connection)->disableForeignKeyConstraints();
-
-            foreach (array_reverse($files) as $file) {
-                $migration = require $file;
-
-                try {
-                    $migration->down();
-                } catch (\Throwable) {
-                    // Fresh databases have nothing to roll back.
-                }
-            }
-
-            Schema::connection($connection)->enableForeignKeyConstraints();
+            $this->resetMysqlTestSchema($connection);
         }
 
         foreach ($files as $file) {
             $migration = require $file;
             $migration->up();
         }
+    }
+
+    /**
+     * Wipe the persistent Sail `testing` database before each test case.
+     *
+     * Migration down() cannot drop identity tables while domain tables still
+     * hold FK references to users/roles from the previous test. A full reset
+     * keeps MySQL runs as isolated as SQLite :memory:.
+     */
+    private function resetMysqlTestSchema(string $connection): void
+    {
+        Schema::connection($connection)->disableForeignKeyConstraints();
+
+        $database = (string) config("database.connections.{$connection}.database");
+        $tableKey = 'Tables_in_' . $database;
+        $tables = DB::connection($connection)->select('SHOW TABLES');
+
+        foreach ($tables as $table) {
+            $tableName = $table->{$tableKey} ?? array_values((array) $table)[0];
+            Schema::connection($connection)->drop($tableName);
+        }
+
+        Schema::connection($connection)->enableForeignKeyConstraints();
     }
 
     protected function createUser(string $tenantId, string $password = 'secret', array $overrides = []): User
@@ -185,13 +227,37 @@ trait UsesIdentitySchema
         return UserSession::query()->where('tenant_id', $tenantId)->get();
     }
 
+    /**
+     * Bind a mocked tenant and seed canonical Identity permissions for it.
+     * Policies resolve permissions through AuthorizationService, which reads
+     * from the permissions / role_permissions tables — seeding here mirrors
+     * production `tenants:seed` behaviour.
+     */
     protected function initializeTenantContext(string $tenantId): void
     {
+        $this->clearTenantContext();
+
         $tenant = \Mockery::mock(Tenant::class);
         $tenant->shouldReceive('getTenantKey')->andReturn($tenantId);
         $tenant->shouldReceive('getKey')->andReturn($tenantId);
 
         app()->instance(Tenant::class, $tenant);
+
+        $this->seedIdentityPermissions();
+    }
+
+    /**
+     * Populate the Permission table with the canonical names checked by domain
+     * policies (GradingPolicy, ExamSessionPolicy, etc.). Requires an active
+     * tenant() binding — call via initializeTenantContext().
+     */
+    protected function seedIdentityPermissions(): void
+    {
+        if (! function_exists('tenant') || tenant() === null) {
+            return;
+        }
+
+        $this->seed(IdentityPermissionsSeeder::class);
     }
 
     protected function withoutTenancyIdentificationMiddleware(): void
@@ -202,7 +268,24 @@ trait UsesIdentitySchema
         ]);
     }
 
+    protected function clearTenantContext(): void
+    {
+        if (app()->bound(Tenant::class)) {
+            app()->forgetInstance(Tenant::class);
+        }
+
+        if (function_exists('tenancy') && tenancy()->initialized) {
+            tenancy()->end();
+        }
+    }
+
     /**
+     * Assign permissions to a single user via a dedicated test role.
+     *
+     * Each user receives their own role so that granting permissions to one
+     * actor does not clobber another actor's role_permissions sync on the
+     * shared per-tenant test role (the previous test-admin-{tenant} pattern).
+     *
      * @param  array<int, string>  $permissionNames
      */
     protected function grantPermissionsToUser(User $user, array $permissionNames): void
@@ -211,28 +294,15 @@ trait UsesIdentitySchema
         $permissionIds = [];
 
         foreach ($permissionNames as $permissionName) {
-            [$resource, $action] = array_pad(explode('.', $permissionName, 2), 2, 'access');
-
-            $permission = Permission::query()->firstOrCreate(
-                ['permission_name' => $permissionName],
-                [
-                    'permission_id' => (string) Str::uuid(),
-                    'tenant_id' => $tenantId,
-                    'resource_type' => $resource,
-                    'action_type' => $action,
-                    'created_at' => now(),
-                ],
-            );
-
-            $permissionIds[] = (string) $permission->permission_id;
+            $permissionIds[] = (string) $this->resolveTestPermission($tenantId, $permissionName)->permission_id;
         }
 
         $role = Role::query()->firstOrCreate(
-            ['role_name' => "test-admin-{$tenantId}"],
+            ['role_name' => "test-role-{$tenantId}-{$user->id}"],
             [
                 'role_id' => (string) Str::uuid(),
                 'tenant_id' => $tenantId,
-                'description' => 'Test administrator',
+                'description' => 'Per-user test role',
                 'role_category' => 'admin',
                 'is_custom_role' => true,
                 'is_system_role' => false,
@@ -241,5 +311,39 @@ trait UsesIdentitySchema
 
         $role->permissions()->sync($permissionIds);
         $user->roles()->sync([(string) $role->role_id]);
+    }
+
+    /**
+     * Resolve a permission row for AuthorizationService lookups.
+     *
+     * permission_name is globally unique in the shared test database (mirrors
+     * per-tenant DB uniqueness in production). Re-bind tenant context before
+     * calling when the active tenant changes so seeded rows carry the correct
+     * tenant_id for AuthorizationServiceImpl::listPermissionNamesForUser().
+     */
+    protected function resolveTestPermission(string $tenantId, string $permissionName): Permission
+    {
+        [$resource, $action] = array_pad(explode('.', $permissionName, 2), 2, 'access');
+
+        $permission = Permission::query()
+            ->where('permission_name', $permissionName)
+            ->first();
+
+        if ($permission !== null) {
+            if ((string) $permission->tenant_id !== $tenantId) {
+                $permission->forceFill(['tenant_id' => $tenantId])->save();
+            }
+
+            return $permission;
+        }
+
+        return Permission::query()->create([
+            'permission_id' => (string) Str::uuid(),
+            'tenant_id' => $tenantId,
+            'permission_name' => $permissionName,
+            'resource_type' => $resource,
+            'action_type' => $action,
+            'created_at' => now(),
+        ]);
     }
 }
