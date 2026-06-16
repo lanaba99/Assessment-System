@@ -10,8 +10,7 @@ use Illuminate\Support\Str;
 
 class UserFactory extends Factory
 {
-    protected $model = \App\Models\User::class;
-
+    protected $model = \App\Domains\Identity\Models\User::class;
     protected static ?string $password = null;
 
     public function definition(): array

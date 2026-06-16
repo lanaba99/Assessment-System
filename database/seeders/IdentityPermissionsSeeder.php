@@ -60,7 +60,7 @@ class IdentityPermissionsSeeder extends Seeder
 
         if ($tenantId === null) {
             $this->command?->warn('IdentityPermissionsSeeder skipped — no tenant context. Run via `tenants:seed` to seed tenant databases.');
-
+            
             return;
         }
 

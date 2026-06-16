@@ -25,5 +25,7 @@ class AnalyticsServiceProvider extends ServiceProvider
         Gate::policy(AnalyticsCache::class, AnalyticsPolicy::class);
 
         Event::listen(ResultGenerated::class, [IngestResultGeneratedListener::class, 'handle']);
+
+
     }
 }

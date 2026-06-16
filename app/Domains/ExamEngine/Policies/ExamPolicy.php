@@ -65,4 +65,21 @@ class ExamPolicy
     {
         return (string) $actor->tenant_id === (string) $exam->tenant_id;
     }
+    public function publish(User $actor, Exam $exam): bool
+    {
+        if (! $this->sameTenant($actor, $exam)) {
+            return false;
+        }
+
+        return $this->hasPermission($actor, 'exams.manage');
+    }
+
+    public function archive(User $actor, Exam $exam): bool
+    {
+        if (! $this->sameTenant($actor, $exam)) {
+            return false;
+        }
+
+        return $this->hasPermission($actor, 'exams.manage');
+    }
 }

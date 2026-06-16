@@ -119,7 +119,7 @@ class ExamController extends Controller
             return $this->errorResponse('exam_not_found', $e->getMessage(), Response::HTTP_NOT_FOUND);
         }
 
-        $this->authorize('update', $exam);
+        $this->authorize('publish', $exam);
 
         try {
             $published = $this->examEngine->publishExam($tenantId, $examId);
@@ -145,7 +145,7 @@ class ExamController extends Controller
             return $this->errorResponse('exam_not_found', $e->getMessage(), Response::HTTP_NOT_FOUND);
         }
 
-        $this->authorize('update', $exam);
+        $this->authorize('archive', $exam);
 
         try {
             $archived = $this->examEngine->archiveExam($tenantId, $examId);

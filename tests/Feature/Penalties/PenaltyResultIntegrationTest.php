@@ -53,8 +53,8 @@ it('applies penalty deductions to the final grade when sanctions exist', functio
         ->where('session_id', $session->session_id)
         ->firstOrFail();
 
-    expect((float) $updated->final_score)->toBe(75.0)
-        ->and($updated->grading_metadata['penalty_deduction'])->toBe(10.0)
+    expect((float) $updated->final_score)->toEqual(75.0)
+        ->and($updated->grading_metadata['penalty_deduction'])->toEqual(10.0)
         ->and($updated->grading_metadata['sanctions_applied'])->toHaveCount(1);
 });
 
@@ -110,6 +110,6 @@ it('voids a sanction and restores the grade when an override is applied', functi
     $voided = PenaltySanction::query()->findOrFail($sanction->sanction_id);
 
     expect($voided->sanction_type)->toBe('voided')
-        ->and((float) $updated->final_score)->toBe(90.0)
-        ->and($updated->grading_metadata['penalty_deduction'])->toBe(0.0);
+        ->and((float) $updated->final_score)->toEqual(90.0)
+        ->and($updated->grading_metadata['penalty_deduction'])->toEqual(0.0);
 });

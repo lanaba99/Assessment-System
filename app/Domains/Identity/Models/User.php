@@ -32,6 +32,7 @@ class User extends Authenticatable
     protected $keyType = 'string';
 
     protected $fillable = [
+        'id',
         'tenant_id',
         'external_employee_id',
         'email',
