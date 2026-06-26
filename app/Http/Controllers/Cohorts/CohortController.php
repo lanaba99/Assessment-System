@@ -17,6 +17,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group Cohorts
+ */
+
 class CohortController extends Controller
 {
     use AuthorizesRequests;

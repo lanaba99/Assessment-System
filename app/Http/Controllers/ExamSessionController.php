@@ -11,6 +11,11 @@ use App\Http\Resources\ExamSessionResource;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group ExamSession
+ */
+
 class ExamSessionController extends Controller
 {
     public function __construct(

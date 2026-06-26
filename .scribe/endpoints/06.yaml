@@ -1,0 +1,297 @@
+name: SecurityPolicy
+description: ''
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/security/policies
+    metadata:
+      custom: []
+      groupName: SecurityPolicy
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "message": ""
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: api/v1/security/policies
+    metadata:
+      custom: []
+      groupName: SecurityPolicy
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      mfa_enabled:
+        custom: []
+        name: mfa_enabled
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      mfa_method:
+        custom: []
+        name: mfa_method
+        description: 'Must not be greater than 64 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      password_min_length:
+        custom: []
+        name: password_min_length
+        description: 'Must be at least 8. Must not be greater than 128.'
+        required: false
+        example: 22
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      password_require_uppercase:
+        custom: []
+        name: password_require_uppercase
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      password_require_lowercase:
+        custom: []
+        name: password_require_lowercase
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      password_require_numbers:
+        custom: []
+        name: password_require_numbers
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      password_require_special_chars:
+        custom: []
+        name: password_require_special_chars
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      password_expiry_days:
+        custom: []
+        name: password_expiry_days
+        description: 'Must be at least 1. Must not be greater than 3650.'
+        required: false
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      password_history_count:
+        custom: []
+        name: password_history_count
+        description: 'Must be at least 0. Must not be greater than 24.'
+        required: false
+        example: 6
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      session_timeout_minutes:
+        custom: []
+        name: session_timeout_minutes
+        description: 'Must be at least 5. Must not be greater than 1440.'
+        required: false
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      session_absolute_timeout_hours:
+        custom: []
+        name: session_absolute_timeout_hours
+        description: 'Must be at least 1. Must not be greater than 168.'
+        required: false
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      session_force_reauth_on_privilege_change:
+        custom: []
+        name: session_force_reauth_on_privilege_change
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      ip_whitelisting_enabled:
+        custom: []
+        name: ip_whitelisting_enabled
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      enable_biometric_auth:
+        custom: []
+        name: enable_biometric_auth
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      enforce_tls_1_3_minimum:
+        custom: []
+        name: enforce_tls_1_3_minimum
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      disable_weak_ciphers:
+        custom: []
+        name: disable_weak_ciphers
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      allowed_ip_ranges:
+        custom: []
+        name: allowed_ip_ranges
+        description: 'Must not be greater than 64 characters.'
+        required: false
+        example:
+          - 'y'
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      mfa_enabled: true
+      mfa_method: b
+      password_min_length: 22
+      password_require_uppercase: true
+      password_require_lowercase: true
+      password_require_numbers: false
+      password_require_special_chars: true
+      password_expiry_days: 7
+      password_history_count: 6
+      session_timeout_minutes: 17
+      session_absolute_timeout_hours: 15
+      session_force_reauth_on_privilege_change: true
+      ip_whitelisting_enabled: true
+      enable_biometric_auth: false
+      enforce_tls_1_3_minimum: true
+      disable_weak_ciphers: true
+      allowed_ip_ranges:
+        - 'y'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "message": ""
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null

@@ -19,6 +19,11 @@ use Illuminate\Http\Request;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group CategoryQuestionBank
+ */
+
 class CategoryController extends Controller
 {
     use AuthorizesRequests;

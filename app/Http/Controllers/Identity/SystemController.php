@@ -9,6 +9,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group System
+ */
+
 class SystemController extends Controller
 {
     public function status(): JsonResponse

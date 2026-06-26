@@ -56,6 +56,7 @@ class TenantMasterSeeder extends Seeder
 
     private function seedAdminUser(): void
     {
+        
         $this->adminUserId = (string) Str::uuid();
 
         DB::table('users')->insert([
@@ -126,6 +127,7 @@ class TenantMasterSeeder extends Seeder
             ['name' => 'roles.assign',               'resource' => 'roles',             'action' => 'assign'],
             ['name' => 'security_policies.view',     'resource' => 'security_policies', 'action' => 'view'],
             ['name' => 'security_policies.update',   'resource' => 'security_policies', 'action' => 'update'],
+            ['name' => 'cohorts.view',               'resource' => 'cohort',            'action' => 'view'],
         ];
 
         // Coarser domain-action permissions kept for downstream domains.

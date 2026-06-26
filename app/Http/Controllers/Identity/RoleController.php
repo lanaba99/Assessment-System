@@ -18,6 +18,11 @@ use Illuminate\Http\Request;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group Role
+ */
+
 class RoleController extends Controller
 {
     use AuthorizesRequests;

@@ -17,6 +17,11 @@ use Illuminate\Http\JsonResponse;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group QuestionBank
+ */
+
 class QuestionController extends Controller
 {
     use AuthorizesRequests;

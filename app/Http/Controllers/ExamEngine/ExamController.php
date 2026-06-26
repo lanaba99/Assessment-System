@@ -18,6 +18,11 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group ExamEngine
+ */
+
 class ExamController extends Controller
 {
     use AuthorizesRequests;

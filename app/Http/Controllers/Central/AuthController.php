@@ -11,6 +11,10 @@ use Illuminate\Http\JsonResponse;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group CentralAuth
+ */
+
 class AuthController extends Controller
 {
     public function __construct(

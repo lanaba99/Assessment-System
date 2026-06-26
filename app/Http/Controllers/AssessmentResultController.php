@@ -10,6 +10,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group AssessmentResults
+ */
+
 class AssessmentResultController extends Controller
 {
     use AuthorizesRequests;

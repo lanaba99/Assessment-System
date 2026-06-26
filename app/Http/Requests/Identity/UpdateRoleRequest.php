@@ -48,10 +48,11 @@ class UpdateRoleRequest extends FormRequest
      */
     public function changes(): array
     {
-        return array_intersect_key(
-            $this->validated(),
-            array_flip(['role_name', 'description', 'role_category', 'role_metadata']),
-        );
+        // return array_intersect_key(
+        //     $this->validated(),
+        //     array_flip(['role_name', 'description', 'role_category', 'role_metadata']),
+        // );
+        return $this->only(['role_name', 'description', 'role_category', 'role_metadata']);
     }
 
     private function resolveRoleForAuthorization(): ?Role

@@ -19,6 +19,11 @@ use Illuminate\Http\Request;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group User
+ */
+
 class UserController extends Controller
 {
     use AuthorizesRequests;

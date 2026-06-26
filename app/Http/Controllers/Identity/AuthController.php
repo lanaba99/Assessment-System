@@ -23,6 +23,11 @@ use App\Http\Resources\AuthenticationResultResource;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
+
+/**
+ * @group Auth
+ */
+
 class AuthController extends Controller
 {
     public function __construct(
