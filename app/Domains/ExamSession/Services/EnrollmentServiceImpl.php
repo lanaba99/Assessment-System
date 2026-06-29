@@ -20,40 +20,59 @@ class EnrollmentServiceImpl implements EnrollmentService
     ) {
     }
 
-    public function enroll(EnrollCandidateCommand $command): ExamCandidateEligible
+public function enroll(EnrollCandidateCommand $command): ExamCandidateEligible
     {
         return DB::transaction(function () use ($command): ExamCandidateEligible {
+            // searching for an existing record (whether active or revoked)
             $existing = $this->repository->findByCandidateAndExam(
                 $command->tenantId,
                 $command->candidateUserId,
                 $command->examId,
             );
 
-            if ($existing !== null) {
+            // If an existing record is found and it's already "active", we prevent the operation
+            if ($existing !== null && $existing->enrollment_status === 'active') {
                 throw EnrollmentAlreadyExistsException::forCandidateAndExam(
                     $command->candidateUserId,
                     $command->examId,
                 );
             }
 
+            // If an existing record is found and it's in another state (like "revoked"), we update it
+            if ($existing !== null) {
+                $this->repository->update($existing, [
+                    'cohort_id'            => $command->cohortId,
+                    'enrollment_status'    => 'active',
+                    'enrollment_date'      => now(),
+                    'start_window_date'    => $command->startWindowDate,
+                    'end_window_date'      => $command->endWindowDate,
+                    'can_retake_exam'      => $command->maxAttemptsAllowed > 1,
+                    'max_attempts_allowed' => $command->maxAttemptsAllowed,
+                    'attempts_used'        => 0,
+                    'attempts_remaining'   => $command->maxAttemptsAllowed,
+                    'enrollment_notes'     => $command->enrollmentNotes,
+                ]);
+                return $existing;
+            }
+
+            // If no existing record is found, we create a new one
             return $this->repository->create([
-                'tenant_id' => $command->tenantId,
-                'exam_id' => $command->examId,
-                'candidate_user_id' => $command->candidateUserId,
-                'cohort_id' => $command->cohortId,
-                'enrollment_status' => 'active',
-                'enrollment_date' => now(),
-                'start_window_date' => $command->startWindowDate,
-                'end_window_date' => $command->endWindowDate,
-                'can_retake_exam' => $command->maxAttemptsAllowed > 1,
+                'tenant_id'            => $command->tenantId,
+                'exam_id'              => $command->examId,
+                'candidate_user_id'    => $command->candidateUserId,
+                'cohort_id'            => $command->cohortId,
+                'enrollment_status'    => 'active',
+                'enrollment_date'      => now(),
+                'start_window_date'    => $command->startWindowDate,
+                'end_window_date'      => $command->endWindowDate,
+                'can_retake_exam'      => $command->maxAttemptsAllowed > 1,
                 'max_attempts_allowed' => $command->maxAttemptsAllowed,
-                'attempts_used' => 0,
-                'attempts_remaining' => $command->maxAttemptsAllowed,
-                'enrollment_notes' => $command->enrollmentNotes,
+                'attempts_used'        => 0,
+                'attempts_remaining'   => $command->maxAttemptsAllowed,
+                'enrollment_notes'     => $command->enrollmentNotes,
             ]);
         });
     }
-
     /**
      * @return Collection<int, ExamCandidateEligible>
      */
