@@ -128,18 +128,32 @@ class TenantMasterSeeder extends Seeder
             ['name' => 'security_policies.view',     'resource' => 'security_policies', 'action' => 'view'],
             ['name' => 'security_policies.update',   'resource' => 'security_policies', 'action' => 'update'],
             ['name' => 'cohorts.view',               'resource' => 'cohort',            'action' => 'view'],
+            ['name' => 'cohorts.manage',             'resource' => 'cohort',            'action' => 'manage'],
+            ['name' => 'cohorts.members.manage',     'resource' => 'cohort',            'action' => 'members.manage'],
         ];
 
         // Coarser domain-action permissions kept for downstream domains.
         $domainPermissions = [
             ['name' => 'exams.manage',          'resource' => 'exam',     'action' => 'manage'],
             ['name' => 'exams.publish',         'resource' => 'exam',     'action' => 'publish'],
-            ['name' => 'exams.view',            'resource' => 'exam',     'action' => 'view'], // تم التعديل
+            ['name' => 'exams.view',            'resource' => 'exam',     'action' => 'view'],
             ['name' => 'questions.manage',      'resource' => 'question', 'action' => 'manage'],
-            ['name' => 'grading.evaluate',      'resource' => 'response', 'action' => 'evaluate'], // تم التعديل
-            ['name' => 'exam_sessions.start',   'resource' => 'session',  'action' => 'start'],    // تم التعديل
+            ['name' => 'grading.evaluate',      'resource' => 'response', 'action' => 'evaluate'],
+            ['name' => 'grading.view',          'resource' => 'response', 'action' => 'view'],
+            ['name' => 'grading.publish',       'resource' => 'response', 'action' => 'publish'],
+            ['name' => 'exam_sessions.start',   'resource' => 'session',  'action' => 'start'],
+            ['name' => 'exam_sessions.view',    'resource' => 'session',  'action' => 'view'],
+            ['name' => 'exam_sessions.manage',  'resource' => 'session',  'action' => 'manage'],
             ['name' => 'users.manage',          'resource' => 'user',     'action' => 'manage'],
-            ['name' => 'cohorts.manage',        'resource' => 'cohort',   'action' => 'manage'],
+            ['name' => 'proctoring.ingest',     'resource' => 'proctor',  'action' => 'ingest'],
+            ['name' => 'proctoring.view',       'resource' => 'proctor',  'action' => 'view'],
+            ['name' => 'penalties.view',        'resource' => 'penalty',  'action' => 'view'],
+            ['name' => 'penalties.manage',      'resource' => 'penalty',  'action' => 'manage'],
+            ['name' => 'workflows.manage',      'resource' => 'workflow', 'action' => 'manage'],
+            ['name' => 'workflows.approve',     'resource' => 'workflow', 'action' => 'approve'],
+            ['name' => 'analytics.view',        'resource' => 'analytics','action' => 'view'],
+            ['name' => 'categories.manage',     'resource' => 'category', 'action' => 'manage'],
+            ['name' => 'competencies.manage',   'resource' => 'competency', 'action' => 'manage'],
         ];
 
         $permissions = array_merge($identityPermissions, $domainPermissions);
