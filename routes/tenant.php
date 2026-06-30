@@ -50,7 +50,7 @@ Route::middleware([
     ->prefix('api/v1')
     ->group(function (): void {
         // -----------------------------------------------------------------
-        // Identity — public (no session required)
+        // Identity — public (no session required) - 6
         // -----------------------------------------------------------------
         Route::post('auth/login', [AuthController::class, 'login'])
             ->middleware('throttle.login')
@@ -72,7 +72,7 @@ Route::middleware([
             ->name('api.v1.system.status');
 
         // -----------------------------------------------------------------
-        // Identity — session-bound
+        // Identity — session-bound  - 22 
         // -----------------------------------------------------------------
         // `auth:sanctum` is the guard that actually validates the Bearer
         // tokens minted by AuthController. The bare `auth` middleware fell
@@ -160,7 +160,7 @@ Route::middleware([
                 ->name('api.v1.identity.sessions.delete');
 
             // -------------------------------------------------------------
-            // Question bank — categories & questions
+            // Question bank — categories & questions - 9
             // -------------------------------------------------------------
             Route::prefix('categories')->group(function (): void {
                 Route::get('tree', [CategoryController::class, 'tree'])
@@ -199,7 +199,7 @@ Route::middleware([
             });
 
             // -------------------------------------------------------------
-            // Competency framework — tree CRUD
+            // Competency framework — tree CRUD - 4
             // -------------------------------------------------------------
             Route::prefix('competencies')->group(function (): void {
                 Route::get('tree', [CompetencyController::class, 'tree'])
@@ -218,7 +218,7 @@ Route::middleware([
             });
 
             // -------------------------------------------------------------
-            // Exam Engine — template lifecycle
+            // Exam Engine — template lifecycle - 7
             // -------------------------------------------------------------
             Route::prefix('exams')->group(function (): void {
                 Route::get('/', [ExamController::class, 'index'])
@@ -249,7 +249,7 @@ Route::middleware([
             });
 
             // -------------------------------------------------------------
-            // Cohorts — group management and membership
+            // Cohorts — group management and membership - 8
             // -------------------------------------------------------------
             Route::prefix('cohorts')->group(function (): void {
                 Route::get('/', [CohortController::class, 'index'])
@@ -287,7 +287,7 @@ Route::middleware([
             });
 
             // -------------------------------------------------------------
-            // Exam Sessions — candidate lifecycle
+            // Exam Sessions — candidate lifecycle - 11
             // -------------------------------------------------------------
             Route::prefix('exam-sessions')->group(function (): void {
                 Route::post('/', [ExamSessionController::class, 'start'])
@@ -337,7 +337,7 @@ Route::middleware([
             });
 
             // -------------------------------------------------------------
-            // Manual Grading — evaluator workflow
+            // Manual Grading — evaluator workflow - 4
             // -------------------------------------------------------------
             Route::get(
                 'exam-sessions/{sessionId}/pending-evaluations',
@@ -368,7 +368,7 @@ Route::middleware([
                 ->name('api.v1.exam-sessions.result.publication-status');
 
             // -------------------------------------------------------------
-            // Penalties — rule management and sanction review
+            // Penalties — rule management and sanction review - 9
             // -------------------------------------------------------------
             Route::prefix('penalty-rules')->group(function (): void {
                 Route::get('/', [PenaltyRuleController::class, 'index'])
@@ -407,7 +407,7 @@ Route::middleware([
                 ->name('api.v1.sanctions.void');
 
             // -------------------------------------------------------------
-            // Workflows — approval gating for result publication
+            // Workflows — approval gating for result publication - 3
             // -------------------------------------------------------------
             Route::prefix('workflows')->group(function (): void {
                 Route::post('/', [ApprovalWorkflowController::class, 'initiate'])
@@ -423,13 +423,13 @@ Route::middleware([
             });
 
             // -------------------------------------------------------------
-            // Analytics — dashboard metrics
+            // Analytics — dashboard metrics - 1
             // -------------------------------------------------------------
             Route::get('analytics/dashboard', [AnalyticsDashboardController::class, 'summary'])
                 ->name('api.v1.analytics.dashboard');
 
             // -------------------------------------------------------------
-            // Exam Enrollments — admin enrollment management
+            // Exam Enrollments — admin enrollment management - 3 
             // -------------------------------------------------------------
             Route::prefix('exams/{examId}/enrollments')->group(function (): void {
                 Route::get('/', [EnrollmentController::class, 'index'])

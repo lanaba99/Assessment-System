@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Domains\Identity\Enums\RoleName;
 
 class TenantMasterSeeder extends Seeder
 {
@@ -144,7 +145,6 @@ class TenantMasterSeeder extends Seeder
             ['name' => 'exam_sessions.start',   'resource' => 'session',  'action' => 'start'],
             ['name' => 'exam_sessions.view',    'resource' => 'session',  'action' => 'view'],
             ['name' => 'exam_sessions.manage',  'resource' => 'session',  'action' => 'manage'],
-            ['name' => 'users.manage',          'resource' => 'user',     'action' => 'manage'],
             ['name' => 'proctoring.ingest',     'resource' => 'proctor',  'action' => 'ingest'],
             ['name' => 'proctoring.view',       'resource' => 'proctor',  'action' => 'view'],
             ['name' => 'penalties.view',        'resource' => 'penalty',  'action' => 'view'],
@@ -179,11 +179,53 @@ class TenantMasterSeeder extends Seeder
 
     private function seedRolePermissions(): void
     {
+        // $matrix = [
+        //     'Super Admin' => array_keys($this->permissionIds),
+        //     'Proctor'     => [
+        //         'exam_sessions.start',
+        //         'proctoring.view',  
+        //         'proctoring.ingest', 
+        //     ], 
+        //     'Technical Evaluator' => [
+        //         'grading.evaluate', 
+        //         'questions.manage',
+        //         'categories.manage',
+        //         'competencies.manage',
+        //         'exams.manage',       
+        //         'exams.publish',      
+        //         'grading.view',
+        //         'grading.publish',
+        //         'workflows.manage',
+        //     ], 
+                
+        //     'Candidate' => [
+        //         'exams.view',
+        //         'exam_sessions.start', 
+        //     ],  
+        // ];
         $matrix = [
-            'Super Admin' => array_keys($this->permissionIds),
-            'Proctor'     => ['exam_sessions.start'], // التسمية الجديدة
-            'Technical Evaluator' => ['grading.evaluate', 'questions.manage'], // التسمية الجديدة
-            'Candidate'   => ['exams.view'], // التسمية الجديدة
+            RoleName::SuperAdmin->value         => array_keys($this->permissionIds),
+            RoleName::Proctor->value            => [
+                'exam_sessions.start',
+                'proctoring.view',
+                'proctoring.ingest',
+            ], 
+            RoleName::TechnicalEvaluator->value => [
+                'grading.evaluate', 
+                'questions.manage',
+                'categories.manage',
+                'competencies.manage',
+                'exams.manage',       
+                'exams.publish',      
+                'grading.view',
+                'grading.publish',
+                'workflows.manage',
+            ], 
+        
+            RoleName::Candidate->value          => [
+                'exams.view',
+                'exam_sessions.start', 
+            ],  
         ];
 
         $rows = [];

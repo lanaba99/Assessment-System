@@ -71,7 +71,7 @@ class ExamPolicy
             return false;
         }
 
-        return $this->hasPermission($actor, 'exams.manage');
+        return $this->hasPermission($actor, 'exams.publish'); // it was exams.manage changed to exams.publish
     }
 
     public function archive(User $actor, Exam $exam): bool

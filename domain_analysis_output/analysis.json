@@ -1,0 +1,1424 @@
+{
+  "domains": [
+    "Analytics",
+    "Central",
+    "Cohorts",
+    "Competency",
+    "ExamEngine",
+    "ExamSession",
+    "Grading",
+    "Identity",
+    "Penalties",
+    "Proctoring",
+    "QuestionBank",
+    "Rules",
+    "Shared",
+    "Workflows"
+  ],
+  "direct_dependencies": {
+    "Analytics": {
+      "Grading": [
+        [
+          "Analytics/Listeners/IngestResultGeneratedListener.php",
+          "App\\Domains\\Grading\\Events\\ResultGenerated"
+        ],
+        [
+          "Analytics/Providers/AnalyticsServiceProvider.php",
+          "App\\Domains\\Grading\\Events\\ResultGenerated"
+        ],
+        [
+          "Analytics/Services/AnalyticsIngestionService.php",
+          "App\\Domains\\Grading\\Events\\ResultGenerated"
+        ]
+      ],
+      "Identity": [
+        [
+          "Analytics/Models/GeneratedReport.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Analytics/Models/ReportTemplate.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Analytics/Policies/AnalyticsPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "Analytics/Policies/AnalyticsPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "Shared": [
+        [
+          "Analytics/Models/AnalyticsCache.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Analytics/Models/AnalyticsCache.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Analytics/Models/GeneratedReport.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Analytics/Models/GeneratedReport.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Analytics/Models/ReportTemplate.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Analytics/Models/ReportTemplate.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Analytics/Models/ScheduledReport.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Analytics/Models/ScheduledReport.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ]
+    },
+    "Central": {
+      "Shared": [
+        [
+          "Central/Models/ApiAuditLog.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/AuditLog.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/BackupLog.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/BackupSchedule.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/CentralAdminUser.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/DataMigrationLog.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/EmailTemplate.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/ExternalIdentityMapping.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/FeatureFlag.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/NotificationSetting.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/SystemHealthLog.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/SystemSyncLog.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/TenantApiKey.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/TenantSetting.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/WebhookConfig.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/WebhookDeliveryLog.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Central/Models/WhiteLabelConfig.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ],
+      "Identity": [
+        [
+          "Central/Models/AuditLog.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Central/Models/BackupLog.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Central/Models/BackupSchedule.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Central/Models/DataMigrationLog.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Central/Models/ExternalIdentityMapping.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Central/Models/NotificationSetting.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ]
+    },
+    "Cohorts": {
+      "Identity": [
+        [
+          "Cohorts/Models/Cohort.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Cohorts/Models/CohortMember.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Cohorts/Policies/CohortPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "Cohorts/Policies/CohortPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "ExamSession": [
+        [
+          "Cohorts/Models/Cohort.php",
+          "App\\Domains\\ExamSession\\Models\\ExamCandidateEligible"
+        ]
+      ],
+      "Shared": [
+        [
+          "Cohorts/Models/Cohort.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Cohorts/Models/Cohort.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Cohorts/Models/CohortMember.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Cohorts/Models/CohortMember.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ]
+    },
+    "Competency": {
+      "Identity": [
+        [
+          "Competency/Models/Competency.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Competency/Policies/CompetencyPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "Competency/Policies/CompetencyPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "QuestionBank": [
+        [
+          "Competency/Models/Competency.php",
+          "App\\Domains\\QuestionBank\\Models\\Question"
+        ]
+      ],
+      "Shared": [
+        [
+          "Competency/Models/Competency.php",
+          "App\\Domains\\Shared\\Traits\\BelongsToTenant"
+        ],
+        [
+          "Competency/Models/Competency.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ]
+    },
+    "ExamEngine": {
+      "QuestionBank": [
+        [
+          "ExamEngine/Exceptions/BlueprintNotFeasibleException.php",
+          "App\\Domains\\QuestionBank\\DTOs\\CoverageReport"
+        ],
+        [
+          "ExamEngine/Services/BlueprintAssembler.php",
+          "App\\Domains\\QuestionBank\\DTOs\\BlueprintSpecification"
+        ],
+        [
+          "ExamEngine/Services/BlueprintAssembler.php",
+          "App\\Domains\\QuestionBank\\DTOs\\ItemResolutionRequest"
+        ],
+        [
+          "ExamEngine/Services/QuestionSelectionServiceImpl.php",
+          "App\\Domains\\QuestionBank\\Contracts\\QuestionBankService"
+        ]
+      ],
+      "Identity": [
+        [
+          "ExamEngine/Models/Exam.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "ExamEngine/Policies/ExamPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "ExamEngine/Policies/ExamPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "ExamSession": [
+        [
+          "ExamEngine/Models/Exam.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "ExamEngine/Models/Exam.php",
+          "App\\Domains\\ExamSession\\Models\\ExamCandidateEligible"
+        ]
+      ],
+      "Grading": [
+        [
+          "ExamEngine/Models/Exam.php",
+          "App\\Domains\\Grading\\Models\\Rubric"
+        ]
+      ],
+      "Rules": [
+        [
+          "ExamEngine/Models/Exam.php",
+          "App\\Domains\\Rules\\Models\\EligibilityChain"
+        ]
+      ],
+      "Shared": [
+        [
+          "ExamEngine/Models/Exam.php",
+          "App\\Domains\\Shared\\Traits\\BelongsToTenant"
+        ],
+        [
+          "ExamEngine/Models/Exam.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "ExamEngine/Models/ExamBlueprint.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "ExamEngine/Models/ExamSection.php",
+          "App\\Domains\\Shared\\Traits\\BelongsToTenant"
+        ],
+        [
+          "ExamEngine/Models/ExamSection.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ],
+      "Competency": [
+        [
+          "ExamEngine/Models/ExamBlueprint.php",
+          "App\\Domains\\Competency\\Models\\Competency"
+        ]
+      ]
+    },
+    "ExamSession": {
+      "ExamEngine": [
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ],
+        [
+          "ExamSession/Models/ExamCandidateEligible.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ],
+        [
+          "ExamSession/Models/ExamSessionItem.php",
+          "App\\Domains\\ExamEngine\\Models\\ExamSection"
+        ],
+        [
+          "ExamSession/Services/ExamSessionService.php",
+          "App\\Domains\\ExamEngine\\Contracts\\QuestionSelectionService"
+        ],
+        [
+          "ExamSession/Services/ExamSessionService.php",
+          "App\\Domains\\ExamEngine\\Repositories\\ExamRepository"
+        ],
+        [
+          "ExamSession/Services/ExamSessionServiceImpl.php",
+          "App\\Domains\\ExamEngine\\Contracts\\QuestionSelectionService"
+        ],
+        [
+          "ExamSession/Services/ExamSessionServiceImpl.php",
+          "App\\Domains\\ExamEngine\\Enums\\ExamStatus"
+        ],
+        [
+          "ExamSession/Services/ExamSessionServiceImpl.php",
+          "App\\Domains\\ExamEngine\\Repositories\\ExamRepository"
+        ]
+      ],
+      "Cohorts": [
+        [
+          "ExamSession/Models/ExamCandidateEligible.php",
+          "App\\Domains\\Cohorts\\Models\\Cohort"
+        ],
+        [
+          "ExamSession/Services/ExamSessionServiceImpl.php",
+          "App\\Domains\\Cohorts\\Repositories\\CohortMemberRepository"
+        ]
+      ],
+      "Rules": [
+        [
+          "ExamSession/Services/ExamSessionServiceImpl.php",
+          "App\\Domains\\Rules\\DTOs\\EligibilityContext"
+        ],
+        [
+          "ExamSession/Services/ExamSessionServiceImpl.php",
+          "App\\Domains\\Rules\\Services\\EligibilityEvaluatorService"
+        ]
+      ],
+      "Identity": [
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "ExamSession/Models/ExamCandidateEligible.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "ExamSession/Models/QuestionResponse.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "ExamSession/Policies/ExamSessionPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "ExamSession/Policies/ExamSessionPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "QuestionBank": [
+        [
+          "ExamSession/Models/ExamSessionItem.php",
+          "App\\Domains\\QuestionBank\\Models\\QuestionVersion"
+        ],
+        [
+          "ExamSession/Models/QuestionResponse.php",
+          "App\\Domains\\QuestionBank\\Models\\QuestionVersion"
+        ]
+      ],
+      "Shared": [
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "ExamSession/Models/ExamCandidateEligible.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "ExamSession/Models/ExamCandidateEligible.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "ExamSession/Models/ExamSessionItem.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "ExamSession/Models/QuestionResponse.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "ExamSession/Models/QuestionResponse.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ],
+      "Grading": [
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Grading\\Models\\AnswerEvaluation"
+        ],
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Grading\\Models\\AssessmentResult"
+        ],
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Grading\\Models\\CompetencyScore"
+        ],
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Grading\\Models\\Grade"
+        ]
+      ],
+      "Penalties": [
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Penalties\\Models\\PenaltySanction"
+        ]
+      ],
+      "Proctoring": [
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Proctoring\\Models\\BrowserLockdownEvent"
+        ],
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Proctoring\\Models\\DeviceFingerprint"
+        ],
+        [
+          "ExamSession/Models/CandidateExamStatus.php",
+          "App\\Domains\\Proctoring\\Models\\ProctorLog"
+        ]
+      ]
+    },
+    "Grading": {
+      "Penalties": [
+        [
+          "Grading/Services/PenaltyApplicationService.php",
+          "App\\Domains\\Penalties\\Repositories\\PenaltySanctionRepository"
+        ]
+      ],
+      "Proctoring": [
+        [
+          "Grading/Services/PenaltyApplicationService.php",
+          "App\\Domains\\Proctoring\\Models\\ProctorLog"
+        ]
+      ],
+      "Workflows": [
+        [
+          "Grading/Models/AssessmentResult.php",
+          "App\\Domains\\Workflows\\Models\\ApprovalWorkflow"
+        ],
+        [
+          "Grading/Services/ResultPublicationServiceImpl.php",
+          "App\\Domains\\Workflows\\Services\\ApprovalWorkflowService"
+        ]
+      ],
+      "ExamSession": [
+        [
+          "Grading/Contracts/AssessmentFinalizationService.php",
+          "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted"
+        ],
+        [
+          "Grading/Contracts/GradingService.php",
+          "App\\Domains\\ExamSession\\Events\\ResponseSubmitted"
+        ],
+        [
+          "Grading/Listeners/ExamSessionCompletedListener.php",
+          "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted"
+        ],
+        [
+          "Grading/Listeners/ResponseSubmittedListener.php",
+          "App\\Domains\\ExamSession\\Events\\ResponseSubmitted"
+        ],
+        [
+          "Grading/Models/AnswerEvaluation.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "Grading/Models/AssessmentResult.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "Grading/Models/CompetencyScore.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "Grading/Models/Grade.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "Grading/Providers/GradingServiceProvider.php",
+          "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted"
+        ],
+        [
+          "Grading/Providers/GradingServiceProvider.php",
+          "App\\Domains\\ExamSession\\Events\\ResponseSubmitted"
+        ],
+        [
+          "Grading/Services/AssessmentFinalizationServiceImpl.php",
+          "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted"
+        ],
+        [
+          "Grading/Services/AssessmentFinalizationServiceImpl.php",
+          "App\\Domains\\ExamSession\\Repositories\\ExamSessionItemRepository"
+        ],
+        [
+          "Grading/Services/GradingServiceImpl.php",
+          "App\\Domains\\ExamSession\\Events\\ResponseSubmitted"
+        ],
+        [
+          "Grading/Services/ManualEvaluationServiceImpl.php",
+          "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted"
+        ],
+        [
+          "Grading/Services/ManualEvaluationServiceImpl.php",
+          "App\\Domains\\ExamSession\\Repositories\\SessionRepository"
+        ],
+        [
+          "Grading/Services/WeightedScoringService.php",
+          "App\\Domains\\ExamSession\\Models\\ExamSessionItem"
+        ]
+      ],
+      "ExamEngine": [
+        [
+          "Grading/Models/AssessmentResult.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ],
+        [
+          "Grading/Models/Grade.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ],
+        [
+          "Grading/Models/Rubric.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ],
+        [
+          "Grading/Providers/GradingServiceProvider.php",
+          "App\\Domains\\ExamEngine\\Repositories\\ExamBlueprintRepository"
+        ],
+        [
+          "Grading/Services/AssessmentFinalizationServiceImpl.php",
+          "App\\Domains\\ExamEngine\\Repositories\\ExamBlueprintRepository"
+        ],
+        [
+          "Grading/Services/WeightedScoringService.php",
+          "App\\Domains\\ExamEngine\\Models\\ExamBlueprint"
+        ]
+      ],
+      "QuestionBank": [
+        [
+          "Grading/Models/AnswerEvaluation.php",
+          "App\\Domains\\QuestionBank\\Models\\Question"
+        ],
+        [
+          "Grading/Services/GradingServiceImpl.php",
+          "App\\Domains\\QuestionBank\\Models\\QuestionVersion"
+        ]
+      ],
+      "Identity": [
+        [
+          "Grading/Models/AnswerEvaluation.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Grading/Models/AssessmentResult.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Grading/Models/CompetencyScore.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Grading/Models/Grade.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Grading/Models/Rubric.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Grading/Policies/GradingPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "Grading/Policies/GradingPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "Shared": [
+        [
+          "Grading/Models/AnswerEvaluation.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Grading/Models/AnswerEvaluation.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Grading/Models/AssessmentResult.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Grading/Models/AssessmentResult.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Grading/Models/CompetencyScore.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Grading/Models/CompetencyScore.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Grading/Models/Grade.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Grading/Models/Grade.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Grading/Models/Rubric.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Grading/Models/Rubric.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Grading/Models/RubricCriterion.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ],
+      "Competency": [
+        [
+          "Grading/Models/CompetencyScore.php",
+          "App\\Domains\\Competency\\Models\\Competency"
+        ]
+      ]
+    },
+    "Identity": {
+      "Shared": [
+        [
+          "Identity/Models/Department.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/Department.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/IpWhitelist.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/IpWhitelist.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/LoginAttempt.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/LoginAttempt.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/MfaDevice.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/MfaDevice.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/Permission.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/Permission.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/Role.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/Role.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/SecurityPolicy.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/SecurityPolicy.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/User.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/User.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/UserPreference.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/UserPreference.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Identity/Models/UserSession.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Identity/Models/UserSession.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ]
+    },
+    "Penalties": {
+      "Proctoring": [
+        [
+          "Penalties/Contracts/PenaltyTrigger.php",
+          "App\\Domains\\Proctoring\\Events\\ProctorEventLogged"
+        ],
+        [
+          "Penalties/Listeners/ApplyPenaltyOnProctorEventListener.php",
+          "App\\Domains\\Proctoring\\Events\\ProctorEventLogged"
+        ],
+        [
+          "Penalties/Providers/PenaltiesServiceProvider.php",
+          "App\\Domains\\Proctoring\\Events\\ProctorEventLogged"
+        ],
+        [
+          "Penalties/Services/PenaltyEvaluationService.php",
+          "App\\Domains\\Proctoring\\Events\\ProctorEventLogged"
+        ],
+        [
+          "Penalties/Triggers/ProctorEventTypeTrigger.php",
+          "App\\Domains\\Proctoring\\Events\\ProctorEventLogged"
+        ],
+        [
+          "Penalties/Triggers/SeverityThresholdTrigger.php",
+          "App\\Domains\\Proctoring\\Events\\ProctorEventLogged"
+        ]
+      ],
+      "Identity": [
+        [
+          "Penalties/Models/PenaltyRule.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Penalties/Models/PenaltySanction.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Penalties/Policies/PenaltyPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "Penalties/Policies/PenaltyPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "Shared": [
+        [
+          "Penalties/Models/PenaltyRule.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Penalties/Models/PenaltyRule.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Penalties/Models/PenaltySanction.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Penalties/Models/PenaltySanction.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ],
+      "ExamSession": [
+        [
+          "Penalties/Models/PenaltySanction.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ]
+      ]
+    },
+    "Proctoring": {
+      "ExamSession": [
+        [
+          "Proctoring/Contracts/ProctoringService.php",
+          "App\\Domains\\ExamSession\\Exceptions\\SessionNotFoundException"
+        ],
+        [
+          "Proctoring/Models/BrowserLockdownEvent.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "Proctoring/Models/DeviceFingerprint.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "Proctoring/Models/ProctorLog.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "Proctoring/Services/ProctoringServiceImpl.php",
+          "App\\Domains\\ExamSession\\Exceptions\\SessionNotFoundException"
+        ],
+        [
+          "Proctoring/Services/ProctoringServiceImpl.php",
+          "App\\Domains\\ExamSession\\Repositories\\SessionRepository"
+        ],
+        [
+          "Proctoring/Services/ProctoringServiceImpl.php",
+          "App\\Domains\\ExamSession\\States\\ExamSessionStateFactory"
+        ]
+      ],
+      "Identity": [
+        [
+          "Proctoring/Models/BrowserLockdownEvent.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Proctoring/Models/DeviceFingerprint.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Proctoring/Models/ProctorLog.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "Shared": [
+        [
+          "Proctoring/Models/BrowserLockdownEvent.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Proctoring/Models/BrowserLockdownEvent.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Proctoring/Models/DeviceFingerprint.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Proctoring/Models/DeviceFingerprint.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Proctoring/Models/ProctorLog.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Proctoring/Models/ProctorLog.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ]
+    },
+    "QuestionBank": {
+      "ExamSession": [
+        [
+          "QuestionBank/Listeners/RecalculatePsychometricsListener.php",
+          "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted"
+        ],
+        [
+          "QuestionBank/Providers/QuestionBankServiceProvider.php",
+          "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted"
+        ],
+        [
+          "QuestionBank/Repositories/QuestionBankRepository.php",
+          "App\\Domains\\ExamSession\\Models\\QuestionResponse"
+        ],
+        [
+          "QuestionBank/Services/PsychometricAnalysisService.php",
+          "App\\Domains\\ExamSession\\Repositories\\ExamSessionItemRepository"
+        ]
+      ],
+      "Grading": [
+        [
+          "QuestionBank/Services/PsychometricAnalysisService.php",
+          "App\\Domains\\Grading\\Repositories\\AnswerEvaluationRepository"
+        ]
+      ],
+      "Identity": [
+        [
+          "QuestionBank/Models/Question.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "QuestionBank/Models/QuestionAttachment.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "QuestionBank/Models/QuestionVersion.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "QuestionBank/Policies/CategoryPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "QuestionBank/Policies/CategoryPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "QuestionBank/Policies/QuestionPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "QuestionBank/Policies/QuestionPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "Shared": [
+        [
+          "QuestionBank/Models/Category.php",
+          "App\\Domains\\Shared\\Traits\\BelongsToTenant"
+        ],
+        [
+          "QuestionBank/Models/Category.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "QuestionBank/Models/Question.php",
+          "App\\Domains\\Shared\\Traits\\BelongsToTenant"
+        ],
+        [
+          "QuestionBank/Models/Question.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "QuestionBank/Models/QuestionAttachment.php",
+          "App\\Domains\\Shared\\Traits\\BelongsToTenant"
+        ],
+        [
+          "QuestionBank/Models/QuestionAttachment.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "QuestionBank/Models/QuestionOption.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "QuestionBank/Models/QuestionPsychometrics.php",
+          "App\\Domains\\Shared\\Traits\\BelongsToTenant"
+        ],
+        [
+          "QuestionBank/Models/QuestionPsychometrics.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "QuestionBank/Models/QuestionTag.php",
+          "App\\Domains\\Shared\\Traits\\BelongsToTenant"
+        ],
+        [
+          "QuestionBank/Models/QuestionTag.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "QuestionBank/Models/QuestionVersion.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ],
+      "Competency": [
+        [
+          "QuestionBank/Models/Question.php",
+          "App\\Domains\\Competency\\Models\\Competency"
+        ]
+      ]
+    },
+    "Rules": {
+      "Grading": [
+        [
+          "Rules/Conditions/PrerequisiteExamConditionEvaluator.php",
+          "App\\Domains\\Grading\\Repositories\\GradeRepository"
+        ]
+      ],
+      "ExamEngine": [
+        [
+          "Rules/Models/EligibilityChain.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ]
+      ],
+      "Identity": [
+        [
+          "Rules/Models/EligibilityChain.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Rules/Models/Rule.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Rules/Models/RuleTemplate.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "Shared": [
+        [
+          "Rules/Models/EligibilityChain.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Rules/Models/EligibilityChain.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Rules/Models/Rule.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Rules/Models/Rule.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Rules/Models/RuleAction.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Rules/Models/RuleCondition.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Rules/Models/RuleTemplate.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Rules/Models/RuleTemplate.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ]
+    },
+    "Workflows": {
+      "Grading": [
+        [
+          "Workflows/Services/ApprovalWorkflowService.php",
+          "App\\Domains\\Grading\\Models\\AssessmentResult"
+        ]
+      ],
+      "Identity": [
+        [
+          "Workflows/Models/ApprovalWorkflow.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Workflows/Models/AssessmentChecklistItem.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Workflows/Models/BridgeEntryHybrid.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Workflows/Models/EvaluatorObservation.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Workflows/Models/GroupDashboard.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Workflows/Models/ManualAssessment.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Workflows/Models/WorkflowApproval.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Workflows/Models/WorkflowHistory.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ],
+        [
+          "Workflows/Policies/ApprovalWorkflowPolicy.php",
+          "App\\Domains\\Identity\\Contracts\\AuthorizationService"
+        ],
+        [
+          "Workflows/Policies/ApprovalWorkflowPolicy.php",
+          "App\\Domains\\Identity\\Models\\User"
+        ]
+      ],
+      "Shared": [
+        [
+          "Workflows/Models/ApprovalWorkflow.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Workflows/Models/ApprovalWorkflow.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/AssessmentChecklistItem.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Workflows/Models/AssessmentChecklistItem.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/BridgeEntryHybrid.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Workflows/Models/BridgeEntryHybrid.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/ChecklistResponse.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/EvaluatorObservation.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Workflows/Models/EvaluatorObservation.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/GroupDashboard.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Workflows/Models/GroupDashboard.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/ManualAssessment.php",
+          "App\\Domains\\Shared\\Traits\\AutoFillsTenantId"
+        ],
+        [
+          "Workflows/Models/ManualAssessment.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/WorkflowApproval.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/WorkflowHistory.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ],
+        [
+          "Workflows/Models/WorkflowState.php",
+          "App\\Domains\\Shared\\Traits\\UsesUuid"
+        ]
+      ],
+      "ExamEngine": [
+        [
+          "Workflows/Models/AssessmentChecklistItem.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ],
+        [
+          "Workflows/Models/BridgeEntryHybrid.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ],
+        [
+          "Workflows/Models/ManualAssessment.php",
+          "App\\Domains\\ExamEngine\\Models\\Exam"
+        ]
+      ],
+      "Cohorts": [
+        [
+          "Workflows/Models/GroupDashboard.php",
+          "App\\Domains\\Cohorts\\Models\\Cohort"
+        ]
+      ],
+      "ExamSession": [
+        [
+          "Workflows/Models/BridgeEntryHybrid.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ],
+        [
+          "Workflows/Models/ManualAssessment.php",
+          "App\\Domains\\ExamSession\\Models\\CandidateExamStatus"
+        ]
+      ]
+    }
+  },
+  "circular_dependencies": [
+    {
+      "domain_a": "Grading",
+      "domain_b": "ExamEngine",
+      "a_to_b_usages": 6,
+      "b_to_a_usages": 1
+    },
+    {
+      "domain_a": "Grading",
+      "domain_b": "QuestionBank",
+      "a_to_b_usages": 2,
+      "b_to_a_usages": 1
+    },
+    {
+      "domain_a": "Cohorts",
+      "domain_b": "ExamSession",
+      "a_to_b_usages": 1,
+      "b_to_a_usages": 2
+    },
+    {
+      "domain_a": "Competency",
+      "domain_b": "QuestionBank",
+      "a_to_b_usages": 1,
+      "b_to_a_usages": 1
+    },
+    {
+      "domain_a": "ExamSession",
+      "domain_b": "ExamEngine",
+      "a_to_b_usages": 8,
+      "b_to_a_usages": 2
+    },
+    {
+      "domain_a": "Workflows",
+      "domain_b": "Grading",
+      "a_to_b_usages": 1,
+      "b_to_a_usages": 2
+    },
+    {
+      "domain_a": "ExamSession",
+      "domain_b": "QuestionBank",
+      "a_to_b_usages": 2,
+      "b_to_a_usages": 4
+    },
+    {
+      "domain_a": "Grading",
+      "domain_b": "ExamSession",
+      "a_to_b_usages": 16,
+      "b_to_a_usages": 4
+    },
+    {
+      "domain_a": "ExamSession",
+      "domain_b": "Penalties",
+      "a_to_b_usages": 1,
+      "b_to_a_usages": 1
+    },
+    {
+      "domain_a": "Rules",
+      "domain_b": "ExamEngine",
+      "a_to_b_usages": 1,
+      "b_to_a_usages": 1
+    },
+    {
+      "domain_a": "ExamSession",
+      "domain_b": "Proctoring",
+      "a_to_b_usages": 3,
+      "b_to_a_usages": 7
+    }
+  ],
+  "fan_in": {
+    "Identity": 12,
+    "ExamSession": 7,
+    "Grading": 6,
+    "QuestionBank": 4,
+    "ExamEngine": 4,
+    "Competency": 3,
+    "Proctoring": 3,
+    "Rules": 2,
+    "Cohorts": 2,
+    "Penalties": 2,
+    "Workflows": 1
+  },
+  "events": {
+    "ResponseSubmitted": {
+      "domain": "ExamSession",
+      "fqcn": "App\\Domains\\ExamSession\\Events\\ResponseSubmitted",
+      "file": "ExamSession/Events/ResponseSubmitted.php"
+    },
+    "ExamSessionCompleted": {
+      "domain": "ExamSession",
+      "fqcn": "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted",
+      "file": "ExamSession/Events/ExamSessionCompleted.php"
+    },
+    "ResultGenerated": {
+      "domain": "Grading",
+      "fqcn": "App\\Domains\\Grading\\Events\\ResultGenerated",
+      "file": "Grading/Events/ResultGenerated.php"
+    },
+    "ProctorEventLogged": {
+      "domain": "Proctoring",
+      "fqcn": "App\\Domains\\Proctoring\\Events\\ProctorEventLogged",
+      "file": "Proctoring/Events/ProctorEventLogged.php"
+    }
+  },
+  "event_registrations": [
+    {
+      "event": "ResultGenerated",
+      "event_fqcn": "App\\Domains\\Grading\\Events\\ResultGenerated",
+      "event_domain": "Grading",
+      "listener": "IngestResultGeneratedListener",
+      "listener_fqcn": "App\\Domains\\Analytics\\Listeners\\IngestResultGeneratedListener",
+      "listener_domain": "Analytics",
+      "registered_in": "Analytics/Providers/AnalyticsServiceProvider.php"
+    },
+    {
+      "event": "ResponseSubmitted",
+      "event_fqcn": "App\\Domains\\ExamSession\\Events\\ResponseSubmitted",
+      "event_domain": "ExamSession",
+      "listener": "ResponseSubmittedListener",
+      "listener_fqcn": "App\\Domains\\Grading\\Listeners\\ResponseSubmittedListener",
+      "listener_domain": "Grading",
+      "registered_in": "Grading/Providers/GradingServiceProvider.php"
+    },
+    {
+      "event": "ExamSessionCompleted",
+      "event_fqcn": "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted",
+      "event_domain": "ExamSession",
+      "listener": "ExamSessionCompletedListener",
+      "listener_fqcn": "App\\Domains\\Grading\\Listeners\\ExamSessionCompletedListener",
+      "listener_domain": "Grading",
+      "registered_in": "Grading/Providers/GradingServiceProvider.php"
+    },
+    {
+      "event": "ResultGenerated",
+      "event_fqcn": "App\\Domains\\Grading\\Events\\ResultGenerated",
+      "event_domain": "Grading",
+      "listener": "LogResultGeneratedListener",
+      "listener_fqcn": "App\\Domains\\Grading\\Listeners\\LogResultGeneratedListener",
+      "listener_domain": "Grading",
+      "registered_in": "Grading/Providers/GradingServiceProvider.php"
+    },
+    {
+      "event": "ResultGenerated",
+      "event_fqcn": "App\\Domains\\Grading\\Events\\ResultGenerated",
+      "event_domain": "Grading",
+      "listener": "ProcessFinalGradeListener",
+      "listener_fqcn": "App\\Domains\\Grading\\Listeners\\ProcessFinalGradeListener",
+      "listener_domain": "Grading",
+      "registered_in": "Grading/Providers/GradingServiceProvider.php"
+    },
+    {
+      "event": "ProctorEventLogged",
+      "event_fqcn": "App\\Domains\\Proctoring\\Events\\ProctorEventLogged",
+      "event_domain": "Proctoring",
+      "listener": "ApplyPenaltyOnProctorEventListener",
+      "listener_fqcn": "App\\Domains\\Penalties\\Listeners\\ApplyPenaltyOnProctorEventListener",
+      "listener_domain": "Penalties",
+      "registered_in": "Penalties/Providers/PenaltiesServiceProvider.php"
+    },
+    {
+      "event": "ExamSessionCompleted",
+      "event_fqcn": "App\\Domains\\ExamSession\\Events\\ExamSessionCompleted",
+      "event_domain": "ExamSession",
+      "listener": "RecalculatePsychometricsListener",
+      "listener_fqcn": "App\\Domains\\QuestionBank\\Listeners\\RecalculatePsychometricsListener",
+      "listener_domain": "QuestionBank",
+      "registered_in": "QuestionBank/Providers/QuestionBankServiceProvider.php"
+    }
+  ]
+}

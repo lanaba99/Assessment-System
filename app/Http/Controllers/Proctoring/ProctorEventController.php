@@ -64,6 +64,9 @@ class ProctorEventController extends Controller
      */
     public function index(Request $request, string $sessionId): JsonResponse
     {
+
+        $this->authorize('viewForSession', \App\Domains\Proctoring\Policies\ProctoringPolicy::class);
+    
         $tenantId = (string) tenant()->getKey();
 
         try {
@@ -77,7 +80,6 @@ class ProctorEventController extends Controller
             Response::HTTP_OK,
         );
     }
-
     private function errorResponse(string $code, string $message, int $status): JsonResponse
     {
         return new JsonResponse(

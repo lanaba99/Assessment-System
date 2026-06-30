@@ -1,0 +1,27 @@
+flowchart TD
+    classDef domainBox fill:#EEEDFE,stroke:#534AB7
+    classDef eventBox fill:#FAECE7,stroke:#D85A30
+    D_Grading["Grading"]:::domainBox
+    D_Analytics["Analytics"]:::domainBox
+    EV_ResultGenerated("ResultGenerated"):::eventBox
+    D_Grading -- fires --> EV_ResultGenerated
+    EV_ResultGenerated -. "IngestResultGeneratedListener" .-> D_Analytics
+    D_ExamSession["ExamSession"]:::domainBox
+    EV_ResponseSubmitted("ResponseSubmitted"):::eventBox
+    D_ExamSession -- fires --> EV_ResponseSubmitted
+    EV_ResponseSubmitted -. "ResponseSubmittedListener" .-> D_Grading
+    EV_ExamSessionCompleted("ExamSessionCompleted"):::eventBox
+    D_ExamSession -- fires --> EV_ExamSessionCompleted
+    EV_ExamSessionCompleted -. "ExamSessionCompletedListener" .-> D_Grading
+    D_Grading -- fires --> EV_ResultGenerated
+    EV_ResultGenerated -. "LogResultGeneratedListener" .-> D_Grading
+    D_Grading -- fires --> EV_ResultGenerated
+    EV_ResultGenerated -. "ProcessFinalGradeListener" .-> D_Grading
+    D_Proctoring["Proctoring"]:::domainBox
+    D_Penalties["Penalties"]:::domainBox
+    EV_ProctorEventLogged("ProctorEventLogged"):::eventBox
+    D_Proctoring -- fires --> EV_ProctorEventLogged
+    EV_ProctorEventLogged -. "ApplyPenaltyOnProctorEventListener" .-> D_Penalties
+    D_QuestionBank["QuestionBank"]:::domainBox
+    D_ExamSession -- fires --> EV_ExamSessionCompleted
+    EV_ExamSessionCompleted -. "RecalculatePsychometricsListener" .-> D_QuestionBank
