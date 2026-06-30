@@ -19,7 +19,7 @@ class ProctoringPolicy
      * given to the proctoring tool or candidate's browser agent, this is the only endpoint that can ingest events.
      * this is a "system" permission, not given to any human user.
      */
-    
+
     public function viewForSession(User $actor): bool
     {
         return $this->hasPermission($actor, 'proctoring.view');
@@ -32,5 +32,10 @@ class ProctoringPolicy
             (string) $actor->id,
             $permission,
         );
+    }
+
+    public function ingestEvents(User $user): bool
+    {
+        return $user->hasPermission('proctoring.ingest');
     }
 }
