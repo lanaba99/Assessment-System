@@ -7,10 +7,12 @@ namespace App\Domains\Proctoring\Providers;
 use App\Domains\Proctoring\Contracts\ProctoringService;
 use App\Domains\Proctoring\Events\ProctorEventLogged;
 use App\Domains\Proctoring\Models\ProctorLog;
+use App\Domains\Proctoring\Policies\ProctoringPolicy;
 use App\Domains\Proctoring\Services\ProctoringServiceImpl;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -25,6 +27,8 @@ class ProctoringServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Gate::policy(ProctorLog::class, ProctoringPolicy::class);
+
         ProctorLog::created(static function (ProctorLog $log): void {
             $timestamp = $log->event_timestamp;
 

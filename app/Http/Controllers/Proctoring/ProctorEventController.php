@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Proctoring;
 use App\Domains\ExamSession\Exceptions\SessionNotFoundException;
 use App\Domains\Proctoring\Contracts\ProctoringService;
 use App\Domains\Proctoring\Exceptions\SessionNotProctorableException;
+use App\Domains\Proctoring\Models\ProctorLog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Proctoring\LogProctorEventRequest;
 use App\Http\Resources\Proctoring\ProctorLogResource;
@@ -39,7 +40,7 @@ class ProctorEventController extends Controller
     public function store(LogProctorEventRequest $request, string $sessionId): JsonResponse
     {
         // machine to machine permission, not given to any human user, enforced by the policy gate
-        $this->authorize('ingestEvents', \App\Domains\Proctoring\Policies\ProctoringPolicy::class);
+        $this->authorize('ingestEvents', ProctorLog::class);
 
         $tenantId = (string) tenant()->getKey();
 
@@ -68,7 +69,7 @@ class ProctorEventController extends Controller
     public function index(Request $request, string $sessionId): JsonResponse
     {
 
-        $this->authorize('viewForSession', \App\Domains\Proctoring\Policies\ProctoringPolicy::class);
+        $this->authorize('viewForSession', ProctorLog::class);
     
         $tenantId = (string) tenant()->getKey();
 

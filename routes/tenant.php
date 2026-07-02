@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Analytics\AnalyticsDashboardController;
 use App\Http\Controllers\AssessmentResultController;
+use App\Http\Controllers\AssessmentResultController as ControllersAssessmentResultController;
 use App\Http\Controllers\ExamEngine\ExamController;
 use App\Http\Controllers\ExamSession\ExamSessionController;
 use App\Http\Controllers\ExamSession\EnrollmentController;

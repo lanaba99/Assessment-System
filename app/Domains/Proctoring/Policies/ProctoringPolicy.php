@@ -36,6 +36,6 @@ class ProctoringPolicy
 
     public function ingestEvents(User $user): bool
     {
-        return $user->hasPermission('proctoring.ingest');
+        return $this->hasPermission($user, 'proctoring.ingest');
     }
 }
