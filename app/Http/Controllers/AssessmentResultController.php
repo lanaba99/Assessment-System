@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Domains\Grading\Contracts\AssessmentResultService;
+use App\Domains\Grading\Models\AssessmentResult;
 use App\Http\Resources\AssessmentResultResource;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -17,26 +19,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AssessmentResultController extends Controller
 {
-    use AuthorizesRequests;
-
     public function __construct(
         private readonly AssessmentResultService $resultService,
     ) {
     }
 
-    public function index(string $sessionId): JsonResponse
+    public function index(Request $request, string $sessionId): JsonResponse
     {
-        // Tenant is resolved from the subdomain-based tenancy middleware — every
-        // request on this route has already been verified to belong to a specific
-        // tenant before this controller is reached.
+        $actor = $request->user();
+
+        if ($actor === null) {
+            return response()->json([
+                'error' => ['code' => 'not_authenticated', 'message' => 'Authentication required.'],
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
         $tenantId = (string) tenant()->getKey();
 
-        // TODO (Phase C): add a GradingPolicy check here once the policy is built.
-        // Candidates should only see their own session's result; proctors/admins
-        // with grading.view should be able to see any session's result within their
-        // tenant. For now, tenant isolation is enforced at the service layer.
-
-        $view = $this->resultService->getForSession($tenantId, $sessionId);
+        // Evaluators/admins with grading.view|grading.evaluate|grading.publish can
+        // read any session's result within the tenant. Everyone else (candidates)
+        // only gets their own result, and only once it has been published.
+        $view = Gate::forUser($actor)->allows('viewResult', AssessmentResult::class)
+            ? $this->resultService->getForSession($tenantId, $sessionId)
+            : $this->resultService->getPublishedForCandidateSession(
+                $tenantId,
+                $sessionId,
+                (string) $actor->id,
+            );
 
         if ($view === null) {
             return response()->json([

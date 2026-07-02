@@ -154,6 +154,8 @@ class TenantMasterSeeder extends Seeder
             ['name' => 'analytics.view',        'resource' => 'analytics','action' => 'view'],
             ['name' => 'categories.manage',     'resource' => 'category', 'action' => 'manage'],
             ['name' => 'competencies.manage',   'resource' => 'competency', 'action' => 'manage'],
+            ['name' => 'eligibility.manage',    'resource' => 'eligibility', 'action' => 'manage'],
+            ['name' => 'eligibility.view',      'resource' => 'eligibility', 'action' => 'view'],
         ];
 
         $permissions = array_merge($identityPermissions, $domainPermissions);
@@ -220,6 +222,8 @@ class TenantMasterSeeder extends Seeder
                 'grading.view',
                 'grading.publish',
                 'workflows.manage',
+                'eligibility.manage',
+                'eligibility.view',
             ], 
         
             RoleName::Candidate->value          => [

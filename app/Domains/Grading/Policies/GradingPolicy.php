@@ -81,6 +81,18 @@ class GradingPolicy
             || $this->hasPermission($actor, 'grading.publish');
     }
 
+        /**
+     * Can the actor view any session's result without ownership restriction?
+     * Granted to evaluators/admins with grading.view, grading.evaluate, or grading.publish.
+     * Candidates (with none of these) fall back to the candidate-scoped, published-only path.
+     */
+    public function viewResult(User $actor): bool
+    {
+        return $this->hasPermission($actor, 'grading.view')
+            || $this->hasPermission($actor, 'grading.evaluate')
+            || $this->hasPermission($actor, 'grading.publish');
+    }
+    
     private function sameTenant(User $actor, AnswerEvaluation $eval): bool
     {
         return (string) $actor->tenant_id === (string) $eval->tenant_id;
