@@ -24,6 +24,9 @@ use App\Http\Controllers\Penalties\PenaltyRuleController;
 use App\Http\Controllers\Penalties\PenaltySanctionController;
 use App\Http\Controllers\Workflows\ApprovalWorkflowController;
 use App\Http\Controllers\Proctoring\ProctorEventController;
+
+use App\Http\Controllers\Rules\EligibilityChainController;
+
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -132,6 +135,32 @@ Route::middleware([
                     ->name('api.v1.roles.unassign');
             });
 
+        // -----------------------------------------------------------------
+        // EligibilityChainController —  5 added new 2nd/7 - lanaZ 
+        // -----------------------------------------------------------------
+
+
+            Route::prefix('eligibility-chains')->group(function (): void {
+                Route::get('/', [EligibilityChainController::class, 'index'])
+                    ->name('api.v1.eligibility-chains.index');
+
+                Route::post('/', [EligibilityChainController::class, 'store'])
+                    ->name('api.v1.eligibility-chains.store');
+
+                Route::get('{chainId}', [EligibilityChainController::class, 'show'])
+                    ->whereUuid('chainId')
+                    ->name('api.v1.eligibility-chains.show');
+
+                Route::patch('{chainId}', [EligibilityChainController::class, 'update'])
+                    ->whereUuid('chainId')
+                    ->name('api.v1.eligibility-chains.update');
+
+                Route::delete('{chainId}', [EligibilityChainController::class, 'destroy'])
+                    ->whereUuid('chainId')
+                    ->name('api.v1.eligibility-chains.destroy');
+            });
+            
+            
             Route::prefix('security')->group(function (): void {
                 Route::get('policies', [SecurityController::class, 'policies'])
                     ->name('api.v1.security.policies.show');
@@ -445,5 +474,6 @@ Route::middleware([
                     ->whereUuid('enrollmentId')
                     ->name('api.v1.enrollments.destroy');
             });
+
         });
     });
