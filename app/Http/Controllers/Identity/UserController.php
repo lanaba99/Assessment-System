@@ -13,6 +13,7 @@ use App\Http\Requests\Identity\InviteUserRequest;
 use App\Http\Requests\Identity\PaginatedIndexRequest;
 use App\Http\Requests\Identity\RegisterRequest;
 use App\Http\Requests\Identity\ResetPasswordRequest;
+use App\Http\Requests\Identity\UpdateUserByAdminRequest; // added new 2nd/7 - lanaz 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -95,6 +96,30 @@ class UserController extends Controller
         }
 
         $this->authorize('view', $target);
+
+        $profile = $this->userService->getProfile((string) tenant()->getKey(), $userId);
+
+        return new JsonResponse(['data' => $profile], Response::HTTP_OK);
+    }
+
+
+    public function update(UpdateUserByAdminRequest $request, string $userId): JsonResponse
+    {
+        $actor = $request->user();
+        $target = $this->loadOwnedUserOr404($actor, $userId);
+        if ($target instanceof JsonResponse) {
+            return $target;
+        }
+
+        // CRITICAL: UpdateUserByAdminRequest::authorize() always returns true —
+        // this is the ONLY authorization check. Do not remove.
+        $this->authorize('update', $target);
+
+        $this->userService->updateProfileByAdmin(
+            tenantId: (string) tenant()->getKey(),
+            userId: $userId,
+            changes: $request->changes(),
+        );
 
         $profile = $this->userService->getProfile((string) tenant()->getKey(), $userId);
 

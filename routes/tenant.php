@@ -101,6 +101,10 @@ Route::middleware([
                 ->whereUuid('userId')
                 ->name('api.v1.users.show');
 
+            Route::patch('users/{userId}', [UserController::class, 'update']) // added new 2nd/7 - lanaz 
+                ->whereUuid('userId')
+                ->name('api.v1.users.update');
+
             Route::post('users/{userId}/reset-password', [UserController::class, 'resetPassword'])
                 ->whereUuid('userId')
                 ->name('api.v1.users.reset-password');
