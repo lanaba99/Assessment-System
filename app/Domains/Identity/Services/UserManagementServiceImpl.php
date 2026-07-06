@@ -14,6 +14,7 @@ use App\Domains\Identity\Repositories\UserRepository;
 use App\Domains\Identity\Repositories\UserSessionRepository;
 use App\Domains\Identity\Repositories\UserSubtypeRepository;
 use App\Http\Requests\Identity\UpdateProfileRequest;
+use App\Domains\Identity\Notifications\UserInvited;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
@@ -108,7 +109,8 @@ class UserManagementServiceImpl implements UserManagementService
                 $this->hasher->make($plainToken),
             );
 
-            // TODO: dispatch invitation notification/email with the plaintext token.
+            // Done: dispatch invitation notification/email with the plaintext token.
+            $user->notify(new UserInvited($plainToken));
 
             return new UserInviteResult(
                 userId: (string) $user->id,

@@ -18,7 +18,6 @@ use App\Domains\Grading\Services\CompetencyAggregationService;
 use App\Domains\Grading\Services\CompetencyScoringService;
 use App\Domains\Grading\Services\WeightedScoringService;
 use App\Domains\Grading\Listeners\ExamSessionCompletedListener;
-use App\Domains\Grading\Listeners\LogResultGeneratedListener;
 use App\Domains\Grading\Listeners\ProcessFinalGradeListener;
 use App\Domains\Grading\Listeners\ResponseSubmittedListener;
 use App\Domains\Grading\Services\AssessmentFinalizationServiceImpl;
@@ -88,7 +87,10 @@ class GradingServiceProvider extends ServiceProvider
         Event::listen(ExamSessionCompleted::class, [ExamSessionCompletedListener::class, 'handle']);
 
         // Temporary placeholder — see LogResultGeneratedListener for observability only.
-        Event::listen(ResultGenerated::class, [LogResultGeneratedListener::class, 'handle']);
+        // Event::listen(ResultGenerated::class, [LogResultGeneratedListener::class, 'handle']); 
+        // this is old before the analytics ingestion was moved to the AnalyticsServiceProvider.
+
+
         // Analytics ingestion is registered in AnalyticsServiceProvider.
         Event::listen(ResultGenerated::class, [ProcessFinalGradeListener::class, 'handle']);
     }
