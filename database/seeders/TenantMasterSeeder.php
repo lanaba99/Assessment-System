@@ -14,6 +14,8 @@ class TenantMasterSeeder extends Seeder
 {
     private string $tenantId;
     private string $adminUserId;
+    private string $proctorUserId;
+    private string $evaluatorUserId;
     private array $roleIds = [];
     private array $permissionIds = [];
     private array $competencyIds = [];
@@ -34,6 +36,7 @@ class TenantMasterSeeder extends Seeder
             $this->seedPermissions();
             $this->seedRolePermissions();
             $this->seedUserRoles();
+            $this->seedProctorAndEvaluatorUsers();
             $this->seedSecurityPolicy();
             $this->seedCompetenciesAndLevels();
             $this->seedQuestionCategory();
@@ -251,6 +254,65 @@ class TenantMasterSeeder extends Seeder
             'user_id'     => $this->adminUserId,
             'role_id'     => $this->roleIds['Super Admin'],
             'assigned_at' => now(),
+        ]);
+    }
+
+    /**
+     * Dedicated Proctor and Technical Evaluator accounts, so role-scoped
+     * authorization (not just Super Admin's all-permissions shortcut) is
+     * actually testable via Postman/manual QA.
+     */
+    private function seedProctorAndEvaluatorUsers(): void
+    {
+        $this->proctorUserId = (string) Str::uuid();
+        $this->evaluatorUserId = (string) Str::uuid();
+
+        DB::table('users')->insert([
+            [
+                'id' => $this->proctorUserId,
+                'tenant_id' => $this->tenantId,
+                'external_employee_id' => 'EMP-000002',
+                'email' => 'proctor@alpha-engine.example',
+                'password_hash' => Hash::make('password'),
+                'first_name' => 'Proctor',
+                'last_name' => 'One',
+                'user_type' => 'staff',
+                'status' => 'active',
+                'is_active' => true,
+                'activated_at' => now(),
+                'email_verified_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => $this->evaluatorUserId,
+                'tenant_id' => $this->tenantId,
+                'external_employee_id' => 'EMP-000003',
+                'email' => 'evaluator@alpha-engine.example',
+                'password_hash' => Hash::make('password'),
+                'first_name' => 'Technical',
+                'last_name' => 'Evaluator',
+                'user_type' => 'staff',
+                'status' => 'active',
+                'is_active' => true,
+                'activated_at' => now(),
+                'email_verified_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        DB::table('user_roles')->insert([
+            [
+                'user_id' => $this->proctorUserId,
+                'role_id' => $this->roleIds['Proctor'],
+                'assigned_at' => now(),
+            ],
+            [
+                'user_id' => $this->evaluatorUserId,
+                'role_id' => $this->roleIds['Technical Evaluator'],
+                'assigned_at' => now(),
+            ],
         ]);
     }
 
