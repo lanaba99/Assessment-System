@@ -83,6 +83,42 @@ class TenantController extends Controller
         );
     }
 
+    public function suspend(Request $request, string $tenantId): JsonResponse
+    {
+        $tenant = $this->tenants->find($tenantId);
+
+        if ($tenant === null) {
+            return $this->notFound($tenantId);
+        }
+
+        $this->authorize('update', $tenant);
+
+        $updated = $this->tenants->suspend($tenant);
+
+        return new JsonResponse(
+            ['data' => new TenantResource($updated)],
+            Response::HTTP_OK,
+        );
+    }
+
+    public function reactivate(Request $request, string $tenantId): JsonResponse
+    {
+        $tenant = $this->tenants->find($tenantId);
+
+        if ($tenant === null) {
+            return $this->notFound($tenantId);
+        }
+
+        $this->authorize('update', $tenant);
+
+        $updated = $this->tenants->reactivate($tenant);
+
+        return new JsonResponse(
+            ['data' => new TenantResource($updated)],
+            Response::HTTP_OK,
+        );
+    }
+
     private function notFound(string $tenantId): JsonResponse
     {
         return new JsonResponse(

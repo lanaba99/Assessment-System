@@ -71,4 +71,24 @@ class TenantManagementService
 
         return $tenant->fresh(['domains']);
     }
+
+    public function suspend(Tenant $tenant): Tenant
+    {
+        $tenant->forceFill([
+            'status' => 'suspended',
+            'suspended_at' => now(),
+        ])->save();
+
+        return $tenant->fresh(['domains']);
+    }
+
+    public function reactivate(Tenant $tenant): Tenant
+    {
+        $tenant->forceFill([
+            'status' => 'active',
+            'suspended_at' => null,
+        ])->save();
+
+        return $tenant->fresh(['domains']);
+    }
 }

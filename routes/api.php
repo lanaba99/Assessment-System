@@ -40,5 +40,11 @@ Route::prefix('v1/admin')->group(function (): void {
 
         Route::patch('tenants/{tenantId}', [TenantController::class, 'update'])
             ->name('api.central.tenants.update');
+
+        Route::post('tenants/{tenantId}/suspend', [TenantController::class, 'suspend'])
+            ->name('api.central.tenants.suspend');
+
+        Route::post('tenants/{tenantId}/reactivate', [TenantController::class, 'reactivate'])
+            ->name('api.central.tenants.reactivate');
     });
 });
