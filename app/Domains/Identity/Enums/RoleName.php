@@ -12,7 +12,7 @@ namespace App\Domains\Identity\Enums;
 
 enum RoleName: string
 {
-    case SuperAdmin = 'Super Admin';
+    case TenantAdmin = 'Tenant Admin';
     case Proctor = 'Proctor';
     case TechnicalEvaluator = 'Technical Evaluator';
     case Candidate = 'Candidate';

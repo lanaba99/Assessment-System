@@ -84,7 +84,7 @@ class TenantMasterSeeder extends Seeder
     private function seedRoles(): void
     {
         $roles = [
-            'Super Admin'         => ['category' => 'administrative', 'description' => 'Full system control across the tenant.'],
+            'Tenant Admin'        => ['category' => 'administrative', 'description' => 'Full system control across the tenant.'],
             'Proctor'             => ['category' => 'supervisory',    'description' => 'Live session monitoring and integrity enforcement.'],
             'Technical Evaluator' => ['category' => 'evaluation',     'description' => 'Manual scoring for open-ended/essay responses.'],
             'Candidate'           => ['category' => 'examinee',       'description' => 'Takes assigned assessments.'],
@@ -185,7 +185,7 @@ class TenantMasterSeeder extends Seeder
     private function seedRolePermissions(): void
     {
         // $matrix = [
-        //     'Super Admin' => array_keys($this->permissionIds),
+        //     'Tenant Admin' => array_keys($this->permissionIds),
         //     'Proctor'     => [
         //         'exam_sessions.start',
         //         'proctoring.view',  
@@ -209,11 +209,13 @@ class TenantMasterSeeder extends Seeder
         //     ],  
         // ];
         $matrix = [
-            RoleName::SuperAdmin->value         => array_keys($this->permissionIds),
+            RoleName::TenantAdmin->value        => array_keys($this->permissionIds),
             RoleName::Proctor->value            => [
                 'exam_sessions.start',
+                'exam_sessions.view',      // ← جديد: يشوف حالة الجلسة اللي عم يراقبها
                 'proctoring.view',
                 'proctoring.ingest',
+                'penalties.view',          // ← جديد: يشوف الجزاءات الناتجة عن مراقبته
             ], 
             RoleName::TechnicalEvaluator->value => [
                 'grading.evaluate', 
@@ -227,6 +229,7 @@ class TenantMasterSeeder extends Seeder
                 'workflows.manage',
                 'eligibility.manage',
                 'eligibility.view',
+                'exam_sessions.manage', // ← جديد: تسجيل مرشحين + تدخل طارئ بالجلسات
             ], 
         
             RoleName::Candidate->value          => [
@@ -252,14 +255,14 @@ class TenantMasterSeeder extends Seeder
     {
         DB::table('user_roles')->insert([
             'user_id'     => $this->adminUserId,
-            'role_id'     => $this->roleIds['Super Admin'],
+            'role_id'     => $this->roleIds['Tenant Admin'],
             'assigned_at' => now(),
         ]);
     }
 
     /**
      * Dedicated Proctor and Technical Evaluator accounts, so role-scoped
-     * authorization (not just Super Admin's all-permissions shortcut) is
+     * authorization (not just Tenant Admin's all-permissions shortcut) is
      * actually testable via Postman/manual QA.
      */
     private function seedProctorAndEvaluatorUsers(): void

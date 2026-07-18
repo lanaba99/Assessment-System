@@ -3,7 +3,7 @@
 \DB::purge('tenant');
 
 $admin = \App\Domains\Identity\Models\User::on('tenant')->where('email', 'tenant.admin@alpha-engine.example')->firstOrFail();
-$superAdmin = \App\Domains\Identity\Models\Role::on('tenant')->where('role_name', 'Super Admin')->firstOrFail();
+$tenantAdmin = \App\Domains\Identity\Models\Role::on('tenant')->where('role_name', 'Tenant Admin')->firstOrFail();
 
 $identityPermissions = [
     'users.viewAny', 'users.view', 'users.create', 'users.update', 'users.deactivate', 'users.resetPassword',
@@ -28,7 +28,7 @@ foreach ($identityPermissions as $name) {
     $permissionIds[] = (string) $p->permission_id;
 }
 
-$superAdmin->setConnection('tenant')->permissions()->syncWithoutDetaching($permissionIds);
+$tenantAdmin->setConnection('tenant')->permissions()->syncWithoutDetaching($permissionIds);
 
 if (! \App\Domains\Identity\Models\SecurityPolicy::on('tenant')->where('tenant_id', $admin->tenant_id)->exists()) {
     \App\Domains\Identity\Models\SecurityPolicy::on('tenant')->create([
