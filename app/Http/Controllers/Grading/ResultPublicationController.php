@@ -64,7 +64,9 @@ class ResultPublicationController extends Controller
 
         if ($result !== null && $grade !== null && $grade->is_passing_grade) {
             $this->certificates->generate($result, $grade);
-        }    }
+        }    
+            return AssessmentResultResource::make($view)->response();    
+    }
 
     public function showPublicationStatus(Request $request, string $sessionId): JsonResponse
     {

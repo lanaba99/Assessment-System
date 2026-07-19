@@ -16,34 +16,31 @@ class CertificateGenerationService
 {
     public function generate(AssessmentResult $result, Grade $grade): Certificate
     {
-        $certificateNumber = 'CERT-' . strtoupper(Str::random(10));
-        $token = (string) Str::uuid();
+        $certificateCode = 'CERT-' . strtoupper(Str::random(10));
 
-        $qrDataUri = (new QRCode())->render(
-            route('api.v1.certificates.verify', ['token' => $token])
-        );
+        $verificationUrl = route('api.v1.certificates.verify', ['token' => $certificateCode]);
+        $qrDataUri = (new QRCode())->render($verificationUrl);
 
         $pdf = Pdf::loadView('certificates.certificate', [
             'candidateName' => $result->candidate->first_name . ' ' . $result->candidate->last_name,
             'examName' => $result->exam->exam_title ?? 'Assessment',
             'finalScore' => $grade->final_score,
             'gradeLetter' => $grade->grade_letter,
-            'certificateNumber' => $certificateNumber,
+            'certificateNumber' => $certificateCode,
             'issuedAt' => now()->format('Y-m-d'),
             'qrDataUri' => $qrDataUri,
         ]);
 
-        $path = "certificates/{$certificateNumber}.pdf";
-        Storage::disk('local')->put($path, $pdf->output());
+        Storage::disk('local')->put("certificates/{$certificateCode}.pdf", $pdf->output());
 
         return Certificate::create([
-            'result_id' => $result->result_id,
-            'session_id' => $result->session_id,
             'candidate_user_id' => $result->candidate_user_id,
-            'certificate_number' => $certificateNumber,
-            'verification_token' => $token,
-            'pdf_path' => $path,
+            'assessment_result_id' => $result->result_id,
+            'exam_id' => $result->exam_id,
+            'certificate_code' => $certificateCode,
+            'qr_code_data' => $verificationUrl,
             'issued_at' => now(),
+            'verification_status' => 'valid',
         ]);
     }
 }
