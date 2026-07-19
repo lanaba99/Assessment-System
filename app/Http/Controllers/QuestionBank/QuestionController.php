@@ -17,6 +17,8 @@ use Illuminate\Http\JsonResponse;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Domains\QuestionBank\Services\QuestionBulkImportService;
+use App\Http\Requests\QuestionBank\BulkImportQuestionsRequest;
 
 /**
  * @group QuestionBank
@@ -29,9 +31,9 @@ class QuestionController extends Controller
     public function __construct(
         private readonly QuestionManagementService $questions,
         private readonly QuestionRepository $questionRepository,
+        private readonly QuestionBulkImportService $bulkImport,
     ) {
     }
-
     public function store(StoreQuestionRequest $request): JsonResponse
     {
         $this->authorize('create', Question::class);
@@ -60,6 +62,26 @@ class QuestionController extends Controller
         return new JsonResponse([
             'data' => new QuestionResource($question),
         ], Response::HTTP_CREATED);
+    }
+
+    public function bulkImport(BulkImportQuestionsRequest $request): JsonResponse
+    {
+        $this->authorize('create', Question::class);
+
+        $result = $this->bulkImport->importFromCsv(
+            $request->file('file')->getRealPath(),
+            (string) $request->user()->id,
+        );
+
+        return new JsonResponse([
+            'data' => [
+                'import_log_id' => $result['log']->import_log_id,
+                'total' => $result['log']->total_questions_imported,
+                'successful' => $result['log']->successful_imports,
+                'failed' => $result['log']->failed_imports,
+                'errors' => $result['errors'],
+            ],
+        ], Response::HTTP_OK);
     }
 
     public function index(ListQuestionsRequest $request): JsonResponse

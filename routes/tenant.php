@@ -27,6 +27,8 @@ use App\Http\Controllers\Workflows\ApprovalWorkflowController;
 use App\Http\Controllers\Proctoring\ProctorEventController;
 
 use App\Http\Controllers\Rules\EligibilityChainController;
+use App\Http\Controllers\Grading\CertificateController;
+use App\Http\Controllers\Grading\ReportController;
 
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
@@ -34,7 +36,7 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /*
 |--------------------------------------------------------------------------
-| Tenant API routes
+| Tenant API routesauth:sanctum
 |--------------------------------------------------------------------------
 |
 | Loaded by App\Providers\TenancyServiceProvider::mapRoutes() — NOT by
@@ -75,6 +77,9 @@ Route::middleware([
         Route::get('system/status', [SystemController::class, 'status'])
             ->name('api.v1.system.status');
 
+        Route::get('certificates/verify/{token}', [CertificateController::class, 'verify'])
+            ->name('api.v1.certificates.verify');
+
         // -----------------------------------------------------------------
         // Identity — session-bound  - 22 
         // -----------------------------------------------------------------
@@ -114,6 +119,14 @@ Route::middleware([
                 ->whereUuid('userId')
                 ->name('api.v1.users.deactivate');
 
+            Route::get('exam-sessions/{sessionId}/certificate', [CertificateController::class, 'download'])
+                ->whereUuid('sessionId')
+                ->name('api.v1.certificates.download');
+
+            Route::get('exams/{examId}/results/export', [ReportController::class, 'exportResults'])
+                ->whereUuid('examId')
+                ->name('api.v1.exams.results.export');
+                
             Route::prefix('roles')->group(function (): void {
                 Route::get('/', [RoleController::class, 'index'])
                     ->name('api.v1.roles.index');
@@ -213,6 +226,27 @@ Route::middleware([
             });
 
             Route::prefix('questions')->group(function (): void {
+                Route::post('bulk-import', [QuestionController::class, 'bulkImport'])
+                    ->name('api.v1.questions.bulk-import');
+
+                    /**
+                     * category_code,
+                     * question_title,
+                     * question_type,
+                     * question_text,
+                     * stem,bloom_level,
+                     * difficulty_level,
+                     * choices_json,
+                     * answer_json
+                     * CAT-001,
+                     * "Basic Addition",
+                     * "multiple_choice",
+                     * "What is 2+2?","",1,1,
+                     * "[{""option_text"":""3"",""is_correct"":false},
+                     * {""option_text"":""4"",""is_correct"":true}]",
+                     * "{}"
+                     */
+
                 Route::get('/', [QuestionController::class, 'index'])
                     ->name('api.v1.questions.index');
 

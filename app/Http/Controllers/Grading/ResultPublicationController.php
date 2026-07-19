@@ -20,6 +20,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Domains\Grading\Repositories\GradeRepository;
+use App\Domains\Grading\Services\CertificateGenerationService;
 
 /**
  * @group ResultPublication
@@ -32,6 +34,8 @@ class ResultPublicationController extends Controller
     public function __construct(
         private readonly ResultPublicationService $publicationService,
         private readonly AssessmentResultRepository $results,
+        private readonly GradeRepository $grades,
+        private readonly CertificateGenerationService $certificates,
     ) {
     }
 
@@ -55,8 +59,12 @@ class ResultPublicationController extends Controller
             return $this->errorResponse('workflow_not_approved', $e->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return AssessmentResultResource::make($view)->response();
-    }
+    $result = $this->results->findBySession($tenantId, $sessionId);
+        $grade = $this->grades->findBySession($tenantId, $sessionId);
+
+        if ($result !== null && $grade !== null && $grade->is_passing_grade) {
+            $this->certificates->generate($result, $grade);
+        }    }
 
     public function showPublicationStatus(Request $request, string $sessionId): JsonResponse
     {
