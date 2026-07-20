@@ -20,3 +20,10 @@ th, td { border: 1px solid #999; padding: 6px; font-size: 12px; text-align: left
 </table>
 </body>
 </html>
+
+
+
+//
+//
+//
+{{-- جربيها هيك. 📝 سجّلي هاد الباغ (Request rule بيقول nullable بس الـ DB column NOT NULL) — لازم يتصلّح بعدين بالكود (إما نخلي العمود nullable بميغريشن جديدة، أو نخلي الحقل required بالـ Request). منرجعلها بعد ما نخلص الفلو كامل. --}}

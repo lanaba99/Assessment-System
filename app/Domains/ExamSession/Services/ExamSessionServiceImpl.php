@@ -281,8 +281,10 @@ class ExamSessionServiceImpl implements ExamSessionService
                 'response_text' => $command->responseText,
                 'selected_options_json' => $command->selectedOptions,
                 'file_upload_url' => $command->fileUploadUrl,
-                'time_spent_seconds' => $command->timeSpentSeconds,
-                'time_elapsed_from_start_seconds' => $command->timeElapsedFromStartSeconds,
+
+                'time_spent_seconds' => $command->timeSpentSeconds ?? 0,
+                'time_elapsed_from_start_seconds' => $command->timeElapsedFromStartSeconds ?? 0,
+
                 'is_flagged_for_review' => $command->isFlaggedForReview,
                 'response_submitted_at' => now(),
             ]);

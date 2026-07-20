@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "beyondcode/laravel-er-diagram-generator": "^6.0",
+        "doctrine/dbal": "^4.4",
         "fakerphp/faker": "^1.23",
         "knuckleswtf/scribe": "^5.11",
         "laravel/pail": "^1.2.5",
