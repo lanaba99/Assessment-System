@@ -9,17 +9,21 @@ use App\Domains\Grading\Events\ResultGenerated;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
+use Illuminate\Bus\Queueable;
+
 class IngestResultGeneratedListener implements ShouldQueue
 {
     use InteractsWithQueue;
+    use Queueable;
 
-    public string $queue = 'analytics';
 
     public int $tries = 3;
 
     public function __construct(
         private readonly AnalyticsIngestionService $ingestion,
     ) {
+            $this->onQueue('analytics');
+
     }
 
     public function handle(ResultGenerated $event): void

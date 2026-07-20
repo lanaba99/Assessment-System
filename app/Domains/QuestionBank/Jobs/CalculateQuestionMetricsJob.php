@@ -18,8 +18,6 @@ class CalculateQuestionMetricsJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public string $queue = 'psychometrics';
-
     public int $tries = 3;
 
     public int $backoff = 30;
@@ -27,6 +25,7 @@ class CalculateQuestionMetricsJob implements ShouldQueue
     public function __construct(
         public readonly string $sessionId,
     ) {
+        $this->onQueue('psychometrics');
     }
 
     public function handle(PsychometricAnalysisService $service): void

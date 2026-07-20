@@ -8,12 +8,12 @@ use App\Domains\Penalties\Services\PenaltyEvaluationService;
 use App\Domains\Proctoring\Events\ProctorEventLogged;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Bus\Queueable;
 
 class ApplyPenaltyOnProctorEventListener implements ShouldQueue
 {
     use InteractsWithQueue;
-
-    public string $queue = 'penalties';
+    use Queueable;
 
     public int $tries = 3;
 
@@ -22,6 +22,7 @@ class ApplyPenaltyOnProctorEventListener implements ShouldQueue
     public function __construct(
         private readonly PenaltyEvaluationService $service,
     ) {
+        $this->onQueue('penalties');
     }
 
     public function handle(ProctorEventLogged $event): void

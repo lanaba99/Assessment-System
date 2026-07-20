@@ -8,13 +8,12 @@ use App\Domains\ExamSession\Events\ResponseSubmitted;
 use App\Domains\Grading\Contracts\GradingService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Bus\Queueable;
 
 class ResponseSubmittedListener implements ShouldQueue
 {
     use InteractsWithQueue;
-
-    public string $queue = 'grading';
-
+    use Queueable;
     public int $tries = 3;
 
     public int $backoff = 5;
@@ -22,6 +21,7 @@ class ResponseSubmittedListener implements ShouldQueue
     public function __construct(
         private readonly GradingService $gradingService,
     ) {
+        $this->onQueue('grading');
     }
 
     public function handle(ResponseSubmitted $event): void

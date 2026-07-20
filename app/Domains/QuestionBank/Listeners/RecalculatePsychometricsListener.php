@@ -6,8 +6,10 @@ namespace App\Domains\QuestionBank\Listeners;
 
 use App\Domains\ExamSession\Events\ExamSessionCompleted;
 use App\Domains\QuestionBank\Jobs\CalculateQuestionMetricsJob;
+use App\Domains\QuestionBank\Services\PsychometricAnalysisService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Bus\Queueable;
 
 /**
  * Queued listener that enqueues psychometric recalculation after a session ends.
@@ -33,13 +35,17 @@ use Illuminate\Queue\InteractsWithQueue;
 class RecalculatePsychometricsListener implements ShouldQueue
 {
     use InteractsWithQueue;
-
-    public string $queue = 'psychometrics';
+    use Queueable;
 
     public int $tries = 3;
 
     public int $backoff = 30;
 
+    public function __construct(
+        private readonly PsychometricAnalysisService $analysisService,
+    ) {
+        $this->onQueue('psychometrics');
+    }
     public function handle(ExamSessionCompleted $event): void
     {
         CalculateQuestionMetricsJob::dispatch($event->sessionId);
