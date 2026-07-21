@@ -23,7 +23,7 @@ class CertificateGenerationService
 
         $pdf = Pdf::loadView('certificates.certificate', [
             'candidateName' => $result->candidate->first_name . ' ' . $result->candidate->last_name,
-            'examName' => $result->exam->exam_title ?? 'Assessment',
+            'examName' => $result->exam->exam_name ?? 'Assessment',
             'finalScore' => $grade->final_score,
             'gradeLetter' => $grade->grade_letter,
             'certificateNumber' => $certificateCode,

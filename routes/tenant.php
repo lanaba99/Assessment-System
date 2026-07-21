@@ -124,9 +124,22 @@ Route::middleware([
                 ->whereUuid('userId')
                 ->name('api.v1.users.deactivate');
 
-            Route::get('exam-sessions/{sessionId}/certificate', [CertificateController::class, 'download'])
-                ->whereUuid('sessionId')
-                ->name('api.v1.certificates.download');
+                
+            Route::get('certificates', [CertificateController::class, 'index'])
+                ->name('api.v1.certificates.index');
+
+            Route::get('certificates/{certificateId}', [CertificateController::class, 'show'])
+                ->whereUuid('certificateId')
+                ->name('api.v1.certificates.show');
+
+            Route::post('certificates/{certificateId}/regenerate', [CertificateController::class, 'regenerate'])
+                ->whereUuid('certificateId')
+                ->name('api.v1.certificates.regenerate');
+
+            Route::post('certificates/{certificateId}/revoke', [CertificateController::class, 'revoke'])
+                ->whereUuid('certificateId')
+                ->name('api.v1.certificates.revoke');
+
 
             Route::get('exams/{examId}/results/export', [ReportController::class, 'exportResults'])
                 ->whereUuid('examId')
@@ -261,7 +274,7 @@ Route::middleware([
             Route::get('exams/{examId}/blueprints', [ExamBlueprintController::class, 'index'])
                 ->whereUuid('examId')
                 ->name('api.v1.exams.blueprints.index');
-                
+
             Route::prefix('questions')->group(function (): void {
                 Route::post('bulk-import', [QuestionController::class, 'bulkImport'])
                     ->name('api.v1.questions.bulk-import');
