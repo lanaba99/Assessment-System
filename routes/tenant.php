@@ -30,6 +30,11 @@ use App\Http\Controllers\Rules\EligibilityChainController;
 use App\Http\Controllers\Grading\CertificateController;
 use App\Http\Controllers\Grading\ReportController;
 
+use App\Http\Controllers\QuestionBank\QuestionCompetencyController;
+use App\Http\Controllers\QuestionBank\QuestionVersionController;
+use App\Http\Controllers\ExamEngine\ExamSectionController;
+use App\Http\Controllers\ExamEngine\ExamBlueprintController;
+
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -225,6 +230,38 @@ Route::middleware([
                     ->name('api.v1.categories.destroy');
             });
 
+                        Route::post('questions/{questionId}/competencies', [QuestionCompetencyController::class, 'store'])
+                ->whereUuid('questionId')
+                ->name('api.v1.questions.competencies.store');
+
+            Route::get('questions/{questionId}/competencies', [QuestionCompetencyController::class, 'index'])
+                ->whereUuid('questionId')
+                ->name('api.v1.questions.competencies.index');
+
+            Route::post('question-versions/{versionId}/approve', [QuestionVersionController::class, 'approve'])
+                ->whereUuid('versionId')
+                ->name('api.v1.question-versions.approve');
+
+            Route::patch('question-versions/{versionId}/psychometrics', [QuestionVersionController::class, 'updatePsychometrics'])
+                ->whereUuid('versionId')
+                ->name('api.v1.question-versions.psychometrics');
+
+            Route::post('exams/{examId}/sections', [ExamSectionController::class, 'store'])
+                ->whereUuid('examId')
+                ->name('api.v1.exams.sections.store');
+
+            Route::get('exams/{examId}/sections', [ExamSectionController::class, 'index'])
+                ->whereUuid('examId')
+                ->name('api.v1.exams.sections.index');
+
+            Route::post('exams/{examId}/blueprints', [ExamBlueprintController::class, 'store'])
+                ->whereUuid('examId')
+                ->name('api.v1.exams.blueprints.store');
+
+            Route::get('exams/{examId}/blueprints', [ExamBlueprintController::class, 'index'])
+                ->whereUuid('examId')
+                ->name('api.v1.exams.blueprints.index');
+                
             Route::prefix('questions')->group(function (): void {
                 Route::post('bulk-import', [QuestionController::class, 'bulkImport'])
                     ->name('api.v1.questions.bulk-import');
@@ -246,6 +283,7 @@ Route::middleware([
                      * {""option_text"":""4"",""is_correct"":true}]",
                      * "{}"
                      */
+
 
                 Route::get('/', [QuestionController::class, 'index'])
                     ->name('api.v1.questions.index');
