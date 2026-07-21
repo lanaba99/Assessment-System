@@ -25,7 +25,7 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
-
+/docs
 # Windows URL shortcuts and identifier streams
 *:Zone.Identifier
 .DS_Store
