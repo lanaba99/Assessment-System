@@ -11,10 +11,14 @@ use App\Domains\Grading\DTOs\GradingResult;
 class MultipleChoiceStrategy implements GradingStrategy
 {
     private const SUPPORTED_TYPES = [
-        'multiple_choice',
-        'multi_select',
-        'single_choice',
+        // 'multiple_choice',
+        // 'multi_select',
+        // 'single_choice', 
+        
+        // mismatch with 'multiple_choice' in the question type enum
+        
         'true_false',
+        'mcq',
     ];
 
     public function supports(string $questionType): bool

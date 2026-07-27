@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Central\AuthController;
 use App\Http\Controllers\Central\TenantController;
+use App\Http\Middleware\EnsureCentralDomain;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 | Routes registered here run in the CENTRAL (landlord) database context.
 | They are reachable only from a central host (e.g. http://localhost, not
-| http://acme.localhost) because tenancy resolution does not run on this file.
+| http://acme.localhost) — enforced explicitly via EnsureCentralDomain,
+| since this file (unlike routes/tenant.php) is not domain-restricted by
+| the tenancy package's own middleware.
 |
 | Tenant-scoped routes live in routes/tenant.php and are loaded by
 | App\Providers\TenancyServiceProvider::mapRoutes().
@@ -24,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('ping', fn () => response()->json(['scope' => 'central', 'ok' => true]))
     ->name('api.central.ping');
 
-Route::prefix('v1/admin')->group(function (): void {
+Route::middleware([EnsureCentralDomain::class])->prefix('v1/admin')->group(function (): void {
     Route::post('auth/login', [AuthController::class, 'login'])
         ->name('api.central.admin.login');
 

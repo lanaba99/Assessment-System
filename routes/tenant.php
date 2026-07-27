@@ -139,7 +139,10 @@ Route::middleware([
             Route::post('certificates/{certificateId}/revoke', [CertificateController::class, 'revoke'])
                 ->whereUuid('certificateId')
                 ->name('api.v1.certificates.revoke');
-
+                
+            Route::get('exam-sessions/{sessionId}/certificate', [CertificateController::class, 'download'])
+                ->whereUuid('sessionId')
+                ->name('api.v1.certificates.download');
 
             Route::get('exams/{examId}/results/export', [ReportController::class, 'exportResults'])
                 ->whereUuid('examId')
