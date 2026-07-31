@@ -90,7 +90,6 @@ class GradingServiceProvider extends ServiceProvider
         // Event::listen(ResultGenerated::class, [LogResultGeneratedListener::class, 'handle']); 
         // this is old before the analytics ingestion was moved to the AnalyticsServiceProvider.
 
-
         // Analytics ingestion is registered in AnalyticsServiceProvider.
         Event::listen(ResultGenerated::class, [ProcessFinalGradeListener::class, 'handle']);
     }

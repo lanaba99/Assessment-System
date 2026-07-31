@@ -212,24 +212,25 @@ class TenantMasterSeeder extends Seeder
             RoleName::TenantAdmin->value        => array_keys($this->permissionIds),
             RoleName::Proctor->value            => [
                 'exam_sessions.start',
-                'exam_sessions.view',      // ← جديد: يشوف حالة الجلسة اللي عم يراقبها
+                'exam_sessions.view',      // ← see the current session's status and candidate list
+                'exam_sessions.manage',    // ← Emergency (suspend/resume/complete/terminate)
                 'proctoring.view',
                 'proctoring.ingest',
-                'penalties.view',          // ← جديد: يشوف الجزاءات الناتجة عن مراقبته
+                'penalties.view',          // ← see the penalties applied to candidates in the session
             ], 
             RoleName::TechnicalEvaluator->value => [
                 'grading.evaluate', 
                 'questions.manage',
                 'categories.manage',
                 'competencies.manage',
-                'exams.manage',       
+                'exams.manage',  
+                'exams.view',     
                 'exams.publish',      
                 'grading.view',
                 'grading.publish',
                 'workflows.manage',
                 'eligibility.manage',
                 'eligibility.view',
-                'exam_sessions.manage', // ← جديد: تسجيل مرشحين + تدخل طارئ بالجلسات
             ], 
         
             RoleName::Candidate->value          => [
