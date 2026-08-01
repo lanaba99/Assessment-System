@@ -27,6 +27,15 @@ class ApprovalWorkflowPolicy
                 || $this->hasPermission($actor, 'workflows.approve'));
     }
 
+    /**
+     * Separation of Duties (SoD): approval is intentionally gated by a
+     * DIFFERENT permission (`workflows.approve`) than initiation
+     * (`workflows.manage`). A role that authors/initiates a workflow
+     * (e.g. Technical Evaluator) must not also be able to approve its
+     * own request — approval requires an independent reviewer
+     * (Tenant Admin). Do not grant both permissions to the same role.
+     */
+
     public function approve(User $actor, ApprovalWorkflow $workflow): bool
     {
         return $this->sameTenant($actor, $workflow)
