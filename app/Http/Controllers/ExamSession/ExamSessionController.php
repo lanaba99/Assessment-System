@@ -111,7 +111,10 @@ class ExamSessionController extends Controller
     {
         return $this->performSessionTransition(
             $sessionId,
-            'participate',
+            // 'manage' (not 'participate'): suspend must NOT be self-service —
+            // a candidate must not be able to pause their own timer at will.
+            // Requires exam_sessions.manage (Proctor/Tenant Admin only).
+            'manage',
             // actorId unused: suspend has no actor-aware service guards.
             fn (string $tenantId, string $actorId) => $this->sessionService->suspendSession($tenantId, $sessionId),
         );
@@ -121,12 +124,13 @@ class ExamSessionController extends Controller
     {
         return $this->performSessionTransition(
             $sessionId,
-            'participate',
+            // 'manage' (not 'participate'): same rationale as suspend —
+            // only a Proctor/Tenant Admin can resume a paused session.
+            'manage',
             // actorId unused: resume has no actor-aware service guards.
             fn (string $tenantId, string $actorId) => $this->sessionService->resumeSession($tenantId, $sessionId),
         );
     }
-
     public function complete(Request $request, string $sessionId): JsonResponse
     {
         return $this->performSessionTransition(
