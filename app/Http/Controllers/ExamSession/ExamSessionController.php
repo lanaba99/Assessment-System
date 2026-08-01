@@ -21,6 +21,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use App\Domains\QuestionBank\Models\QuestionVersion;
+use App\Http\Resources\CandidateQuestionResource;
 
 /**
  * @group ExamSession
@@ -73,6 +75,39 @@ class ExamSessionController extends Controller
 
         return new JsonResponse(
             ['data' => ExamSessionResource::make($view)->resolve()],
+            Response::HTTP_OK,
+        );
+    }
+
+    public function currentQuestion(Request $request, string $sessionId): JsonResponse
+    {
+        $tenantId = (string) tenant()->getKey();
+
+        try {
+            $session = $this->sessionService->loadSessionModel($tenantId, $sessionId);
+        } catch (SessionNotFoundException $e) {
+            return $this->errorResponse('session_not_found', $e->getMessage(), Response::HTTP_NOT_FOUND);
+        }
+
+        // Same ability as viewing/participating in the session: owner or exam_sessions.manage.
+        $this->authorize('participate', $session);
+
+        $view = $this->sessionService->getSession($tenantId, $sessionId);
+
+        if ($view->currentQuestionVersionId === null) {
+            return $this->errorResponse('no_current_question', 'This session has no active question right now.', Response::HTTP_NOT_FOUND);
+        }
+
+        $version = QuestionVersion::query()
+            ->with('options')
+            ->find($view->currentQuestionVersionId);
+
+        if ($version === null) {
+            return $this->errorResponse('question_version_not_found', 'The current question version could not be loaded.', Response::HTTP_NOT_FOUND);
+        }
+
+        return new JsonResponse(
+            ['data' => CandidateQuestionResource::make($version)->resolve()],
             Response::HTTP_OK,
         );
     }

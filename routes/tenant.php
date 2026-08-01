@@ -419,6 +419,13 @@ Route::middleware([
                     ->whereUuid('sessionId')
                     ->name('api.v1.exam-sessions.show');
 
+                Route::get('{sessionId}', [ExamSessionController::class, 'show'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.show');
+
+                Route::get('{sessionId}/current-question', [ExamSessionController::class, 'currentQuestion'])
+                    ->whereUuid('sessionId')
+                    ->name('api.v1.exam-sessions.current-question');
                 Route::post('{sessionId}/responses', [ExamSessionController::class, 'submitResponse'])
                     ->whereUuid('sessionId')
                     ->name('api.v1.exam-sessions.submit-response');
