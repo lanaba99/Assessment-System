@@ -81,7 +81,7 @@ class ExamSessionPolicy
      */
     public function manageEnrollments(User $actor): bool
     {
-        return $this->hasPermission($actor, 'exam_sessions.manage');
+        return $this->hasPermission($actor, 'enrollments.manage');
     }
 
     private function ownsSession(User $actor, CandidateExamStatus $session): bool

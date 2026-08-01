@@ -148,6 +148,7 @@ class TenantMasterSeeder extends Seeder
             ['name' => 'exam_sessions.start',   'resource' => 'session',  'action' => 'start'],
             ['name' => 'exam_sessions.view',    'resource' => 'session',  'action' => 'view'],
             ['name' => 'exam_sessions.manage',  'resource' => 'session',  'action' => 'manage'],
+            ['name' => 'enrollments.manage',    'resource' => 'enrollment', 'action' => 'manage'],
             ['name' => 'proctoring.ingest',     'resource' => 'proctor',  'action' => 'ingest'],
             ['name' => 'proctoring.view',       'resource' => 'proctor',  'action' => 'view'],
             ['name' => 'penalties.view',        'resource' => 'penalty',  'action' => 'view'],
