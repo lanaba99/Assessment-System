@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use App\Domains\Grading\Models\AssessmentResult;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Relation::morphMap([
+            'assessment_result' => AssessmentResult::class,
+            'exam' => \App\Domains\ExamEngine\Models\Exam::class, 
+        ]);
     }
 }

@@ -7,6 +7,10 @@ namespace App\Http\Requests\Workflows;
 use App\Domains\Workflows\Models\ApprovalWorkflow;
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Validation\Rule;
+use App\Domains\Workflows\Enums\WorkflowType;
+use Illuminate\Database\Eloquent\Relations\Relation;
+
 class InitiateWorkflowRequest extends FormRequest
 {
     public function authorize(): bool
@@ -20,9 +24,9 @@ class InitiateWorkflowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'resource_type' => ['required', 'string', 'max:255'],
+            'resource_type' => ['required', 'string', Rule::in(array_keys(Relation::morphMap()))],
             'resource_id' => ['required', 'uuid'],
-            'workflow_type' => ['required', 'string', 'max:100'],
+            'workflow_type' => ['required', Rule::enum(WorkflowType::class)],
         ];
     }
 }
