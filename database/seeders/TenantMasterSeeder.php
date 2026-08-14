@@ -232,6 +232,7 @@ class TenantMasterSeeder extends Seeder
                 'workflows.manage',
                 'eligibility.manage',
                 'eligibility.view',
+                'exam_sessions.view',  
             ], 
         
             RoleName::Candidate->value          => [

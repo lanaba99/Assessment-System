@@ -8,6 +8,7 @@ use App\Domains\ExamSession\Exceptions\StaleVersionLockException;
 use App\Domains\ExamSession\Models\CandidateExamStatus;
 use App\Domains\ExamSession\Models\ExamCandidateEligible;
 use App\Domains\ExamSession\Models\QuestionResponse;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 /**
@@ -78,11 +79,39 @@ class SessionRepository
             ->whereNull('session_ended_at')
             ->first();
     }
+    /**
+     * General-purpose session list for the tenant, with optional filters.
+     * Backs GET /api/v1/exam-sessions — a single list endpoint filtered by
+     * query params, not a separate endpoint per status.
+     *
+     * @param  array{status?: string, exam_id?: string, candidate_id?: string}  $filters
+     */
+    public function paginateList(string $tenantId, array $filters, int $perPage): LengthAwarePaginator
+    {
+        $query = $this->session
+            ->newQuery()
+            ->where('tenant_id', $tenantId);
+
+        if (! empty($filters['status'])) {
+            $query->where('session_state', $filters['status']);
+        }
+
+        if (! empty($filters['exam_id'])) {
+            $query->where('exam_id', $filters['exam_id']);
+        }
+
+        if (! empty($filters['candidate_id'])) {
+            $query->where('candidate_user_id', $filters['candidate_id']);
+        }
+
+        return $query
+            ->orderByDesc('session_started_at')
+            ->paginate($perPage);
+    }
 
     // -------------------------------------------------------------------------
     // Enrollment reads
     // -------------------------------------------------------------------------
-
     /**
      * Acquires an exclusive row-level pessimistic lock on the enrollment record.
      *

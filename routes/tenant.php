@@ -412,9 +412,14 @@ Route::middleware([
             // Exam Sessions — candidate lifecycle - 11
             // -------------------------------------------------------------
             Route::prefix('exam-sessions')->group(function (): void {
+                // General list — filtered via query params (?status=, ?exam_id=,
+                // ?candidate_id=), NOT one endpoint per status.
+                Route::get('/', [ExamSessionController::class, 'index'])
+                     ->name('api.v1.exam-sessions.index');
+
                 Route::post('/', [ExamSessionController::class, 'start'])
                     ->name('api.v1.exam-sessions.start');
-
+                    
                 Route::get('{sessionId}', [ExamSessionController::class, 'show'])
                     ->whereUuid('sessionId')
                     ->name('api.v1.exam-sessions.show');

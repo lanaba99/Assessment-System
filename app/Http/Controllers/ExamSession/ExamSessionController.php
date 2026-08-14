@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\ExamSession;
 
+
 use App\Domains\ExamSession\Contracts\ExamSessionService;
 use App\Domains\ExamSession\Exceptions\EligibilityViolationException;
 use App\Domains\ExamSession\Exceptions\EnrollmentNotFoundException;
@@ -15,6 +16,7 @@ use App\Domains\ExamSession\Models\CandidateExamStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExamSession\StartSessionRequest;
 use App\Http\Requests\ExamSession\SubmitResponseRequest;
+use App\Http\Resources\ExamSessionListResource;
 use App\Http\Resources\ExamSessionResource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
@@ -35,6 +37,67 @@ class ExamSessionController extends Controller
     public function __construct(
         private readonly ExamSessionService $sessionService,
     ) {
+    }
+    /**
+     * GET /api/v1/exam-sessions
+     *
+     * Single general-purpose list endpoint — filtered via query params, not
+     * one endpoint per status. All filters are optional:
+     *   ?status=completed    → sessions in the 'completed' state (grading/publishing/certs)
+     *   ?status=in_progress  → active sessions (live monitoring)
+     *   ?status=terminated   → forcibly-ended sessions
+     *   ?status=paused       → suspended sessions
+     *   ?status=not_started  → sessions not yet begun
+     *   (no status)          → all sessions
+     *   ?exam_id=...          → scope to one exam
+     *   ?candidate_id=...     → scope to one candidate
+     *   ?per_page=...         → page size (default 15, max 100)
+     *
+     * Role-based visibility (see ExamSessionPolicy::viewAny):
+     *   - Tenant Admin        → any status, or unfiltered.
+     *   - Proctor              → in_progress / terminated only.
+     *   - Technical Evaluator  → completed only.
+     */
+    public function index(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'status' => 'sometimes|string|in:not_started,in_progress,paused,completed,terminated',
+            'exam_id' => 'sometimes|string|uuid',
+            'candidate_id' => 'sometimes|string|uuid',
+            'per_page' => 'sometimes|integer|min:1|max:100',
+        ]);
+
+        $status = $validated['status'] ?? null;
+
+        // Validation runs first so the ability check sees the real ?status=
+        // value (or null) — visibility is role-and-status dependent.
+        $this->authorize('viewAny', [CandidateExamStatus::class, $status]);
+
+        $tenantId = (string) tenant()->getKey();
+        $perPage = (int) ($validated['per_page'] ?? 15);
+
+        $sessions = $this->sessionService->listSessions(
+            $tenantId,
+            [
+                'status' => $status,
+                'exam_id' => $validated['exam_id'] ?? null,
+                'candidate_id' => $validated['candidate_id'] ?? null,
+            ],
+            $perPage,
+        );
+
+        return new JsonResponse(
+            [
+                'data' => ExamSessionListResource::collection($sessions->items()),
+                'meta' => [
+                    'current_page' => $sessions->currentPage(),
+                    'per_page' => $sessions->perPage(),
+                    'total' => $sessions->total(),
+                    'last_page' => $sessions->lastPage(),
+                ],
+            ],
+            Response::HTTP_OK,
+        );
     }
 
     public function start(StartSessionRequest $request): JsonResponse

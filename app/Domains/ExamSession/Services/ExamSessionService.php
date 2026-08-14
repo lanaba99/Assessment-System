@@ -2,347 +2,125 @@
 
 declare(strict_types=1);
 
-namespace App\Domains\ExamSession\Services;
+namespace App\Domains\ExamSession\Contracts;
 
-use App\Domains\ExamEngine\Contracts\QuestionSelectionService;
-use App\Domains\ExamEngine\Repositories\ExamRepository;
 use App\Domains\ExamSession\DTOs\ExamSessionView;
 use App\Domains\ExamSession\DTOs\SubmitResponseCommand;
-use App\Domains\ExamSession\Events\ExamSessionCompleted;
-use App\Domains\ExamSession\Events\ResponseSubmitted;
+use App\Domains\ExamSession\Exceptions\EligibilityViolationException;
+use App\Domains\ExamSession\Exceptions\EnrollmentNotFoundException;
 use App\Domains\ExamSession\Exceptions\InvalidSessionStateException;
+use App\Domains\ExamSession\Exceptions\SessionDurationExceededException;
+use App\Domains\ExamSession\Exceptions\SessionNotFoundException;
 use App\Domains\ExamSession\Exceptions\StaleVersionLockException;
 use App\Domains\ExamSession\Models\CandidateExamStatus;
-use App\Domains\ExamSession\Repositories\ExamSessionItemRepository;
-use App\Domains\ExamSession\Repositories\SessionRepository;
-use App\Domains\ExamSession\States\ActiveState;
-use App\Domains\ExamSession\States\CompletedState;
-use App\Domains\ExamSession\States\ExamSessionStateFactory;
-use App\Domains\ExamSession\States\PendingState;
-use App\Domains\ExamSession\States\SuspendedState;
-use App\Domains\ExamSession\States\TerminatedState;
-use DateTimeImmutable;
-use DateTimeInterface;
-use Illuminate\Support\Facades\DB;
-use RuntimeException;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
-class ExamSessionService
+interface ExamSessionService
 {
-    private const ITEM_STATE_ANSWERED = 'answered';
-
-    public function __construct(
-        private readonly ExamRepository $examRepository,
-        private readonly SessionRepository $sessionRepository,
-        private readonly ExamSessionItemRepository $itemRepository,
-        private readonly ExamSessionStateFactory $stateFactory,
-        private readonly QuestionSelectionService $questionSelection,
-    ) {
-    }
-
-    public function startSession(string $candidateId, string $examId): ExamSessionView
-    {
-        // Use the session-context loader: no explicit tenantId needed because
-        // BelongsToTenant global scope is always active in tenant HTTP context.
-        $exam = $this->examRepository->findWithSectionsAndBlueprintsForSession($examId);
-
-        if ($exam === null) {
-            throw new RuntimeException("Exam {$examId} not found.");
-        }
-
-        $active = $this->sessionRepository->findActiveSession(
-            $candidateId,
-            $examId,
-            $this->nonTerminalStateNames(),
-        );
-
-        if ($active !== null) {
-            return $this->toView($active);
-        }
-
-        $enrollment = $this->sessionRepository->findEnrollment($candidateId, $examId);
-
-        if ($enrollment === null) {
-            throw new RuntimeException("Candidate {$candidateId} is not enrolled in exam {$examId}.");
-        }
-
-        $session = DB::transaction(function () use ($exam, $candidateId, $examId, $enrollment) {
-            $activated = (new PendingState())->transitionOnStart();
-
-            $session = $this->sessionRepository->createSession([
-                'exam_id' => $examId,
-                'enrollment_id' => $enrollment->enrollment_id,
-                'candidate_user_id' => $candidateId,
-                'tenant_id' => $exam->tenant_id,
-                'session_state' => $activated->name(),
-                'session_started_at' => now(),
-            ]);
-
-            // Adaptive exams load items one at a time via resolveNextAdaptiveItem;
-            // bulk pre-population only applies to fixed/randomised exams.
-            if (! $exam->is_adaptive_exam) {
-                $items = $this->questionSelection->resolveQuestionsForSession(
-                    $exam,
-                    $candidateId,
-                );
-
-                foreach ($items->values() as $sequence => $item) {
-                    $this->itemRepository->create([
-                        'session_id' => (string) $session->session_id,
-                        'section_id' => $item->sectionId,
-                        'question_version_id' => $item->questionVersionId,
-                        'sequence_number' => $sequence + 1,
-                        'item_state' => 'pending',
-                    ]);
-                }
-            }
-
-            return $session;
-        });
-
-        return $this->toView($session);
-    }
-
-    public function getSession(string $sessionId): ExamSessionView
-    {
-        $session = $this->sessionRepository->findById($sessionId);
-
-        if ($session === null) {
-            throw new RuntimeException("Session {$sessionId} not found.");
-        }
-
-        return $this->toView($session);
-    }
-
-    public function submitResponse(SubmitResponseCommand $command): ExamSessionView
-    {
-        /** @var array{view: ExamSessionView, event: ResponseSubmitted} $result */
-        $result = DB::transaction(function () use ($command): array {
-            $session = $this->sessionRepository->findByIdForUpdate($command->sessionId);
-
-            if ($session === null) {
-                throw new RuntimeException("Session {$command->sessionId} not found.");
-            }
-
-            $this->assertTenantOwnership($session, $command);
-            $this->assertCandidateOwnership($session, $command);
-
-            $state = $this->stateFactory->fromSession($session);
-
-            if (! $state->canSubmitResponse()) {
-                throw InvalidSessionStateException::forOperation('submit_response', $state->name());
-            }
-
-            $item = $this->itemRepository->findByIdForUpdate($command->sessionItemId);
-
-            if ($item === null || (string) $item->session_id !== $command->sessionId) {
-                throw new RuntimeException(
-                    "Session item {$command->sessionItemId} not found on session {$command->sessionId}."
-                );
-            }
-
-            if ($command->expectedItemVersionLock !== null
-                && (int) $item->version_lock !== $command->expectedItemVersionLock) {
-                throw StaleVersionLockException::forSessionItem(
-                    (string) $item->session_item_id,
-                    $command->expectedItemVersionLock,
-                );
-            }
-
-            $submittedAt = new DateTimeImmutable();
-
-            $this->sessionRepository->recordResponse([
-                'session_id' => (string) $session->session_id,
-                'question_version_id' => (string) $item->question_version_id,
-                'candidate_user_id' => (string) $session->candidate_user_id,
-                'tenant_id' => (string) $session->tenant_id,
-                'question_sequence_number' => (int) $item->sequence_number,
-                'response_type' => $command->responseType,
-                'response_data' => $command->responseData,
-                'response_text' => $command->responseText,
-                'selected_options_json' => $command->selectedOptions,
-                'file_upload_url' => $command->fileUploadUrl,
-                'time_spent_seconds' => $command->timeSpentSeconds,
-                'time_elapsed_from_start_seconds' => $command->timeElapsedFromStartSeconds,
-                'is_flagged_for_review' => $command->isFlaggedForReview,
-                'response_submitted_at' => now(),
-            ]);
-
-            $item = $this->itemRepository->update($item, [
-                'item_state' => self::ITEM_STATE_ANSWERED,
-                'answered_at' => now(),
-                'is_flagged' => $command->isFlaggedForReview,
-            ]);
-
-            $session = $this->sessionRepository->updateSession($session, [
-                'total_questions_responded' => (int) $session->total_questions_responded + 1,
-                'total_questions_flagged' => (int) $session->total_questions_flagged
-                    + ($command->isFlaggedForReview ? 1 : 0),
-            ]);
-
-            $event = new ResponseSubmitted(
-                command: $command,
-                questionVersionId: (string) $item->question_version_id,
-                sectionId: (string) $item->section_id,
-                questionSequenceNumber: (int) $item->sequence_number,
-                sessionItemVersionLockAfter: (int) $item->version_lock,
-                sessionVersionLockAfter: (int) $session->version_lock,
-                totalQuestionsResponded: (int) $session->total_questions_responded,
-                totalQuestionsFlagged: (int) $session->total_questions_flagged,
-                submittedAt: $submittedAt,
-            );
-
-            return [
-                'view' => $this->toView($session),
-                'event' => $event,
-            ];
-        });
-
-        event($result['event']);
-
-        return $result['view'];
-    }
-
-    public function terminateSession(string $sessionId): ExamSessionView
-    {
-        /** @var array{session: CandidateExamStatus, event: ExamSessionCompleted} $result */
-        $result = DB::transaction(function () use ($sessionId): array {
-            $session = $this->sessionRepository->findByIdForUpdate($sessionId);
-
-            if ($session === null) {
-                throw new RuntimeException("Session {$sessionId} not found.");
-            }
-
-            $state = $this->stateFactory->fromSession($session);
-
-            if (! $state->canTerminate()) {
-                throw InvalidSessionStateException::forOperation('terminate', $state->name());
-            }
-
-            $next = $state->transitionOnTerminate();
-
-            $session = $this->sessionRepository->updateSession($session, [
-                'session_state' => $next->name(),
-                'session_ended_at' => now(),
-                'completion_method' => $next->name(),
-            ]);
-
-            $endedAt = $this->toDateTime($session->session_ended_at) ?? new DateTimeImmutable();
-
-            $event = new ExamSessionCompleted(
-                sessionId: (string) $session->session_id,
-                tenantId: (string) $session->tenant_id,
-                candidateId: (string) $session->candidate_user_id,
-                examId: (string) $session->exam_id,
-                finalState: $next->name(),
-                completionMethod: (string) $session->completion_method,
-                endedAt: $endedAt,
-                totalQuestionsResponded: (int) $session->total_questions_responded,
-                totalQuestionsFlagged: (int) $session->total_questions_flagged,
-                versionLockAfter: (int) $session->version_lock,
-            );
-
-            return [
-                'session' => $session,
-                'event' => $event,
-            ];
-        });
-
-        event($result['event']);
-
-        return $this->toView($result['session']);
-    }
-
-    private function assertTenantOwnership(CandidateExamStatus $session, SubmitResponseCommand $command): void
-    {
-        if ((string) $session->tenant_id !== $command->tenantId) {
-            throw new RuntimeException(
-                "Tenant mismatch: session {$command->sessionId} does not belong to tenant {$command->tenantId}."
-            );
-        }
-    }
-
-    private function assertCandidateOwnership(CandidateExamStatus $session, SubmitResponseCommand $command): void
-    {
-        if ((string) $session->candidate_user_id !== $command->candidateId) {
-            throw new RuntimeException(
-                "Candidate {$command->candidateId} cannot submit a response on session {$command->sessionId}."
-            );
-        }
-    }
-
-    private function toView(CandidateExamStatus $session): ExamSessionView
-    {
-        return new ExamSessionView(
-            sessionId: (string) $session->session_id,
-            tenantId: (string) $session->tenant_id,
-            examId: (string) $session->exam_id,
-            candidateId: (string) $session->candidate_user_id,
-            enrollmentId: (string) $session->enrollment_id,
-            state: (string) $session->session_state,
-            currentSessionItemId: null,
-            currentQuestionVersionId: $session->current_question_reference,
-            currentSectionId: null,
-            currentQuestionIndex: (int) $session->current_question_index,
-            totalQuestionsResponded: (int) $session->total_questions_responded,
-            totalQuestionsFlagged: (int) $session->total_questions_flagged,
-            sessionStartedAt: $this->toDateTime($session->session_started_at),
-            sessionResumedAt: $this->toDateTime($session->session_resumed_at),
-            sessionEndedAt: $this->toDateTime($session->session_ended_at),
-            totalSessionDurationSeconds: $session->total_session_duration_seconds !== null
-                ? (int) $session->total_session_duration_seconds
-                : null,
-            lastHeartbeatAt: $this->toDateTime($session->last_heartbeat_at),
-            versionLock: (int) $session->version_lock,
-            progressJson: $session->session_progress_json ?? [],
-        );
-    }
-
-    private function toDateTime(mixed $value): ?DateTimeImmutable
-    {
-        if ($value === null) {
-            return null;
-        }
-
-        if ($value instanceof DateTimeImmutable) {
-            return $value;
-        }
-
-        if ($value instanceof DateTimeInterface) {
-            return DateTimeImmutable::createFromInterface($value);
-        }
-
-        return new DateTimeImmutable((string) $value);
-    }
+    /**
+     * General session list for the tenant, filtered by optional query params.
+     * Backs GET /api/v1/exam-sessions — one list endpoint, not one per status.
+     *
+     * @param  array{status?: string, exam_id?: string, candidate_id?: string}  $filters
+     */
+    public function listSessions(string $tenantId, array $filters, int $perPage): LengthAwarePaginator;
 
     /**
-     * @return array<int, string>
+     * Open or resume a session for the given candidate on the given exam.
+     *
+     * The full eligibility gate is enforced in this order:
+     *   1. Exam must exist within the tenant and be in Published status.
+     *   2. No prior non-terminal session exists (idempotent — returns it if one does).
+     *   3. An active enrollment exists for (tenant, candidate, exam).
+     *   4. The enrollment passes all eligibility conditions (status, window, attempts).
+     *   5. If the enrollment is cohort-scoped, the candidate must be an active member.
+     *
+     * @throws EligibilityViolationException when any eligibility condition fails
+     * @throws EnrollmentNotFoundException   when no enrollment exists at all
      */
-    private function nonTerminalStateNames(): array
-    {
-        $names = [];
-
-        foreach ($this->allStateNames() as $name) {
-            $state = $this->stateFactory->fromName($name);
-
-            if (! $state->isTerminal()) {
-                $names[] = $name;
-            }
-        }
-
-        return $names;
-    }
+    public function startSession(string $tenantId, string $candidateId, string $examId): ExamSessionView;
 
     /**
-     * @return array<int, string>
+     * Load the raw session model for the controller's authorization layer.
+     * For returning a view to the client, call getSession() instead.
+     *
+     * @throws SessionNotFoundException when the session does not exist for this tenant
      */
-    private function allStateNames(): array
-    {
-        return [
-            PendingState::NAME,
-            ActiveState::NAME,
-            SuspendedState::NAME,
-            CompletedState::NAME,
-            TerminatedState::NAME,
-        ];
-    }
+    public function loadSessionModel(string $tenantId, string $sessionId): CandidateExamStatus;
+
+    /**
+     * @throws SessionNotFoundException when the session does not exist for this tenant
+     */
+    public function getSession(string $tenantId, string $sessionId): ExamSessionView;
+
+    /**
+     * @throws SessionNotFoundException         when the session does not exist
+     * @throws InvalidSessionStateException     when the session is not in_progress
+     * @throws StaleVersionLockException        when a concurrent modification is detected
+     * @throws SessionDurationExceededException when the exam's total_duration_minutes has elapsed
+     */
+    public function submitResponse(SubmitResponseCommand $command): ExamSessionView;
+
+    /**
+     * Pause an in_progress session. Transitions: in_progress → paused.
+     *
+     * @throws SessionNotFoundException     when the session does not exist for this tenant
+     * @throws InvalidSessionStateException when the session cannot be suspended
+     */
+    public function suspendSession(string $tenantId, string $sessionId): ExamSessionView;
+
+    /**
+     * Resume a paused session. Transitions: paused → in_progress.
+     *
+     * @throws SessionNotFoundException     when the session does not exist for this tenant
+     * @throws InvalidSessionStateException when the session cannot be resumed
+     */
+    public function resumeSession(string $tenantId, string $sessionId): ExamSessionView;
+
+    /**
+     * Mark a session as candidate-completed. Transitions: in_progress → completed.
+     *
+     * Fires ExamSessionCompleted UNLESS the acting user is a manager (not the
+     * candidate) AND the session has zero recorded responses. This prevents
+     * ghost zero-score grade records for sessions that were never used.
+     *
+     * @param  string  $actorId  Authenticated user's id — used to distinguish
+     *                            candidate-initiated from manager-initiated endings.
+     *
+     * @throws SessionNotFoundException     when the session does not exist for this tenant
+     * @throws InvalidSessionStateException when the session cannot be completed
+     */
+    public function completeSession(string $tenantId, string $sessionId, string $actorId): ExamSessionView;
+
+    /**
+     * Forcibly end a session (admin/proctor action, or system timeout).
+     * Transitions: any non-terminal state → terminated.
+     *
+     * Fires ExamSessionCompleted UNLESS the acting user is a manager (not the
+     * candidate) AND the session has zero recorded responses.
+     *
+     * @param  string  $actorId  Authenticated user's id — used to distinguish
+     *                            candidate-initiated from manager-initiated endings.
+     *
+     * @throws SessionNotFoundException     when the session does not exist for this tenant
+     * @throws InvalidSessionStateException when the session is already in a terminal state
+     */
+    public function terminateSession(string $tenantId, string $sessionId, string $actorId): ExamSessionView;
+
+    /**
+     * Record a keep-alive heartbeat from the candidate's browser.
+     *
+     * Updates last_heartbeat_at without incrementing version_lock — heartbeats
+     * are a side-channel signal and must not interfere with concurrent response
+     * submission which relies on the version_lock for optimistic concurrency.
+     *
+     * @throws SessionNotFoundException     when the session does not exist for this tenant
+     * @throws InvalidSessionStateException when the session cannot record a heartbeat
+     *                                      (i.e. the session is in a terminal state)
+     */
+    public function recordHeartbeat(
+        string $tenantId,
+        string $sessionId,
+        ?array $metadata = null,
+    ): ExamSessionView;
 }

@@ -32,6 +32,7 @@ use App\Domains\Rules\DTOs\EligibilityContext;
 use App\Domains\Rules\Services\EligibilityEvaluatorService;
 use DateTimeImmutable;
 use DateTimeInterface;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
@@ -201,6 +202,11 @@ class ExamSessionServiceImpl implements ExamSessionService
         $nextItem = $this->itemRepository->findNextPending((string) $session->session_id);
 
         return $this->toView($session, $nextItem);
+    }
+
+    public function listSessions(string $tenantId, array $filters, int $perPage): LengthAwarePaginator
+    {
+        return $this->sessionRepository->paginateList($tenantId, $filters, $perPage);
     }
 
     public function loadSessionModel(string $tenantId, string $sessionId): CandidateExamStatus
