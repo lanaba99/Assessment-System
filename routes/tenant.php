@@ -544,6 +544,9 @@ Route::middleware([
             // Workflows — approval gating for result publication - 3
             // -------------------------------------------------------------
             Route::prefix('workflows')->group(function (): void {
+                Route::get('/', [ApprovalWorkflowController::class, 'index'])
+                    ->name('api.v1.workflows.index');
+
                 Route::post('/', [ApprovalWorkflowController::class, 'initiate'])
                     ->name('api.v1.workflows.initiate');
 

@@ -20,6 +20,19 @@ class ApprovalWorkflowPolicy
         return $this->hasPermission($actor, 'workflows.manage');
     }
 
+    /**
+     * Can the actor list workflows (GET /workflows)?
+     * Same gate as viewing a single workflow: either side of the SoD split
+     * (the initiator role via workflows.manage, or the approver role via
+     * workflows.approve) can browse the list — they just can't both
+     * initiate AND approve the same workflow (enforced in initiate/approve).
+     */
+    public function viewAny(User $actor): bool
+    {
+        return $this->hasPermission($actor, 'workflows.manage')
+            || $this->hasPermission($actor, 'workflows.approve');
+    }
+
     public function view(User $actor, ApprovalWorkflow $workflow): bool
     {
         return $this->sameTenant($actor, $workflow)

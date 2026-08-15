@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Workflows;
 
 use App\Domains\Workflows\Models\ApprovalWorkflow;
+
+use App\Domains\Identity\Contracts\AuthorizationService;
+
 use App\Domains\Workflows\Services\ApprovalWorkflowService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Workflows\ApproveWorkflowRequest;
@@ -27,9 +30,81 @@ class ApprovalWorkflowController extends Controller
 
     public function __construct(
         private readonly ApprovalWorkflowService $service,
+        private readonly AuthorizationService $auth,
     ) {
     }
 
+    /**
+     * GET /api/v1/workflows
+     *
+     * Single general-purpose list endpoint — filtered via query params, not
+     * one endpoint per status/type. All filters are optional:
+     *   ?status=pending          → workflows awaiting approval
+     *   ?status=approved         → already-approved workflows
+     *   (no status)              → all workflows
+     *   ?workflow_type=...        → result_publication | exam_publication
+     *   ?resource_type=...        → filter by the morphed resource's class
+     *   ?resource_id=...          → workflows for one specific resource
+     *   ?per_page=...             → page size (default 15, max 100)
+     *
+     * Ownership scoping (Separation of Duties):
+     *   - Actors with workflows.approve (Tenant Admin) see every workflow
+     *     in the tenant — they are the independent reviewer and must be
+     *     able to find anything awaiting a decision.
+     *   - Actors WITHOUT workflows.approve, i.e. initiator-only roles like
+     *     Technical Evaluator, are always scoped to workflows THEY
+     *     initiated. This is enforced server-side (initiated_by_user_id is
+     *     forced to the authenticated user's id) — it cannot be widened
+     *     or bypassed via query params.
+     */
+    public function index(Request $request): JsonResponse
+    {
+        $this->authorize('viewAny', ApprovalWorkflow::class);
+
+        $validated = $request->validate([
+            'status' => 'sometimes|string|in:pending,approved',
+            'workflow_type' => 'sometimes|string|in:result_publication,exam_publication',
+            'resource_type' => 'sometimes|string',
+            'resource_id' => 'sometimes|string',
+            'per_page' => 'sometimes|integer|min:1|max:100',
+        ]);
+
+        $tenantId = (string) tenant()->getKey();
+        $perPage = (int) ($validated['per_page'] ?? 15);
+
+        $canApprove = $this->auth->userHasPermission(
+            $tenantId,
+            (string) $request->user()->id,
+            'workflows.approve',
+        );
+
+        $workflows = $this->service->listWorkflows(
+            $tenantId,
+            [
+                'status' => $validated['status'] ?? null,
+                'workflow_type' => $validated['workflow_type'] ?? null,
+                'resource_type' => $validated['resource_type'] ?? null,
+                'resource_id' => $validated['resource_id'] ?? null,
+                // Server-controlled — never taken from client input, so an
+                // initiator can never widen this to see other people's workflows.
+                'initiated_by_user_id' => $canApprove ? null : (string) $request->user()->id,
+            ],
+            $perPage,
+        );
+
+        return new JsonResponse(
+            [
+                'data' => ApprovalWorkflowResource::collection($workflows->items()),
+                'meta' => [
+                    'current_page' => $workflows->currentPage(),
+                    'per_page' => $workflows->perPage(),
+                    'total' => $workflows->total(),
+                    'last_page' => $workflows->lastPage(),
+                ],
+            ],
+            Response::HTTP_OK,
+        );
+    }
     public function initiate(InitiateWorkflowRequest $request): JsonResponse
     {
         $tenantId = (string) tenant()->getKey();
