@@ -32,7 +32,7 @@ class EnrollmentController extends Controller
     public function index(Request $request, string $examId): JsonResponse
     {
         // Uses the exam_sessions.manage permission — enrollment lists are admin-only.
-        $this->authorize('manage-enrollments', \App\Domains\ExamSession\Models\ExamCandidateEligible::class);
+        $this->authorize('manageEnrollments', \App\Domains\ExamSession\Models\ExamCandidateEligible::class);
 
         $tenantId = (string) tenant()->getKey();
         $enrollments = $this->enrollmentService->listForExam($tenantId, $examId);
@@ -45,7 +45,7 @@ class EnrollmentController extends Controller
 
     public function store(EnrollCandidateRequest $request, string $examId): JsonResponse
     {
-        $this->authorize('manage-enrollments', \App\Domains\ExamSession\Models\ExamCandidateEligible::class);
+        $this->authorize('manageEnrollments', \App\Domains\ExamSession\Models\ExamCandidateEligible::class);
 
         $tenantId = (string) tenant()->getKey();
 
@@ -65,7 +65,7 @@ class EnrollmentController extends Controller
 
     public function destroy(Request $request, string $examId, string $enrollmentId): JsonResponse
     {
-        $this->authorize('manage-enrollments', \App\Domains\ExamSession\Models\ExamCandidateEligible::class);
+        $this->authorize('manageEnrollments', \App\Domains\ExamSession\Models\ExamCandidateEligible::class);
 
         $tenantId = (string) tenant()->getKey();
 

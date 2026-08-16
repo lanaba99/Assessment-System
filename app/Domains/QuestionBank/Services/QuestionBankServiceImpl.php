@@ -29,6 +29,13 @@ class QuestionBankServiceImpl implements QuestionBankService
 
     private const ACCEPTABLE_DIFFICULTY_RANGE = [0.20, 0.90];
 
+    /**
+     * Live CAT can only proceed with items that score immediately (no
+     * waiting on a human evaluator). Essay/short-answer items are excluded
+     * from adaptive selection even if they are otherwise eligible.
+     */
+    private const CAT_SUPPORTED_QUESTION_TYPES = ['mcq', 'true_false'];
+
     public function __construct(
         private readonly QuestionBankRepository $repository,
         private readonly ItemResolutionStrategyResolver $strategies,
@@ -82,6 +89,14 @@ class QuestionBankServiceImpl implements QuestionBankService
             $context->administeredVersionIds,
             true,
         );
+
+        $pool = $pool->filter(
+            fn (QuestionVersion $version): bool => in_array(
+                $version->question_type,
+                self::CAT_SUPPORTED_QUESTION_TYPES,
+                true,
+            ) && $version->correct_answer_json !== null,
+        )->values();
 
         $candidate = $this->strategies->adaptive()->selectNextItem($context, $pool);
 

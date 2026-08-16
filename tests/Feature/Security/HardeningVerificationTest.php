@@ -266,7 +266,7 @@ it('returns 409 Conflict with stale_version_lock when a concurrent mutation is d
 
 it('returns 409 Conflict for stale_version_lock on suspend as well', function (): void {
     $candidate = $this->createUser($this->tenantA);
-    $this->grantPermissionsToUser($candidate, ['exam_sessions.start']);
+    $this->grantPermissionsToUser($candidate, ['exam_sessions.start', 'exam_sessions.manage']);
     Sanctum::actingAs($candidate);
 
     [$exam] = $this->prepareExamWithMockedItems($this->tenantA, (string) $candidate->id);

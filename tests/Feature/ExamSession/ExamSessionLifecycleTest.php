@@ -269,7 +269,7 @@ it('completes the full lifecycle: start → submit → complete', function (): v
 */
 it('suspends and resumes a session', function (): void {
     $candidate = $this->createUser($this->tenantA);
-    $this->grantPermissionsToUser($candidate, ['exam_sessions.start']);
+    $this->grantPermissionsToUser($candidate, ['exam_sessions.start', 'exam_sessions.manage']);
     Sanctum::actingAs($candidate);
 
     [$exam] = $this->prepareExamWithMockedItems($this->tenantA, (string) $candidate->id);
