@@ -67,6 +67,34 @@ it('denies approving a workflow when the actor lacks workflows.approve', functio
         ->assertForbidden();
 });
 
+it('denies rejecting a workflow when the actor lacks workflows.approve', function (): void {
+    $manager = $this->createUser($this->tenantA, password: 'ManagerPass1!');
+    $this->grantPermissionsToUser($manager, ['workflows.manage']);
+    Sanctum::actingAs($manager);
+
+    ['candidate' => $candidate, 'exam' => $exam, 'session' => $session] = $this->prepareGradingSession();
+    $result = $this->createAssessmentResult(
+        $this->tenantA,
+        (string) $session->session_id,
+        (string) $candidate->id,
+        (string) $exam->exam_id,
+        ['result_status' => AssessmentSummary::STATUS_FINAL],
+    );
+
+    $initiate = $this->postJson('/api/v1/workflows', [
+        'resource_type' => 'assessment_result',
+        'resource_id' => (string) $result->result_id,
+        'workflow_type' => 'result_publication',
+    ])->assertCreated();
+
+    $workflowId = $initiate->json('data.workflow_id');
+
+    // manager has workflows.manage but NOT workflows.approve — must be denied
+    $this->postJson("/api/v1/workflows/{$workflowId}/reject", [
+        'reason' => 'Not good enough.',
+    ])->assertForbidden();
+});
+
 it('denies viewing a workflow that belongs to another tenant', function (): void {
     $this->initializeTenantContext($this->tenantB);
     $adminB = $this->createUser($this->tenantB, password: 'AdminBPass1!');

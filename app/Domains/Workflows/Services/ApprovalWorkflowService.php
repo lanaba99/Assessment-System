@@ -7,6 +7,7 @@ namespace App\Domains\Workflows\Services;
 use App\Domains\Workflows\Models\ApprovalWorkflow;
 use App\Domains\Workflows\Models\WorkflowHistory;
 use App\Domains\Workflows\Repositories\ApprovalWorkflowRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use RuntimeException;
 
 class ApprovalWorkflowService
@@ -151,6 +152,17 @@ class ApprovalWorkflowService
     public function find(string $tenantId, string $workflowId): ?ApprovalWorkflow
     {
         return $this->workflows->findById($tenantId, $workflowId);
+    }
+
+    /**
+     * General workflow list for the tenant, filtered by optional query params.
+     * Backs GET /api/v1/workflows — one list endpoint, not one per status/type.
+     *
+     * @param  array{status?: string, workflow_type?: string, resource_type?: string, resource_id?: string, initiated_by_user_id?: string}  $filters
+     */
+    public function listWorkflows(string $tenantId, array $filters, int $perPage): LengthAwarePaginator
+    {
+        return $this->workflows->paginateList($tenantId, $filters, $perPage);
     }
 
     private function requirePendingWorkflow(string $tenantId, string $workflowId): ApprovalWorkflow

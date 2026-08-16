@@ -55,6 +55,17 @@ class ApprovalWorkflowPolicy
             && $this->hasPermission($actor, 'workflows.approve');
     }
 
+    /**
+     * Rejection is gated by the same permission as approval
+     * (`workflows.approve`) — whoever is authorized to approve a
+     * workflow is also the one authorized to reject it.
+     */
+    public function reject(User $actor, ApprovalWorkflow $workflow): bool
+    {
+        return $this->sameTenant($actor, $workflow)
+            && $this->hasPermission($actor, 'workflows.approve');
+    }
+
     private function sameTenant(User $actor, ApprovalWorkflow $workflow): bool
     {
         return (string) $actor->tenant_id === (string) $workflow->tenant_id;
