@@ -246,7 +246,11 @@ it('returns 404 when patching a non-existent exam', function (): void {
 */
 it('transitions a draft exam to published', function (): void {
     $admin = $this->createUser($this->tenantA, password: 'AdminPass1!');
+<<<<<<< Updated upstream
     $this->grantPermissionsToUser($admin, ['exams.manage', 'exams.view']);
+=======
+    $this->grantPermissionsToUser($admin, ['exams.manage', 'exams.publish', 'exams.view']);
+>>>>>>> Stashed changes
     Sanctum::actingAs($admin);
 
     $exam = $this->createExam($this->tenantA, (string) $admin->id);
