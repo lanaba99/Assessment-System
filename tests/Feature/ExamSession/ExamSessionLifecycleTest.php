@@ -269,7 +269,7 @@ it('completes the full lifecycle: start → submit → complete', function (): v
 */
 it('suspends and resumes a session', function (): void {
     $candidate = $this->createUser($this->tenantA);
-    $this->grantPermissionsToUser($candidate, ['exam_sessions.start']);
+    $this->grantPermissionsToUser($candidate, ['exam_sessions.start', 'exam_sessions.manage']);
     Sanctum::actingAs($candidate);
 
     [$exam] = $this->prepareExamWithMockedItems($this->tenantA, (string) $candidate->id);
@@ -706,7 +706,7 @@ it('index for exam-sessions result returns 404 for a tenantB session from tenant
 it('enrolls a candidate via the enrollment endpoint', function (): void {
     $admin = $this->createUser($this->tenantA);
     $candidate = $this->createUser($this->tenantA);
-    $this->grantPermissionsToUser($admin, ['exam_sessions.manage']);
+    $this->grantPermissionsToUser($admin, ['exam_sessions.manage', 'enrollments.manage']);
     Sanctum::actingAs($admin);
 
     $exam = $this->createExam($this->tenantA, (string) $admin->id, [
@@ -736,7 +736,7 @@ it('enrolls a candidate via the enrollment endpoint', function (): void {
 it('rejects a duplicate enrollment with 409', function (): void {
     $admin = $this->createUser($this->tenantA);
     $candidate = $this->createUser($this->tenantA);
-    $this->grantPermissionsToUser($admin, ['exam_sessions.manage']);
+    $this->grantPermissionsToUser($admin, ['exam_sessions.manage', 'enrollments.manage']);
     Sanctum::actingAs($admin);
 
     $exam = $this->createExam($this->tenantA, (string) $admin->id, [
@@ -756,7 +756,7 @@ it('rejects a duplicate enrollment with 409', function (): void {
 it('revokes an enrollment and returns 204', function (): void {
     $admin = $this->createUser($this->tenantA);
     $candidate = $this->createUser($this->tenantA);
-    $this->grantPermissionsToUser($admin, ['exam_sessions.manage']);
+    $this->grantPermissionsToUser($admin, ['exam_sessions.manage', 'enrollments.manage']);
     Sanctum::actingAs($admin);
 
     $exam = $this->createExam($this->tenantA, (string) $admin->id, [

@@ -11,10 +11,10 @@ use function Knuckles\Scribe\Config\removeStrategies;
 
 return [
     // The HTML <title> for the generated documentation.
-    'title' => config('app.name').' API Documentation',
+    'title' => 'EAE Assessment Engine API',
 
     // A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
-    'description' => '',
+    'description' => 'Tenant-scoped REST API for the Enterprise Assessment Engine (EAE) SaaS platform.',
 
     // Text to place in the "Introduction" section, right after the `description`. Markdown and HTML are supported.
     'intro_text' => <<<'INTRO'
@@ -26,7 +26,7 @@ return [
 
     // The base URL displayed in the docs.
     // If you're using `laravel` type, you can set this to a dynamic string, like '{{ config("app.tenant_url") }}' to get a dynamic base URL.
-    'base_url' => config('app.url'),
+    'base_url' => env('SCRIBE_BASE_URL', config('app.url')),
 
 
     // Default:
@@ -108,33 +108,25 @@ return [
     ],
 
     'try_it_out' => [
-        // Add a Try It Out button to your endpoints so consumers can test endpoints right from their browser.
-        // Don't forget to enable CORS headers for your endpoints.
-        'enabled' => true,
-
-        // The base URL to use in the API tester. Leave as null to be the same as the displayed URL (`scribe.base_url`).
-        'base_url' => 'http://localhost/api/v1',
-        // [Laravel Sanctum] Fetch a CSRF token before each request, and add it as an X-XSRF-TOKEN header.
+        'enabled' => (bool) env('SCRIBE_TRY_IT_OUT', false),
+        'base_url' => env('SCRIBE_TRY_IT_OUT_BASE_URL', env('SCRIBE_BASE_URL', config('app.url'))),
         'use_csrf' => false,
-
-        // The URL to fetch the CSRF token from (if `use_csrf` is true).
-        'csrf_url' => '/sanctum/csrf-cookie',
     ],
+
 
     // How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
     'auth' => [
         // Set this to true if ANY endpoints in your API use authentication.
-        'enabled' => false,
-
+        'enabled' => true,
         // Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
         // You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
-        'default' => false,
+        'default' => true,
 
         // Where is the auth value meant to be sent in a request?
         'in' => AuthIn::BEARER->value,
 
         // The name of the auth parameter (e.g. token, key, apiKey) or header (e.g. Authorization, Api-Key).
-        'name' => 'key',
+        'name' => 'Authorization',
 
         // The value of the parameter to be used by Scribe to authenticate response calls.
         // This will NOT be included in the generated documentation. If empty, Scribe will use a random value.
@@ -142,10 +134,11 @@ return [
 
         // Placeholder your users will see for the auth parameter in the example requests.
         // Set this to null if you want Scribe to use a random value as placeholder instead.
-        'placeholder' => '{YOUR_AUTH_KEY}',
+        'placeholder' => '{SANCTUM_TOKEN}',
 
         // Any extra authentication-related info for your users. Markdown and HTML are supported.
-        'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',
+        'extra_info' => 'Obtain a tenant-scoped Sanctum token using POST /api/v1/auth/login. Use the same tenant subdomain for all authenticated requests.',
+
     ],
 
     // Example requests for each endpoint will be shown in each of these languages.
@@ -162,7 +155,7 @@ return [
     // For 'laravel' docs, it will be generated to storage/app/scribe/collection.json.
     // Setting `laravel.add_routes` to true (above) will also add a route for the collection.
     'postman' => [
-        'enabled' => true,
+        'enabled' => false,
 
         'overrides' => [
             // 'info.version' => '2.0.0',

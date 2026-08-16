@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Laravel API Documentation</title>
+    <title>EAE Assessment Engine API</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
@@ -25,12 +25,6 @@
                     body .content .javascript-example code { display: none; }
             </style>
 
-    <script>
-        var tryItOutBaseUrl = "http://localhost/api/v1";
-        var useCsrf = Boolean();
-        var csrfUrl = "/sanctum/csrf-cookie";
-    </script>
-    <script src="{{ asset("/vendor/scribe/js/tryitout-5.11.0.js") }}"></script>
 
     <script src="{{ asset("/vendor/scribe/js/theme-default-5.11.0.js") }}"></script>
 
@@ -73,22 +67,6 @@
                                     <ul id="tocify-subheader-analyticsdashboard" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="analyticsdashboard-GETapi-v1-analytics-dashboard">
                                 <a href="#analyticsdashboard-GETapi-v1-analytics-dashboard">GET api/v1/analytics/dashboard</a>
-                            </li>
-                                                                        </ul>
-                            </ul>
-                    <ul id="tocify-header-approvalworkflow" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="approvalworkflow">
-                    <a href="#approvalworkflow">ApprovalWorkflow</a>
-                </li>
-                                    <ul id="tocify-subheader-approvalworkflow" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="approvalworkflow-POSTapi-v1-workflows">
-                                <a href="#approvalworkflow-POSTapi-v1-workflows">POST api/v1/workflows</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="approvalworkflow-GETapi-v1-workflows--workflowId-">
-                                <a href="#approvalworkflow-GETapi-v1-workflows--workflowId-">GET api/v1/workflows/{workflowId}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="approvalworkflow-POSTapi-v1-workflows--workflowId--approve">
-                                <a href="#approvalworkflow-POSTapi-v1-workflows--workflowId--approve">POST api/v1/workflows/{workflowId}/approve</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -176,6 +154,12 @@
                                                                                 <li class="tocify-item level-2" data-unique="centraltenant-PATCHapi-v1-admin-tenants--tenantId-">
                                 <a href="#centraltenant-PATCHapi-v1-admin-tenants--tenantId-">PATCH api/v1/admin/tenants/{tenantId}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="centraltenant-POSTapi-v1-admin-tenants--tenantId--suspend">
+                                <a href="#centraltenant-POSTapi-v1-admin-tenants--tenantId--suspend">POST api/v1/admin/tenants/{tenantId}/suspend</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="centraltenant-POSTapi-v1-admin-tenants--tenantId--reactivate">
+                                <a href="#centraltenant-POSTapi-v1-admin-tenants--tenantId--reactivate">POST api/v1/admin/tenants/{tenantId}/reactivate</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-cohortmembers" class="tocify-header">
@@ -235,6 +219,95 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-eligibility" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="eligibility">
+                    <a href="#eligibility">Eligibility</a>
+                </li>
+                                    <ul id="tocify-subheader-eligibility" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="eligibility-GETapi-v1-eligibility-chains">
+                                <a href="#eligibility-GETapi-v1-eligibility-chains">GET api/v1/eligibility-chains</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="eligibility-POSTapi-v1-eligibility-chains">
+                                <a href="#eligibility-POSTapi-v1-eligibility-chains">POST api/v1/eligibility-chains</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="eligibility-GETapi-v1-eligibility-chains--chainId-">
+                                <a href="#eligibility-GETapi-v1-eligibility-chains--chainId-">GET api/v1/eligibility-chains/{chainId}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="eligibility-PATCHapi-v1-eligibility-chains--chainId-">
+                                <a href="#eligibility-PATCHapi-v1-eligibility-chains--chainId-">PATCH api/v1/eligibility-chains/{chainId}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="eligibility-DELETEapi-v1-eligibility-chains--chainId-">
+                                <a href="#eligibility-DELETEapi-v1-eligibility-chains--chainId-">DELETE api/v1/eligibility-chains/{chainId}</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-certificates-verify--token-">
+                                <a href="#endpoints-GETapi-v1-certificates-verify--token-">GET api/v1/certificates/verify/{token}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-certificates">
+                                <a href="#endpoints-GETapi-v1-certificates">GET api/v1/certificates</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-certificates--certificateId-">
+                                <a href="#endpoints-GETapi-v1-certificates--certificateId-">GET api/v1/certificates/{certificateId}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-certificates--certificateId--regenerate">
+                                <a href="#endpoints-POSTapi-v1-certificates--certificateId--regenerate">POST api/v1/certificates/{certificateId}/regenerate</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-certificates--certificateId--revoke">
+                                <a href="#endpoints-POSTapi-v1-certificates--certificateId--revoke">POST api/v1/certificates/{certificateId}/revoke</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exam-sessions--sessionId--certificate">
+                                <a href="#endpoints-GETapi-v1-exam-sessions--sessionId--certificate">GET api/v1/exam-sessions/{sessionId}/certificate</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exams--examId--results-export">
+                                <a href="#endpoints-GETapi-v1-exams--examId--results-export">GET api/v1/exams/{examId}/results/export</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-questions--questionId--competencies">
+                                <a href="#endpoints-POSTapi-v1-questions--questionId--competencies">POST api/v1/questions/{questionId}/competencies</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-questions--questionId--competencies">
+                                <a href="#endpoints-GETapi-v1-questions--questionId--competencies">GET api/v1/questions/{questionId}/competencies</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-question-versions--versionId--approve">
+                                <a href="#endpoints-POSTapi-v1-question-versions--versionId--approve">POST api/v1/question-versions/{versionId}/approve</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-v1-question-versions--versionId--psychometrics">
+                                <a href="#endpoints-PATCHapi-v1-question-versions--versionId--psychometrics">PATCH api/v1/question-versions/{versionId}/psychometrics</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-exams--examId--sections">
+                                <a href="#endpoints-POSTapi-v1-exams--examId--sections">POST api/v1/exams/{examId}/sections</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exams--examId--sections">
+                                <a href="#endpoints-GETapi-v1-exams--examId--sections">GET api/v1/exams/{examId}/sections</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-exams--examId--blueprints">
+                                <a href="#endpoints-POSTapi-v1-exams--examId--blueprints">POST api/v1/exams/{examId}/blueprints</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exams--examId--blueprints">
+                                <a href="#endpoints-GETapi-v1-exams--examId--blueprints">GET api/v1/exams/{examId}/blueprints</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-workflows">
+                                <a href="#endpoints-GETapi-v1-workflows">GET /api/v1/workflows</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-workflows">
+                                <a href="#endpoints-POSTapi-v1-workflows">POST api/v1/workflows</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-workflows--workflowId-">
+                                <a href="#endpoints-GETapi-v1-workflows--workflowId-">GET api/v1/workflows/{workflowId}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-workflows--workflowId--approve">
+                                <a href="#endpoints-POSTapi-v1-workflows--workflowId--approve">POST api/v1/workflows/{workflowId}/approve</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-workflows--workflowId--reject">
+                                <a href="#endpoints-POSTapi-v1-workflows--workflowId--reject">POST api/v1/workflows/{workflowId}/reject</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-enrollments" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="enrollments">
                     <a href="#enrollments">Enrollments</a>
@@ -284,11 +357,17 @@
                     <a href="#examsession">ExamSession</a>
                 </li>
                                     <ul id="tocify-subheader-examsession" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="examsession-POSTapi-v1-exam-sessions">
+                                                    <li class="tocify-item level-2" data-unique="examsession-GETapi-v1-exam-sessions">
+                                <a href="#examsession-GETapi-v1-exam-sessions">GET /api/v1/exam-sessions</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="examsession-POSTapi-v1-exam-sessions">
                                 <a href="#examsession-POSTapi-v1-exam-sessions">POST api/v1/exam-sessions</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="examsession-GETapi-v1-exam-sessions--sessionId-">
                                 <a href="#examsession-GETapi-v1-exam-sessions--sessionId-">GET api/v1/exam-sessions/{sessionId}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="examsession-GETapi-v1-exam-sessions--sessionId--current-question">
+                                <a href="#examsession-GETapi-v1-exam-sessions--sessionId--current-question">GET api/v1/exam-sessions/{sessionId}/current-question</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="examsession-POSTapi-v1-exam-sessions--sessionId--responses">
                                 <a href="#examsession-POSTapi-v1-exam-sessions--sessionId--responses">POST api/v1/exam-sessions/{sessionId}/responses</a>
@@ -407,7 +486,10 @@
                     <a href="#questionbank">QuestionBank</a>
                 </li>
                                     <ul id="tocify-subheader-questionbank" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="questionbank-GETapi-v1-questions">
+                                                    <li class="tocify-item level-2" data-unique="questionbank-POSTapi-v1-questions-bulk-import">
+                                <a href="#questionbank-POSTapi-v1-questions-bulk-import">POST api/v1/questions/bulk-import</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="questionbank-GETapi-v1-questions">
                                 <a href="#questionbank-GETapi-v1-questions">GET api/v1/questions</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="questionbank-POSTapi-v1-questions">
@@ -502,6 +584,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="user-GETapi-v1-users--userId-">
                                 <a href="#user-GETapi-v1-users--userId-">GET api/v1/users/{userId}</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="user-PATCHapi-v1-users--userId-">
+                                <a href="#user-PATCHapi-v1-users--userId-">PATCH api/v1/users/{userId}</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="user-POSTapi-v1-users--userId--reset-password">
                                 <a href="#user-POSTapi-v1-users--userId--reset-password">POST api/v1/users/{userId}/reset-password</a>
                             </li>
@@ -513,13 +598,12 @@
             </div>
 
     <ul class="toc-footer" id="toc-footer">
-                    <li style="padding-bottom: 5px;"><a href="{{ route("scribe.postman") }}">View Postman collection</a></li>
                             <li style="padding-bottom: 5px;"><a href="{{ route("scribe.openapi") }}">View OpenAPI spec</a></li>
                 <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 25, 2026</li>
+        <li>Last updated: August 16, 2026</li>
     </ul>
 </div>
 
@@ -527,8 +611,9 @@
     <div class="dark-box"></div>
     <div class="content">
         <h1 id="introduction">Introduction</h1>
+<p>Tenant-scoped REST API for the Enterprise Assessment Engine (EAE) SaaS platform.</p>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost</code>
+    <strong>Base URL</strong>: <code>http://alpha-engine.localhost:8000</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -536,7 +621,9 @@
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).&lt;/aside&gt;</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is not authenticated.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {SANCTUM_TOKEN}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>Obtain a tenant-scoped Sanctum token using POST /api/v1/auth/login. Use the same tenant subdomain for all authenticated requests.</p>
 
         <h1 id="analyticsdashboard">AnalyticsDashboard</h1>
 
@@ -545,6 +632,7 @@ You can switch the language used with the tabs at the top right (or from the nav
                                 <h2 id="analyticsdashboard-GETapi-v1-analytics-dashboard">GET api/v1/analytics/dashboard</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -555,7 +643,8 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/analytics/dashboard" \
+    --get "http://alpha-engine.localhost:8000/api/v1/analytics/dashboard" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -563,10 +652,11 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/analytics/dashboard"
+    "http://alpha-engine.localhost:8000/api/v1/analytics/dashboard"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -615,36 +705,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-analytics-dashboard" data-method="GET"
       data-path="api/v1/analytics/dashboard"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-analytics-dashboard', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-analytics-dashboard"
-                    onclick="tryItOut('GETapi-v1-analytics-dashboard');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-analytics-dashboard"
-                    onclick="cancelTryOut('GETapi-v1-analytics-dashboard');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-analytics-dashboard"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/analytics/dashboard</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-analytics-dashboard"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -683,508 +768,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                <h1 id="approvalworkflow">ApprovalWorkflow</h1>
-
-    
-
-                                <h2 id="approvalworkflow-POSTapi-v1-workflows">POST api/v1/workflows</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-workflows">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/workflows" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"resource_type\": \"b\",
-    \"resource_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\",
-    \"workflow_type\": \"z\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/workflows"
-);
-
-const headers = {
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "resource_type": "b",
-    "resource_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0",
-    "workflow_type": "z"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-workflows">
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-workflows" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-workflows"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-workflows" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-workflows">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-workflows" data-method="POST"
-      data-path="api/v1/workflows"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-workflows"
-                    onclick="tryItOut('POSTapi-v1-workflows');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-workflows"
-                    onclick="cancelTryOut('POSTapi-v1-workflows');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-workflows"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/workflows</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-workflows"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>resource_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="resource_type"                data-endpoint="POSTapi-v1-workflows"
-               value="b"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>resource_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="resource_id"                data-endpoint="POSTapi-v1-workflows"
-               value="a4855dc5-0acb-33c3-b921-f4291f719ca0"
-               data-component="body">
-    <br>
-<p>Must be a valid UUID. Example: <code>a4855dc5-0acb-33c3-b921-f4291f719ca0</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>workflow_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflow_type"                data-endpoint="POSTapi-v1-workflows"
-               value="z"
-               data-component="body">
-    <br>
-<p>Must not be greater than 100 characters. Example: <code>z</code></p>
-        </div>
-        </form>
-
-                    <h2 id="approvalworkflow-GETapi-v1-workflows--workflowId-">GET api/v1/workflows/{workflowId}</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-workflows--workflowId-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-);
-
-const headers = {
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-workflows--workflowId-">
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-workflows--workflowId-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-workflows--workflowId-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows--workflowId-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-workflows--workflowId-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-workflows--workflowId-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-workflows--workflowId-" data-method="GET"
-      data-path="api/v1/workflows/{workflowId}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows--workflowId-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-workflows--workflowId-"
-                    onclick="tryItOut('GETapi-v1-workflows--workflowId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-workflows--workflowId-"
-                    onclick="cancelTryOut('GETapi-v1-workflows--workflowId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-workflows--workflowId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/workflows/{workflowId}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflowId"                data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="approvalworkflow-POSTapi-v1-workflows--workflowId--approve">POST api/v1/workflows/{workflowId}/approve</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-workflows--workflowId--approve">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve"
-);
-
-const headers = {
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-workflows--workflowId--approve">
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-workflows--workflowId--approve" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-workflows--workflowId--approve"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows--workflowId--approve"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-workflows--workflowId--approve" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-workflows--workflowId--approve">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-workflows--workflowId--approve" data-method="POST"
-      data-path="api/v1/workflows/{workflowId}/approve"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows--workflowId--approve', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-workflows--workflowId--approve"
-                    onclick="tryItOut('POSTapi-v1-workflows--workflowId--approve');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-workflows--workflowId--approve"
-                    onclick="cancelTryOut('POSTapi-v1-workflows--workflowId--approve');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-workflows--workflowId--approve"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/workflows/{workflowId}/approve</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflowId"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
                 <h1 id="assessmentresults">AssessmentResults</h1>
 
     
@@ -1192,6 +775,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="assessmentresults-GETapi-v1-exam-sessions--sessionId--result">GET api/v1/exam-sessions/{sessionId}/result</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1202,7 +786,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1210,10 +795,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -1262,36 +848,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exam-sessions--sessionId--result" data-method="GET"
       data-path="api/v1/exam-sessions/{sessionId}/result"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--result', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exam-sessions--sessionId--result"
-                    onclick="tryItOut('GETapi-v1-exam-sessions--sessionId--result');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exam-sessions--sessionId--result"
-                    onclick="cancelTryOut('GETapi-v1-exam-sessions--sessionId--result');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exam-sessions--sessionId--result"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exam-sessions/{sessionId}/result</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--result"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1350,6 +931,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="auth-POSTapi-v1-auth-login">POST api/v1/auth/login</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1360,7 +942,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/auth/login" \
+    "http://alpha-engine.localhost:8000/api/v1/auth/login" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1374,10 +957,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/login"
+    "http://alpha-engine.localhost:8000/api/v1/auth/login"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -1432,36 +1016,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-auth-login" data-method="POST"
       data-path="api/v1/auth/login"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-login', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-auth-login"
-                    onclick="tryItOut('POSTapi-v1-auth-login');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-auth-login"
-                    onclick="cancelTryOut('POSTapi-v1-auth-login');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-auth-login"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/auth/login</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-auth-login"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1540,6 +1119,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="auth-POSTapi-v1-auth-mfa-verify">POST api/v1/auth/mfa/verify</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1550,7 +1130,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/auth/mfa/verify" \
+    "http://alpha-engine.localhost:8000/api/v1/auth/mfa/verify" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1563,10 +1144,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/mfa/verify"
+    "http://alpha-engine.localhost:8000/api/v1/auth/mfa/verify"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -1620,36 +1202,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-auth-mfa-verify" data-method="POST"
       data-path="api/v1/auth/mfa/verify"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-mfa-verify', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-auth-mfa-verify"
-                    onclick="tryItOut('POSTapi-v1-auth-mfa-verify');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-auth-mfa-verify"
-                    onclick="cancelTryOut('POSTapi-v1-auth-mfa-verify');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-auth-mfa-verify"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/auth/mfa/verify</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-auth-mfa-verify"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1716,6 +1293,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="auth-POSTapi-v1-auth-password-forgot">POST api/v1/auth/password/forgot</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1726,7 +1304,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/auth/password/forgot" \
+    "http://alpha-engine.localhost:8000/api/v1/auth/password/forgot" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1738,10 +1317,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/password/forgot"
+    "http://alpha-engine.localhost:8000/api/v1/auth/password/forgot"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -1794,36 +1374,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-auth-password-forgot" data-method="POST"
       data-path="api/v1/auth/password/forgot"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-password-forgot', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-auth-password-forgot"
-                    onclick="tryItOut('POSTapi-v1-auth-password-forgot');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-auth-password-forgot"
-                    onclick="cancelTryOut('POSTapi-v1-auth-password-forgot');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-auth-password-forgot"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/auth/password/forgot</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-auth-password-forgot"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1878,6 +1453,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="auth-POSTapi-v1-auth-password-reset">POST api/v1/auth/password/reset</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1888,7 +1464,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/auth/password/reset" \
+    "http://alpha-engine.localhost:8000/api/v1/auth/password/reset" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -1902,10 +1479,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/password/reset"
+    "http://alpha-engine.localhost:8000/api/v1/auth/password/reset"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -1960,36 +1538,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-auth-password-reset" data-method="POST"
       data-path="api/v1/auth/password/reset"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-password-reset', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-auth-password-reset"
-                    onclick="tryItOut('POSTapi-v1-auth-password-reset');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-auth-password-reset"
-                    onclick="cancelTryOut('POSTapi-v1-auth-password-reset');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-auth-password-reset"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/auth/password/reset</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-auth-password-reset"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -2068,6 +1641,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="auth-POSTapi-v1-auth-accept-invite">POST api/v1/auth/accept-invite</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2078,7 +1652,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/auth/accept-invite" \
+    "http://alpha-engine.localhost:8000/api/v1/auth/accept-invite" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2092,10 +1667,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/accept-invite"
+    "http://alpha-engine.localhost:8000/api/v1/auth/accept-invite"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -2150,36 +1726,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-auth-accept-invite" data-method="POST"
       data-path="api/v1/auth/accept-invite"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-accept-invite', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-auth-accept-invite"
-                    onclick="tryItOut('POSTapi-v1-auth-accept-invite');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-auth-accept-invite"
-                    onclick="cancelTryOut('POSTapi-v1-auth-accept-invite');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-auth-accept-invite"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/auth/accept-invite</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-auth-accept-invite"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -2258,6 +1829,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="auth-POSTapi-v1-auth-logout">POST api/v1/auth/logout</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2268,7 +1840,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/auth/logout" \
+    "http://alpha-engine.localhost:8000/api/v1/auth/logout" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2280,10 +1853,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/logout"
+    "http://alpha-engine.localhost:8000/api/v1/auth/logout"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -2336,36 +1910,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-auth-logout" data-method="POST"
       data-path="api/v1/auth/logout"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-logout', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-auth-logout"
-                    onclick="tryItOut('POSTapi-v1-auth-logout');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-auth-logout"
-                    onclick="cancelTryOut('POSTapi-v1-auth-logout');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-auth-logout"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/auth/logout</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-auth-logout"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -2420,6 +1989,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="auth-POSTapi-v1-auth-refresh">POST api/v1/auth/refresh</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2430,7 +2000,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/auth/refresh" \
+    "http://alpha-engine.localhost:8000/api/v1/auth/refresh" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2442,10 +2013,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/auth/refresh"
+    "http://alpha-engine.localhost:8000/api/v1/auth/refresh"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -2498,36 +2070,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-auth-refresh" data-method="POST"
       data-path="api/v1/auth/refresh"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-refresh', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-auth-refresh"
-                    onclick="tryItOut('POSTapi-v1-auth-refresh');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-auth-refresh"
-                    onclick="cancelTryOut('POSTapi-v1-auth-refresh');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-auth-refresh"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/auth/refresh</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-auth-refresh"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -2586,6 +2153,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="categoryquestionbank-GETapi-v1-categories-tree">GET api/v1/categories/tree</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2596,7 +2164,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/categories/tree" \
+    --get "http://alpha-engine.localhost:8000/api/v1/categories/tree" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2604,10 +2173,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/categories/tree"
+    "http://alpha-engine.localhost:8000/api/v1/categories/tree"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -2656,36 +2226,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-categories-tree" data-method="GET"
       data-path="api/v1/categories/tree"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-categories-tree', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-categories-tree"
-                    onclick="tryItOut('GETapi-v1-categories-tree');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-categories-tree"
-                    onclick="cancelTryOut('GETapi-v1-categories-tree');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-categories-tree"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/categories/tree</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-categories-tree"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -2727,6 +2292,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="categoryquestionbank-POSTapi-v1-categories">POST api/v1/categories</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2737,7 +2303,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/categories" \
+    "http://alpha-engine.localhost:8000/api/v1/categories" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2751,10 +2318,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/categories"
+    "http://alpha-engine.localhost:8000/api/v1/categories"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -2809,36 +2377,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-categories" data-method="POST"
       data-path="api/v1/categories"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-categories', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-categories"
-                    onclick="tryItOut('POSTapi-v1-categories');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-categories"
-                    onclick="cancelTryOut('POSTapi-v1-categories');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-categories"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/categories</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-categories"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -2917,6 +2480,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="categoryquestionbank-PATCHapi-v1-categories--id--move">PATCH api/v1/categories/{id}/move</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -2927,7 +2491,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move" \
+    "http://alpha-engine.localhost:8000/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2939,10 +2504,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move"
+    "http://alpha-engine.localhost:8000/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -2995,36 +2561,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-categories--id--move" data-method="PATCH"
       data-path="api/v1/categories/{id}/move"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-categories--id--move', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-categories--id--move"
-                    onclick="tryItOut('PATCHapi-v1-categories--id--move');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-categories--id--move"
-                    onclick="cancelTryOut('PATCHapi-v1-categories--id--move');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-categories--id--move"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/categories/{id}/move</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-categories--id--move"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3092,6 +2653,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="categoryquestionbank-DELETEapi-v1-categories--id-">DELETE api/v1/categories/{id}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -3102,7 +2664,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3110,10 +2673,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -3146,36 +2710,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-categories--id-" data-method="DELETE"
       data-path="api/v1/categories/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-categories--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-categories--id-"
-                    onclick="tryItOut('DELETEapi-v1-categories--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-categories--id-"
-                    onclick="cancelTryOut('DELETEapi-v1-categories--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-categories--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/categories/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-categories--id-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3234,6 +2793,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="centralauth-POSTapi-v1-admin-auth-login">POST api/v1/admin/auth/login</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -3244,7 +2804,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/admin/auth/login" \
+    "http://alpha-engine.localhost:8000/api/v1/admin/auth/login" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3257,10 +2818,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/admin/auth/login"
+    "http://alpha-engine.localhost:8000/api/v1/admin/auth/login"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -3317,36 +2879,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-admin-auth-login" data-method="POST"
       data-path="api/v1/admin/auth/login"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-admin-auth-login', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-admin-auth-login"
-                    onclick="tryItOut('POSTapi-v1-admin-auth-login');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-admin-auth-login"
-                    onclick="cancelTryOut('POSTapi-v1-admin-auth-login');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-admin-auth-login"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/admin/auth/login</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-admin-auth-login"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3417,6 +2974,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="centraltenant-GETapi-v1-admin-tenants">GET api/v1/admin/tenants</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -3427,7 +2985,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/admin/tenants" \
+    --get "http://alpha-engine.localhost:8000/api/v1/admin/tenants" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3435,10 +2994,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/admin/tenants"
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -3487,36 +3047,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-admin-tenants" data-method="GET"
       data-path="api/v1/admin/tenants"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-admin-tenants', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-admin-tenants"
-                    onclick="tryItOut('GETapi-v1-admin-tenants');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-admin-tenants"
-                    onclick="cancelTryOut('GETapi-v1-admin-tenants');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-admin-tenants"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/admin/tenants</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-admin-tenants"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3558,6 +3113,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="centraltenant-POSTapi-v1-admin-tenants">POST api/v1/admin/tenants</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -3568,7 +3124,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/admin/tenants" \
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -3586,10 +3143,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/admin/tenants"
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -3648,36 +3206,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-admin-tenants" data-method="POST"
       data-path="api/v1/admin/tenants"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-admin-tenants', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-admin-tenants"
-                    onclick="tryItOut('POSTapi-v1-admin-tenants');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-admin-tenants"
-                    onclick="cancelTryOut('POSTapi-v1-admin-tenants');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-admin-tenants"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/admin/tenants</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-admin-tenants"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3828,6 +3381,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="centraltenant-GETapi-v1-admin-tenants--tenantId-">GET api/v1/admin/tenants/{tenantId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -3838,7 +3392,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/admin/tenants/architecto" \
+    --get "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3846,10 +3401,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/admin/tenants/architecto"
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -3898,36 +3454,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-admin-tenants--tenantId-" data-method="GET"
       data-path="api/v1/admin/tenants/{tenantId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-admin-tenants--tenantId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-admin-tenants--tenantId-"
-                    onclick="tryItOut('GETapi-v1-admin-tenants--tenantId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-admin-tenants--tenantId-"
-                    onclick="cancelTryOut('GETapi-v1-admin-tenants--tenantId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-admin-tenants--tenantId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/admin/tenants/{tenantId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-admin-tenants--tenantId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -3982,6 +3533,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="centraltenant-PATCHapi-v1-admin-tenants--tenantId-">PATCH api/v1/admin/tenants/{tenantId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -3992,7 +3544,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/admin/tenants/architecto" \
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -4010,10 +3563,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/admin/tenants/architecto"
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -4072,36 +3626,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-admin-tenants--tenantId-" data-method="PATCH"
       data-path="api/v1/admin/tenants/{tenantId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-admin-tenants--tenantId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-admin-tenants--tenantId-"
-                    onclick="tryItOut('PATCHapi-v1-admin-tenants--tenantId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-admin-tenants--tenantId-"
-                    onclick="cancelTryOut('PATCHapi-v1-admin-tenants--tenantId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-admin-tenants--tenantId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/admin/tenants/{tenantId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-admin-tenants--tenantId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4252,6 +3801,310 @@ Must be one of:
         </div>
         </form>
 
+                    <h2 id="centraltenant-POSTapi-v1-admin-tenants--tenantId--suspend">POST api/v1/admin/tenants/{tenantId}/suspend</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-admin-tenants--tenantId--suspend">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto/suspend" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto/suspend"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-admin-tenants--tenantId--suspend">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-admin-tenants--tenantId--suspend" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-admin-tenants--tenantId--suspend"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-admin-tenants--tenantId--suspend"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-admin-tenants--tenantId--suspend" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-admin-tenants--tenantId--suspend">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-admin-tenants--tenantId--suspend" data-method="POST"
+      data-path="api/v1/admin/tenants/{tenantId}/suspend"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-admin-tenants--tenantId--suspend', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/admin/tenants/{tenantId}/suspend</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-admin-tenants--tenantId--suspend"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--suspend"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--suspend"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--suspend"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>tenantId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="tenantId"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--suspend"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="centraltenant-POSTapi-v1-admin-tenants--tenantId--reactivate">POST api/v1/admin/tenants/{tenantId}/reactivate</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-admin-tenants--tenantId--reactivate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto/reactivate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto/reactivate"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-admin-tenants--tenantId--reactivate">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-admin-tenants--tenantId--reactivate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-admin-tenants--tenantId--reactivate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-admin-tenants--tenantId--reactivate"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-admin-tenants--tenantId--reactivate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-admin-tenants--tenantId--reactivate">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-admin-tenants--tenantId--reactivate" data-method="POST"
+      data-path="api/v1/admin/tenants/{tenantId}/reactivate"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-admin-tenants--tenantId--reactivate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/admin/tenants/{tenantId}/reactivate</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-admin-tenants--tenantId--reactivate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--reactivate"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--reactivate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--reactivate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>tenantId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="tenantId"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--reactivate"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
                 <h1 id="cohortmembers">CohortMembers</h1>
 
     
@@ -4259,6 +4112,7 @@ Must be one of:
                                 <h2 id="cohortmembers-GETapi-v1-cohorts--cohortId--members">GET api/v1/cohorts/{cohortId}/members</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4269,7 +4123,8 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members" \
+    --get "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4277,10 +4132,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members"
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -4329,36 +4185,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-cohorts--cohortId--members" data-method="GET"
       data-path="api/v1/cohorts/{cohortId}/members"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-cohorts--cohortId--members', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-cohorts--cohortId--members"
-                    onclick="tryItOut('GETapi-v1-cohorts--cohortId--members');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-cohorts--cohortId--members"
-                    onclick="cancelTryOut('GETapi-v1-cohorts--cohortId--members');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-cohorts--cohortId--members"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/cohorts/{cohortId}/members</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-cohorts--cohortId--members"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4413,6 +4264,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="cohortmembers-POSTapi-v1-cohorts--cohortId--members">POST api/v1/cohorts/{cohortId}/members</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4423,23 +4275,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members" \
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"user_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"membership_role\": \"member\"
+    \"membership_role\": \"coordinator\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members"
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -4447,7 +4301,7 @@ const headers = {
 
 let body = {
     "user_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "membership_role": "member"
+    "membership_role": "coordinator"
 };
 
 fetch(url, {
@@ -4493,36 +4347,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-cohorts--cohortId--members" data-method="POST"
       data-path="api/v1/cohorts/{cohortId}/members"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-cohorts--cohortId--members', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-cohorts--cohortId--members"
-                    onclick="tryItOut('POSTapi-v1-cohorts--cohortId--members');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-cohorts--cohortId--members"
-                    onclick="cancelTryOut('POSTapi-v1-cohorts--cohortId--members');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-cohorts--cohortId--members"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/cohorts/{cohortId}/members</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-cohorts--cohortId--members"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4592,10 +4441,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="membership_role"                data-endpoint="POSTapi-v1-cohorts--cohortId--members"
-               value="member"
+               value="coordinator"
                data-component="body">
     <br>
-<p>Example: <code>member</code></p>
+<p>Example: <code>coordinator</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>member</code></li> <li><code>manager</code></li> <li><code>coordinator</code></li> <li><code>observer</code></li></ul>
         </div>
@@ -4604,6 +4453,7 @@ Must be one of:
                     <h2 id="cohortmembers-DELETEapi-v1-cohorts--cohortId--members--userId-">DELETE api/v1/cohorts/{cohortId}/members/{userId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4614,7 +4464,8 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4622,10 +4473,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -4658,36 +4510,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-cohorts--cohortId--members--userId-" data-method="DELETE"
       data-path="api/v1/cohorts/{cohortId}/members/{userId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-cohorts--cohortId--members--userId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-cohorts--cohortId--members--userId-"
-                    onclick="tryItOut('DELETEapi-v1-cohorts--cohortId--members--userId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-cohorts--cohortId--members--userId-"
-                    onclick="cancelTryOut('DELETEapi-v1-cohorts--cohortId--members--userId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-cohorts--cohortId--members--userId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/cohorts/{cohortId}/members/{userId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-cohorts--cohortId--members--userId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4758,6 +4605,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="cohorts-GETapi-v1-cohorts">GET api/v1/cohorts</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4768,7 +4616,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/cohorts" \
+    --get "http://alpha-engine.localhost:8000/api/v1/cohorts" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4776,10 +4625,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/cohorts"
+    "http://alpha-engine.localhost:8000/api/v1/cohorts"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -4828,36 +4678,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-cohorts" data-method="GET"
       data-path="api/v1/cohorts"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-cohorts', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-cohorts"
-                    onclick="tryItOut('GETapi-v1-cohorts');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-cohorts"
-                    onclick="cancelTryOut('GETapi-v1-cohorts');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-cohorts"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/cohorts</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-cohorts"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -4899,6 +4744,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="cohorts-POSTapi-v1-cohorts">POST api/v1/cohorts</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -4909,14 +4755,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/cohorts" \
+    "http://alpha-engine.localhost:8000/api/v1/cohorts" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"cohort_name\": \"b\",
     \"cohort_code\": \"n\",
-    \"cohort_type\": \"batch\",
+    \"cohort_type\": \"department\",
     \"cohort_description\": \"architecto\",
     \"parent_cohort_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\"
 }"
@@ -4925,10 +4772,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/cohorts"
+    "http://alpha-engine.localhost:8000/api/v1/cohorts"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -4937,7 +4785,7 @@ const headers = {
 let body = {
     "cohort_name": "b",
     "cohort_code": "n",
-    "cohort_type": "batch",
+    "cohort_type": "department",
     "cohort_description": "architecto",
     "parent_cohort_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0"
 };
@@ -4985,36 +4833,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-cohorts" data-method="POST"
       data-path="api/v1/cohorts"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-cohorts', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-cohorts"
-                    onclick="tryItOut('POSTapi-v1-cohorts');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-cohorts"
-                    onclick="cancelTryOut('POSTapi-v1-cohorts');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-cohorts"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/cohorts</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-cohorts"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -5083,10 +4926,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="cohort_type"                data-endpoint="POSTapi-v1-cohorts"
-               value="batch"
+               value="department"
                data-component="body">
     <br>
-<p>Example: <code>batch</code></p>
+<p>Example: <code>department</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>team</code></li> <li><code>department</code></li> <li><code>batch</code></li> <li><code>class</code></li> <li><code>cohort</code></li> <li><code>group</code></li></ul>
         </div>
@@ -5131,6 +4974,7 @@ Must be one of:
                     <h2 id="cohorts-GETapi-v1-cohorts--cohortId-">GET api/v1/cohorts/{cohortId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -5141,7 +4985,8 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5149,10 +4994,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -5201,36 +5047,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-cohorts--cohortId-" data-method="GET"
       data-path="api/v1/cohorts/{cohortId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-cohorts--cohortId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-cohorts--cohortId-"
-                    onclick="tryItOut('GETapi-v1-cohorts--cohortId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-cohorts--cohortId-"
-                    onclick="cancelTryOut('GETapi-v1-cohorts--cohortId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-cohorts--cohortId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/cohorts/{cohortId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-cohorts--cohortId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -5285,6 +5126,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="cohorts-PATCHapi-v1-cohorts--cohortId-">PATCH api/v1/cohorts/{cohortId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -5295,7 +5137,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5311,10 +5154,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -5371,36 +5215,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-cohorts--cohortId-" data-method="PATCH"
       data-path="api/v1/cohorts/{cohortId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-cohorts--cohortId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-cohorts--cohortId-"
-                    onclick="tryItOut('PATCHapi-v1-cohorts--cohortId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-cohorts--cohortId-"
-                    onclick="cancelTryOut('PATCHapi-v1-cohorts--cohortId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-cohorts--cohortId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/cohorts/{cohortId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-cohorts--cohortId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -5540,6 +5379,7 @@ Must be one of:
                     <h2 id="cohorts-DELETEapi-v1-cohorts--cohortId-">DELETE api/v1/cohorts/{cohortId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -5550,7 +5390,8 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5558,10 +5399,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -5594,36 +5436,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-cohorts--cohortId-" data-method="DELETE"
       data-path="api/v1/cohorts/{cohortId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-cohorts--cohortId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-cohorts--cohortId-"
-                    onclick="tryItOut('DELETEapi-v1-cohorts--cohortId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-cohorts--cohortId-"
-                    onclick="cancelTryOut('DELETEapi-v1-cohorts--cohortId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-cohorts--cohortId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/cohorts/{cohortId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-cohorts--cohortId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -5682,6 +5519,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="competency-GETapi-v1-competencies-tree">GET api/v1/competencies/tree</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -5692,7 +5530,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/competencies/tree" \
+    --get "http://alpha-engine.localhost:8000/api/v1/competencies/tree" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5700,10 +5539,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/competencies/tree"
+    "http://alpha-engine.localhost:8000/api/v1/competencies/tree"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -5752,36 +5592,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-competencies-tree" data-method="GET"
       data-path="api/v1/competencies/tree"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-competencies-tree', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-competencies-tree"
-                    onclick="tryItOut('GETapi-v1-competencies-tree');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-competencies-tree"
-                    onclick="cancelTryOut('GETapi-v1-competencies-tree');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-competencies-tree"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/competencies/tree</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-competencies-tree"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -5823,6 +5658,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="competency-POSTapi-v1-competencies">POST api/v1/competencies</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -5833,7 +5669,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/competencies" \
+    "http://alpha-engine.localhost:8000/api/v1/competencies" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5847,10 +5684,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/competencies"
+    "http://alpha-engine.localhost:8000/api/v1/competencies"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -5905,36 +5743,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-competencies" data-method="POST"
       data-path="api/v1/competencies"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-competencies', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-competencies"
-                    onclick="tryItOut('POSTapi-v1-competencies');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-competencies"
-                    onclick="cancelTryOut('POSTapi-v1-competencies');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-competencies"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/competencies</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-competencies"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -6013,6 +5846,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="competency-PATCHapi-v1-competencies--id--move">PATCH api/v1/competencies/{id}/move</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -6023,7 +5857,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move" \
+    "http://alpha-engine.localhost:8000/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -6035,10 +5870,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move"
+    "http://alpha-engine.localhost:8000/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -6091,36 +5927,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-competencies--id--move" data-method="PATCH"
       data-path="api/v1/competencies/{id}/move"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-competencies--id--move', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-competencies--id--move"
-                    onclick="tryItOut('PATCHapi-v1-competencies--id--move');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-competencies--id--move"
-                    onclick="cancelTryOut('PATCHapi-v1-competencies--id--move');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-competencies--id--move"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/competencies/{id}/move</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-competencies--id--move"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -6188,6 +6019,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="competency-DELETEapi-v1-competencies--id-">DELETE api/v1/competencies/{id}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -6198,7 +6030,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6206,10 +6039,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -6242,36 +6076,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-competencies--id-" data-method="DELETE"
       data-path="api/v1/competencies/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-competencies--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-competencies--id-"
-                    onclick="tryItOut('DELETEapi-v1-competencies--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-competencies--id-"
-                    onclick="cancelTryOut('DELETEapi-v1-competencies--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-competencies--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/competencies/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-competencies--id-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -6323,6 +6152,4515 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                <h1 id="eligibility">Eligibility</h1>
+
+    
+
+                                <h2 id="eligibility-GETapi-v1-eligibility-chains">GET api/v1/eligibility-chains</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-eligibility-chains">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/eligibility-chains" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-eligibility-chains">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-eligibility-chains" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-eligibility-chains"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-eligibility-chains"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-eligibility-chains" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-eligibility-chains">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-eligibility-chains" data-method="GET"
+      data-path="api/v1/eligibility-chains"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-eligibility-chains', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/eligibility-chains</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-eligibility-chains"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-eligibility-chains"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-eligibility-chains"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-eligibility-chains"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="eligibility-POSTapi-v1-eligibility-chains">POST api/v1/eligibility-chains</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-eligibility-chains">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"exam_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"chain_step_number\": 67,
+    \"prerequisite_exam_id\": \"c90237e9-ced5-3af6-88ea-84aeaa148878\",
+    \"condition_type\": \"i\",
+    \"logical_operator\": \"OR\",
+    \"min_score_required\": 8,
+    \"is_satisfied_override_available\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "exam_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "chain_step_number": 67,
+    "prerequisite_exam_id": "c90237e9-ced5-3af6-88ea-84aeaa148878",
+    "condition_type": "i",
+    "logical_operator": "OR",
+    "min_score_required": 8,
+    "is_satisfied_override_available": true
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-eligibility-chains">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-eligibility-chains" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-eligibility-chains"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-eligibility-chains"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-eligibility-chains" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-eligibility-chains">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-eligibility-chains" data-method="POST"
+      data-path="api/v1/eligibility-chains"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-eligibility-chains', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/eligibility-chains</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-eligibility-chains"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>exam_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="exam_id"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>chain_step_number</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="chain_step_number"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="67"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>67</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>prerequisite_exam_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="prerequisite_exam_id"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="c90237e9-ced5-3af6-88ea-84aeaa148878"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Example: <code>c90237e9-ced5-3af6-88ea-84aeaa148878</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>condition_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="condition_type"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="i"
+               data-component="body">
+    <br>
+<p>Must not be greater than 100 characters. Example: <code>i</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>condition_data</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="condition_data"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>logical_operator</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="logical_operator"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="OR"
+               data-component="body">
+    <br>
+<p>Example: <code>OR</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>AND</code></li> <li><code>OR</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>min_score_required</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="min_score_required"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value="8"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 100. Example: <code>8</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_satisfied_override_available</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-eligibility-chains" style="display: none">
+            <input type="radio" name="is_satisfied_override_available"
+                   value="true"
+                   data-endpoint="POSTapi-v1-eligibility-chains"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-eligibility-chains" style="display: none">
+            <input type="radio" name="is_satisfied_override_available"
+                   value="false"
+                   data-endpoint="POSTapi-v1-eligibility-chains"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>chain_metadata</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="chain_metadata"                data-endpoint="POSTapi-v1-eligibility-chains"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+                    <h2 id="eligibility-GETapi-v1-eligibility-chains--chainId-">GET api/v1/eligibility-chains/{chainId}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-eligibility-chains--chainId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-eligibility-chains--chainId-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-eligibility-chains--chainId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-eligibility-chains--chainId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-eligibility-chains--chainId-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-eligibility-chains--chainId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-eligibility-chains--chainId-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-eligibility-chains--chainId-" data-method="GET"
+      data-path="api/v1/eligibility-chains/{chainId}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-eligibility-chains--chainId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/eligibility-chains/{chainId}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-eligibility-chains--chainId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-eligibility-chains--chainId-"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-eligibility-chains--chainId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-eligibility-chains--chainId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>chainId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="chainId"                data-endpoint="GETapi-v1-eligibility-chains--chainId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="eligibility-PATCHapi-v1-eligibility-chains--chainId-">PATCH api/v1/eligibility-chains/{chainId}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-v1-eligibility-chains--chainId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"chain_step_number\": 16,
+    \"prerequisite_exam_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\",
+    \"condition_type\": \"z\",
+    \"logical_operator\": \"OR\",
+    \"min_score_required\": 17,
+    \"is_satisfied_override_available\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "chain_step_number": 16,
+    "prerequisite_exam_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0",
+    "condition_type": "z",
+    "logical_operator": "OR",
+    "min_score_required": 17,
+    "is_satisfied_override_available": true
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-v1-eligibility-chains--chainId-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-v1-eligibility-chains--chainId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-v1-eligibility-chains--chainId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-v1-eligibility-chains--chainId-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-v1-eligibility-chains--chainId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-v1-eligibility-chains--chainId-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-v1-eligibility-chains--chainId-" data-method="PATCH"
+      data-path="api/v1/eligibility-chains/{chainId}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-eligibility-chains--chainId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/eligibility-chains/{chainId}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>chainId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="chainId"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>chain_step_number</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="chain_step_number"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="16"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>prerequisite_exam_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="prerequisite_exam_id"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="a4855dc5-0acb-33c3-b921-f4291f719ca0"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Example: <code>a4855dc5-0acb-33c3-b921-f4291f719ca0</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>condition_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="condition_type"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="z"
+               data-component="body">
+    <br>
+<p>Must not be greater than 100 characters. Example: <code>z</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>condition_data</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="condition_data"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>logical_operator</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="logical_operator"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="OR"
+               data-component="body">
+    <br>
+<p>Example: <code>OR</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>AND</code></li> <li><code>OR</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>min_score_required</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="min_score_required"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value="17"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 100. Example: <code>17</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_satisfied_override_available</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PATCHapi-v1-eligibility-chains--chainId-" style="display: none">
+            <input type="radio" name="is_satisfied_override_available"
+                   value="true"
+                   data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PATCHapi-v1-eligibility-chains--chainId-" style="display: none">
+            <input type="radio" name="is_satisfied_override_available"
+                   value="false"
+                   data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>chain_metadata</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="chain_metadata"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+        </form>
+
+                    <h2 id="eligibility-DELETEapi-v1-eligibility-chains--chainId-">DELETE api/v1/eligibility-chains/{chainId}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-v1-eligibility-chains--chainId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-eligibility-chains--chainId-">
+</span>
+<span id="execution-results-DELETEapi-v1-eligibility-chains--chainId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-eligibility-chains--chainId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-eligibility-chains--chainId-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-eligibility-chains--chainId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-eligibility-chains--chainId-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-eligibility-chains--chainId-" data-method="DELETE"
+      data-path="api/v1/eligibility-chains/{chainId}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-eligibility-chains--chainId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/eligibility-chains/{chainId}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-eligibility-chains--chainId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-eligibility-chains--chainId-"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-eligibility-chains--chainId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-eligibility-chains--chainId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>chainId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="chainId"                data-endpoint="DELETEapi-v1-eligibility-chains--chainId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-v1-certificates-verify--token-">GET api/v1/certificates/verify/{token}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-certificates-verify--token-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/certificates/verify/architecto" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/certificates/verify/architecto"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-certificates-verify--token-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-certificates-verify--token-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-certificates-verify--token-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates-verify--token-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-certificates-verify--token-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-certificates-verify--token-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-certificates-verify--token-" data-method="GET"
+      data-path="api/v1/certificates/verify/{token}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates-verify--token-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/certificates/verify/{token}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-v1-certificates">GET api/v1/certificates</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-certificates">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/certificates" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/certificates"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-certificates">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-certificates" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-certificates"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-certificates" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-certificates">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-certificates" data-method="GET"
+      data-path="api/v1/certificates"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/certificates</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-certificates"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-certificates"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-v1-certificates--certificateId-">GET api/v1/certificates/{certificateId}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-certificates--certificateId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-certificates--certificateId-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-certificates--certificateId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-certificates--certificateId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates--certificateId-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-certificates--certificateId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-certificates--certificateId-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-certificates--certificateId-" data-method="GET"
+      data-path="api/v1/certificates/{certificateId}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates--certificateId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/certificates/{certificateId}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="certificateId"                data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-v1-certificates--certificateId--regenerate">POST api/v1/certificates/{certificateId}/regenerate</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-certificates--certificateId--regenerate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/regenerate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/regenerate"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-certificates--certificateId--regenerate">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-certificates--certificateId--regenerate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-certificates--certificateId--regenerate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-certificates--certificateId--regenerate"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-certificates--certificateId--regenerate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-certificates--certificateId--regenerate">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-certificates--certificateId--regenerate" data-method="POST"
+      data-path="api/v1/certificates/{certificateId}/regenerate"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-certificates--certificateId--regenerate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/certificates/{certificateId}/regenerate</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="certificateId"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-v1-certificates--certificateId--revoke">POST api/v1/certificates/{certificateId}/revoke</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-certificates--certificateId--revoke">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/revoke" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/revoke"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "reason": "b"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-certificates--certificateId--revoke">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-certificates--certificateId--revoke" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-certificates--certificateId--revoke"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-certificates--certificateId--revoke"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-certificates--certificateId--revoke" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-certificates--certificateId--revoke">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-certificates--certificateId--revoke" data-method="POST"
+      data-path="api/v1/certificates/{certificateId}/revoke"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-certificates--certificateId--revoke', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/certificates/{certificateId}/revoke</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="certificateId"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 500 characters. Example: <code>b</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v1-exam-sessions--sessionId--certificate">GET api/v1/exam-sessions/{sessionId}/certificate</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-exam-sessions--sessionId--certificate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/certificate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/certificate"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exam-sessions--sessionId--certificate">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exam-sessions--sessionId--certificate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exam-sessions--sessionId--certificate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exam-sessions--sessionId--certificate"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exam-sessions--sessionId--certificate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exam-sessions--sessionId--certificate">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exam-sessions--sessionId--certificate" data-method="GET"
+      data-path="api/v1/exam-sessions/{sessionId}/certificate"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--certificate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exam-sessions/{sessionId}/certificate</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sessionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sessionId"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-v1-exams--examId--results-export">GET api/v1/exams/{examId}/results/export</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-exams--examId--results-export">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/results/export" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/results/export"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exams--examId--results-export">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exams--examId--results-export" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exams--examId--results-export"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exams--examId--results-export"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exams--examId--results-export" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exams--examId--results-export">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exams--examId--results-export" data-method="GET"
+      data-path="api/v1/exams/{examId}/results/export"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exams--examId--results-export', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exams/{examId}/results/export</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exams--examId--results-export"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId--results-export"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exams--examId--results-export"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exams--examId--results-export"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="examId"                data-endpoint="GETapi-v1-exams--examId--results-export"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-v1-questions--questionId--competencies">POST api/v1/questions/{questionId}/competencies</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-questions--questionId--competencies">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"competency_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"weight_percentage\": 7,
+    \"is_primary_competency\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "competency_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "weight_percentage": 7,
+    "is_primary_competency": true
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-questions--questionId--competencies">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-questions--questionId--competencies" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-questions--questionId--competencies"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-questions--questionId--competencies"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-questions--questionId--competencies" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-questions--questionId--competencies">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-questions--questionId--competencies" data-method="POST"
+      data-path="api/v1/questions/{questionId}/competencies"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-questions--questionId--competencies', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/questions/{questionId}/competencies</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>questionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="questionId"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>competency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="competency_id"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Must match an existing stored value. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>weight_percentage</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="weight_percentage"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="7"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 100. Example: <code>7</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_primary_competency</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-questions--questionId--competencies" style="display: none">
+            <input type="radio" name="is_primary_competency"
+                   value="true"
+                   data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-questions--questionId--competencies" style="display: none">
+            <input type="radio" name="is_primary_competency"
+                   value="false"
+                   data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v1-questions--questionId--competencies">GET api/v1/questions/{questionId}/competencies</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-questions--questionId--competencies">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-questions--questionId--competencies">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-questions--questionId--competencies" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-questions--questionId--competencies"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-questions--questionId--competencies"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-questions--questionId--competencies" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-questions--questionId--competencies">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-questions--questionId--competencies" data-method="GET"
+      data-path="api/v1/questions/{questionId}/competencies"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-questions--questionId--competencies', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/questions/{questionId}/competencies</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>questionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="questionId"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-v1-question-versions--versionId--approve">POST api/v1/question-versions/{versionId}/approve</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-question-versions--versionId--approve">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-question-versions--versionId--approve">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-question-versions--versionId--approve" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-question-versions--versionId--approve"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-question-versions--versionId--approve"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-question-versions--versionId--approve" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-question-versions--versionId--approve">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-question-versions--versionId--approve" data-method="POST"
+      data-path="api/v1/question-versions/{versionId}/approve"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-question-versions--versionId--approve', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/question-versions/{versionId}/approve</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>versionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="versionId"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-PATCHapi-v1-question-versions--versionId--psychometrics">PATCH api/v1/question-versions/{versionId}/psychometrics</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-v1-question-versions--versionId--psychometrics">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://alpha-engine.localhost:8000/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/psychometrics" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"difficulty_index\": 1,
+    \"discrimination_index\": 1,
+    \"sample_size\": 67,
+    \"correct_count\": 12
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/psychometrics"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "difficulty_index": 1,
+    "discrimination_index": 1,
+    "sample_size": 67,
+    "correct_count": 12
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-v1-question-versions--versionId--psychometrics">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-v1-question-versions--versionId--psychometrics" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-v1-question-versions--versionId--psychometrics"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-v1-question-versions--versionId--psychometrics"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-v1-question-versions--versionId--psychometrics" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-v1-question-versions--versionId--psychometrics">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-v1-question-versions--versionId--psychometrics" data-method="PATCH"
+      data-path="api/v1/question-versions/{versionId}/psychometrics"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-question-versions--versionId--psychometrics', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/question-versions/{versionId}/psychometrics</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>versionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="versionId"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>difficulty_index</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="difficulty_index"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 1. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>discrimination_index</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="discrimination_index"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 1. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sample_size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sample_size"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="67"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>67</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>correct_count</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="correct_count"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="12"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Example: <code>12</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-v1-exams--examId--sections">POST api/v1/exams/{examId}/sections</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-exams--examId--sections">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"section_name\": \"b\",
+    \"section_code\": \"n\",
+    \"section_sequence\": 67,
+    \"questions_in_section\": 66,
+    \"time_limit_minutes\": 27
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "section_name": "b",
+    "section_code": "n",
+    "section_sequence": 67,
+    "questions_in_section": 66,
+    "time_limit_minutes": 27
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-exams--examId--sections">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-exams--examId--sections" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-exams--examId--sections"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-exams--examId--sections"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-exams--examId--sections" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-exams--examId--sections">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-exams--examId--sections" data-method="POST"
+      data-path="api/v1/exams/{examId}/sections"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exams--examId--sections', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/exams/{examId}/sections</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="examId"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>section_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="section_name"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>section_code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="section_code"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="n"
+               data-component="body">
+    <br>
+<p>Must not be greater than 50 characters. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>section_sequence</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="section_sequence"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="67"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>67</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>questions_in_section</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="questions_in_section"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="66"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>66</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>time_limit_minutes</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="time_limit_minutes"                data-endpoint="POSTapi-v1-exams--examId--sections"
+               value="27"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>27</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v1-exams--examId--sections">GET api/v1/exams/{examId}/sections</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-exams--examId--sections">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exams--examId--sections">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exams--examId--sections" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exams--examId--sections"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exams--examId--sections"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exams--examId--sections" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exams--examId--sections">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exams--examId--sections" data-method="GET"
+      data-path="api/v1/exams/{examId}/sections"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exams--examId--sections', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exams/{examId}/sections</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exams--examId--sections"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId--sections"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exams--examId--sections"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exams--examId--sections"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="examId"                data-endpoint="GETapi-v1-exams--examId--sections"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-v1-exams--examId--blueprints">POST api/v1/exams/{examId}/blueprints</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-exams--examId--blueprints">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"section_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"competency_id\": \"6b72fe4a-5b40-307c-bc24-f79acf9a1bb9\",
+    \"min_questions_count\": 27,
+    \"max_questions_count\": 16,
+    \"min_weight_percentage\": 22,
+    \"max_weight_percentage\": 7,
+    \"target_difficulty\": 1,
+    \"min_discrimination\": 1
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "section_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "competency_id": "6b72fe4a-5b40-307c-bc24-f79acf9a1bb9",
+    "min_questions_count": 27,
+    "max_questions_count": 16,
+    "min_weight_percentage": 22,
+    "max_weight_percentage": 7,
+    "target_difficulty": 1,
+    "min_discrimination": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-exams--examId--blueprints">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-exams--examId--blueprints" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-exams--examId--blueprints"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-exams--examId--blueprints"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-exams--examId--blueprints" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-exams--examId--blueprints">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-exams--examId--blueprints" data-method="POST"
+      data-path="api/v1/exams/{examId}/blueprints"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exams--examId--blueprints', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/exams/{examId}/blueprints</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="examId"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>section_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="section_id"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Must match an existing stored value. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>competency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="competency_id"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="6b72fe4a-5b40-307c-bc24-f79acf9a1bb9"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Must match an existing stored value. Example: <code>6b72fe4a-5b40-307c-bc24-f79acf9a1bb9</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>min_questions_count</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="min_questions_count"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="27"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>27</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_questions_count</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_questions_count"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="16"
+               data-component="body">
+    <br>
+<p>Example: <code>16</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>min_weight_percentage</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="min_weight_percentage"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="22"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 100. Example: <code>22</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_weight_percentage</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_weight_percentage"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="7"
+               data-component="body">
+    <br>
+<p>Must not be greater than 100. Example: <code>7</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>target_difficulty</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="target_difficulty"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 1. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>min_discrimination</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="min_discrimination"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 1. Example: <code>1</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v1-exams--examId--blueprints">GET api/v1/exams/{examId}/blueprints</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-exams--examId--blueprints">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exams--examId--blueprints">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exams--examId--blueprints" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exams--examId--blueprints"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exams--examId--blueprints"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exams--examId--blueprints" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exams--examId--blueprints">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exams--examId--blueprints" data-method="GET"
+      data-path="api/v1/exams/{examId}/blueprints"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exams--examId--blueprints', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exams/{examId}/blueprints</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exams--examId--blueprints"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId--blueprints"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exams--examId--blueprints"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exams--examId--blueprints"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="examId"                data-endpoint="GETapi-v1-exams--examId--blueprints"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-v1-workflows">GET /api/v1/workflows</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Single general-purpose list endpoint — filtered via query params, not
+one endpoint per status/type. All filters are optional:
+?status=pending          → workflows awaiting approval
+?status=approved         → already-approved workflows
+?status=rejected         → already-rejected workflows
+(no status)              → all workflows
+?workflow_type=...        → result_publication | exam_publication
+?resource_type=...        → filter by the resource's morph alias
+?resource_id=...          → workflows for one specific resource
+?per_page=...             → page size (default 15, max 100)</p>
+<p>Ownership scoping (Separation of Duties):</p>
+<ul>
+<li>Actors with workflows.approve (Tenant Admin) see every workflow
+in the tenant — they are the independent reviewer and must be
+able to find anything awaiting a decision.</li>
+<li>Actors WITHOUT workflows.approve, i.e. initiator-only roles like
+Technical Evaluator, are always scoped to workflows THEY
+initiated. This is enforced server-side (initiated_by_user_id is
+forced to the authenticated user's id) — it cannot be widened
+or bypassed via query params.</li>
+</ul>
+
+<span id="example-requests-GETapi-v1-workflows">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/workflows" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"status\": \"rejected\",
+    \"workflow_type\": \"exam_publication\",
+    \"resource_type\": \"architecto\",
+    \"resource_id\": \"architecto\",
+    \"per_page\": 22
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/workflows"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "status": "rejected",
+    "workflow_type": "exam_publication",
+    "resource_type": "architecto",
+    "resource_id": "architecto",
+    "per_page": 22
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-workflows">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-workflows" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-workflows"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-workflows" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-workflows">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-workflows" data-method="GET"
+      data-path="api/v1/workflows"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/workflows</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-workflows"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-workflows"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-v1-workflows"
+               value="rejected"
+               data-component="body">
+    <br>
+<p>Example: <code>rejected</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>pending</code></li> <li><code>approved</code></li> <li><code>rejected</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>workflow_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflow_type"                data-endpoint="GETapi-v1-workflows"
+               value="exam_publication"
+               data-component="body">
+    <br>
+<p>Example: <code>exam_publication</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>result_publication</code></li> <li><code>exam_publication</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>resource_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="resource_type"                data-endpoint="GETapi-v1-workflows"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>resource_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="resource_id"                data-endpoint="GETapi-v1-workflows"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-v1-workflows"
+               value="22"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Must not be greater than 100. Example: <code>22</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-v1-workflows">POST api/v1/workflows</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-workflows">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/workflows" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"resource_type\": \"exam\",
+    \"resource_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"workflow_type\": \"exam_publication\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/workflows"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "resource_type": "exam",
+    "resource_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "workflow_type": "exam_publication"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-workflows">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-workflows" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-workflows"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-workflows" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-workflows">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-workflows" data-method="POST"
+      data-path="api/v1/workflows"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/workflows</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-workflows"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>resource_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="resource_type"                data-endpoint="POSTapi-v1-workflows"
+               value="exam"
+               data-component="body">
+    <br>
+<p>Example: <code>exam</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>assessment_result</code></li> <li><code>exam</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>resource_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="resource_id"                data-endpoint="POSTapi-v1-workflows"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>workflow_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflow_type"                data-endpoint="POSTapi-v1-workflows"
+               value="exam_publication"
+               data-component="body">
+    <br>
+<p>Example: <code>exam_publication</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>result_publication</code></li> <li><code>exam_publication</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-v1-workflows--workflowId-">GET api/v1/workflows/{workflowId}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-workflows--workflowId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-workflows--workflowId-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-workflows--workflowId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-workflows--workflowId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows--workflowId-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-workflows--workflowId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-workflows--workflowId-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-workflows--workflowId-" data-method="GET"
+      data-path="api/v1/workflows/{workflowId}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows--workflowId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/workflows/{workflowId}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflowId"                data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-v1-workflows--workflowId--approve">POST api/v1/workflows/{workflowId}/approve</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-workflows--workflowId--approve">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-workflows--workflowId--approve">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-workflows--workflowId--approve" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-workflows--workflowId--approve"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows--workflowId--approve"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-workflows--workflowId--approve" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-workflows--workflowId--approve">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-workflows--workflowId--approve" data-method="POST"
+      data-path="api/v1/workflows/{workflowId}/approve"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows--workflowId--approve', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/workflows/{workflowId}/approve</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflowId"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="endpoints-POSTapi-v1-workflows--workflowId--reject">POST api/v1/workflows/{workflowId}/reject</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-workflows--workflowId--reject">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reject" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reject"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "reason": "b"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-workflows--workflowId--reject">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-workflows--workflowId--reject" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-workflows--workflowId--reject"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows--workflowId--reject"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-workflows--workflowId--reject" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-workflows--workflowId--reject">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-workflows--workflowId--reject" data-method="POST"
+      data-path="api/v1/workflows/{workflowId}/reject"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows--workflowId--reject', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/workflows/{workflowId}/reject</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflowId"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must be at least 3 characters. Must not be greater than 1000 characters. Example: <code>b</code></p>
+        </div>
+        </form>
+
                 <h1 id="enrollments">Enrollments</h1>
 
     
@@ -6330,6 +10668,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="enrollments-GETapi-v1-exams--examId--enrollments">GET api/v1/exams/{examId}/enrollments</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -6340,7 +10679,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6348,10 +10688,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments"
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -6400,36 +10741,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exams--examId--enrollments" data-method="GET"
       data-path="api/v1/exams/{examId}/enrollments"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exams--examId--enrollments', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exams--examId--enrollments"
-                    onclick="tryItOut('GETapi-v1-exams--examId--enrollments');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exams--examId--enrollments"
-                    onclick="cancelTryOut('GETapi-v1-exams--examId--enrollments');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exams--examId--enrollments"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exams/{examId}/enrollments</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exams--examId--enrollments"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -6484,6 +10820,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="enrollments-POSTapi-v1-exams--examId--enrollments">POST api/v1/exams/{examId}/enrollments</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -6494,15 +10831,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments" \
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"candidate_user_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"cohort_id\": \"6b72fe4a-5b40-307c-bc24-f79acf9a1bb9\",
-    \"start_window_date\": \"2026-06-25T14:03:03\",
-    \"end_window_date\": \"2052-07-18\",
+    \"start_window_date\": \"2026-08-16T14:26:34\",
+    \"end_window_date\": \"2052-09-08\",
     \"max_attempts_allowed\": 2,
     \"enrollment_notes\": \"g\"
 }"
@@ -6511,10 +10849,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments"
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -6523,8 +10862,8 @@ const headers = {
 let body = {
     "candidate_user_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "cohort_id": "6b72fe4a-5b40-307c-bc24-f79acf9a1bb9",
-    "start_window_date": "2026-06-25T14:03:03",
-    "end_window_date": "2052-07-18",
+    "start_window_date": "2026-08-16T14:26:34",
+    "end_window_date": "2052-09-08",
     "max_attempts_allowed": 2,
     "enrollment_notes": "g"
 };
@@ -6572,36 +10911,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exams--examId--enrollments" data-method="POST"
       data-path="api/v1/exams/{examId}/enrollments"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exams--examId--enrollments', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exams--examId--enrollments"
-                    onclick="tryItOut('POSTapi-v1-exams--examId--enrollments');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exams--examId--enrollments"
-                    onclick="cancelTryOut('POSTapi-v1-exams--examId--enrollments');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exams--examId--enrollments"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exams/{examId}/enrollments</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exams--examId--enrollments"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -6683,10 +11017,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="start_window_date"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="2026-06-25T14:03:03"
+               value="2026-08-16T14:26:34"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-06-25T14:03:03</code></p>
+<p>Must be a valid date. Example: <code>2026-08-16T14:26:34</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>end_window_date</code></b>&nbsp;&nbsp;
@@ -6695,10 +11029,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="end_window_date"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="2052-07-18"
+               value="2052-09-08"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after or equal to <code>start_window_date</code>. Example: <code>2052-07-18</code></p>
+<p>Must be a valid date. Must be a date after or equal to <code>start_window_date</code>. Example: <code>2052-09-08</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_attempts_allowed</code></b>&nbsp;&nbsp;
@@ -6729,6 +11063,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="enrollments-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">DELETE api/v1/exams/{examId}/enrollments/{enrollmentId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -6739,7 +11074,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6747,10 +11083,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -6783,36 +11120,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-exams--examId--enrollments--enrollmentId-" data-method="DELETE"
       data-path="api/v1/exams/{examId}/enrollments/{enrollmentId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-exams--examId--enrollments--enrollmentId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-                    onclick="tryItOut('DELETEapi-v1-exams--examId--enrollments--enrollmentId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-                    onclick="cancelTryOut('DELETEapi-v1-exams--examId--enrollments--enrollmentId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/exams/{examId}/enrollments/{enrollmentId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -6883,6 +11215,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="examengine-GETapi-v1-exams">GET api/v1/exams</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -6893,7 +11226,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exams" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exams" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6901,10 +11235,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams"
+    "http://alpha-engine.localhost:8000/api/v1/exams"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -6953,36 +11288,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exams" data-method="GET"
       data-path="api/v1/exams"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exams', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exams"
-                    onclick="tryItOut('GETapi-v1-exams');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exams"
-                    onclick="cancelTryOut('GETapi-v1-exams');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exams"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exams</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exams"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -7024,6 +11354,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examengine-POSTapi-v1-exams">POST api/v1/exams</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -7034,7 +11365,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exams" \
+    "http://alpha-engine.localhost:8000/api/v1/exams" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7042,17 +11374,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"exam_name\": \"b\",
     \"exam_code\": \"n\",
     \"exam_description\": \"architecto\",
-    \"exam_type\": \"certification\",
-    \"assessment_mode\": \"online\",
+    \"exam_type\": \"practice\",
+    \"assessment_mode\": \"paper\",
     \"total_questions\": 22,
     \"total_duration_minutes\": 7,
     \"pass_mark_percentage\": 16,
     \"difficulty_tier_level\": 2,
-    \"is_adaptive_exam\": false,
+    \"is_adaptive_exam\": true,
     \"is_randomized\": false,
-    \"allow_review_after_submit\": false,
-    \"allow_flagging_for_review\": true,
-    \"timer_visible_to_candidate\": true,
+    \"allow_review_after_submit\": true,
+    \"allow_flagging_for_review\": false,
+    \"timer_visible_to_candidate\": false,
     \"show_correct_answers_after\": false
 }"
 </code></pre></div>
@@ -7060,10 +11392,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams"
+    "http://alpha-engine.localhost:8000/api/v1/exams"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -7073,17 +11406,17 @@ let body = {
     "exam_name": "b",
     "exam_code": "n",
     "exam_description": "architecto",
-    "exam_type": "certification",
-    "assessment_mode": "online",
+    "exam_type": "practice",
+    "assessment_mode": "paper",
     "total_questions": 22,
     "total_duration_minutes": 7,
     "pass_mark_percentage": 16,
     "difficulty_tier_level": 2,
-    "is_adaptive_exam": false,
+    "is_adaptive_exam": true,
     "is_randomized": false,
-    "allow_review_after_submit": false,
-    "allow_flagging_for_review": true,
-    "timer_visible_to_candidate": true,
+    "allow_review_after_submit": true,
+    "allow_flagging_for_review": false,
+    "timer_visible_to_candidate": false,
     "show_correct_answers_after": false
 };
 
@@ -7130,36 +11463,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exams" data-method="POST"
       data-path="api/v1/exams"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exams', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exams"
-                    onclick="tryItOut('POSTapi-v1-exams');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exams"
-                    onclick="cancelTryOut('POSTapi-v1-exams');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exams"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exams</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exams"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -7240,10 +11568,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="exam_type"                data-endpoint="POSTapi-v1-exams"
-               value="certification"
+               value="practice"
                data-component="body">
     <br>
-<p>Example: <code>certification</code></p>
+<p>Example: <code>practice</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>certification</code></li> <li><code>placement</code></li> <li><code>training</code></li> <li><code>evaluation</code></li> <li><code>practice</code></li></ul>
         </div>
@@ -7254,10 +11582,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="assessment_mode"                data-endpoint="POSTapi-v1-exams"
-               value="online"
+               value="paper"
                data-component="body">
     <br>
-<p>Example: <code>online</code></p>
+<p>Example: <code>paper</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>online</code></li> <li><code>hybrid</code></li> <li><code>paper</code></li></ul>
         </div>
@@ -7329,7 +11657,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_randomized</code></b>&nbsp;&nbsp;
@@ -7373,7 +11701,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allow_flagging_for_review</code></b>&nbsp;&nbsp;
@@ -7395,7 +11723,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>timer_visible_to_candidate</code></b>&nbsp;&nbsp;
@@ -7417,7 +11745,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>show_correct_answers_after</code></b>&nbsp;&nbsp;
@@ -7470,6 +11798,7 @@ Must be one of:
                     <h2 id="examengine-GETapi-v1-exams--examId-">GET api/v1/exams/{examId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -7480,7 +11809,8 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -7488,10 +11818,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -7540,36 +11871,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exams--examId-" data-method="GET"
       data-path="api/v1/exams/{examId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exams--examId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exams--examId-"
-                    onclick="tryItOut('GETapi-v1-exams--examId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exams--examId-"
-                    onclick="cancelTryOut('GETapi-v1-exams--examId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exams--examId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exams/{examId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exams--examId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -7624,6 +11950,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examengine-PATCHapi-v1-exams--examId-">PATCH api/v1/exams/{examId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -7634,7 +11961,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -7642,28 +11970,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"exam_name\": \"b\",
     \"exam_code\": \"n\",
     \"exam_description\": \"architecto\",
-    \"exam_type\": \"evaluation\",
-    \"assessment_mode\": \"online\",
+    \"exam_type\": \"practice\",
+    \"assessment_mode\": \"hybrid\",
     \"total_questions\": 22,
     \"total_duration_minutes\": 7,
     \"pass_mark_percentage\": 16,
     \"difficulty_tier_level\": 2,
-    \"is_adaptive_exam\": false,
-    \"is_randomized\": true,
+    \"is_adaptive_exam\": true,
+    \"is_randomized\": false,
     \"allow_review_after_submit\": true,
     \"allow_flagging_for_review\": true,
-    \"timer_visible_to_candidate\": false,
-    \"show_correct_answers_after\": false
+    \"timer_visible_to_candidate\": true,
+    \"show_correct_answers_after\": true
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -7673,18 +12002,18 @@ let body = {
     "exam_name": "b",
     "exam_code": "n",
     "exam_description": "architecto",
-    "exam_type": "evaluation",
-    "assessment_mode": "online",
+    "exam_type": "practice",
+    "assessment_mode": "hybrid",
     "total_questions": 22,
     "total_duration_minutes": 7,
     "pass_mark_percentage": 16,
     "difficulty_tier_level": 2,
-    "is_adaptive_exam": false,
-    "is_randomized": true,
+    "is_adaptive_exam": true,
+    "is_randomized": false,
     "allow_review_after_submit": true,
     "allow_flagging_for_review": true,
-    "timer_visible_to_candidate": false,
-    "show_correct_answers_after": false
+    "timer_visible_to_candidate": true,
+    "show_correct_answers_after": true
 };
 
 fetch(url, {
@@ -7730,36 +12059,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-exams--examId-" data-method="PATCH"
       data-path="api/v1/exams/{examId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-exams--examId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-exams--examId-"
-                    onclick="tryItOut('PATCHapi-v1-exams--examId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-exams--examId-"
-                    onclick="cancelTryOut('PATCHapi-v1-exams--examId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-exams--examId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/exams/{examId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-exams--examId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -7853,10 +12177,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="exam_type"                data-endpoint="PATCHapi-v1-exams--examId-"
-               value="evaluation"
+               value="practice"
                data-component="body">
     <br>
-<p>Example: <code>evaluation</code></p>
+<p>Example: <code>practice</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>certification</code></li> <li><code>placement</code></li> <li><code>training</code></li> <li><code>evaluation</code></li> <li><code>practice</code></li></ul>
         </div>
@@ -7867,10 +12191,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="assessment_mode"                data-endpoint="PATCHapi-v1-exams--examId-"
-               value="online"
+               value="hybrid"
                data-component="body">
     <br>
-<p>Example: <code>online</code></p>
+<p>Example: <code>hybrid</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>online</code></li> <li><code>hybrid</code></li> <li><code>paper</code></li></ul>
         </div>
@@ -7942,7 +12266,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_randomized</code></b>&nbsp;&nbsp;
@@ -7964,7 +12288,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allow_review_after_submit</code></b>&nbsp;&nbsp;
@@ -8030,7 +12354,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>show_correct_answers_after</code></b>&nbsp;&nbsp;
@@ -8052,7 +12376,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>security_protocols</code></b>&nbsp;&nbsp;
@@ -8083,6 +12407,7 @@ Must be one of:
                     <h2 id="examengine-DELETEapi-v1-exams--examId-">DELETE api/v1/exams/{examId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -8093,7 +12418,8 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8101,10 +12427,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -8137,36 +12464,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-exams--examId-" data-method="DELETE"
       data-path="api/v1/exams/{examId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-exams--examId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-exams--examId-"
-                    onclick="tryItOut('DELETEapi-v1-exams--examId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-exams--examId-"
-                    onclick="cancelTryOut('DELETEapi-v1-exams--examId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-exams--examId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/exams/{examId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-exams--examId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -8221,6 +12543,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examengine-POSTapi-v1-exams--examId--publish">POST api/v1/exams/{examId}/publish</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -8231,7 +12554,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/publish" \
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/publish" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8239,10 +12563,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/publish"
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/publish"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -8291,36 +12616,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exams--examId--publish" data-method="POST"
       data-path="api/v1/exams/{examId}/publish"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exams--examId--publish', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exams--examId--publish"
-                    onclick="tryItOut('POSTapi-v1-exams--examId--publish');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exams--examId--publish"
-                    onclick="cancelTryOut('POSTapi-v1-exams--examId--publish');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exams--examId--publish"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exams/{examId}/publish</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exams--examId--publish"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -8375,6 +12695,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examengine-POSTapi-v1-exams--examId--archive">POST api/v1/exams/{examId}/archive</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -8385,7 +12706,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/archive" \
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/archive" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8393,10 +12715,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/archive"
+    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/archive"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -8445,36 +12768,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exams--examId--archive" data-method="POST"
       data-path="api/v1/exams/{examId}/archive"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exams--examId--archive', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exams--examId--archive"
-                    onclick="tryItOut('POSTapi-v1-exams--examId--archive');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exams--examId--archive"
-                    onclick="cancelTryOut('POSTapi-v1-exams--examId--archive');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exams--examId--archive"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exams/{examId}/archive</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exams--examId--archive"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -8530,9 +12848,230 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="examsession-POSTapi-v1-exam-sessions">POST api/v1/exam-sessions</h2>
+                                <h2 id="examsession-GETapi-v1-exam-sessions">GET /api/v1/exam-sessions</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Single general-purpose list endpoint — filtered via query params, not
+one endpoint per status. All filters are optional:
+?status=completed    → sessions in the 'completed' state (grading/publishing/certs)
+?status=in_progress  → active sessions (live monitoring)
+?status=terminated   → forcibly-ended sessions
+?status=paused       → suspended sessions
+?status=not_started  → sessions not yet begun
+(no status)          → all sessions
+?exam_id=...          → scope to one exam
+?candidate_id=...     → scope to one candidate
+?per_page=...         → page size (default 15, max 100)</p>
+<p>Role-based visibility (see ExamSessionPolicy::viewAny):</p>
+<ul>
+<li>Tenant Admin        → any status, or unfiltered.</li>
+<li>Proctor              → in_progress / terminated only.</li>
+<li>Technical Evaluator  → completed only.</li>
+</ul>
+
+<span id="example-requests-GETapi-v1-exam-sessions">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"status\": \"terminated\",
+    \"exam_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"candidate_id\": \"6b72fe4a-5b40-307c-bc24-f79acf9a1bb9\",
+    \"per_page\": 17
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "status": "terminated",
+    "exam_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "candidate_id": "6b72fe4a-5b40-307c-bc24-f79acf9a1bb9",
+    "per_page": 17
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exam-sessions">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exam-sessions" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exam-sessions"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exam-sessions"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exam-sessions" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exam-sessions">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exam-sessions" data-method="GET"
+      data-path="api/v1/exam-sessions"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exam-sessions</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exam-sessions"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exam-sessions"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-v1-exam-sessions"
+               value="terminated"
+               data-component="body">
+    <br>
+<p>Example: <code>terminated</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>not_started</code></li> <li><code>in_progress</code></li> <li><code>paused</code></li> <li><code>completed</code></li> <li><code>terminated</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>exam_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="exam_id"                data-endpoint="GETapi-v1-exam-sessions"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>candidate_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="candidate_id"                data-endpoint="GETapi-v1-exam-sessions"
+               value="6b72fe4a-5b40-307c-bc24-f79acf9a1bb9"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Example: <code>6b72fe4a-5b40-307c-bc24-f79acf9a1bb9</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-v1-exam-sessions"
+               value="17"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Must not be greater than 100. Example: <code>17</code></p>
+        </div>
+        </form>
+
+                    <h2 id="examsession-POSTapi-v1-exam-sessions">POST api/v1/exam-sessions</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -8543,7 +13082,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8555,10 +13095,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -8611,36 +13152,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions" data-method="POST"
       data-path="api/v1/exam-sessions"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -8695,6 +13231,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examsession-GETapi-v1-exam-sessions--sessionId-">GET api/v1/exam-sessions/{sessionId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -8705,7 +13242,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -8713,10 +13251,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -8765,36 +13304,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exam-sessions--sessionId-" data-method="GET"
       data-path="api/v1/exam-sessions/{sessionId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exam-sessions--sessionId-"
-                    onclick="tryItOut('GETapi-v1-exam-sessions--sessionId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exam-sessions--sessionId-"
-                    onclick="cancelTryOut('GETapi-v1-exam-sessions--sessionId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exam-sessions--sessionId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exam-sessions/{sessionId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -8846,9 +13380,162 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="examsession-GETapi-v1-exam-sessions--sessionId--current-question">GET api/v1/exam-sessions/{sessionId}/current-question</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-exam-sessions--sessionId--current-question">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/current-question" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/current-question"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exam-sessions--sessionId--current-question">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exam-sessions--sessionId--current-question" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exam-sessions--sessionId--current-question"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exam-sessions--sessionId--current-question"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exam-sessions--sessionId--current-question" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exam-sessions--sessionId--current-question">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exam-sessions--sessionId--current-question" data-method="GET"
+      data-path="api/v1/exam-sessions/{sessionId}/current-question"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--current-question', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exam-sessions/{sessionId}/current-question</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--current-question"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--current-question"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exam-sessions--sessionId--current-question"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exam-sessions--sessionId--current-question"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sessionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sessionId"                data-endpoint="GETapi-v1-exam-sessions--sessionId--current-question"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
                     <h2 id="examsession-POSTapi-v1-exam-sessions--sessionId--responses">POST api/v1/exam-sessions/{sessionId}/responses</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -8859,7 +13546,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/responses" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/responses" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8870,7 +13558,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"file_upload_url\": \"http:\\/\\/bailey.com\\/\",
     \"time_spent_seconds\": 77,
     \"time_elapsed_from_start_seconds\": 8,
-    \"is_flagged_for_review\": false,
+    \"is_flagged_for_review\": true,
     \"expected_item_version_lock\": 76
 }"
 </code></pre></div>
@@ -8878,10 +13566,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/responses"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/responses"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -8894,7 +13583,7 @@ let body = {
     "file_upload_url": "http:\/\/bailey.com\/",
     "time_spent_seconds": 77,
     "time_elapsed_from_start_seconds": 8,
-    "is_flagged_for_review": false,
+    "is_flagged_for_review": true,
     "expected_item_version_lock": 76
 };
 
@@ -8941,36 +13630,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions--sessionId--responses" data-method="POST"
       data-path="api/v1/exam-sessions/{sessionId}/responses"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions--sessionId--responses', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions--sessionId--responses"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions--sessionId--responses');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions--sessionId--responses"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions--sessionId--responses');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions--sessionId--responses"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions/{sessionId}/responses</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions--sessionId--responses"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -9137,7 +13821,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>expected_item_version_lock</code></b>&nbsp;&nbsp;
@@ -9156,6 +13840,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examsession-POSTapi-v1-exam-sessions--sessionId--suspend">POST api/v1/exam-sessions/{sessionId}/suspend</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -9166,7 +13851,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/suspend" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/suspend" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9174,10 +13860,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/suspend"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/suspend"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -9226,36 +13913,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions--sessionId--suspend" data-method="POST"
       data-path="api/v1/exam-sessions/{sessionId}/suspend"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions--sessionId--suspend', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions--sessionId--suspend"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions--sessionId--suspend');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions--sessionId--suspend"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions--sessionId--suspend');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions--sessionId--suspend"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions/{sessionId}/suspend</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions--sessionId--suspend"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -9310,6 +13992,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examsession-POSTapi-v1-exam-sessions--sessionId--resume">POST api/v1/exam-sessions/{sessionId}/resume</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -9320,7 +14003,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/resume" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/resume" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9328,10 +14012,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/resume"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/resume"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -9380,36 +14065,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions--sessionId--resume" data-method="POST"
       data-path="api/v1/exam-sessions/{sessionId}/resume"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions--sessionId--resume', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions--sessionId--resume"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions--sessionId--resume');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions--sessionId--resume"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions--sessionId--resume');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions--sessionId--resume"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions/{sessionId}/resume</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions--sessionId--resume"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -9464,6 +14144,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examsession-POSTapi-v1-exam-sessions--sessionId--complete">POST api/v1/exam-sessions/{sessionId}/complete</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -9474,7 +14155,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/complete" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/complete" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9482,10 +14164,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/complete"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/complete"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -9534,36 +14217,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions--sessionId--complete" data-method="POST"
       data-path="api/v1/exam-sessions/{sessionId}/complete"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions--sessionId--complete', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions--sessionId--complete"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions--sessionId--complete');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions--sessionId--complete"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions--sessionId--complete');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions--sessionId--complete"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions/{sessionId}/complete</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions--sessionId--complete"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -9618,6 +14296,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examsession-POSTapi-v1-exam-sessions--sessionId--terminate">POST api/v1/exam-sessions/{sessionId}/terminate</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -9628,7 +14307,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/terminate" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/terminate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9636,10 +14316,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/terminate"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/terminate"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -9688,36 +14369,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions--sessionId--terminate" data-method="POST"
       data-path="api/v1/exam-sessions/{sessionId}/terminate"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions--sessionId--terminate', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions--sessionId--terminate"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions--sessionId--terminate');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions--sessionId--terminate"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions--sessionId--terminate');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions--sessionId--terminate"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions/{sessionId}/terminate</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions--sessionId--terminate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -9772,6 +14448,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="examsession-POSTapi-v1-exam-sessions--sessionId--heartbeat">Receive a keep-alive heartbeat from the candidate&#039;s browser.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Only the session owner can heartbeat their own session (participate ability).
@@ -9784,7 +14461,8 @@ and SessionRepository::updateHeartbeat for the concurrency rationale.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/heartbeat" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/heartbeat" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9792,10 +14470,11 @@ and SessionRepository::updateHeartbeat for the concurrency rationale.</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/heartbeat"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/heartbeat"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -9844,36 +14523,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions--sessionId--heartbeat" data-method="POST"
       data-path="api/v1/exam-sessions/{sessionId}/heartbeat"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions--sessionId--heartbeat', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions--sessionId--heartbeat"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions--sessionId--heartbeat');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions--sessionId--heartbeat"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions--sessionId--heartbeat');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions--sessionId--heartbeat"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions/{sessionId}/heartbeat</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions--sessionId--heartbeat"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -9932,6 +14606,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="identity-GETapi-v1-identity-profile">GET api/v1/identity/profile</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -9942,7 +14617,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/identity/profile" \
+    --get "http://alpha-engine.localhost:8000/api/v1/identity/profile" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -9950,10 +14626,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/identity/profile"
+    "http://alpha-engine.localhost:8000/api/v1/identity/profile"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -10002,36 +14679,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-identity-profile" data-method="GET"
       data-path="api/v1/identity/profile"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-identity-profile', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-identity-profile"
-                    onclick="tryItOut('GETapi-v1-identity-profile');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-identity-profile"
-                    onclick="cancelTryOut('GETapi-v1-identity-profile');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-identity-profile"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/identity/profile</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-identity-profile"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -10073,6 +14745,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="identity-PATCHapi-v1-identity-profile">PATCH api/v1/identity/profile</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -10083,7 +14756,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/identity/profile" \
+    "http://alpha-engine.localhost:8000/api/v1/identity/profile" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10097,10 +14771,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/identity/profile"
+    "http://alpha-engine.localhost:8000/api/v1/identity/profile"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -10155,36 +14830,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-identity-profile" data-method="PATCH"
       data-path="api/v1/identity/profile"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-identity-profile', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-identity-profile"
-                    onclick="tryItOut('PATCHapi-v1-identity-profile');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-identity-profile"
-                    onclick="cancelTryOut('PATCHapi-v1-identity-profile');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-identity-profile"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/identity/profile</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-identity-profile"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -10263,6 +14933,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="identity-GETapi-v1-identity-permissions">GET api/v1/identity/permissions</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -10273,7 +14944,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/identity/permissions" \
+    --get "http://alpha-engine.localhost:8000/api/v1/identity/permissions" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10281,10 +14953,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/identity/permissions"
+    "http://alpha-engine.localhost:8000/api/v1/identity/permissions"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -10333,36 +15006,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-identity-permissions" data-method="GET"
       data-path="api/v1/identity/permissions"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-identity-permissions', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-identity-permissions"
-                    onclick="tryItOut('GETapi-v1-identity-permissions');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-identity-permissions"
-                    onclick="cancelTryOut('GETapi-v1-identity-permissions');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-identity-permissions"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/identity/permissions</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-identity-permissions"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -10404,6 +15072,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="identity-GETapi-v1-identity-sessions">GET api/v1/identity/sessions</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -10414,7 +15083,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/identity/sessions" \
+    --get "http://alpha-engine.localhost:8000/api/v1/identity/sessions" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10422,10 +15092,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/identity/sessions"
+    "http://alpha-engine.localhost:8000/api/v1/identity/sessions"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -10474,36 +15145,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-identity-sessions" data-method="GET"
       data-path="api/v1/identity/sessions"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-identity-sessions', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-identity-sessions"
-                    onclick="tryItOut('GETapi-v1-identity-sessions');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-identity-sessions"
-                    onclick="cancelTryOut('GETapi-v1-identity-sessions');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-identity-sessions"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/identity/sessions</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-identity-sessions"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -10545,6 +15211,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="identity-DELETEapi-v1-identity-sessions-all">DELETE api/v1/identity/sessions/all</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -10555,7 +15222,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/identity/sessions/all" \
+    "http://alpha-engine.localhost:8000/api/v1/identity/sessions/all" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10563,10 +15231,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/identity/sessions/all"
+    "http://alpha-engine.localhost:8000/api/v1/identity/sessions/all"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -10599,36 +15268,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-identity-sessions-all" data-method="DELETE"
       data-path="api/v1/identity/sessions/all"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-identity-sessions-all', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-identity-sessions-all"
-                    onclick="tryItOut('DELETEapi-v1-identity-sessions-all');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-identity-sessions-all"
-                    onclick="cancelTryOut('DELETEapi-v1-identity-sessions-all');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-identity-sessions-all"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/identity/sessions/all</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-identity-sessions-all"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -10670,6 +15334,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="identity-DELETEapi-v1-identity-sessions--id-">DELETE api/v1/identity/sessions/{id}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -10680,7 +15345,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/identity/sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/identity/sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10688,10 +15354,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/identity/sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/identity/sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -10724,36 +15391,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-identity-sessions--id-" data-method="DELETE"
       data-path="api/v1/identity/sessions/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-identity-sessions--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-identity-sessions--id-"
-                    onclick="tryItOut('DELETEapi-v1-identity-sessions--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-identity-sessions--id-"
-                    onclick="cancelTryOut('DELETEapi-v1-identity-sessions--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-identity-sessions--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/identity/sessions/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-identity-sessions--id-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -10812,6 +15474,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="manualevaluation-GETapi-v1-exam-sessions--sessionId--pending-evaluations">List all pending_review evaluations for the given session.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Requires grading.evaluate OR grading.view permission (class-level gate).</p>
@@ -10822,7 +15485,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/pending-evaluations" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/pending-evaluations" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -10830,10 +15494,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/pending-evaluations"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/pending-evaluations"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -10882,36 +15547,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exam-sessions--sessionId--pending-evaluations" data-method="GET"
       data-path="api/v1/exam-sessions/{sessionId}/pending-evaluations"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--pending-evaluations', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exam-sessions--sessionId--pending-evaluations"
-                    onclick="tryItOut('GETapi-v1-exam-sessions--sessionId--pending-evaluations');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exam-sessions--sessionId--pending-evaluations"
-                    onclick="cancelTryOut('GETapi-v1-exam-sessions--sessionId--pending-evaluations');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exam-sessions--sessionId--pending-evaluations"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exam-sessions/{sessionId}/pending-evaluations</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--pending-evaluations"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -10966,6 +15626,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="manualevaluation-PATCHapi-v1-answer-evaluations--evaluationId--score">Submit a human evaluator&#039;s score for a single pending_review evaluation.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Requires grading.evaluate permission (enforced in SubmitEvaluationRequest::authorize()).
@@ -10978,7 +15639,8 @@ is triggered synchronously and the final grade becomes queryable immediately.</p
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/answer-evaluations/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/score" \
+    "http://alpha-engine.localhost:8000/api/v1/answer-evaluations/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/score" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -10992,10 +15654,11 @@ is triggered synchronously and the final grade becomes queryable immediately.</p
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/answer-evaluations/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/score"
+    "http://alpha-engine.localhost:8000/api/v1/answer-evaluations/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/score"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -11050,36 +15713,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-answer-evaluations--evaluationId--score" data-method="PATCH"
       data-path="api/v1/answer-evaluations/{evaluationId}/score"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-answer-evaluations--evaluationId--score', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-answer-evaluations--evaluationId--score"
-                    onclick="tryItOut('PATCHapi-v1-answer-evaluations--evaluationId--score');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-answer-evaluations--evaluationId--score"
-                    onclick="cancelTryOut('PATCHapi-v1-answer-evaluations--evaluationId--score');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-answer-evaluations--evaluationId--score"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/answer-evaluations/{evaluationId}/score</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-answer-evaluations--evaluationId--score"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -11209,6 +15867,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="penaltyrules-GETapi-v1-penalty-rules">GET api/v1/penalty-rules</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -11219,7 +15878,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/penalty-rules" \
+    --get "http://alpha-engine.localhost:8000/api/v1/penalty-rules" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11227,10 +15887,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/penalty-rules"
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -11279,36 +15940,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-penalty-rules" data-method="GET"
       data-path="api/v1/penalty-rules"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-penalty-rules', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-penalty-rules"
-                    onclick="tryItOut('GETapi-v1-penalty-rules');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-penalty-rules"
-                    onclick="cancelTryOut('GETapi-v1-penalty-rules');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-penalty-rules"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/penalty-rules</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-penalty-rules"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -11350,6 +16006,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="penaltyrules-POSTapi-v1-penalty-rules">POST api/v1/penalty-rules</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -11360,7 +16017,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/penalty-rules" \
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11370,7 +16028,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"trigger_condition\": \"g\",
     \"penalty_points\": 12,
     \"penalty_percentage\": 17,
-    \"is_cumulative\": true,
+    \"is_cumulative\": false,
     \"is_active\": true
 }"
 </code></pre></div>
@@ -11378,10 +16036,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/penalty-rules"
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -11393,7 +16052,7 @@ let body = {
     "trigger_condition": "g",
     "penalty_points": 12,
     "penalty_percentage": 17,
-    "is_cumulative": true,
+    "is_cumulative": false,
     "is_active": true
 };
 
@@ -11440,36 +16099,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-penalty-rules" data-method="POST"
       data-path="api/v1/penalty-rules"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-penalty-rules', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-penalty-rules"
-                    onclick="tryItOut('POSTapi-v1-penalty-rules');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-penalty-rules"
-                    onclick="cancelTryOut('POSTapi-v1-penalty-rules');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-penalty-rules"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/penalty-rules</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-penalty-rules"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -11599,7 +16253,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -11640,6 +16294,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="penaltyrules-GETapi-v1-penalty-rules--ruleId-">GET api/v1/penalty-rules/{ruleId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -11650,7 +16305,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -11658,10 +16314,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -11710,36 +16367,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-penalty-rules--ruleId-" data-method="GET"
       data-path="api/v1/penalty-rules/{ruleId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-penalty-rules--ruleId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-penalty-rules--ruleId-"
-                    onclick="tryItOut('GETapi-v1-penalty-rules--ruleId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-penalty-rules--ruleId-"
-                    onclick="cancelTryOut('GETapi-v1-penalty-rules--ruleId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-penalty-rules--ruleId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/penalty-rules/{ruleId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-penalty-rules--ruleId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -11794,6 +16446,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="penaltyrules-PATCHapi-v1-penalty-rules--ruleId-">PATCH api/v1/penalty-rules/{ruleId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -11804,7 +16457,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -11815,17 +16469,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"penalty_points\": 12,
     \"penalty_percentage\": 17,
     \"is_cumulative\": true,
-    \"is_active\": true
+    \"is_active\": false
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -11838,7 +16493,7 @@ let body = {
     "penalty_points": 12,
     "penalty_percentage": 17,
     "is_cumulative": true,
-    "is_active": true
+    "is_active": false
 };
 
 fetch(url, {
@@ -11884,36 +16539,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-penalty-rules--ruleId-" data-method="PATCH"
       data-path="api/v1/penalty-rules/{ruleId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-penalty-rules--ruleId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-penalty-rules--ruleId-"
-                    onclick="tryItOut('PATCHapi-v1-penalty-rules--ruleId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-penalty-rules--ruleId-"
-                    onclick="cancelTryOut('PATCHapi-v1-penalty-rules--ruleId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-penalty-rules--ruleId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/penalty-rules/{ruleId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-penalty-rules--ruleId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -12078,7 +16728,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>penalty_metadata</code></b>&nbsp;&nbsp;
@@ -12097,6 +16747,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="penaltyrules-DELETEapi-v1-penalty-rules--ruleId-">DELETE api/v1/penalty-rules/{ruleId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -12107,7 +16758,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12115,10 +16767,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -12151,36 +16804,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-penalty-rules--ruleId-" data-method="DELETE"
       data-path="api/v1/penalty-rules/{ruleId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-penalty-rules--ruleId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-penalty-rules--ruleId-"
-                    onclick="tryItOut('DELETEapi-v1-penalty-rules--ruleId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-penalty-rules--ruleId-"
-                    onclick="cancelTryOut('DELETEapi-v1-penalty-rules--ruleId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-penalty-rules--ruleId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/penalty-rules/{ruleId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-penalty-rules--ruleId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -12235,6 +16883,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="penaltyrules-POSTapi-v1-penalty-rules--ruleId--activate">POST api/v1/penalty-rules/{ruleId}/activate</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -12245,7 +16894,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/activate" \
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/activate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12253,10 +16903,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/activate"
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/activate"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -12305,36 +16956,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-penalty-rules--ruleId--activate" data-method="POST"
       data-path="api/v1/penalty-rules/{ruleId}/activate"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-penalty-rules--ruleId--activate', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-penalty-rules--ruleId--activate"
-                    onclick="tryItOut('POSTapi-v1-penalty-rules--ruleId--activate');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-penalty-rules--ruleId--activate"
-                    onclick="cancelTryOut('POSTapi-v1-penalty-rules--ruleId--activate');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-penalty-rules--ruleId--activate"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/penalty-rules/{ruleId}/activate</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-penalty-rules--ruleId--activate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -12389,6 +17035,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="penaltyrules-POSTapi-v1-penalty-rules--ruleId--deactivate">POST api/v1/penalty-rules/{ruleId}/deactivate</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -12399,7 +17046,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate" \
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12407,10 +17055,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate"
+    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -12459,36 +17108,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-penalty-rules--ruleId--deactivate" data-method="POST"
       data-path="api/v1/penalty-rules/{ruleId}/deactivate"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-penalty-rules--ruleId--deactivate', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-penalty-rules--ruleId--deactivate"
-                    onclick="tryItOut('POSTapi-v1-penalty-rules--ruleId--deactivate');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-penalty-rules--ruleId--deactivate"
-                    onclick="cancelTryOut('POSTapi-v1-penalty-rules--ruleId--deactivate');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-penalty-rules--ruleId--deactivate"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/penalty-rules/{ruleId}/deactivate</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-penalty-rules--ruleId--deactivate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -12547,6 +17191,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="penaltysanctions-GETapi-v1-exam-sessions--sessionId--sanctions">GET api/v1/exam-sessions/{sessionId}/sanctions</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -12557,7 +17202,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sanctions" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sanctions" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -12565,10 +17211,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sanctions"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sanctions"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -12617,36 +17264,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exam-sessions--sessionId--sanctions" data-method="GET"
       data-path="api/v1/exam-sessions/{sessionId}/sanctions"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--sanctions', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exam-sessions--sessionId--sanctions"
-                    onclick="tryItOut('GETapi-v1-exam-sessions--sessionId--sanctions');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exam-sessions--sessionId--sanctions"
-                    onclick="cancelTryOut('GETapi-v1-exam-sessions--sessionId--sanctions');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exam-sessions--sessionId--sanctions"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exam-sessions/{sessionId}/sanctions</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--sanctions"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -12701,6 +17343,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="penaltysanctions-POSTapi-v1-sanctions--sanctionId--void">POST api/v1/sanctions/{sanctionId}/void</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -12711,7 +17354,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/sanctions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/void" \
+    "http://alpha-engine.localhost:8000/api/v1/sanctions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/void" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -12723,10 +17367,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/sanctions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/void"
+    "http://alpha-engine.localhost:8000/api/v1/sanctions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/void"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -12779,36 +17424,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-sanctions--sanctionId--void" data-method="POST"
       data-path="api/v1/sanctions/{sanctionId}/void"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-sanctions--sanctionId--void', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-sanctions--sanctionId--void"
-                    onclick="tryItOut('POSTapi-v1-sanctions--sanctionId--void');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-sanctions--sanctionId--void"
-                    onclick="cancelTryOut('POSTapi-v1-sanctions--sanctionId--void');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-sanctions--sanctionId--void"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/sanctions/{sanctionId}/void</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-sanctions--sanctionId--void"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -12880,6 +17520,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="proctoring-POSTapi-v1-exam-sessions--sessionId--proctor-events">Ingest a single proctoring event for an active session.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Called from the candidate's browser agent or a dedicated proctoring tool.
@@ -12892,15 +17533,16 @@ attribution) lives in ProctoringService — this method stays thin.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"event_type\": \"b\",
-    \"event_timestamp\": \"2026-06-25T14:03:03\",
+    \"event_timestamp\": \"2026-08-16T14:26:34\",
     \"event_category\": \"n\",
-    \"severity_level\": \"info\",
+    \"severity_level\": \"warning\",
     \"detection_confidence_score\": 0,
     \"screenshot_url\": \"http:\\/\\/www.okuneva.com\\/fugiat-sunt-nihil-accusantium-harum-mollitia.html\",
     \"video_segment_url\": \"http:\\/\\/www.considine.com\\/provident-perspiciatis-quo-omnis-nostrum-aut-adipisci-quidem\"
@@ -12910,10 +17552,11 @@ attribution) lives in ProctoringService — this method stays thin.</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -12921,9 +17564,9 @@ const headers = {
 
 let body = {
     "event_type": "b",
-    "event_timestamp": "2026-06-25T14:03:03",
+    "event_timestamp": "2026-08-16T14:26:34",
     "event_category": "n",
-    "severity_level": "info",
+    "severity_level": "warning",
     "detection_confidence_score": 0,
     "screenshot_url": "http:\/\/www.okuneva.com\/fugiat-sunt-nihil-accusantium-harum-mollitia.html",
     "video_segment_url": "http:\/\/www.considine.com\/provident-perspiciatis-quo-omnis-nostrum-aut-adipisci-quidem"
@@ -12972,36 +17615,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions--sessionId--proctor-events" data-method="POST"
       data-path="api/v1/exam-sessions/{sessionId}/proctor-events"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions--sessionId--proctor-events', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions--sessionId--proctor-events"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions--sessionId--proctor-events');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions--sessionId--proctor-events"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions--sessionId--proctor-events');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions--sessionId--proctor-events"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions/{sessionId}/proctor-events</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions--sessionId--proctor-events"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -13071,10 +17709,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="event_timestamp"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--proctor-events"
-               value="2026-06-25T14:03:03"
+               value="2026-08-16T14:26:34"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-06-25T14:03:03</code></p>
+<p>Must be a valid date. Example: <code>2026-08-16T14:26:34</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>event_category</code></b>&nbsp;&nbsp;
@@ -13107,10 +17745,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="severity_level"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--proctor-events"
-               value="info"
+               value="warning"
                data-component="body">
     <br>
-<p>Example: <code>info</code></p>
+<p>Example: <code>warning</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>info</code></li> <li><code>warning</code></li> <li><code>critical</code></li></ul>
         </div>
@@ -13167,6 +17805,7 @@ Must be one of:
                     <h2 id="proctoring-GETapi-v1-exam-sessions--sessionId--proctor-events">List all proctoring events for a session.</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 <p>Intended for proctor/admin dashboards — the proctoring.view permission
@@ -13178,7 +17817,8 @@ is enforced by the policy gate in the form request or caller.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -13186,10 +17826,11 @@ is enforced by the policy gate in the form request or caller.</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -13238,36 +17879,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exam-sessions--sessionId--proctor-events" data-method="GET"
       data-path="api/v1/exam-sessions/{sessionId}/proctor-events"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--proctor-events', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exam-sessions--sessionId--proctor-events"
-                    onclick="tryItOut('GETapi-v1-exam-sessions--sessionId--proctor-events');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exam-sessions--sessionId--proctor-events"
-                    onclick="cancelTryOut('GETapi-v1-exam-sessions--sessionId--proctor-events');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exam-sessions--sessionId--proctor-events"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exam-sessions/{sessionId}/proctor-events</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--proctor-events"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -13323,9 +17959,166 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="questionbank-GETapi-v1-questions">GET api/v1/questions</h2>
+                                <h2 id="questionbank-POSTapi-v1-questions-bulk-import">POST api/v1/questions/bulk-import</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-questions-bulk-import">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://alpha-engine.localhost:8000/api/v1/questions/bulk-import" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: multipart/form-data" \
+    --header "Accept: application/json" \
+    --form "file=@/tmp/phpsofu61h55o027rCx7Q2" </code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/questions/bulk-import"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('file', document.querySelector('input[name="file"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-questions-bulk-import">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-questions-bulk-import" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-questions-bulk-import"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-questions-bulk-import"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-questions-bulk-import" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-questions-bulk-import">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-questions-bulk-import" data-method="POST"
+      data-path="api/v1/questions/bulk-import"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-questions-bulk-import', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/questions/bulk-import</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-questions-bulk-import"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-questions-bulk-import"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-questions-bulk-import"
+               value="multipart/form-data"
+               data-component="header">
+    <br>
+<p>Example: <code>multipart/form-data</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-questions-bulk-import"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>file</code></b>&nbsp;&nbsp;
+<small>file</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="file" style="display: none"
+                              name="file"                data-endpoint="POSTapi-v1-questions-bulk-import"
+               value=""
+               data-component="body">
+    <br>
+<p>Must be a file. Must not be greater than 5120 kilobytes. Example: <code>/tmp/phpsofu61h55o027rCx7Q2</code></p>
+        </div>
+        </form>
+
+                    <h2 id="questionbank-GETapi-v1-questions">GET api/v1/questions</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -13336,14 +18129,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/questions" \
+    --get "http://alpha-engine.localhost:8000/api/v1/questions" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"category_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"bloom_level\": 5,
-    \"type\": \"true_false\",
+    \"bloom_level\": 2,
+    \"type\": \"short_answer\",
     \"per_page\": 7
 }"
 </code></pre></div>
@@ -13351,10 +18145,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/questions"
+    "http://alpha-engine.localhost:8000/api/v1/questions"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -13362,8 +18157,8 @@ const headers = {
 
 let body = {
     "category_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "bloom_level": 5,
-    "type": "true_false",
+    "bloom_level": 2,
+    "type": "short_answer",
     "per_page": 7
 };
 
@@ -13410,36 +18205,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-questions" data-method="GET"
       data-path="api/v1/questions"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-questions', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-questions"
-                    onclick="tryItOut('GETapi-v1-questions');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-questions"
-                    onclick="cancelTryOut('GETapi-v1-questions');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-questions"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/questions</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-questions"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -13496,10 +18286,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bloom_level"                data-endpoint="GETapi-v1-questions"
-               value="5"
+               value="2"
                data-component="body">
     <br>
-<p>Example: <code>5</code></p>
+<p>Example: <code>2</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>1</code></li> <li><code>2</code></li> <li><code>3</code></li> <li><code>4</code></li> <li><code>5</code></li> <li><code>6</code></li></ul>
         </div>
@@ -13510,10 +18300,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="GETapi-v1-questions"
-               value="true_false"
+               value="short_answer"
                data-component="body">
     <br>
-<p>Example: <code>true_false</code></p>
+<p>Example: <code>short_answer</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>mcq</code></li> <li><code>true_false</code></li> <li><code>short_answer</code></li> <li><code>essay</code></li></ul>
         </div>
@@ -13534,6 +18324,7 @@ Must be one of:
                     <h2 id="questionbank-POSTapi-v1-questions">POST api/v1/questions</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -13544,17 +18335,18 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/questions" \
+    "http://alpha-engine.localhost:8000/api/v1/questions" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"category_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"title\": \"g\",
-    \"type\": \"short_answer\",
+    \"type\": \"true_false\",
     \"question_text\": \"architecto\",
     \"stem\": \"architecto\",
-    \"bloom_level\": 1,
+    \"bloom_level\": 4,
     \"difficulty_level\": 2,
     \"correct_answer\": false,
     \"accepted_answers\": [
@@ -13569,7 +18361,7 @@ Must be one of:
     \"choices\": [
         {
             \"option_text\": \"architecto\",
-            \"is_correct\": false,
+            \"is_correct\": true,
             \"option_sequence\": 22
         }
     ]
@@ -13579,10 +18371,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/questions"
+    "http://alpha-engine.localhost:8000/api/v1/questions"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -13591,10 +18384,10 @@ const headers = {
 let body = {
     "category_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "title": "g",
-    "type": "short_answer",
+    "type": "true_false",
     "question_text": "architecto",
     "stem": "architecto",
-    "bloom_level": 1,
+    "bloom_level": 4,
     "difficulty_level": 2,
     "correct_answer": false,
     "accepted_answers": [
@@ -13609,7 +18402,7 @@ let body = {
     "choices": [
         {
             "option_text": "architecto",
-            "is_correct": false,
+            "is_correct": true,
             "option_sequence": 22
         }
     ]
@@ -13658,36 +18451,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-questions" data-method="POST"
       data-path="api/v1/questions"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-questions', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-questions"
-                    onclick="tryItOut('POSTapi-v1-questions');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-questions"
-                    onclick="cancelTryOut('POSTapi-v1-questions');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-questions"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/questions</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-questions"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -13756,10 +18544,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-v1-questions"
-               value="short_answer"
+               value="true_false"
                data-component="body">
     <br>
-<p>Example: <code>short_answer</code></p>
+<p>Example: <code>true_false</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>mcq</code></li> <li><code>true_false</code></li> <li><code>short_answer</code></li> <li><code>essay</code></li></ul>
         </div>
@@ -13794,10 +18582,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bloom_level"                data-endpoint="POSTapi-v1-questions"
-               value="1"
+               value="4"
                data-component="body">
     <br>
-<p>Example: <code>1</code></p>
+<p>Example: <code>4</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>1</code></li> <li><code>2</code></li> <li><code>3</code></li> <li><code>4</code></li> <li><code>5</code></li> <li><code>6</code></li></ul>
         </div>
@@ -13855,7 +18643,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>This field is required when <code>choices</code> is present. Example: <code>false</code></p>
+<p>This field is required when <code>choices</code> is present. Example: <code>true</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>option_sequence</code></b>&nbsp;&nbsp;
@@ -13986,6 +18774,7 @@ Must be one of:
                     <h2 id="questionbank-GETapi-v1-questions--id-">GET api/v1/questions/{id}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -13996,7 +18785,8 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14004,10 +18794,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -14056,36 +18847,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-questions--id-" data-method="GET"
       data-path="api/v1/questions/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-questions--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-questions--id-"
-                    onclick="tryItOut('GETapi-v1-questions--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-questions--id-"
-                    onclick="cancelTryOut('GETapi-v1-questions--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-questions--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/questions/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-questions--id-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -14140,6 +18926,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="questionbank-PUTapi-v1-questions--id-">PUT api/v1/questions/{id}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -14150,14 +18937,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"title\": \"b\",
     \"category_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\",
-    \"bloom_level\": 5,
+    \"bloom_level\": 4,
     \"difficulty_level\": 1,
     \"question_text\": \"architecto\",
     \"stem\": \"architecto\",
@@ -14184,10 +18972,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -14196,7 +18985,7 @@ const headers = {
 let body = {
     "title": "b",
     "category_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0",
-    "bloom_level": 5,
+    "bloom_level": 4,
     "difficulty_level": 1,
     "question_text": "architecto",
     "stem": "architecto",
@@ -14262,30 +19051,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PUTapi-v1-questions--id-" data-method="PUT"
       data-path="api/v1/questions/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-questions--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-v1-questions--id-"
-                    onclick="tryItOut('PUTapi-v1-questions--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-v1-questions--id-"
-                    onclick="cancelTryOut('PUTapi-v1-questions--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-v1-questions--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
@@ -14296,6 +19068,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/v1/questions/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-questions--id-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -14377,10 +19161,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bloom_level"                data-endpoint="PUTapi-v1-questions--id-"
-               value="5"
+               value="4"
                data-component="body">
     <br>
-<p>Example: <code>5</code></p>
+<p>Example: <code>4</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>1</code></li> <li><code>2</code></li> <li><code>3</code></li> <li><code>4</code></li> <li><code>5</code></li> <li><code>6</code></li></ul>
         </div>
@@ -14593,6 +19377,7 @@ Must be one of:
                     <h2 id="questionbank-DELETEapi-v1-questions--id-">DELETE api/v1/questions/{id}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -14603,7 +19388,8 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14611,10 +19397,11 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -14647,36 +19434,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-questions--id-" data-method="DELETE"
       data-path="api/v1/questions/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-questions--id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-questions--id-"
-                    onclick="tryItOut('DELETEapi-v1-questions--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-questions--id-"
-                    onclick="cancelTryOut('DELETEapi-v1-questions--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-questions--id-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/questions/{id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-questions--id-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -14735,6 +19517,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="resultpublication-POSTapi-v1-exam-sessions--sessionId--result-publish">POST api/v1/exam-sessions/{sessionId}/result/publish</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -14745,7 +19528,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publish" \
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publish" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14753,10 +19537,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publish"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publish"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -14805,36 +19590,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-exam-sessions--sessionId--result-publish" data-method="POST"
       data-path="api/v1/exam-sessions/{sessionId}/result/publish"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exam-sessions--sessionId--result-publish', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-exam-sessions--sessionId--result-publish"
-                    onclick="tryItOut('POSTapi-v1-exam-sessions--sessionId--result-publish');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-exam-sessions--sessionId--result-publish"
-                    onclick="cancelTryOut('POSTapi-v1-exam-sessions--sessionId--result-publish');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-exam-sessions--sessionId--result-publish"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/exam-sessions/{sessionId}/result/publish</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exam-sessions--sessionId--result-publish"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -14889,6 +19669,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="resultpublication-GETapi-v1-exam-sessions--sessionId--result-publication-status">GET api/v1/exam-sessions/{sessionId}/result/publication-status</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -14899,7 +19680,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publication-status" \
+    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publication-status" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -14907,10 +19689,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publication-status"
+    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publication-status"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -14959,36 +19742,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-exam-sessions--sessionId--result-publication-status" data-method="GET"
       data-path="api/v1/exam-sessions/{sessionId}/result/publication-status"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--result-publication-status', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-exam-sessions--sessionId--result-publication-status"
-                    onclick="tryItOut('GETapi-v1-exam-sessions--sessionId--result-publication-status');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-exam-sessions--sessionId--result-publication-status"
-                    onclick="cancelTryOut('GETapi-v1-exam-sessions--sessionId--result-publication-status');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-exam-sessions--sessionId--result-publication-status"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/exam-sessions/{sessionId}/result/publication-status</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--result-publication-status"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -15047,6 +19825,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="role-GETapi-v1-roles">GET api/v1/roles</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -15057,7 +19836,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/roles" \
+    --get "http://alpha-engine.localhost:8000/api/v1/roles" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15069,10 +19849,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/roles"
+    "http://alpha-engine.localhost:8000/api/v1/roles"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -15125,36 +19906,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-roles" data-method="GET"
       data-path="api/v1/roles"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-roles', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-roles"
-                    onclick="tryItOut('GETapi-v1-roles');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-roles"
-                    onclick="cancelTryOut('GETapi-v1-roles');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-roles"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/roles</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-roles"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -15209,6 +19985,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="role-POSTapi-v1-roles">POST api/v1/roles</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -15219,7 +19996,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/roles" \
+    "http://alpha-engine.localhost:8000/api/v1/roles" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15227,17 +20005,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"role_name\": \"b\",
     \"description\": \"Et animi quos velit et fugiat.\",
     \"role_category\": \"d\",
-    \"is_custom\": false
+    \"is_custom\": true
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/roles"
+    "http://alpha-engine.localhost:8000/api/v1/roles"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -15247,7 +20026,7 @@ let body = {
     "role_name": "b",
     "description": "Et animi quos velit et fugiat.",
     "role_category": "d",
-    "is_custom": false
+    "is_custom": true
 };
 
 fetch(url, {
@@ -15293,36 +20072,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-roles" data-method="POST"
       data-path="api/v1/roles"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-roles', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-roles"
-                    onclick="tryItOut('POSTapi-v1-roles');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-roles"
-                    onclick="cancelTryOut('POSTapi-v1-roles');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-roles"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/roles</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-roles"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -15416,13 +20190,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
                     <h2 id="role-PATCHapi-v1-roles--roleId-">PATCH api/v1/roles/{roleId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -15433,7 +20208,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -15447,10 +20223,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -15505,36 +20282,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-roles--roleId-" data-method="PATCH"
       data-path="api/v1/roles/{roleId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-roles--roleId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-roles--roleId-"
-                    onclick="tryItOut('PATCHapi-v1-roles--roleId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-roles--roleId-"
-                    onclick="cancelTryOut('PATCHapi-v1-roles--roleId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-roles--roleId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/roles/{roleId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-roles--roleId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -15638,6 +20410,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="role-DELETEapi-v1-roles--roleId-">DELETE api/v1/roles/{roleId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -15648,7 +20421,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -15656,10 +20430,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -15692,36 +20467,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-roles--roleId-" data-method="DELETE"
       data-path="api/v1/roles/{roleId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-roles--roleId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-roles--roleId-"
-                    onclick="tryItOut('DELETEapi-v1-roles--roleId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-roles--roleId-"
-                    onclick="cancelTryOut('DELETEapi-v1-roles--roleId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-roles--roleId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/roles/{roleId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-roles--roleId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -15776,6 +20546,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="role-POSTapi-v1-roles--roleId--users--userId-">POST api/v1/roles/{roleId}/users/{userId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -15786,7 +20557,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -15794,10 +20566,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -15846,36 +20619,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-roles--roleId--users--userId-" data-method="POST"
       data-path="api/v1/roles/{roleId}/users/{userId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-roles--roleId--users--userId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-roles--roleId--users--userId-"
-                    onclick="tryItOut('POSTapi-v1-roles--roleId--users--userId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-roles--roleId--users--userId-"
-                    onclick="cancelTryOut('POSTapi-v1-roles--roleId--users--userId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-roles--roleId--users--userId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/roles/{roleId}/users/{userId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-roles--roleId--users--userId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -15942,6 +20710,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="role-DELETEapi-v1-roles--roleId--users--userId-">DELETE api/v1/roles/{roleId}/users/{userId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -15952,7 +20721,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -15960,10 +20730,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -15996,36 +20767,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-DELETEapi-v1-roles--roleId--users--userId-" data-method="DELETE"
       data-path="api/v1/roles/{roleId}/users/{userId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-roles--roleId--users--userId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-v1-roles--roleId--users--userId-"
-                    onclick="tryItOut('DELETEapi-v1-roles--roleId--users--userId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-v1-roles--roleId--users--userId-"
-                    onclick="cancelTryOut('DELETEapi-v1-roles--roleId--users--userId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-v1-roles--roleId--users--userId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-red">DELETE</small>
             <b><code>api/v1/roles/{roleId}/users/{userId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-roles--roleId--users--userId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -16096,6 +20862,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="securitypolicy-GETapi-v1-security-policies">GET api/v1/security/policies</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -16106,7 +20873,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/security/policies" \
+    --get "http://alpha-engine.localhost:8000/api/v1/security/policies" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -16114,10 +20882,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/security/policies"
+    "http://alpha-engine.localhost:8000/api/v1/security/policies"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -16166,36 +20935,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-security-policies" data-method="GET"
       data-path="api/v1/security/policies"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-security-policies', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-security-policies"
-                    onclick="tryItOut('GETapi-v1-security-policies');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-security-policies"
-                    onclick="cancelTryOut('GETapi-v1-security-policies');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-security-policies"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/security/policies</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-security-policies"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -16237,6 +21001,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="securitypolicy-PATCHapi-v1-security-policies">PATCH api/v1/security/policies</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -16247,27 +21012,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://localhost/api/v1/security/policies" \
+    "http://alpha-engine.localhost:8000/api/v1/security/policies" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"mfa_enabled\": true,
+    \"mfa_enabled\": false,
     \"mfa_method\": \"b\",
     \"password_min_length\": 22,
     \"password_require_uppercase\": true,
     \"password_require_lowercase\": true,
-    \"password_require_numbers\": false,
-    \"password_require_special_chars\": true,
+    \"password_require_numbers\": true,
+    \"password_require_special_chars\": false,
     \"password_expiry_days\": 7,
     \"password_history_count\": 6,
     \"session_timeout_minutes\": 17,
     \"session_absolute_timeout_hours\": 15,
     \"session_force_reauth_on_privilege_change\": true,
     \"ip_whitelisting_enabled\": true,
-    \"enable_biometric_auth\": false,
+    \"enable_biometric_auth\": true,
     \"enforce_tls_1_3_minimum\": true,
-    \"disable_weak_ciphers\": true,
+    \"disable_weak_ciphers\": false,
     \"allowed_ip_ranges\": [
         \"y\"
     ]
@@ -16277,32 +21043,33 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/security/policies"
+    "http://alpha-engine.localhost:8000/api/v1/security/policies"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "mfa_enabled": true,
+    "mfa_enabled": false,
     "mfa_method": "b",
     "password_min_length": 22,
     "password_require_uppercase": true,
     "password_require_lowercase": true,
-    "password_require_numbers": false,
-    "password_require_special_chars": true,
+    "password_require_numbers": true,
+    "password_require_special_chars": false,
     "password_expiry_days": 7,
     "password_history_count": 6,
     "session_timeout_minutes": 17,
     "session_absolute_timeout_hours": 15,
     "session_force_reauth_on_privilege_change": true,
     "ip_whitelisting_enabled": true,
-    "enable_biometric_auth": false,
+    "enable_biometric_auth": true,
     "enforce_tls_1_3_minimum": true,
-    "disable_weak_ciphers": true,
+    "disable_weak_ciphers": false,
     "allowed_ip_ranges": [
         "y"
     ]
@@ -16351,36 +21118,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-PATCHapi-v1-security-policies" data-method="PATCH"
       data-path="api/v1/security/policies"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-security-policies', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PATCHapi-v1-security-policies"
-                    onclick="tryItOut('PATCHapi-v1-security-policies');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PATCHapi-v1-security-policies"
-                    onclick="cancelTryOut('PATCHapi-v1-security-policies');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PATCHapi-v1-security-policies"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/security/policies</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-security-policies"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -16438,7 +21200,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>mfa_method</code></b>&nbsp;&nbsp;
@@ -16528,7 +21290,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_require_special_chars</code></b>&nbsp;&nbsp;
@@ -16550,7 +21312,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_expiry_days</code></b>&nbsp;&nbsp;
@@ -16664,7 +21426,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>enforce_tls_1_3_minimum</code></b>&nbsp;&nbsp;
@@ -16708,7 +21470,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allowed_ip_ranges</code></b>&nbsp;&nbsp;
@@ -16733,6 +21495,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="system-GETapi-v1-system-status">GET api/v1/system/status</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -16743,7 +21506,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/system/status" \
+    --get "http://alpha-engine.localhost:8000/api/v1/system/status" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -16751,10 +21515,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/system/status"
+    "http://alpha-engine.localhost:8000/api/v1/system/status"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -16803,36 +21568,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-system-status" data-method="GET"
       data-path="api/v1/system/status"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-system-status', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-system-status"
-                    onclick="tryItOut('GETapi-v1-system-status');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-system-status"
-                    onclick="cancelTryOut('GETapi-v1-system-status');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-system-status"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/system/status</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-system-status"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -16878,6 +21638,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                                 <h2 id="user-POSTapi-v1-users">POST api/v1/users</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -16888,7 +21649,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/users" \
+    "http://alpha-engine.localhost:8000/api/v1/users" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -16906,10 +21668,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/users"
+    "http://alpha-engine.localhost:8000/api/v1/users"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -16968,36 +21731,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-users" data-method="POST"
       data-path="api/v1/users"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-users', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-users"
-                    onclick="tryItOut('POSTapi-v1-users');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-users"
-                    onclick="cancelTryOut('POSTapi-v1-users');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-users"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/users</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-users"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -17136,6 +21894,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="user-GETapi-v1-users">GET api/v1/users</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -17146,7 +21905,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/users" \
+    --get "http://alpha-engine.localhost:8000/api/v1/users" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17158,10 +21918,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/users"
+    "http://alpha-engine.localhost:8000/api/v1/users"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -17214,36 +21975,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-users" data-method="GET"
       data-path="api/v1/users"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-users', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-users"
-                    onclick="tryItOut('GETapi-v1-users');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-users"
-                    onclick="cancelTryOut('GETapi-v1-users');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-users"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/users</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-users"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -17298,6 +22054,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="user-POSTapi-v1-users-invite">POST api/v1/users/invite</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -17308,7 +22065,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/users/invite" \
+    "http://alpha-engine.localhost:8000/api/v1/users/invite" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17325,10 +22083,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/users/invite"
+    "http://alpha-engine.localhost:8000/api/v1/users/invite"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -17386,36 +22145,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-users-invite" data-method="POST"
       data-path="api/v1/users/invite"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-users-invite', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-users-invite"
-                    onclick="tryItOut('POSTapi-v1-users-invite');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-users-invite"
-                    onclick="cancelTryOut('POSTapi-v1-users-invite');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-users-invite"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/users/invite</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-users-invite"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -17542,6 +22296,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="user-GETapi-v1-users--userId-">GET api/v1/users/{userId}</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -17552,7 +22307,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -17560,10 +22316,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -17612,36 +22369,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-v1-users--userId-" data-method="GET"
       data-path="api/v1/users/{userId}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-users--userId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-v1-users--userId-"
-                    onclick="tryItOut('GETapi-v1-users--userId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-v1-users--userId-"
-                    onclick="cancelTryOut('GETapi-v1-users--userId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-v1-users--userId-"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/users/{userId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-users--userId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -17693,9 +22445,289 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="user-PATCHapi-v1-users--userId-">PATCH api/v1/users/{userId}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-v1-users--userId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"first_name\": \"b\",
+    \"last_name\": \"n\",
+    \"external_employee_id\": \"g\",
+    \"user_type\": \"z\",
+    \"department_id\": \"977e5426-8d13-3824-86aa-b092f8ae52c5\",
+    \"status\": \"y\",
+    \"is_active\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "first_name": "b",
+    "last_name": "n",
+    "external_employee_id": "g",
+    "user_type": "z",
+    "department_id": "977e5426-8d13-3824-86aa-b092f8ae52c5",
+    "status": "y",
+    "is_active": true
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-v1-users--userId-">
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-v1-users--userId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-v1-users--userId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-v1-users--userId-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-v1-users--userId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-v1-users--userId-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-v1-users--userId-" data-method="PATCH"
+      data-path="api/v1/users/{userId}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-users--userId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/users/{userId}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-users--userId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>userId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="userId"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>first_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="first_name"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 100 characters. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>last_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="last_name"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="n"
+               data-component="body">
+    <br>
+<p>Must not be greater than 100 characters. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>external_employee_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="external_employee_id"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="g"
+               data-component="body">
+    <br>
+<p>Must not be greater than 64 characters. Example: <code>g</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="user_type"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="z"
+               data-component="body">
+    <br>
+<p>Must not be greater than 64 characters. Example: <code>z</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>department_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="department_id"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="977e5426-8d13-3824-86aa-b092f8ae52c5"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Example: <code>977e5426-8d13-3824-86aa-b092f8ae52c5</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_attributes</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="user_attributes"                data-endpoint="PATCHapi-v1-users--userId-"
+               value=""
+               data-component="body">
+    <br>
+
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="PATCHapi-v1-users--userId-"
+               value="y"
+               data-component="body">
+    <br>
+<p>Must not be greater than 32 characters. Example: <code>y</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="PATCHapi-v1-users--userId-" style="display: none">
+            <input type="radio" name="is_active"
+                   value="true"
+                   data-endpoint="PATCHapi-v1-users--userId-"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PATCHapi-v1-users--userId-" style="display: none">
+            <input type="radio" name="is_active"
+                   value="false"
+                   data-endpoint="PATCHapi-v1-users--userId-"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+        </form>
+
                     <h2 id="user-POSTapi-v1-users--userId--reset-password">POST api/v1/users/{userId}/reset-password</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -17706,7 +22738,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reset-password" \
+    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reset-password" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -17718,10 +22751,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reset-password"
+    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reset-password"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -17774,36 +22808,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-users--userId--reset-password" data-method="POST"
       data-path="api/v1/users/{userId}/reset-password"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-users--userId--reset-password', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-users--userId--reset-password"
-                    onclick="tryItOut('POSTapi-v1-users--userId--reset-password');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-users--userId--reset-password"
-                    onclick="cancelTryOut('POSTapi-v1-users--userId--reset-password');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-users--userId--reset-password"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/users/{userId}/reset-password</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-users--userId--reset-password"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -17871,6 +22900,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="user-POSTapi-v1-users--userId--deactivate">POST api/v1/users/{userId}/deactivate</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -17881,7 +22911,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate" \
+    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -17889,10 +22920,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate"
+    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate"
 );
 
 const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
     "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -17941,36 +22973,31 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-v1-users--userId--deactivate" data-method="POST"
       data-path="api/v1/users/{userId}/deactivate"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-users--userId--deactivate', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-v1-users--userId--deactivate"
-                    onclick="tryItOut('POSTapi-v1-users--userId--deactivate');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-v1-users--userId--deactivate"
-                    onclick="cancelTryOut('POSTapi-v1-users--userId--deactivate');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-v1-users--userId--deactivate"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/users/{userId}/deactivate</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-users--userId--deactivate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
 &nbsp;

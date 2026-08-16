@@ -16,9 +16,10 @@ endpoints:
       subgroupDescription: ''
       title: ''
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
     headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
       X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
       Content-Type: application/json
       Accept: application/json
@@ -64,7 +65,10 @@ endpoints:
           access-control-allow-origin: '*'
         description: null
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
     controller: null
     method: null
     route: null
