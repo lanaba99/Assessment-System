@@ -19,6 +19,7 @@ use App\Domains\ExamSession\Exceptions\EligibilityViolationException;
 use App\Domains\ExamSession\Exceptions\EnrollmentNotFoundException;
 use App\Domains\ExamSession\Exceptions\InvalidSessionStateException;
 use App\Domains\ExamSession\Exceptions\SessionDurationExceededException;
+use App\Domains\ExamSession\Exceptions\SessionItemNotFoundException;
 use App\Domains\ExamSession\Exceptions\SessionNotFoundException;
 use App\Domains\ExamSession\Models\CandidateExamStatus;
 use App\Domains\ExamSession\Models\ExamSessionItem;
@@ -282,8 +283,9 @@ class ExamSessionServiceImpl implements ExamSessionService
             $item = $this->itemRepository->findByIdForUpdate($command->sessionItemId);
 
             if ($item === null || (string) $item->session_id !== $command->sessionId) {
-                throw new RuntimeException(
-                    "Session item [{$command->sessionItemId}] not found on session [{$command->sessionId}]."
+                throw SessionItemNotFoundException::forSessionItemAndSession(
+                    $command->sessionItemId,
+                    $command->sessionId,
                 );
             }
 

@@ -785,3 +785,41 @@ it('returns 403 when a non-manager tries to access the enrollment list', functio
     $this->getJson('/api/v1/exams/' . $exam->exam_id . '/enrollments')
         ->assertForbidden();
 });
+
+it('returns 404 when a session item from a different session is submitted', function (): void {
+    $candidate = $this->createUser($this->tenantA);
+    $this->grantPermissionsToUser($candidate, ['exam_sessions.start']);
+    Sanctum::actingAs($candidate);
+
+    // Session A — the one we will actually submit against.
+    [$examA] = $this->prepareExamWithMockedItems($this->tenantA, (string) $candidate->id);
+    $this->createEnrollment($this->tenantA, (string) $examA->exam_id, (string) $candidate->id);
+    $sessionA = $this->postJson('/api/v1/exam-sessions/', ['exam_id' => (string) $examA->exam_id])
+        ->assertCreated();
+    $sessionAId = $sessionA->json('data.session_id');
+
+    // Session B — a second, separate session/exam for the same candidate,
+    // whose item id we will try (and must fail) to submit against session A.
+    [$examB, $sectionB] = $this->prepareExamWithMockedItems($this->tenantA, (string) $candidate->id);
+    $this->createEnrollment($this->tenantA, (string) $examB->exam_id, (string) $candidate->id);
+    $versionB = $this->createQuestionVersionStub($this->tenantA);
+    $enrollmentB = \App\Domains\ExamSession\Models\ExamCandidateEligible::query()
+        ->where('exam_id', $examB->exam_id)
+        ->where('candidate_user_id', $candidate->id)
+        ->firstOrFail();
+    $sessionB = $this->createExamSession(
+        $this->tenantA, (string) $examB->exam_id,
+        (string) $enrollmentB->enrollment_id, (string) $candidate->id,
+    );
+    $itemB = $this->createSessionItem(
+        (string) $sessionB->session_id, (string) $sectionB->section_id, $versionB,
+    );
+
+    $this->postJson('/api/v1/exam-sessions/' . $sessionAId . '/responses', [
+        'session_item_id' => (string) $itemB->session_item_id,
+        'response_type' => 'single_choice',
+        'selected_options' => ['option_a'],
+    ])
+        ->assertNotFound()
+        ->assertJsonPath('error.code', 'session_item_not_found');
+});

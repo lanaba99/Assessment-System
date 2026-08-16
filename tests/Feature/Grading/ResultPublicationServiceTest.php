@@ -213,3 +213,30 @@ it('rejects publishing non-final results', function (): void {
         (string) $session->session_id,
     ))->toThrow(ResultNotFinalizedException::class);
 });
+
+it('returns 403 when an actor without grading.publish (e.g. Proctor) tries to publish a result', function (): void {
+    ['candidate' => $candidate, 'exam' => $exam, 'session' => $session] = $this->prepareGradingSession();
+
+    $this->createGrade(
+        $this->tenantA,
+        (string) $session->session_id,
+        (string) $candidate->id,
+        (string) $exam->exam_id,
+        ['is_final_grade' => true, 'finalized_at' => now()],
+    );
+    $this->createAssessmentResult(
+        $this->tenantA,
+        (string) $session->session_id,
+        (string) $candidate->id,
+        (string) $exam->exam_id,
+        ['result_status' => AssessmentSummary::STATUS_FINAL],
+    );
+
+    // Proctor-shaped permission set: session management, no grading.publish.
+    $proctor = $this->createUser($this->tenantA, password: 'ProctorPass1!');
+    $this->grantPermissionsToUser($proctor, ['exam_sessions.manage', 'exam_sessions.view']);
+    \Laravel\Sanctum\Sanctum::actingAs($proctor);
+
+    $this->postJson('/api/v1/exam-sessions/' . $session->session_id . '/result/publish')
+        ->assertForbidden();
+});

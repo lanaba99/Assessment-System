@@ -68,15 +68,18 @@ Route::middleware([
             ->name('api.v1.auth.login');
 
         Route::post('auth/mfa/verify', [AuthController::class, 'verifyMfa'])
+            ->middleware('throttle:5,15')
             ->name('api.v1.auth.mfa.verify');
 
         Route::post('auth/password/forgot', [AuthController::class, 'forgotPassword'])
             ->name('api.v1.auth.password.forgot');
 
         Route::post('auth/password/reset', [AuthController::class, 'resetPassword'])
+            ->middleware('throttle:5,15')
             ->name('api.v1.auth.password.reset');
 
         Route::post('auth/accept-invite', [AuthController::class, 'acceptInvite'])
+            ->middleware('throttle:5,15')
             ->name('api.v1.auth.accept-invite');
 
         Route::get('system/status', [SystemController::class, 'status'])

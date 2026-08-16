@@ -10,6 +10,7 @@ use App\Domains\ExamSession\Exceptions\EligibilityViolationException;
 use App\Domains\ExamSession\Exceptions\EnrollmentNotFoundException;
 use App\Domains\ExamSession\Exceptions\InvalidSessionStateException;
 use App\Domains\ExamSession\Exceptions\SessionDurationExceededException;
+use App\Domains\ExamSession\Exceptions\SessionItemNotFoundException;
 use App\Domains\ExamSession\Exceptions\SessionNotFoundException;
 use App\Domains\ExamSession\Exceptions\StaleVersionLockException;
 use App\Domains\ExamSession\Models\CandidateExamStatus;
@@ -197,6 +198,8 @@ class ExamSessionController extends Controller
             return $this->errorResponse('exam_duration_exceeded', $e->getMessage(), Response::HTTP_UNPROCESSABLE_ENTITY);
         } catch (StaleVersionLockException $e) {
             return $this->errorResponse('stale_version_lock', $e->getMessage(), Response::HTTP_CONFLICT);
+        } catch (SessionItemNotFoundException $e) {
+            return $this->errorResponse('session_item_not_found', $e->getMessage(), Response::HTTP_NOT_FOUND);
         }
 
         return new JsonResponse(
