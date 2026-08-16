@@ -557,6 +557,11 @@ Route::middleware([
                 Route::post('{workflowId}/approve', [ApprovalWorkflowController::class, 'approve'])
                     ->whereUuid('workflowId')
                     ->name('api.v1.workflows.approve');
+
+                Route::post('{workflowId}/reject', [ApprovalWorkflowController::class, 'reject'])
+                     ->whereUuid('workflowId')
+                     ->name('api.v1.workflows.reject');
+
             });
 
             // -------------------------------------------------------------

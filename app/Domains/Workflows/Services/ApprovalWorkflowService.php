@@ -6,9 +6,9 @@ namespace App\Domains\Workflows\Services;
 
 use App\Domains\Grading\Models\AssessmentResult;
 use App\Domains\Workflows\Models\ApprovalWorkflow;
+use App\Domains\Workflows\Models\WorkflowHistory;
 use App\Domains\Workflows\Repositories\ApprovalWorkflowRepository;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-
+use LogicException;
 use RuntimeException;
 
 class ApprovalWorkflowService
@@ -50,23 +50,77 @@ class ApprovalWorkflowService
         ]);
     }
 
-    public function approve(string $tenantId, string $workflowId, string $approvedByUserId): ApprovalWorkflow
-    {
-        $workflow = $this->requireWorkflow($tenantId, $workflowId);
+    public function approve(
+        string $tenantId,
+        string $workflowId,
+        string $approvedByUserId,
+    ): ApprovalWorkflow {
+        $workflow = $this->requirePendingWorkflow($tenantId, $workflowId);
+        $this->assertDifferentActor($workflow, $approvedByUserId);
 
-        if ($workflow->current_workflow_status !== 'pending') {
-            throw new RuntimeException('Only pending workflows can be approved.');
-        }
+        $now = now();
+        $metadata = is_array($workflow->workflow_metadata)
+            ? $workflow->workflow_metadata
+            : [];
 
-        $metadata = is_array($workflow->workflow_metadata) ? $workflow->workflow_metadata : [];
         $metadata['approved_by_user_id'] = $approvedByUserId;
-        $metadata['approved_at'] = now()->toIso8601String();
+        $metadata['approved_at'] = $now->toIso8601String();
 
-        return $this->workflows->update($workflow, [
+        $updated = $this->workflows->update($workflow, [
             'current_workflow_status' => 'approved',
-            'workflow_completed_at' => now(),
+            'workflow_completed_at' => $now,
             'workflow_metadata' => $metadata,
         ]);
+
+        $this->recordHistory(
+            workflow: $updated,
+            actorUserId: $approvedByUserId,
+            actionType: 'approved',
+            oldState: 'pending',
+            newState: 'approved',
+            metadata: ['approved_at' => $now->toIso8601String()],
+        );
+
+        return $updated;
+    }
+
+    public function reject(
+        string $tenantId,
+        string $workflowId,
+        string $rejectedByUserId,
+        string $reason,
+    ): ApprovalWorkflow {
+        $workflow = $this->requirePendingWorkflow($tenantId, $workflowId);
+        $this->assertDifferentActor($workflow, $rejectedByUserId);
+
+        $now = now();
+        $metadata = is_array($workflow->workflow_metadata)
+            ? $workflow->workflow_metadata
+            : [];
+
+        $metadata['rejected_by_user_id'] = $rejectedByUserId;
+        $metadata['rejected_at'] = $now->toIso8601String();
+        $metadata['rejection_reason'] = $reason;
+
+        $updated = $this->workflows->update($workflow, [
+            'current_workflow_status' => 'rejected',
+            'workflow_completed_at' => $now,
+            'workflow_metadata' => $metadata,
+        ]);
+
+        $this->recordHistory(
+            workflow: $updated,
+            actorUserId: $rejectedByUserId,
+            actionType: 'rejected',
+            oldState: 'pending',
+            newState: 'rejected',
+            metadata: [
+                'rejected_at' => $now->toIso8601String(),
+                'reason' => $reason,
+            ],
+        );
+
+        return $updated;
     }
 
     public function isPublicationApprovedForResult(string $tenantId, string $resultId): bool
@@ -97,20 +151,46 @@ class ApprovalWorkflowService
             fn (ApprovalWorkflow $workflow): bool => $workflow->current_workflow_status === 'approved',
         );
     }
-    /**
-     * General workflow list for the tenant, filtered by optional query params.
-     * Backs GET /api/v1/workflows — one list endpoint, not one per status/type.
-     *
-     * @param  array{status?: string, workflow_type?: string, resource_type?: string, resource_id?: string, initiated_by_user_id?: string}  $filters    
-     **/
-    public function listWorkflows(string $tenantId, array $filters, int $perPage): LengthAwarePaginator
-    {
-        return $this->workflows->paginateList($tenantId, $filters, $perPage);
-    }
 
     public function find(string $tenantId, string $workflowId): ?ApprovalWorkflow
     {
         return $this->workflows->findById($tenantId, $workflowId);
+    }
+
+    private function requirePendingWorkflow(string $tenantId, string $workflowId): ApprovalWorkflow
+    {
+        $workflow = $this->requireWorkflow($tenantId, $workflowId);
+
+        if ($workflow->current_workflow_status !== 'pending') {
+            throw new RuntimeException('Only pending workflows can be approved or rejected.');
+        }
+
+        return $workflow;
+    }
+
+    private function assertDifferentActor(ApprovalWorkflow $workflow, string $actorUserId): void
+    {
+        if ((string) $workflow->initiated_by_user_id === $actorUserId) {
+            throw new LogicException('The workflow initiator cannot approve or reject their own workflow.');
+        }
+    }
+
+    private function recordHistory(
+        ApprovalWorkflow $workflow,
+        string $actorUserId,
+        string $actionType,
+        string $oldState,
+        string $newState,
+        array $metadata,
+    ): void {
+        WorkflowHistory::query()->create([
+            'workflow_id' => (string) $workflow->workflow_id,
+            'actor_user_id' => $actorUserId,
+            'action_type' => $actionType,
+            'old_state' => $oldState,
+            'new_state' => $newState,
+            'transition_metadata' => $metadata,
+        ]);
     }
 
     private function requireWorkflow(string $tenantId, string $workflowId): ApprovalWorkflow
