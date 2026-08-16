@@ -30,6 +30,8 @@ use App\Http\Controllers\Rules\EligibilityChainController;
 use App\Http\Controllers\Grading\CertificateController;
 use App\Http\Controllers\Grading\ReportController;
 
+use App\Http\Controllers\Identity\TenantSettingsController;
+
 use App\Http\Controllers\QuestionBank\QuestionCompetencyController;
 use App\Http\Controllers\QuestionBank\QuestionVersionController;
 use App\Http\Controllers\ExamEngine\ExamSectionController;
@@ -216,6 +218,13 @@ Route::middleware([
 
             Route::patch('identity/profile', [IdentityController::class, 'updateProfile'])
                 ->name('api.v1.identity.profile.update');
+
+            Route::get('tenant/settings', [TenantSettingsController::class, 'show'])
+                ->name('api.v1.tenant.settings.show');
+
+            Route::patch('tenant/settings', [TenantSettingsController::class, 'update'])
+                ->name('api.v1.tenant.settings.update');
+
 
             Route::get('identity/permissions', [IdentityController::class, 'permissions'])
                 ->name('api.v1.identity.permissions.index');

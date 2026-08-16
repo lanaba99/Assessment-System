@@ -52,6 +52,7 @@ class IdentityPermissionsSeeder extends Seeder
         'exams.view',
         'exams.manage',
         'exams.publish',
+       'tenant.manage',
     ];
 
     public function run(): void

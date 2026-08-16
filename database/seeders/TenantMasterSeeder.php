@@ -141,6 +141,7 @@ class TenantMasterSeeder extends Seeder
             ['name' => 'exams.manage',          'resource' => 'exam',     'action' => 'manage'],
             ['name' => 'exams.publish',         'resource' => 'exam',     'action' => 'publish'],
             ['name' => 'exams.view',            'resource' => 'exam',     'action' => 'view'],
+            ['name' => 'tenant.manage',         'resource' => 'tenant',   'action' => 'manage'],
             ['name' => 'questions.manage',      'resource' => 'question', 'action' => 'manage'],
             ['name' => 'grading.evaluate',      'resource' => 'response', 'action' => 'evaluate'],
             ['name' => 'grading.view',          'resource' => 'response', 'action' => 'view'],
