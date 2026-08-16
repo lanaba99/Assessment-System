@@ -11,6 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Guarded: in production this runs against the landlord's own
+        // database, where 'jobs' never pre-exists. The guard only matters
+        // for test harnesses (e.g. RolePermissionContractTest) that load
+        // both landlord AND tenant migrations into a single shared SQLite
+        // connection — the tenant migrations also create a 'jobs' table
+        // (create_tenant_queues_table.php) for each tenant's own queue,
+        // which is correct in production (separate DB per tenant) but
+        // collides here since both sets land in the same schema.
+        if (Schema::hasTable('jobs')) {
+            return;
+        }
+
         Schema::create('jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('queue')->index();

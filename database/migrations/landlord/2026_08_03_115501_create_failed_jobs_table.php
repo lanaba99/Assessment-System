@@ -11,6 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // See 2026_08_03_115433_create_jobs_table.php for why this guard
+        // exists — same 'jobs table also created per-tenant' collision
+        // applies to failed_jobs in test harnesses that load both
+        // landlord and tenant migrations into one shared connection.
+        if (Schema::hasTable('failed_jobs')) {
+            return;
+        }
+
         Schema::create('failed_jobs', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
