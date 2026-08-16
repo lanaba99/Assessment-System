@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domains\Workflows\Services;
 
-use App\Domains\Grading\Models\AssessmentResult;
 use App\Domains\Workflows\Models\ApprovalWorkflow;
 use App\Domains\Workflows\Models\WorkflowHistory;
 use App\Domains\Workflows\Repositories\ApprovalWorkflowRepository;
-use LogicException;
 use RuntimeException;
 
 class ApprovalWorkflowService
@@ -56,7 +54,6 @@ class ApprovalWorkflowService
         string $approvedByUserId,
     ): ApprovalWorkflow {
         $workflow = $this->requirePendingWorkflow($tenantId, $workflowId);
-        $this->assertDifferentActor($workflow, $approvedByUserId);
 
         $now = now();
         $metadata = is_array($workflow->workflow_metadata)
@@ -91,7 +88,6 @@ class ApprovalWorkflowService
         string $reason,
     ): ApprovalWorkflow {
         $workflow = $this->requirePendingWorkflow($tenantId, $workflowId);
-        $this->assertDifferentActor($workflow, $rejectedByUserId);
 
         $now = now();
         $metadata = is_array($workflow->workflow_metadata)
@@ -127,7 +123,7 @@ class ApprovalWorkflowService
     {
         $pending = $this->workflows->findPendingForResource(
             $tenantId,
-            AssessmentResult::class,
+            'assessment_result',
             $resultId,
             self::TYPE_RESULT_PUBLICATION,
         );
@@ -138,7 +134,7 @@ class ApprovalWorkflowService
 
         $workflows = $this->workflows->findForResource(
             $tenantId,
-            AssessmentResult::class,
+            'assessment_result',
             $resultId,
             self::TYPE_RESULT_PUBLICATION,
         );
@@ -166,13 +162,6 @@ class ApprovalWorkflowService
         }
 
         return $workflow;
-    }
-
-    private function assertDifferentActor(ApprovalWorkflow $workflow, string $actorUserId): void
-    {
-        if ((string) $workflow->initiated_by_user_id === $actorUserId) {
-            throw new LogicException('The workflow initiator cannot approve or reject their own workflow.');
-        }
     }
 
     private function recordHistory(

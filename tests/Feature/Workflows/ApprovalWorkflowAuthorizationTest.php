@@ -34,7 +34,7 @@ it('denies initiating a workflow when the actor lacks workflows.manage', functio
     );
 
     $this->postJson('/api/v1/workflows', [
-        'resource_type' => AssessmentResult::class,
+        'resource_type' => 'assessment_result',
         'resource_id' => (string) $result->result_id,
         'workflow_type' => 'result_publication',
     ])->assertForbidden();
@@ -55,7 +55,7 @@ it('denies approving a workflow when the actor lacks workflows.approve', functio
     );
 
     $initiate = $this->postJson('/api/v1/workflows', [
-        'resource_type' => AssessmentResult::class,
+        'resource_type' => 'assessment_result',
         'resource_id' => (string) $result->result_id,
         'workflow_type' => 'result_publication',
     ])->assertCreated();
@@ -75,7 +75,7 @@ it('denies viewing a workflow that belongs to another tenant', function (): void
         'tenant_id' => $this->tenantB,
         'initiated_by_user_id' => (string) $adminB->id,
         'resource_id' => (string) Str::uuid(),
-        'resource_type' => AssessmentResult::class,
+        'resource_type' => 'assessment_result',
         'workflow_type' => 'result_publication',
         'current_workflow_status' => 'pending',
         'workflow_initiated_at' => now(),

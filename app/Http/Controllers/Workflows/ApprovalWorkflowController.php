@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Workflows;
 
-use App\Domains\Workflows\Models\ApprovalWorkflow;
 use App\Domains\Workflows\Services\ApprovalWorkflowService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Workflows\ApproveWorkflowRequest;
@@ -14,7 +13,6 @@ use App\Http\Resources\Workflows\ApprovalWorkflowResource;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use LogicException;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -73,8 +71,6 @@ class ApprovalWorkflowController extends Controller
                 $workflowId,
                 (string) $request->user()->id,
             );
-        } catch (LogicException $e) {
-            return $this->workflowError('self_approval_forbidden', $e->getMessage());
         } catch (RuntimeException $e) {
             return $this->workflowError('invalid_workflow_state', $e->getMessage());
         }
@@ -96,8 +92,6 @@ class ApprovalWorkflowController extends Controller
                 (string) $request->user()->id,
                 $request->reason(),
             );
-        } catch (LogicException $e) {
-            return $this->workflowError('self_rejection_forbidden', $e->getMessage());
         } catch (RuntimeException $e) {
             return $this->workflowError('invalid_workflow_state', $e->getMessage());
         }

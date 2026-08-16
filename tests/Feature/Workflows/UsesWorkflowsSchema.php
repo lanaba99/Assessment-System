@@ -13,7 +13,10 @@ trait UsesWorkflowsSchema
     {
         $connection = (string) config('database.default');
 
+        // The feature tests use SQLite in-memory by default. Re-create the
+        // workflow tables for non-SQLite connections to keep tests isolated.
         if ($connection !== 'sqlite') {
+            Schema::connection($connection)->dropIfExists('workflow_history');
             Schema::connection($connection)->dropIfExists('approval_workflows');
         }
 
@@ -32,6 +35,34 @@ trait UsesWorkflowsSchema
                 $table->dateTime('workflow_completed_at')->nullable();
                 $table->json('workflow_metadata')->nullable();
                 $table->timestamps();
+            });
+        }
+
+        $this->createWorkflowHistoryTable();
+    }
+
+    protected function createWorkflowHistoryTable(): void
+    {
+        if (! Schema::hasTable('workflow_history')) {
+            Schema::create('workflow_history', function (Blueprint $table): void {
+                $table->uuid('history_id')->primary();
+                $table->uuid('workflow_id');
+                $table->uuid('actor_user_id');
+                $table->string('action_type');
+                $table->string('old_state')->nullable();
+                $table->string('new_state')->nullable();
+                $table->json('transition_metadata')->nullable();
+                $table->timestamps();
+
+                // Indexes match the production migration. Foreign keys are
+                // intentionally omitted here because the in-memory SQLite
+                // test schema is created independently from tenant migrations.
+                $table->index('action_type');
+                $table->index('created_at');
+                $table->index(['workflow_id', 'created_at']);
+                $table->index(['workflow_id', 'action_type']);
+                $table->index(['actor_user_id', 'created_at']);
+                $table->index(['old_state', 'new_state']);
             });
         }
     }

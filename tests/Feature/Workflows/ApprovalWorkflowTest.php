@@ -43,7 +43,7 @@ it('blocks result publication until the approval workflow is approved', function
     Sanctum::actingAs($publisher);
 
     $initiate = $this->postJson('/api/v1/workflows', [
-        'resource_type' => AssessmentResult::class,
+        'resource_type' => 'assessment_result',
         'resource_id' => (string) $result->result_id,
         'workflow_type' => 'result_publication',
     ])->assertCreated();
@@ -79,7 +79,7 @@ it('creates an approval workflow record for a result publication request', funct
     );
 
     $this->postJson('/api/v1/workflows', [
-        'resource_type' => AssessmentResult::class,
+        'resource_type' => 'assessment_result',
         'resource_id' => (string) $result->result_id,
         'workflow_type' => 'result_publication',
     ])->assertCreated()
