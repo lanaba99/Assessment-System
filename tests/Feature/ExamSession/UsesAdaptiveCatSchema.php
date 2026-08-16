@@ -54,6 +54,9 @@ trait UsesAdaptiveCatSchema
             '2026_05_16_000150_create_questions_table.php',
             '2026_05_16_000160_create_question_versions_table.php',
             '2026_05_19_000010_create_question_psychometrics_table.php',
+            // Alter — adds deleted_at to questions/question_versions/categories.
+            // Guarded with hasTable()/hasColumn(), safe to always include.
+            '2026_06_05_000010_add_soft_deletes_to_question_bank_tables.php',
         ];
 
         $this->runProductionMigrations('tenant/02_assessment_and_exams', $files);
@@ -110,7 +113,7 @@ trait UsesAdaptiveCatSchema
 
             foreach ([
                 'question_responses', 'exam_session_items', 'exam_sessions',
-                'exam_enrollments', 'eligibility_chains',
+                'exam_enrollments', 'eligibility_chains', 'answer_evaluations',
             ] as $table) {
                 Schema::connection($connection)->dropIfExists($table);
             }
@@ -293,6 +296,55 @@ trait UsesAdaptiveCatSchema
 
             $table->unique(['session_id', 'sequence_number']);
             $table->index('item_state');
+        });
+
+        // ── answer_evaluations ────────────────────────────────────────────────
+        // Defined inline (not the production migration) because that migration
+        // FKs rubric_id → rubrics, a table this focused CAT schema doesn't
+        // build. evaluator_user_id is nullable here directly (the "final
+        // shape after alter migration" pattern used elsewhere in this file) —
+        // grading writes null for auto-scored items, no human evaluator.
+        Schema::create('answer_evaluations', function (SchemaBlueprint $table): void {
+            $table->uuid('evaluation_id')->primary();
+            $table->uuid('session_id');
+            $table->uuid('question_id');
+            $table->uuid('evaluator_user_id')->nullable();
+            $table->uuid('tenant_id');
+            $table->uuid('rubric_id')->nullable();
+
+            $table->string('evaluation_type');
+            $table->json('rubric_criteria_json')->nullable();
+
+            $table->decimal('score_awarded', 8, 2)->nullable();
+            $table->decimal('max_score_possible', 8, 2)->nullable();
+
+            $table->string('evaluation_status')->default('pending');
+
+            $table->json('evaluator_comments')->nullable();
+            $table->json('evaluation_metadata')->nullable();
+
+            $table->boolean('requires_secondary_review')->default(false);
+            $table->uuid('secondary_reviewer_id')->nullable();
+
+            $table->timestamp('evaluated_at')->nullable();
+            $table->timestamp('secondary_reviewed_at')->nullable();
+            $table->timestamp('created_at')->nullable();
+
+            $table->foreign('session_id')
+                ->references('session_id')->on('exam_sessions')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('question_id')
+                ->references('question_id')->on('questions')
+                ->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('evaluator_user_id')
+                ->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('secondary_reviewer_id')
+                ->references('id')->on('users')
+                ->onUpdate('cascade')->onDelete('set null');
+
+            $table->index('tenant_id');
+            $table->index('evaluation_status');
         });
 
         // ── eligibility_chains (stub) ─────────────────────────────────────────
@@ -549,5 +601,83 @@ trait UsesAdaptiveCatSchema
             'total_questions_flagged' => 0,
             'version_lock' => 0,
         ], $overrides));
+    }
+
+    // =========================================================================
+    // Shared HTTP-flow helpers for AdaptiveCatTest
+    // =========================================================================
+    //
+    // These live here (as trait methods, not global Pest functions) because
+    // several of them call protected setup methods above (createUser,
+    // createExam, ...). A plain top-level `function` in a Pest test file
+    // does NOT run inside the test class's scope, so it cannot call a
+    // protected method even when handed the test instance explicitly —
+    // PHP's visibility rules are scope-based, not reference-based. As a
+    // trait method mixed into the same dynamically-generated test class,
+    // these have the same scope as the test itself.
+
+    /**
+     * Two-section adaptive exam:
+     *   Section 1 → competency A, max 2 items, pool of 3 calibrated mcq items.
+     *   Section 2 → competency B, max 1 item,  pool of 1 calibrated mcq item.
+     * Every version's correct answer is ['B'].
+     */
+    protected function setUpTwoSectionAdaptiveExam(): array
+    {
+        $admin = $this->createUser($this->tenantA, overrides: ['user_type' => 'admin']);
+        $candidate = $this->createUser($this->tenantA);
+
+        $exam = $this->createExam($this->tenantA, (string) $admin->id, [
+            'exam_status' => \App\Domains\ExamEngine\Enums\ExamStatus::Published,
+            'is_published' => true,
+            'is_adaptive_exam' => true,
+        ]);
+
+        $section1 = $this->createExamSection((string) $exam->exam_id, $this->tenantA, ['section_sequence' => 1]);
+        $section2 = $this->createExamSection((string) $exam->exam_id, $this->tenantA, ['section_sequence' => 2]);
+
+        $category = $this->createCategoryForCat($this->tenantA);
+        $competencyA = $this->createCompetencyForCat($this->tenantA, (string) $admin->id);
+        $competencyB = $this->createCompetencyForCat($this->tenantA, (string) $admin->id);
+
+        $this->createAdaptiveBlueprint((string) $exam->exam_id, (string) $section1->section_id, $competencyA, [
+            'max_questions_count' => 2,
+        ]);
+        $this->createAdaptiveBlueprint((string) $exam->exam_id, (string) $section2->section_id, $competencyB, [
+            'max_questions_count' => 1,
+        ]);
+
+        $section1Versions = [];
+        for ($i = 0; $i < 3; $i++) {
+            $section1Versions[] = $this->createCalibratedVersion(
+                $this->tenantA, $category, (string) $admin->id, $competencyA,
+            );
+        }
+
+        $section2Versions = [
+            $this->createCalibratedVersion($this->tenantA, $category, (string) $admin->id, $competencyB),
+        ];
+
+        $enrollment = $this->createEnrollment($this->tenantA, (string) $exam->exam_id, (string) $candidate->id);
+
+        return compact('admin', 'candidate', 'exam', 'section1', 'section2', 'competencyA', 'competencyB', 'section1Versions', 'section2Versions', 'enrollment');
+    }
+
+    protected function startAdaptive(array $ctx): \Illuminate\Testing\TestResponse
+    {
+        $this->grantPermissionsToUser($ctx['candidate'], ['exam_sessions.start']);
+        \Laravel\Sanctum\Sanctum::actingAs($ctx['candidate']);
+
+        return $this->postJson('/api/v1/exam-sessions/', ['exam_id' => (string) $ctx['exam']->exam_id])
+            ->assertCreated();
+    }
+
+    protected function submitCorrect(string $sessionId, string $sessionItemId): \Illuminate\Testing\TestResponse
+    {
+        return $this->postJson('/api/v1/exam-sessions/' . $sessionId . '/responses', [
+            'session_item_id' => $sessionItemId,
+            'response_type' => 'mcq',
+            'selected_options' => ['B'],
+        ]);
     }
 }

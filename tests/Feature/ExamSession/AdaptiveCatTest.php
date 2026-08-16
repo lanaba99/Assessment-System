@@ -25,86 +25,13 @@ beforeEach(function (): void {
 
 /*
 |--------------------------------------------------------------------------
-| Shared fixture builder
-|--------------------------------------------------------------------------
-|
-| Two-section adaptive exam:
-|   Section 1 → competency A, max 2 items, pool of 3 calibrated mcq items.
-|   Section 2 → competency B, max 1 item,  pool of 1 calibrated mcq item.
-| Every version's correct answer is ['B'].
-|
-| $test is the Pest test-case instance ($this from inside an it() closure).
-| Plain top-level functions do NOT inherit $this from the closure that
-| calls them, so it must be passed in explicitly.
-*/
-function setUpTwoSectionAdaptiveExam($test): array
-{
-    $admin = $test->createUser($test->tenantA, overrides: ['user_type' => 'admin']);
-    $candidate = $test->createUser($test->tenantA);
-
-    $exam = $test->createExam($test->tenantA, (string) $admin->id, [
-        'exam_status' => ExamStatus::Published,
-        'is_published' => true,
-        'is_adaptive_exam' => true,
-    ]);
-
-    $section1 = $test->createExamSection((string) $exam->exam_id, $test->tenantA, ['section_sequence' => 1]);
-    $section2 = $test->createExamSection((string) $exam->exam_id, $test->tenantA, ['section_sequence' => 2]);
-
-    $category = $test->createCategoryForCat($test->tenantA);
-    $competencyA = $test->createCompetencyForCat($test->tenantA, (string) $admin->id);
-    $competencyB = $test->createCompetencyForCat($test->tenantA, (string) $admin->id);
-
-    $test->createAdaptiveBlueprint((string) $exam->exam_id, (string) $section1->section_id, $competencyA, [
-        'max_questions_count' => 2,
-    ]);
-    $test->createAdaptiveBlueprint((string) $exam->exam_id, (string) $section2->section_id, $competencyB, [
-        'max_questions_count' => 1,
-    ]);
-
-    $section1Versions = [];
-    for ($i = 0; $i < 3; $i++) {
-        $section1Versions[] = $test->createCalibratedVersion(
-            $test->tenantA, $category, (string) $admin->id, $competencyA,
-        );
-    }
-
-    $section2Versions = [
-        $test->createCalibratedVersion($test->tenantA, $category, (string) $admin->id, $competencyB),
-    ];
-
-    $enrollment = $test->createEnrollment($test->tenantA, (string) $exam->exam_id, (string) $candidate->id);
-
-    return compact('admin', 'candidate', 'exam', 'section1', 'section2', 'competencyA', 'competencyB', 'section1Versions', 'section2Versions', 'enrollment');
-}
-
-function startAdaptive($test, array $ctx): Illuminate\Testing\TestResponse
-{
-    $test->grantPermissionsToUser($ctx['candidate'], ['exam_sessions.start']);
-    Sanctum::actingAs($ctx['candidate']);
-
-    return $test->postJson('/api/v1/exam-sessions/', ['exam_id' => (string) $ctx['exam']->exam_id])
-        ->assertCreated();
-}
-
-function submitCorrect($test, string $sessionId, string $sessionItemId): Illuminate\Testing\TestResponse
-{
-    return $test->postJson('/api/v1/exam-sessions/' . $sessionId . '/responses', [
-        'session_item_id' => $sessionItemId,
-        'response_type' => 'mcq',
-        'selected_options' => ['B'],
-    ]);
-}
-
-/*
-|--------------------------------------------------------------------------
 | 1. First item — section 1 only
 |--------------------------------------------------------------------------
 */
 it('creates exactly one pending item in section 1, never section 2, when an adaptive session starts', function (): void {
-    $ctx = setUpTwoSectionAdaptiveExam($this);
+    $ctx = $this->setUpTwoSectionAdaptiveExam();
 
-    $start = startAdaptive($this, $ctx);
+    $start = $this->startAdaptive($ctx);
 
     $start->assertJsonPath('data.current.section_id', (string) $ctx['section1']->section_id)
         ->assertJsonPath('data.current.question_index', 1);
@@ -126,13 +53,13 @@ it('creates exactly one pending item in section 1, never section 2, when an adap
 |--------------------------------------------------------------------------
 */
 it('keeps delivering items inside section 1 while its stop condition is not yet met', function (): void {
-    $ctx = setUpTwoSectionAdaptiveExam($this);
+    $ctx = $this->setUpTwoSectionAdaptiveExam();
 
-    $start = startAdaptive($this, $ctx);
+    $start = $this->startAdaptive($ctx);
     $sessionId = $start->json('data.session_id');
     $itemId = $start->json('data.current.session_item_id');
 
-    $response = submitCorrect($this, $sessionId, $itemId);
+    $response = $this->submitCorrect($sessionId, $itemId);
 
     $response->assertOk()
         ->assertJsonPath('data.current.section_id', (string) $ctx['section1']->section_id)
@@ -149,16 +76,16 @@ it('keeps delivering items inside section 1 while its stop condition is not yet 
 |--------------------------------------------------------------------------
 */
 it('moves to section 2, using the global item count as the next sequence number, once section 1 stops', function (): void {
-    $ctx = setUpTwoSectionAdaptiveExam($this);
+    $ctx = $this->setUpTwoSectionAdaptiveExam();
 
-    $start = startAdaptive($this, $ctx);
+    $start = $this->startAdaptive($ctx);
     $sessionId = $start->json('data.session_id');
 
     $item1 = $start->json('data.current.session_item_id');
-    $r2 = submitCorrect($this, $sessionId, $item1)->assertOk();
+    $r2 = $this->submitCorrect($sessionId, $item1)->assertOk();
 
     $item2 = $r2->json('data.current.session_item_id');
-    $r3 = submitCorrect($this, $sessionId, $item2)->assertOk();
+    $r3 = $this->submitCorrect($sessionId, $item2)->assertOk();
 
     $r3->assertJsonPath('data.current.section_id', (string) $ctx['section2']->section_id)
         ->assertJsonPath('data.current.question_index', 3);
@@ -219,7 +146,7 @@ it('never repeats the same question version across sections, even when they targ
     $item1Id = $start->json('data.current.session_item_id');
     $item1VersionId = $start->json('data.current.question_version_id');
 
-    $r2 = submitCorrect($this, $sessionId, $item1Id)->assertOk();
+    $r2 = $this->submitCorrect($sessionId, $item1Id)->assertOk();
     $item2VersionId = $r2->json('data.current.question_version_id');
 
     expect($item2VersionId)->not->toBeNull();
@@ -233,19 +160,19 @@ it('never repeats the same question version across sections, even when they targ
 |--------------------------------------------------------------------------
 */
 it('marks the CAT run completed and returns no next item once the final section finishes', function (): void {
-    $ctx = setUpTwoSectionAdaptiveExam($this);
+    $ctx = $this->setUpTwoSectionAdaptiveExam();
 
-    $start = startAdaptive($this, $ctx);
+    $start = $this->startAdaptive($ctx);
     $sessionId = $start->json('data.session_id');
 
     $item1 = $start->json('data.current.session_item_id');
-    $r2 = submitCorrect($this, $sessionId, $item1)->assertOk();
+    $r2 = $this->submitCorrect($sessionId, $item1)->assertOk();
 
     $item2 = $r2->json('data.current.session_item_id');
-    $r3 = submitCorrect($this, $sessionId, $item2)->assertOk();
+    $r3 = $this->submitCorrect($sessionId, $item2)->assertOk();
 
     $item3 = $r3->json('data.current.session_item_id');
-    $r4 = submitCorrect($this, $sessionId, $item3)->assertOk();
+    $r4 = $this->submitCorrect($sessionId, $item3)->assertOk();
 
     $r4->assertJsonPath('data.current.session_item_id', null)
         ->assertJsonPath('data.current.question_version_id', null);
@@ -389,7 +316,7 @@ it('still delivers a fixed (non-adaptive) exam correctly, unaffected by the adap
     $sessionId = $start->json('data.session_id');
     $itemId = $start->json('data.current.session_item_id');
 
-    submitCorrect($this, $sessionId, $itemId)
+    $this->submitCorrect($sessionId, $itemId)
         ->assertOk()
         ->assertJsonPath('data.progress.total_questions_responded', 1);
 });
@@ -400,8 +327,8 @@ it('still delivers a fixed (non-adaptive) exam correctly, unaffected by the adap
 |--------------------------------------------------------------------------
 */
 it('keeps an adaptive session isolated from other tenants', function (): void {
-    $ctxA = setUpTwoSectionAdaptiveExam($this);
-    $startA = startAdaptive($this, $ctxA);
+    $ctxA = $this->setUpTwoSectionAdaptiveExam();
+    $startA = $this->startAdaptive($ctxA);
     $sessionIdA = $startA->json('data.session_id');
 
     $this->initializeTenantContext($this->tenantB);
