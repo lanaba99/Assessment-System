@@ -63,6 +63,7 @@ trait UsesAdaptiveCatSchema
     {
         $files = [
             '2026_05_16_000360_create_competencies_table.php',
+            '2026_06_05_000050_add_tree_to_competencies.php',
             '2026_05_16_000380_create_question_competency_weights_table.php',
         ];
 

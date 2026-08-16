@@ -43,14 +43,17 @@ class RolePermissionContractTest extends TestCase
             'questions.manage',
             'categories.manage',
             'competencies.manage',
+            'eligibility.manage',
+            'eligibility.view',
+            'exam_sessions.view',
             'exams.manage',
             'exams.publish',
+            'exams.view',
             'grading.evaluate',
             'grading.view',
             'grading.publish',
             'workflows.manage',
         ];
-        
         $this->assertRolePermissionsMatch(RoleName::TechnicalEvaluator->value, $expected);        
     }
 
