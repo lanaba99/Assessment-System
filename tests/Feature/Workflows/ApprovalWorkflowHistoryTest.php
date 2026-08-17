@@ -41,6 +41,14 @@ it('returns paginated history for an authorized actor', function (): void {
 it('returns 401 for an unauthenticated request', function (): void {
     ['workflowId' => $workflowId] = $this->initiateWorkflowForHistoryTest();
 
+    // initiateWorkflowForHistoryTest() calls Sanctum::actingAs() internally
+    // to create the workflow over HTTP — that authenticated state persists
+    // for the rest of this test unless explicitly cleared, which is exactly
+    // why this is the only test in the file that needs this line: every
+    // other test re-authenticates as a different actor afterward anyway,
+    // which silently overwrites it.
+    \Illuminate\Support\Facades\Auth::forgetGuards();
+
     $this->getJson('/api/v1/workflows/' . $workflowId . '/history')
         ->assertUnauthorized();
 });
