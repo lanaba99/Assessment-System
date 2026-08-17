@@ -113,12 +113,25 @@ class AssessmentResultRepository
         $existing = $this->findBySession($summary->tenantId, $summary->sessionId);
 
         if ($existing !== null) {
+            // A completed automatic grade is immediately candidate-visible. Keep
+            // genuinely incomplete/manual-review results unpublished until they
+            // become final or are explicitly published by staff.
+            if ($summary->isFinal && $existing->publication_status !== 'published') {
+                $attributes['publication_status'] = 'published';
+                $attributes['published_at'] = $existing->published_at ?? $now;
+            }
+
             $existing->forceFill($attributes)->save();
 
             return $existing;
         }
 
-        $attributes['publication_status'] = 'unpublished';
+        // Automatic grading is complete when there are no pending evaluations;
+        // candidates should see that result immediately after session completion.
+        $attributes['publication_status'] = $summary->isFinal ? 'published' : 'unpublished';
+        if ($summary->isFinal) {
+            $attributes['published_at'] = $now;
+        }
         $attributes['created_at'] = $now;
 
         return $this->model->newQuery()->create($attributes);
