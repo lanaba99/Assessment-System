@@ -43,16 +43,73 @@ endpoints:
     responses:
       -
         custom: []
-        status: 404
+        status: 401
         content: |-
           {
-              "message": ""
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
           }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: '*'
         description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
     responseFields: []
     auth:
       - headers
@@ -102,7 +159,7 @@ endpoints:
         name: bloom_level
         description: ''
         required: false
-        example: 2
+        example: 4
         type: integer
         enumValues:
           - 1
@@ -119,7 +176,7 @@ endpoints:
         name: type
         description: ''
         required: false
-        example: short_answer
+        example: essay
         type: string
         enumValues:
           - mcq
@@ -142,23 +199,80 @@ endpoints:
         deprecated: false
     cleanBodyParameters:
       category_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-      bloom_level: 2
-      type: short_answer
+      bloom_level: 4
+      type: essay
       per_page: 7
     fileParameters: []
     responses:
       -
         custom: []
-        status: 404
+        status: 401
         content: |-
           {
-              "message": ""
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
           }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: '*'
         description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
     responseFields: []
     auth:
       - headers
@@ -219,7 +333,7 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: true_false
+        example: mcq
         type: string
         enumValues:
           - mcq
@@ -256,7 +370,7 @@ endpoints:
         name: bloom_level
         description: ''
         required: true
-        example: 4
+        example: 1
         type: integer
         enumValues:
           - 1
@@ -397,7 +511,7 @@ endpoints:
         name: 'choices[].is_correct'
         description: 'This field is required when <code>choices</code> is present.'
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -417,10 +531,10 @@ endpoints:
     cleanBodyParameters:
       category_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
       title: g
-      type: true_false
+      type: mcq
       question_text: architecto
       stem: architecto
-      bloom_level: 4
+      bloom_level: 1
       difficulty_level: 2
       correct_answer: false
       accepted_answers:
@@ -433,22 +547,79 @@ endpoints:
       choices:
         -
           option_text: architecto
-          is_correct: true
+          is_correct: false
           option_sequence: 22
     fileParameters: []
     responses:
       -
         custom: []
-        status: 404
+        status: 401
         content: |-
           {
-              "message": ""
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
           }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: '*'
         description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
     responseFields: []
     auth:
       - headers
@@ -499,16 +670,73 @@ endpoints:
     responses:
       -
         custom: []
-        status: 404
+        status: 401
         content: |-
           {
-              "message": ""
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
           }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: '*'
         description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
     responseFields: []
     auth:
       - headers
@@ -666,7 +894,7 @@ endpoints:
         name: match_mode
         description: ''
         required: false
-        example: case_insensitive
+        example: exact
         type: string
         enumValues:
           - exact
@@ -745,7 +973,7 @@ endpoints:
         name: 'choices[].is_correct'
         description: 'This field is required when <code>choices</code> is present.'
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -772,7 +1000,7 @@ endpoints:
       correct_answer: true
       accepted_answers:
         - 'n'
-      match_mode: case_insensitive
+      match_mode: exact
       psychometrics:
         p_value: 0
         discrimination_index: 358981420.16336
@@ -780,22 +1008,79 @@ endpoints:
       choices:
         -
           option_text: architecto
-          is_correct: true
+          is_correct: false
           option_sequence: 22
     fileParameters: []
     responses:
       -
         custom: []
-        status: 404
+        status: 401
         content: |-
           {
-              "message": ""
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
           }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: '*'
         description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
     responseFields: []
     auth:
       - headers
@@ -843,7 +1128,67 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
     responseFields: []
     auth:
       - headers

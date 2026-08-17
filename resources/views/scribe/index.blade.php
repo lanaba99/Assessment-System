@@ -267,6 +267,12 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exams--examId--results-export">
                                 <a href="#endpoints-GETapi-v1-exams--examId--results-export">GET api/v1/exams/{examId}/results/export</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-tenant-settings">
+                                <a href="#endpoints-GETapi-v1-tenant-settings">GET api/v1/tenant/settings</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-v1-tenant-settings">
+                                <a href="#endpoints-PATCHapi-v1-tenant-settings">PATCH api/v1/tenant/settings</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-questions--questionId--competencies">
                                 <a href="#endpoints-POSTapi-v1-questions--questionId--competencies">POST api/v1/questions/{questionId}/competencies</a>
                             </li>
@@ -305,6 +311,9 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-workflows--workflowId--reject">
                                 <a href="#endpoints-POSTapi-v1-workflows--workflowId--reject">POST api/v1/workflows/{workflowId}/reject</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-workflows--workflowId--history">
+                                <a href="#endpoints-GETapi-v1-workflows--workflowId--history">GET api/v1/workflows/{workflowId}/history</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -598,12 +607,13 @@
             </div>
 
     <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="{{ route("scribe.postman") }}">View Postman collection</a></li>
                             <li style="padding-bottom: 5px;"><a href="{{ route("scribe.openapi") }}">View OpenAPI spec</a></li>
                 <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: August 16, 2026</li>
+        <li>Last updated: August 17, 2026</li>
     </ul>
 </div>
 
@@ -618,7 +628,23 @@
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
 &lt;aside&gt;As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
-You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).&lt;/aside&gt;</code></pre>
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).&lt;/aside&gt;
+
+## Response envelope
+Every response is either `{"data": ...}` (success) or `{"error": {"code", "message"}}` (failure).
+Error `code` values are stable and safe to match on programmatically; `message` text may change between releases.
+
+## Rate limiting
+All tenant API requests are limited to **240 requests/minute**, keyed per authenticated user (or IP if unauthenticated).
+A handful of auth endpoints (login, MFA verify, password reset, accept-invite) have their own stricter 5-attempts/15-minute limit.
+Exceeding either returns `429` with a `Retry-After` header (seconds).
+
+## Idempotency
+A small set of POST endpoints (see their individual docs below for the `Idempotency-Key` header) support safe retries:
+send a client-generated unique key, and a retried request with the same key + body replays the original response
+instead of re-executing. Reusing a key with a different body returns `409`.
+
+Full details: see `API-CONTRACT.md` in the repository root.</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {SANCTUM_TOKEN}"</code></strong>.</p>
@@ -672,6 +698,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-analytics-dashboard">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -684,7 +734,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -815,6 +904,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--result">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -827,7 +940,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -983,6 +1135,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-auth-login">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -995,7 +1171,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1169,6 +1384,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-auth-mfa-verify">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -1181,7 +1420,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1341,6 +1619,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-auth-password-forgot">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -1353,7 +1655,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1505,6 +1846,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-auth-password-reset">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -1517,7 +1882,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1693,6 +2097,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-auth-accept-invite">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -1705,7 +2133,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -1877,6 +2344,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-auth-logout">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -1889,7 +2380,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -2037,6 +2567,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-auth-refresh">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -2049,7 +2603,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -2193,6 +2786,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-categories-tree">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -2205,7 +2822,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -2344,6 +3000,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-categories">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -2356,7 +3036,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -2528,6 +3247,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-categories--id--move">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -2540,7 +3283,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -2692,7 +3474,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-categories--id-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-categories--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-categories--id-"></span>:
@@ -2861,6 +3703,66 @@ access-control-allow-origin: *
     }
 }</code>
  </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
     </span>
 <span id="execution-results-POSTapi-v1-admin-auth-login" hidden>
     <blockquote>Received response<span
@@ -3026,7 +3928,70 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -3185,7 +4150,70 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -3433,7 +4461,70 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -3605,7 +4696,70 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -3856,7 +5010,70 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -4008,7 +5225,70 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -4152,6 +5432,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-cohorts--cohortId--members">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -4164,7 +5468,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -4282,7 +5625,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"user_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"membership_role\": \"coordinator\"
+    \"membership_role\": \"member\"
 }"
 </code></pre></div>
 
@@ -4301,7 +5644,7 @@ const headers = {
 
 let body = {
     "user_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "membership_role": "coordinator"
+    "membership_role": "member"
 };
 
 fetch(url, {
@@ -4313,6 +5656,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-cohorts--cohortId--members">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (404):</p>
         </blockquote>
@@ -4326,7 +5693,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -4441,10 +5847,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="membership_role"                data-endpoint="POSTapi-v1-cohorts--cohortId--members"
-               value="coordinator"
+               value="member"
                data-component="body">
     <br>
-<p>Example: <code>coordinator</code></p>
+<p>Example: <code>member</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>member</code></li> <li><code>manager</code></li> <li><code>coordinator</code></li> <li><code>observer</code></li></ul>
         </div>
@@ -4492,7 +5898,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-cohorts--cohortId--members--userId-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-cohorts--cohortId--members--userId-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-cohorts--cohortId--members--userId-"></span>:
@@ -4645,6 +6111,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-cohorts">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -4657,7 +6147,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -4800,6 +6329,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-cohorts">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -4812,7 +6365,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -5014,6 +6606,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-cohorts--cohortId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -5026,7 +6642,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -5145,7 +6800,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"cohort_name\": \"b\",
     \"cohort_code\": \"n\",
-    \"cohort_type\": \"department\",
+    \"cohort_type\": \"batch\",
     \"cohort_description\": \"architecto\",
     \"is_active\": true
 }"
@@ -5167,7 +6822,7 @@ const headers = {
 let body = {
     "cohort_name": "b",
     "cohort_code": "n",
-    "cohort_type": "department",
+    "cohort_type": "batch",
     "cohort_description": "architecto",
     "is_active": true
 };
@@ -5182,6 +6837,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-cohorts--cohortId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -5194,7 +6873,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -5321,10 +7039,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="cohort_type"                data-endpoint="PATCHapi-v1-cohorts--cohortId-"
-               value="department"
+               value="batch"
                data-component="body">
     <br>
-<p>Example: <code>department</code></p>
+<p>Example: <code>batch</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>team</code></li> <li><code>department</code></li> <li><code>batch</code></li> <li><code>class</code></li> <li><code>cohort</code></li> <li><code>group</code></li></ul>
         </div>
@@ -5418,7 +7136,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-cohorts--cohortId-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-cohorts--cohortId-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-cohorts--cohortId-"></span>:
@@ -5559,6 +7337,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-competencies-tree">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -5571,7 +7373,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -5710,6 +7551,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-competencies">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -5722,7 +7587,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -5894,6 +7798,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-competencies--id--move">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -5906,7 +7834,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -6058,7 +8025,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-competencies--id-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-competencies--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-competencies--id-"></span>:
@@ -6199,6 +8226,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-eligibility-chains">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -6211,7 +8262,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -6358,6 +8448,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-eligibility-chains">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -6370,7 +8484,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -6618,6 +8771,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-eligibility-chains--chainId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -6630,7 +8807,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -6788,6 +9004,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-eligibility-chains--chainId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -6800,7 +9040,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -7048,7 +9327,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-eligibility-chains--chainId-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-eligibility-chains--chainId-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-eligibility-chains--chainId-"></span>:
@@ -7189,6 +9528,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-certificates-verify--token-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -7201,7 +9564,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -7341,6 +9743,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-certificates">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -7353,7 +9779,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -7480,6 +9945,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-certificates--certificateId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -7492,7 +9981,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -7632,6 +10160,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-certificates--certificateId--regenerate">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -7644,7 +10196,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -7792,6 +10383,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-certificates--certificateId--revoke">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -7804,7 +10419,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -7957,6 +10611,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--certificate">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -7969,7 +10647,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -8109,6 +10826,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exams--examId--results-export">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -8121,7 +10862,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -8218,6 +10998,473 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                    <h2 id="endpoints-GETapi-v1-tenant-settings">GET api/v1/tenant/settings</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-tenant-settings">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/tenant/settings" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/tenant/settings"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-tenant-settings">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-tenant-settings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-tenant-settings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-tenant-settings"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-tenant-settings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-tenant-settings">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-tenant-settings" data-method="GET"
+      data-path="api/v1/tenant/settings"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-tenant-settings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/tenant/settings</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-tenant-settings"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-tenant-settings"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-tenant-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-tenant-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-PATCHapi-v1-tenant-settings">PATCH api/v1/tenant/settings</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-v1-tenant-settings">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://alpha-engine.localhost:8000/api/v1/tenant/settings" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"organization_name\": \"b\",
+    \"organization_type\": \"n\",
+    \"primary_contact_email\": \"ashly64@example.com\",
+    \"primary_contact_phone\": \"v\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/tenant/settings"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "organization_name": "b",
+    "organization_type": "n",
+    "primary_contact_email": "ashly64@example.com",
+    "primary_contact_phone": "v"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-v1-tenant-settings">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-v1-tenant-settings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-v1-tenant-settings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-v1-tenant-settings"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-v1-tenant-settings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-v1-tenant-settings">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-v1-tenant-settings" data-method="PATCH"
+      data-path="api/v1/tenant/settings"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-tenant-settings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/tenant/settings</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-tenant-settings"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>organization_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization_name"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>organization_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization_type"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="n"
+               data-component="body">
+    <br>
+<p>Must not be greater than 100 characters. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>primary_contact_email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="primary_contact_email"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="ashly64@example.com"
+               data-component="body">
+    <br>
+<p>Must be a valid email address. Example: <code>ashly64@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>primary_contact_phone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="primary_contact_phone"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="v"
+               data-component="body">
+    <br>
+<p>Must not be greater than 50 characters. Example: <code>v</code></p>
+        </div>
+        </form>
+
                     <h2 id="endpoints-POSTapi-v1-questions--questionId--competencies">POST api/v1/questions/{questionId}/competencies</h2>
 
 <p>
@@ -8240,7 +11487,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"competency_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"weight_percentage\": 7,
-    \"is_primary_competency\": true
+    \"is_primary_competency\": false
 }"
 </code></pre></div>
 
@@ -8260,7 +11507,7 @@ const headers = {
 let body = {
     "competency_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "weight_percentage": 7,
-    "is_primary_competency": true
+    "is_primary_competency": false
 };
 
 fetch(url, {
@@ -8272,6 +11519,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-questions--questionId--competencies">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (404):</p>
         </blockquote>
@@ -8285,7 +11556,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -8425,7 +11735,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -8472,6 +11782,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-questions--questionId--competencies">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -8484,7 +11818,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -8624,6 +11997,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-question-versions--versionId--approve">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -8636,7 +12033,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -8790,6 +12226,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-question-versions--versionId--psychometrics">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -8802,7 +12262,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -9007,6 +12506,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exams--examId--sections">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -9019,7 +12542,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -9220,6 +12782,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exams--examId--sections">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -9232,7 +12818,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -9394,6 +13019,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exams--examId--blueprints">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -9406,7 +13055,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -9643,6 +13331,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exams--examId--blueprints">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -9655,7 +13367,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -9792,8 +13543,8 @@ or bypassed via query params.</li>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"status\": \"rejected\",
-    \"workflow_type\": \"exam_publication\",
+    \"status\": \"approved\",
+    \"workflow_type\": \"result_publication\",
     \"resource_type\": \"architecto\",
     \"resource_id\": \"architecto\",
     \"per_page\": 22
@@ -9814,8 +13565,8 @@ const headers = {
 };
 
 let body = {
-    "status": "rejected",
-    "workflow_type": "exam_publication",
+    "status": "approved",
+    "workflow_type": "result_publication",
     "resource_type": "architecto",
     "resource_id": "architecto",
     "per_page": 22
@@ -9831,6 +13582,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-workflows">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -9843,7 +13618,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -9933,10 +13747,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="status"                data-endpoint="GETapi-v1-workflows"
-               value="rejected"
+               value="approved"
                data-component="body">
     <br>
-<p>Example: <code>rejected</code></p>
+<p>Example: <code>approved</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>pending</code></li> <li><code>approved</code></li> <li><code>rejected</code></li></ul>
         </div>
@@ -9947,10 +13761,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="workflow_type"                data-endpoint="GETapi-v1-workflows"
-               value="exam_publication"
+               value="result_publication"
                data-component="body">
     <br>
-<p>Example: <code>exam_publication</code></p>
+<p>Example: <code>result_publication</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>result_publication</code></li> <li><code>exam_publication</code></li></ul>
         </div>
@@ -10014,7 +13828,7 @@ Must be one of:
     --data "{
     \"resource_type\": \"exam\",
     \"resource_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"workflow_type\": \"exam_publication\"
+    \"workflow_type\": \"result_publication\"
 }"
 </code></pre></div>
 
@@ -10034,7 +13848,7 @@ const headers = {
 let body = {
     "resource_type": "exam",
     "resource_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "workflow_type": "exam_publication"
+    "workflow_type": "result_publication"
 };
 
 fetch(url, {
@@ -10046,6 +13860,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-workflows">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (404):</p>
         </blockquote>
@@ -10059,7 +13897,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -10175,10 +14052,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="workflow_type"                data-endpoint="POSTapi-v1-workflows"
-               value="exam_publication"
+               value="result_publication"
                data-component="body">
     <br>
-<p>Example: <code>exam_publication</code></p>
+<p>Example: <code>result_publication</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>result_publication</code></li> <li><code>exam_publication</code></li></ul>
         </div>
@@ -10227,6 +14104,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-workflows--workflowId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -10239,7 +14140,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -10379,6 +14319,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-workflows--workflowId--approve">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -10391,7 +14355,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -10539,6 +14542,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-workflows--workflowId--reject">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -10551,7 +14578,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -10661,6 +14727,221 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
+                    <h2 id="endpoints-GETapi-v1-workflows--workflowId--history">GET api/v1/workflows/{workflowId}/history</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-workflows--workflowId--history">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/history" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/history"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-workflows--workflowId--history">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-workflows--workflowId--history" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-workflows--workflowId--history"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows--workflowId--history"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-workflows--workflowId--history" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-workflows--workflowId--history">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-workflows--workflowId--history" data-method="GET"
+      data-path="api/v1/workflows/{workflowId}/history"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows--workflowId--history', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/workflows/{workflowId}/history</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               data-component="header">
+    <br>
+<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflowId"                data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
                 <h1 id="enrollments">Enrollments</h1>
 
     
@@ -10708,6 +14989,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exams--examId--enrollments">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -10720,7 +15025,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -10839,8 +15183,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"candidate_user_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"cohort_id\": \"6b72fe4a-5b40-307c-bc24-f79acf9a1bb9\",
-    \"start_window_date\": \"2026-08-16T14:26:34\",
-    \"end_window_date\": \"2052-09-08\",
+    \"start_window_date\": \"2026-08-17T13:18:52\",
+    \"end_window_date\": \"2052-09-09\",
     \"max_attempts_allowed\": 2,
     \"enrollment_notes\": \"g\"
 }"
@@ -10862,8 +15206,8 @@ const headers = {
 let body = {
     "candidate_user_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "cohort_id": "6b72fe4a-5b40-307c-bc24-f79acf9a1bb9",
-    "start_window_date": "2026-08-16T14:26:34",
-    "end_window_date": "2052-09-08",
+    "start_window_date": "2026-08-17T13:18:52",
+    "end_window_date": "2052-09-09",
     "max_attempts_allowed": 2,
     "enrollment_notes": "g"
 };
@@ -10878,6 +15222,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exams--examId--enrollments">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -10890,7 +15258,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -11017,10 +15424,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="start_window_date"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="2026-08-16T14:26:34"
+               value="2026-08-17T13:18:52"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-08-16T14:26:34</code></p>
+<p>Must be a valid date. Example: <code>2026-08-17T13:18:52</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>end_window_date</code></b>&nbsp;&nbsp;
@@ -11029,10 +15436,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="end_window_date"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="2052-09-08"
+               value="2052-09-09"
                data-component="body">
     <br>
-<p>Must be a valid date. Must be a date after or equal to <code>start_window_date</code>. Example: <code>2052-09-08</code></p>
+<p>Must be a valid date. Must be a date after or equal to <code>start_window_date</code>. Example: <code>2052-09-09</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>max_attempts_allowed</code></b>&nbsp;&nbsp;
@@ -11102,7 +15509,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-exams--examId--enrollments--enrollmentId-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-exams--examId--enrollments--enrollmentId-"></span>:
@@ -11255,6 +15722,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exams">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -11267,7 +15758,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -11374,18 +15904,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"exam_name\": \"b\",
     \"exam_code\": \"n\",
     \"exam_description\": \"architecto\",
-    \"exam_type\": \"practice\",
-    \"assessment_mode\": \"paper\",
+    \"exam_type\": \"training\",
+    \"assessment_mode\": \"online\",
     \"total_questions\": 22,
     \"total_duration_minutes\": 7,
     \"pass_mark_percentage\": 16,
     \"difficulty_tier_level\": 2,
     \"is_adaptive_exam\": true,
     \"is_randomized\": false,
-    \"allow_review_after_submit\": true,
+    \"allow_review_after_submit\": false,
     \"allow_flagging_for_review\": false,
-    \"timer_visible_to_candidate\": false,
-    \"show_correct_answers_after\": false
+    \"timer_visible_to_candidate\": true,
+    \"show_correct_answers_after\": true
 }"
 </code></pre></div>
 
@@ -11406,18 +15936,18 @@ let body = {
     "exam_name": "b",
     "exam_code": "n",
     "exam_description": "architecto",
-    "exam_type": "practice",
-    "assessment_mode": "paper",
+    "exam_type": "training",
+    "assessment_mode": "online",
     "total_questions": 22,
     "total_duration_minutes": 7,
     "pass_mark_percentage": 16,
     "difficulty_tier_level": 2,
     "is_adaptive_exam": true,
     "is_randomized": false,
-    "allow_review_after_submit": true,
+    "allow_review_after_submit": false,
     "allow_flagging_for_review": false,
-    "timer_visible_to_candidate": false,
-    "show_correct_answers_after": false
+    "timer_visible_to_candidate": true,
+    "show_correct_answers_after": true
 };
 
 fetch(url, {
@@ -11429,6 +15959,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-exams">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (404):</p>
         </blockquote>
@@ -11442,7 +15996,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -11568,10 +16161,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="exam_type"                data-endpoint="POSTapi-v1-exams"
-               value="practice"
+               value="training"
                data-component="body">
     <br>
-<p>Example: <code>practice</code></p>
+<p>Example: <code>training</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>certification</code></li> <li><code>placement</code></li> <li><code>training</code></li> <li><code>evaluation</code></li> <li><code>practice</code></li></ul>
         </div>
@@ -11582,10 +16175,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="assessment_mode"                data-endpoint="POSTapi-v1-exams"
-               value="paper"
+               value="online"
                data-component="body">
     <br>
-<p>Example: <code>paper</code></p>
+<p>Example: <code>online</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>online</code></li> <li><code>hybrid</code></li> <li><code>paper</code></li></ul>
         </div>
@@ -11701,7 +16294,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allow_flagging_for_review</code></b>&nbsp;&nbsp;
@@ -11745,7 +16338,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>show_correct_answers_after</code></b>&nbsp;&nbsp;
@@ -11767,7 +16360,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>security_protocols</code></b>&nbsp;&nbsp;
@@ -11838,6 +16431,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exams--examId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -11850,7 +16467,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -11978,9 +16634,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"difficulty_tier_level\": 2,
     \"is_adaptive_exam\": true,
     \"is_randomized\": false,
-    \"allow_review_after_submit\": true,
+    \"allow_review_after_submit\": false,
     \"allow_flagging_for_review\": true,
-    \"timer_visible_to_candidate\": true,
+    \"timer_visible_to_candidate\": false,
     \"show_correct_answers_after\": true
 }"
 </code></pre></div>
@@ -12010,9 +16666,9 @@ let body = {
     "difficulty_tier_level": 2,
     "is_adaptive_exam": true,
     "is_randomized": false,
-    "allow_review_after_submit": true,
+    "allow_review_after_submit": false,
     "allow_flagging_for_review": true,
-    "timer_visible_to_candidate": true,
+    "timer_visible_to_candidate": false,
     "show_correct_answers_after": true
 };
 
@@ -12026,6 +16682,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-exams--examId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -12038,7 +16718,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -12310,7 +17029,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allow_flagging_for_review</code></b>&nbsp;&nbsp;
@@ -12354,7 +17073,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>show_correct_answers_after</code></b>&nbsp;&nbsp;
@@ -12446,7 +17165,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-exams--examId-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-exams--examId-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-exams--examId-"></span>:
@@ -12583,6 +17362,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exams--examId--publish">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -12595,7 +17398,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -12735,6 +17577,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exams--examId--archive">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -12747,7 +17613,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -12884,7 +17789,7 @@ one endpoint per status. All filters are optional:
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"status\": \"terminated\",
+    \"status\": \"in_progress\",
     \"exam_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"candidate_id\": \"6b72fe4a-5b40-307c-bc24-f79acf9a1bb9\",
     \"per_page\": 17
@@ -12905,7 +17810,7 @@ const headers = {
 };
 
 let body = {
-    "status": "terminated",
+    "status": "in_progress",
     "exam_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "candidate_id": "6b72fe4a-5b40-307c-bc24-f79acf9a1bb9",
     "per_page": 17
@@ -12921,6 +17826,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -12933,7 +17862,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -13023,10 +17991,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="status"                data-endpoint="GETapi-v1-exam-sessions"
-               value="terminated"
+               value="in_progress"
                data-component="body">
     <br>
-<p>Example: <code>terminated</code></p>
+<p>Example: <code>in_progress</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>not_started</code></li> <li><code>in_progress</code></li> <li><code>paused</code></li> <li><code>completed</code></li> <li><code>terminated</code></li></ul>
         </div>
@@ -13119,6 +18087,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -13131,7 +18123,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -13271,6 +18302,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -13283,7 +18338,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -13423,6 +18517,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--current-question">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -13435,7 +18553,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -13597,6 +18754,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions--sessionId--responses">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -13609,7 +18790,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -13880,6 +19100,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions--sessionId--suspend">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -13892,7 +19136,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -14032,6 +19315,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions--sessionId--resume">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -14044,7 +19351,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -14184,6 +19530,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions--sessionId--complete">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -14196,7 +19566,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -14336,6 +19745,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions--sessionId--terminate">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -14348,7 +19781,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -14490,6 +19962,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions--sessionId--heartbeat">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -14502,7 +19998,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -14646,6 +20181,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-identity-profile">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -14658,7 +20217,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -14797,6 +20395,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-identity-profile">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -14809,7 +20431,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -14973,6 +20634,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-identity-permissions">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -14985,7 +20670,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -15112,6 +20836,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-identity-sessions">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -15124,7 +20872,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -15250,7 +21037,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-identity-sessions-all">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-identity-sessions-all" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-identity-sessions-all"></span>:
@@ -15373,7 +21220,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-identity-sessions--id-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-identity-sessions--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-identity-sessions--id-"></span>:
@@ -15514,6 +21421,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--pending-evaluations">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -15526,7 +21457,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -15647,7 +21617,7 @@ is triggered synchronously and the final grade becomes queryable immediately.</p
     --data "{
     \"score_awarded\": 27,
     \"rubric_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\",
-    \"requires_secondary_review\": false
+    \"requires_secondary_review\": true
 }"
 </code></pre></div>
 
@@ -15667,7 +21637,7 @@ const headers = {
 let body = {
     "score_awarded": 27,
     "rubric_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0",
-    "requires_secondary_review": false
+    "requires_secondary_review": true
 };
 
 fetch(url, {
@@ -15679,6 +21649,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PATCHapi-v1-answer-evaluations--evaluationId--score">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (404):</p>
         </blockquote>
@@ -15692,7 +21686,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -15856,7 +21889,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -15907,6 +21940,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-penalty-rules">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -15919,7 +21976,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -16028,7 +22124,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"trigger_condition\": \"g\",
     \"penalty_points\": 12,
     \"penalty_percentage\": 17,
-    \"is_cumulative\": false,
+    \"is_cumulative\": true,
     \"is_active\": true
 }"
 </code></pre></div>
@@ -16052,7 +22148,7 @@ let body = {
     "trigger_condition": "g",
     "penalty_points": 12,
     "penalty_percentage": 17,
-    "is_cumulative": false,
+    "is_cumulative": true,
     "is_active": true
 };
 
@@ -16066,6 +22162,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-penalty-rules">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -16078,7 +22198,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -16253,7 +22412,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -16334,6 +22493,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-penalty-rules--ruleId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -16346,7 +22529,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -16468,7 +22690,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"trigger_condition\": \"g\",
     \"penalty_points\": 12,
     \"penalty_percentage\": 17,
-    \"is_cumulative\": true,
+    \"is_cumulative\": false,
     \"is_active\": false
 }"
 </code></pre></div>
@@ -16492,7 +22714,7 @@ let body = {
     "trigger_condition": "g",
     "penalty_points": 12,
     "penalty_percentage": 17,
-    "is_cumulative": true,
+    "is_cumulative": false,
     "is_active": false
 };
 
@@ -16506,6 +22728,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-penalty-rules--ruleId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -16518,7 +22764,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -16706,7 +22991,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -16786,7 +23071,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-penalty-rules--ruleId-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-penalty-rules--ruleId-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-penalty-rules--ruleId-"></span>:
@@ -16923,6 +23268,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-penalty-rules--ruleId--activate">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -16935,7 +23304,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -17075,6 +23483,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-penalty-rules--ruleId--deactivate">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -17087,7 +23519,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -17231,6 +23702,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--sanctions">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -17243,7 +23738,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -17391,6 +23925,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-sanctions--sanctionId--void">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -17403,7 +23961,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -17540,9 +24137,9 @@ attribution) lives in ProctoringService — this method stays thin.</p>
     --header "Accept: application/json" \
     --data "{
     \"event_type\": \"b\",
-    \"event_timestamp\": \"2026-08-16T14:26:34\",
+    \"event_timestamp\": \"2026-08-17T13:18:51\",
     \"event_category\": \"n\",
-    \"severity_level\": \"warning\",
+    \"severity_level\": \"critical\",
     \"detection_confidence_score\": 0,
     \"screenshot_url\": \"http:\\/\\/www.okuneva.com\\/fugiat-sunt-nihil-accusantium-harum-mollitia.html\",
     \"video_segment_url\": \"http:\\/\\/www.considine.com\\/provident-perspiciatis-quo-omnis-nostrum-aut-adipisci-quidem\"
@@ -17564,9 +24161,9 @@ const headers = {
 
 let body = {
     "event_type": "b",
-    "event_timestamp": "2026-08-16T14:26:34",
+    "event_timestamp": "2026-08-17T13:18:51",
     "event_category": "n",
-    "severity_level": "warning",
+    "severity_level": "critical",
     "detection_confidence_score": 0,
     "screenshot_url": "http:\/\/www.okuneva.com\/fugiat-sunt-nihil-accusantium-harum-mollitia.html",
     "video_segment_url": "http:\/\/www.considine.com\/provident-perspiciatis-quo-omnis-nostrum-aut-adipisci-quidem"
@@ -17582,6 +24179,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions--sessionId--proctor-events">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -17594,7 +24215,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -17709,10 +24369,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="event_timestamp"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--proctor-events"
-               value="2026-08-16T14:26:34"
+               value="2026-08-17T13:18:51"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-08-16T14:26:34</code></p>
+<p>Must be a valid date. Example: <code>2026-08-17T13:18:51</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>event_category</code></b>&nbsp;&nbsp;
@@ -17745,10 +24405,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="severity_level"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--proctor-events"
-               value="warning"
+               value="critical"
                data-component="body">
     <br>
-<p>Example: <code>warning</code></p>
+<p>Example: <code>critical</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>info</code></li> <li><code>warning</code></li> <li><code>critical</code></li></ul>
         </div>
@@ -17846,6 +24506,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--proctor-events">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -17858,7 +24542,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -17978,7 +24701,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "file=@/tmp/phpsofu61h55o027rCx7Q2" </code></pre></div>
+    --form "file=@/tmp/phpioc145juregre0fg09W" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -18006,6 +24729,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-questions-bulk-import">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -18018,7 +24765,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -18111,7 +24897,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Must not be greater than 5120 kilobytes. Example: <code>/tmp/phpsofu61h55o027rCx7Q2</code></p>
+<p>Must be a file. Must not be greater than 5120 kilobytes. Example: <code>/tmp/phpioc145juregre0fg09W</code></p>
         </div>
         </form>
 
@@ -18136,8 +24922,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"category_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"bloom_level\": 2,
-    \"type\": \"short_answer\",
+    \"bloom_level\": 4,
+    \"type\": \"essay\",
     \"per_page\": 7
 }"
 </code></pre></div>
@@ -18157,8 +24943,8 @@ const headers = {
 
 let body = {
     "category_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "bloom_level": 2,
-    "type": "short_answer",
+    "bloom_level": 4,
+    "type": "essay",
     "per_page": 7
 };
 
@@ -18172,6 +24958,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-questions">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -18184,7 +24994,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -18286,10 +25135,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bloom_level"                data-endpoint="GETapi-v1-questions"
-               value="2"
+               value="4"
                data-component="body">
     <br>
-<p>Example: <code>2</code></p>
+<p>Example: <code>4</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>1</code></li> <li><code>2</code></li> <li><code>3</code></li> <li><code>4</code></li> <li><code>5</code></li> <li><code>6</code></li></ul>
         </div>
@@ -18300,10 +25149,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="GETapi-v1-questions"
-               value="short_answer"
+               value="essay"
                data-component="body">
     <br>
-<p>Example: <code>short_answer</code></p>
+<p>Example: <code>essay</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>mcq</code></li> <li><code>true_false</code></li> <li><code>short_answer</code></li> <li><code>essay</code></li></ul>
         </div>
@@ -18343,10 +25192,10 @@ Must be one of:
     --data "{
     \"category_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"title\": \"g\",
-    \"type\": \"true_false\",
+    \"type\": \"mcq\",
     \"question_text\": \"architecto\",
     \"stem\": \"architecto\",
-    \"bloom_level\": 4,
+    \"bloom_level\": 1,
     \"difficulty_level\": 2,
     \"correct_answer\": false,
     \"accepted_answers\": [
@@ -18361,7 +25210,7 @@ Must be one of:
     \"choices\": [
         {
             \"option_text\": \"architecto\",
-            \"is_correct\": true,
+            \"is_correct\": false,
             \"option_sequence\": 22
         }
     ]
@@ -18384,10 +25233,10 @@ const headers = {
 let body = {
     "category_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "title": "g",
-    "type": "true_false",
+    "type": "mcq",
     "question_text": "architecto",
     "stem": "architecto",
-    "bloom_level": 4,
+    "bloom_level": 1,
     "difficulty_level": 2,
     "correct_answer": false,
     "accepted_answers": [
@@ -18402,7 +25251,7 @@ let body = {
     "choices": [
         {
             "option_text": "architecto",
-            "is_correct": true,
+            "is_correct": false,
             "option_sequence": 22
         }
     ]
@@ -18418,6 +25267,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-questions">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -18430,7 +25303,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -18544,10 +25456,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-v1-questions"
-               value="true_false"
+               value="mcq"
                data-component="body">
     <br>
-<p>Example: <code>true_false</code></p>
+<p>Example: <code>mcq</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>mcq</code></li> <li><code>true_false</code></li> <li><code>short_answer</code></li> <li><code>essay</code></li></ul>
         </div>
@@ -18582,10 +25494,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bloom_level"                data-endpoint="POSTapi-v1-questions"
-               value="4"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>1</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>1</code></li> <li><code>2</code></li> <li><code>3</code></li> <li><code>4</code></li> <li><code>5</code></li> <li><code>6</code></li></ul>
         </div>
@@ -18643,7 +25555,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>This field is required when <code>choices</code> is present. Example: <code>true</code></p>
+<p>This field is required when <code>choices</code> is present. Example: <code>false</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>option_sequence</code></b>&nbsp;&nbsp;
@@ -18814,6 +25726,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-questions--id-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -18826,7 +25762,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -18953,7 +25928,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"accepted_answers\": [
         \"n\"
     ],
-    \"match_mode\": \"case_insensitive\",
+    \"match_mode\": \"exact\",
     \"psychometrics\": {
         \"p_value\": 0,
         \"discrimination_index\": 358981420.16336,
@@ -18962,7 +25937,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"choices\": [
         {
             \"option_text\": \"architecto\",
-            \"is_correct\": true,
+            \"is_correct\": false,
             \"option_sequence\": 22
         }
     ]
@@ -18993,7 +25968,7 @@ let body = {
     "accepted_answers": [
         "n"
     ],
-    "match_mode": "case_insensitive",
+    "match_mode": "exact",
     "psychometrics": {
         "p_value": 0,
         "discrimination_index": 358981420.16336,
@@ -19002,7 +25977,7 @@ let body = {
     "choices": [
         {
             "option_text": "architecto",
-            "is_correct": true,
+            "is_correct": false,
             "option_sequence": 22
         }
     ]
@@ -19018,6 +25993,30 @@ fetch(url, {
 
 <span id="example-responses-PUTapi-v1-questions--id-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -19030,7 +26029,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -19246,7 +26284,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>This field is required when <code>choices</code> is present. Example: <code>true</code></p>
+<p>This field is required when <code>choices</code> is present. Example: <code>false</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>option_sequence</code></b>&nbsp;&nbsp;
@@ -19305,10 +26343,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="match_mode"                data-endpoint="PUTapi-v1-questions--id-"
-               value="case_insensitive"
+               value="exact"
                data-component="body">
     <br>
-<p>Example: <code>case_insensitive</code></p>
+<p>Example: <code>exact</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>exact</code></li> <li><code>case_insensitive</code></li></ul>
         </div>
@@ -19416,7 +26454,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-questions--id-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-questions--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-questions--id-"></span>:
@@ -19557,6 +26655,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-exam-sessions--sessionId--result-publish">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -19569,7 +26691,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -19709,6 +26870,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--result-publication-status">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -19721,7 +26906,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -19873,6 +27097,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-roles">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -19885,7 +27133,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -20039,6 +27326,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-roles">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -20051,7 +27362,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -20249,6 +27599,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-roles--roleId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -20261,7 +27635,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -20449,7 +27862,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-roles--roleId-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-roles--roleId-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-roles--roleId-"></span>:
@@ -20586,6 +28059,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-roles--roleId--users--userId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -20598,7 +28095,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -20749,7 +28285,67 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEapi-v1-roles--roleId--users--userId-">
-</span>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEapi-v1-roles--roleId--users--userId-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEapi-v1-roles--roleId--users--userId-"></span>:
@@ -20902,6 +28498,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-security-policies">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -20914,7 +28534,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -21021,19 +28680,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"mfa_enabled\": false,
     \"mfa_method\": \"b\",
     \"password_min_length\": 22,
-    \"password_require_uppercase\": true,
+    \"password_require_uppercase\": false,
     \"password_require_lowercase\": true,
-    \"password_require_numbers\": true,
+    \"password_require_numbers\": false,
     \"password_require_special_chars\": false,
     \"password_expiry_days\": 7,
     \"password_history_count\": 6,
     \"session_timeout_minutes\": 17,
     \"session_absolute_timeout_hours\": 15,
-    \"session_force_reauth_on_privilege_change\": true,
+    \"session_force_reauth_on_privilege_change\": false,
     \"ip_whitelisting_enabled\": true,
     \"enable_biometric_auth\": true,
     \"enforce_tls_1_3_minimum\": true,
-    \"disable_weak_ciphers\": false,
+    \"disable_weak_ciphers\": true,
     \"allowed_ip_ranges\": [
         \"y\"
     ]
@@ -21057,19 +28716,19 @@ let body = {
     "mfa_enabled": false,
     "mfa_method": "b",
     "password_min_length": 22,
-    "password_require_uppercase": true,
+    "password_require_uppercase": false,
     "password_require_lowercase": true,
-    "password_require_numbers": true,
+    "password_require_numbers": false,
     "password_require_special_chars": false,
     "password_expiry_days": 7,
     "password_history_count": 6,
     "session_timeout_minutes": 17,
     "session_absolute_timeout_hours": 15,
-    "session_force_reauth_on_privilege_change": true,
+    "session_force_reauth_on_privilege_change": false,
     "ip_whitelisting_enabled": true,
     "enable_biometric_auth": true,
     "enforce_tls_1_3_minimum": true,
-    "disable_weak_ciphers": false,
+    "disable_weak_ciphers": true,
     "allowed_ip_ranges": [
         "y"
     ]
@@ -21085,6 +28744,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-security-policies">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -21097,7 +28780,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -21246,7 +28968,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_require_lowercase</code></b>&nbsp;&nbsp;
@@ -21290,7 +29012,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_require_special_chars</code></b>&nbsp;&nbsp;
@@ -21382,7 +29104,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>ip_whitelisting_enabled</code></b>&nbsp;&nbsp;
@@ -21470,7 +29192,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allowed_ip_ranges</code></b>&nbsp;&nbsp;
@@ -21535,6 +29257,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-system-status">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -21547,7 +29293,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -21698,6 +29483,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-users">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -21710,7 +29519,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -21942,6 +29790,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-users">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -21954,7 +29826,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -22112,6 +30023,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-users-invite">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -22124,7 +30059,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -22336,6 +30310,30 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-users--userId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -22348,7 +30346,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -22508,6 +30545,30 @@ fetch(url, {
 
 <span id="example-responses-PATCHapi-v1-users--userId-">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -22520,7 +30581,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -22775,6 +30875,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-users--userId--reset-password">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -22787,7 +30911,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -22940,6 +31103,30 @@ fetch(url, {
 
 <span id="example-responses-POSTapi-v1-users--userId--deactivate">
             <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
@@ -22952,7 +31139,46 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;&quot;
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
 }</code>
  </pre>
     </span>

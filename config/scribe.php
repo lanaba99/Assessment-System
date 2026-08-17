@@ -5,7 +5,6 @@ use Knuckles\Scribe\Config\Defaults;
 use Knuckles\Scribe\Extracting\Strategies;
 
 use function Knuckles\Scribe\Config\configureStrategy;
-use function Knuckles\Scribe\Config\removeStrategies;
 
 // Only the most common configs are shown. See the https://scribe.knuckles.wtf/laravel/reference/config for all.
 
@@ -22,6 +21,22 @@ return [
 
             <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
             You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+
+            ## Response envelope
+            Every response is either `{"data": ...}` (success) or `{"error": {"code", "message"}}` (failure).
+            Error `code` values are stable and safe to match on programmatically; `message` text may change between releases.
+
+            ## Rate limiting
+            All tenant API requests are limited to **240 requests/minute**, keyed per authenticated user (or IP if unauthenticated).
+            A handful of auth endpoints (login, MFA verify, password reset, accept-invite) have their own stricter 5-attempts/15-minute limit.
+            Exceeding either returns `429` with a `Retry-After` header (seconds).
+
+            ## Idempotency
+            A small set of POST endpoints (see their individual docs below for the `Idempotency-Key` header) support safe retries:
+            send a client-generated unique key, and a retried request with the same key + body replays the original response
+            instead of re-executing. Reusing a key with a different body returns `409`.
+
+            Full details: see `API-CONTRACT.md` in the repository root.
         INTRO,
 
     // The base URL displayed in the docs.
@@ -69,6 +84,25 @@ return [
                 ],
             ],
         ],
+        [
+            // Phase 6 — the specific endpoints tagged with the `idempotent`
+            // middleware. Document the Idempotency-Key header on these only,
+            // not globally, so the docs don't imply every endpoint needs it.
+            'match' => [
+                'include' => [
+                    'api.v1.exam-sessions.proctor-events.store',
+                    'api.v1.workflows.approve',
+                    'api.v1.workflows.reject',
+                    'api.v1.certificates.regenerate',
+                    'api.v1.certificates.revoke',
+                ],
+            ],
+            'apply' => [
+                'headers' => [
+                    'Idempotency-Key' => '{a-client-generated-uuid}',
+                ],
+            ],
+        ],
     ],
     
 
@@ -100,6 +134,12 @@ return [
         'assets_directory' => null,
 
         // Middleware to attach to the docs endpoint (if `add_routes` is true).
+        // Left public by default: these docs (and the openapi/postman exports)
+        // are meant for the Web and Mobile teams building against this API,
+        // not end customers — there's no sensitive data in the docs
+        // themselves (all examples use placeholder tokens/UUIDs). If this
+        // needs to be gated later (e.g. before a public launch), add
+        // 'central.admin' or a basic-auth middleware here.
         'middleware' => [],
     ],
 
@@ -155,7 +195,7 @@ return [
     // For 'laravel' docs, it will be generated to storage/app/scribe/collection.json.
     // Setting `laravel.add_routes` to true (above) will also add a route for the collection.
     'postman' => [
-        'enabled' => false,
+        'enabled' => true,
 
         'overrides' => [
             // 'info.version' => '2.0.0',
@@ -259,19 +299,19 @@ return [
         //     )
         // ),
 
-        'responses' => configureStrategy(
+    'responses' => [
+        ...configureStrategy(
             Defaults::RESPONSES_STRATEGIES,
             Strategies\Responses\ResponseCalls::withSettings(
-                only: ['GET *', 'POST *', 'PUT *', 'PATCH *'], // هنا يمكنكِ تحديد الـ Methods
+                only: ['GET *', 'POST *', 'PUT *', 'PATCH *'],
                 config: [
                     'app.debug' => false,
-                ]
-            )
+                ],
+            ),
         ),
-        'responseFields' => [
-            ...Defaults::RESPONSE_FIELDS_STRATEGIES,
-        ],
+        \App\Docs\AddStandardErrorResponses::class,
     ],
+
 
     // For response calls, API resource responses and transformer responses,
     // Scribe will try to start database transactions, so no changes are persisted to your database.
@@ -282,4 +322,5 @@ return [
         // If you are using a custom serializer with league/fractal, you can specify it here.
         'serializer' => null,
     ],
+    ]
 ];
