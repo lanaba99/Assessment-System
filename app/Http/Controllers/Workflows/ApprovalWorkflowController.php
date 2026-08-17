@@ -137,6 +137,35 @@ class ApprovalWorkflowController extends Controller
         );
     }
 
+    public function history(Request $request, string $workflowId): JsonResponse
+    {
+        $tenantId = (string) tenant()->getKey();
+        $workflow = $this->service->find($tenantId, $workflowId);
+
+        if ($workflow === null) {
+            return $this->notFound($workflowId);
+        }
+
+        $this->authorize('view', $workflow);
+
+        $history = $workflow->history()
+            ->orderByDesc('created_at')
+            ->paginate($request->integer('per_page', 15));
+
+        return new JsonResponse(
+            [
+                'data' => \App\Http\Resources\Workflows\WorkflowHistoryResource::collection($history->items()),
+                'meta' => [
+                    'current_page' => $history->currentPage(),
+                    'per_page' => $history->perPage(),
+                    'total' => $history->total(),
+                    'last_page' => $history->lastPage(),
+                ],
+            ],
+            Response::HTTP_OK,
+        );
+    }
+
     public function approve(ApproveWorkflowRequest $request, string $workflowId): JsonResponse
     {
         $tenantId = (string) tenant()->getKey();

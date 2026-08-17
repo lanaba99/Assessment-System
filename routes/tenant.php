@@ -569,7 +569,10 @@ Route::middleware([
                 Route::post('{workflowId}/reject', [ApprovalWorkflowController::class, 'reject'])
                      ->whereUuid('workflowId')
                      ->name('api.v1.workflows.reject');
-
+                     
+                Route::get('{workflowId}/history', [ApprovalWorkflowController::class, 'history'])
+                     ->whereUuid('workflowId')
+                     ->name('api.v1.workflows.history');
             });
 
             // -------------------------------------------------------------
