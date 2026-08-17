@@ -1,14 +1,14 @@
-name: Enrollments
+name: PenaltySanctions
 description: ''
 endpoints:
   -
     custom: []
     httpMethods:
       - GET
-    uri: 'api/v1/exams/{examId}/enrollments'
+    uri: 'api/v1/exam-sessions/{sessionId}/sanctions'
     metadata:
       custom: []
-      groupName: Enrollments
+      groupName: PenaltySanctions
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -18,13 +18,13 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      examId:
+      sessionId:
         custom: []
-        name: examId
+        name: sessionId
         description: ''
         required: true
         example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
@@ -34,13 +34,27 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+      sessionId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+              "data": []
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '154'
+          access-control-allow-origin: '*'
+        description: null
       -
         custom: []
         status: 401
@@ -68,15 +82,6 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
         content: |-
           {
               "error": {
@@ -86,6 +91,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -114,7 +131,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -122,10 +139,10 @@ endpoints:
     custom: []
     httpMethods:
       - POST
-    uri: 'api/v1/exams/{examId}/enrollments'
+    uri: 'api/v1/sanctions/{sanctionId}/void'
     metadata:
       custom: []
-      groupName: Enrollments
+      groupName: PenaltySanctions
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -135,13 +152,13 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      examId:
+      sanctionId:
         custom: []
-        name: examId
+        name: sanctionId
         description: ''
         required: true
         example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
@@ -151,83 +168,23 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+      sanctionId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      candidate_user_id:
+      reason:
         custom: []
-        name: candidate_user_id
-        description: 'Must be a valid UUID. Must match an existing stored value.'
+        name: reason
+        description: 'Must not be greater than 1000 characters.'
         required: true
-        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      cohort_id:
-        custom: []
-        name: cohort_id
-        description: 'Must be a valid UUID.'
-        required: false
-        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      start_window_date:
-        custom: []
-        name: start_window_date
-        description: 'Must be a valid date.'
-        required: false
-        example: '2026-08-17T13:18:52'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      end_window_date:
-        custom: []
-        name: end_window_date
-        description: 'Must be a valid date. Must be a date after or equal to <code>start_window_date</code>.'
-        required: false
-        example: '2052-09-09'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      max_attempts_allowed:
-        custom: []
-        name: max_attempts_allowed
-        description: 'Must be at least 1. Must not be greater than 10.'
-        required: false
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      enrollment_notes:
-        custom: []
-        name: enrollment_notes
-        description: 'Must not be greater than 1000 characters.'
-        required: false
-        example: g
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
     cleanBodyParameters:
-      candidate_user_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
-      cohort_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
-      start_window_date: '2026-08-17T13:18:52'
-      end_window_date: '2052-09-09'
-      max_attempts_allowed: 2
-      enrollment_notes: g
+      reason: b
     fileParameters: []
     responses:
       -
@@ -257,10 +214,18 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '153'
           access-control-allow-origin: '*'
         description: null
       -
@@ -277,124 +242,16 @@ endpoints:
         description: 'Not found'
       -
         custom: []
-        status: 422
+        status: 409
         content: |-
           {
               "error": {
-                  "code": "validation_failed",
-                  "message": "The given data was invalid."
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
               }
           }
         headers: []
-        description: 'Validation error'
-      -
-        custom: []
-        status: 429
-        content: |-
-          {
-              "error": {
-                  "code": "rate_limited",
-                  "message": "Too many requests. Please try again later."
-              }
-          }
-        headers: []
-        description: 'Too many requests'
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/exams/{examId}/enrollments/{enrollmentId}'
-    metadata:
-      custom: []
-      groupName: Enrollments
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: true
-      deprecated: false
-    headers:
-      Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      examId:
-        custom: []
-        name: examId
-        description: ''
-        required: true
-        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      enrollmentId:
-        custom: []
-        name: enrollmentId
-        description: ''
-        required: true
-        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
-      enrollmentId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 401
-        content: |-
-          {
-              "error": {
-                  "code": "not_authenticated",
-                  "message": "Authentication required."
-              }
-          }
-        headers: []
-        description: Unauthenticated
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-              "error": {
-                  "code": "forbidden",
-                  "message": "You are not authorized to perform this action."
-              }
-          }
-        headers: []
-        description: Forbidden
-      -
-        custom: []
-        status: 404
-        content: |-
-          {
-              "error": {
-                  "code": "not_found",
-                  "message": "The requested resource was not found."
-              }
-          }
-        headers: []
-        description: 'Not found'
+        description: Conflict
       -
         custom: []
         status: 422
@@ -423,7 +280,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null

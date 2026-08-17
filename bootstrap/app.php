@@ -31,6 +31,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'throttle.login' => ThrottleLoginMiddleware::class,
             'central.admin' => \App\Http\Middleware\EnsureCentralAdmin::class,
             'idempotent' => \App\Http\Middleware\EnsureIdempotency::class,
+            'noindex.docs' => \App\Http\Middleware\NoIndexDocs::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

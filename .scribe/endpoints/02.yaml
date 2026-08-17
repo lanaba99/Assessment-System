@@ -18,7 +18,7 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -71,6 +71,23 @@ endpoints:
         content: |-
           {
               "error": {
+                  "code": "invalid_credentials",
+                  "message": "Invalid credentials."
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '239'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
                   "code": "not_authenticated",
                   "message": "Authentication required."
               }
@@ -92,15 +109,6 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
         content: |-
           {
               "error": {
@@ -110,6 +118,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -138,7 +158,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -159,7 +179,7 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -200,117 +220,17 @@ endpoints:
         content: |-
           {
               "error": {
-                  "code": "not_authenticated",
-                  "message": "Authentication required."
+                  "code": "mfa_session_not_eligible",
+                  "message": "Session 6ff8f7f6-1eb3-3525-be4a-3932c805afed is not awaiting MFA verification."
               }
           }
-        headers: []
-        description: Unauthenticated
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-              "error": {
-                  "code": "forbidden",
-                  "message": "You are not authorized to perform this action."
-              }
-          }
-        headers: []
-        description: Forbidden
-      -
-        custom: []
-        status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '5'
+          x-ratelimit-remaining: '4'
           access-control-allow-origin: '*'
         description: null
-      -
-        custom: []
-        status: 404
-        content: |-
-          {
-              "error": {
-                  "code": "not_found",
-                  "message": "The requested resource was not found."
-              }
-          }
-        headers: []
-        description: 'Not found'
-      -
-        custom: []
-        status: 422
-        content: |-
-          {
-              "error": {
-                  "code": "validation_failed",
-                  "message": "The given data was invalid."
-              }
-          }
-        headers: []
-        description: 'Validation error'
-      -
-        custom: []
-        status: 429
-        content: |-
-          {
-              "error": {
-                  "code": "rate_limited",
-                  "message": "Too many requests. Please try again later."
-              }
-          }
-        headers: []
-        description: 'Too many requests'
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: api/v1/auth/password/forgot
-    metadata:
-      custom: []
-      groupName: Auth
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: true
-      deprecated: false
-    headers:
-      Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      email:
-        custom: []
-        name: email
-        description: 'Must be a valid email address. Must not be greater than 255 characters.'
-        required: true
-        example: gbailey@example.net
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanBodyParameters:
-      email: gbailey@example.net
-    fileParameters: []
-    responses:
       -
         custom: []
         status: 401
@@ -338,15 +258,6 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
         content: |-
           {
               "error": {
@@ -356,6 +267,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -384,7 +307,143 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/auth/password/forgot
+    metadata:
+      custom: []
+      groupName: Auth
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        custom: []
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 255 characters.'
+        required: true
+        example: gbailey@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      email: gbailey@example.net
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 202
+        content: |-
+          {
+              "data": {
+                  "message": "If the account exists, a password reset link has been sent."
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '237'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -405,7 +464,7 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -479,15 +538,6 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
         content: |-
           {
               "error": {
@@ -497,6 +547,47 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The token field must be at least 16 characters. (and 5 more errors)",
+                  "fields": {
+                      "token": [
+                          "The token field must be at least 16 characters."
+                      ],
+                      "password": [
+                          "The password field must be at least 12 characters.",
+                          "The password field must contain at least one uppercase and one lowercase letter.",
+                          "The password field must contain at least one letter.",
+                          "The password field must contain at least one number.",
+                          "The password field confirmation does not match."
+                      ]
+                  }
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '5'
+          x-ratelimit-remaining: '3'
+          access-control-allow-origin: '*'
+        description: null
       -
         custom: []
         status: 422
@@ -525,7 +616,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -546,7 +637,7 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -620,15 +711,6 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
         content: |-
           {
               "error": {
@@ -638,6 +720,47 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The token field must be at least 32 characters. (and 5 more errors)",
+                  "fields": {
+                      "token": [
+                          "The token field must be at least 32 characters."
+                      ],
+                      "password": [
+                          "The password field must be at least 12 characters.",
+                          "The password field must contain at least one uppercase and one lowercase letter.",
+                          "The password field must contain at least one letter.",
+                          "The password field must contain at least one number.",
+                          "The password field confirmation does not match."
+                      ]
+                  }
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '5'
+          x-ratelimit-remaining: '2'
+          access-control-allow-origin: '*'
+        description: null
       -
         custom: []
         status: 422
@@ -666,7 +789,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -687,7 +810,7 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -710,6 +833,16 @@ endpoints:
       session_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
     fileParameters: []
     responses:
+      -
+        custom: []
+        status: 204
+        content: ''
+        headers:
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '239'
+          access-control-allow-origin: '*'
+        description: null
       -
         custom: []
         status: 401
@@ -737,15 +870,6 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
         content: |-
           {
               "error": {
@@ -755,6 +879,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -783,7 +919,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -804,7 +940,7 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -827,6 +963,23 @@ endpoints:
       session_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
     fileParameters: []
     responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "token": "{REDACTED}",
+                  "session_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '238'
+          access-control-allow-origin: '*'
+        description: null
       -
         custom: []
         status: 401
@@ -854,15 +1007,6 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
         content: |-
           {
               "error": {
@@ -872,6 +1016,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -900,7 +1056,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null

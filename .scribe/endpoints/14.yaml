@@ -1,14 +1,14 @@
-name: Cohorts
+name: ExamEngine
 description: ''
 endpoints:
   -
     custom: []
     httpMethods:
-      - GET
-    uri: api/v1/cohorts
+      - POST
+    uri: 'api/v1/exams/{examId}/sections'
     metadata:
       custom: []
-      groupName: Cohorts
+      groupName: ExamEngine
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -18,15 +18,87 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
+    urlParameters:
+      examId:
+        custom: []
+        name: examId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      section_name:
+        custom: []
+        name: section_name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      section_code:
+        custom: []
+        name: section_code
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      section_sequence:
+        custom: []
+        name: section_sequence
+        description: 'Must be at least 1.'
+        required: true
+        example: 67
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      questions_in_section:
+        custom: []
+        name: questions_in_section
+        description: 'Must be at least 1.'
+        required: true
+        example: 66
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      time_limit_minutes:
+        custom: []
+        name: time_limit_minutes
+        description: 'Must be at least 1.'
+        required: false
+        example: 27
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      section_name: b
+      section_code: 'n'
+      section_sequence: 67
+      questions_in_section: 66
+      time_limit_minutes: 27
     fileParameters: []
     responses:
       -
@@ -56,10 +128,18 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '201'
           access-control-allow-origin: '*'
         description: null
       -
@@ -74,6 +154,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -102,18 +194,18 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
   -
     custom: []
     httpMethods:
-      - POST
-    uri: api/v1/cohorts
+      - GET
+    uri: 'api/v1/exams/{examId}/sections'
     metadata:
       custom: []
-      groupName: Cohorts
+      groupName: ExamEngine
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -123,7 +215,678 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      examId:
+        custom: []
+        name: examId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+              "data": []
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '200'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exams/{examId}/blueprints'
+    metadata:
+      custom: []
+      groupName: ExamEngine
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      examId:
+        custom: []
+        name: examId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      section_id:
+        custom: []
+        name: section_id
+        description: 'Must be a valid UUID. Must match an existing stored value.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      competency_id:
+        custom: []
+        name: competency_id
+        description: 'Must be a valid UUID. Must match an existing stored value.'
+        required: true
+        example: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      min_questions_count:
+        custom: []
+        name: min_questions_count
+        description: 'Must be at least 1.'
+        required: true
+        example: 27
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      max_questions_count:
+        custom: []
+        name: max_questions_count
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      min_weight_percentage:
+        custom: []
+        name: min_weight_percentage
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: true
+        example: 22
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      max_weight_percentage:
+        custom: []
+        name: max_weight_percentage
+        description: 'Must not be greater than 100.'
+        required: true
+        example: 7
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      target_difficulty:
+        custom: []
+        name: target_difficulty
+        description: 'Must be at least 0. Must not be greater than 1.'
+        required: false
+        example: 1
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      min_discrimination:
+        custom: []
+        name: min_discrimination
+        description: 'Must be at least 0. Must not be greater than 1.'
+        required: false
+        example: 1
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      section_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      competency_id: 6b72fe4a-5b40-307c-bc24-f79acf9a1bb9
+      min_questions_count: 27
+      max_questions_count: 16
+      min_weight_percentage: 22
+      max_weight_percentage: 7
+      target_difficulty: 1
+      min_discrimination: 1
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The selected section id is invalid. (and 3 more errors)",
+                  "fields": {
+                      "section_id": [
+                          "The selected section id is invalid."
+                      ],
+                      "competency_id": [
+                          "The selected competency id is invalid."
+                      ],
+                      "max_questions_count": [
+                          "The max questions count field must be greater than or equal to 27."
+                      ],
+                      "max_weight_percentage": [
+                          "The max weight percentage field must be greater than or equal to 22."
+                      ]
+                  }
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '199'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/exams/{examId}/blueprints'
+    metadata:
+      custom: []
+      groupName: ExamEngine
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      examId:
+        custom: []
+        name: examId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+              "data": []
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '198'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/v1/exams
+    metadata:
+      custom: []
+      groupName: ExamEngine
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": "bb5300a3-fff8-424a-bc25-78b62a63f190",
+                      "tenant_id": "00000000-0000-4000-8000-000000000001",
+                      "created_by_user_id": "cec0dcc3-f6c9-4085-b098-08817a540559",
+                      "exam_name": "Alpha Foundational Adaptive Exam",
+                      "exam_code": "EXAM-ALPHA-001",
+                      "exam_description": "Seeded adaptive exam covering all three core competencies.",
+                      "exam_type": "certification",
+                      "assessment_mode": "online",
+                      "total_questions": 10,
+                      "total_duration_minutes": 30,
+                      "pass_mark_percentage": 60,
+                      "difficulty_tier_level": 3,
+                      "is_adaptive_exam": true,
+                      "is_randomized": true,
+                      "allow_review_after_submit": true,
+                      "allow_flagging_for_review": true,
+                      "timer_visible_to_candidate": true,
+                      "show_correct_answers_after": false,
+                      "security_protocols": {
+                          "webcam_required": true,
+                          "lockdown_browser": true
+                      },
+                      "exam_metadata": {
+                          "seeded": true
+                      },
+                      "exam_status": "published",
+                      "is_published": true,
+                      "published_at": "2026-08-17T14:17:12+00:00",
+                      "archived_at": null,
+                      "created_at": "2026-08-17T14:17:12+00:00",
+                      "updated_at": "2026-08-17T14:17:12+00:00"
+                  }
+              ]
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '189'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/exams
+    metadata:
+      custom: []
+      groupName: ExamEngine
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -131,9 +894,9 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      cohort_name:
+      exam_name:
         custom: []
-        name: cohort_name
+        name: exam_name
         description: 'Must not be greater than 255 characters.'
         required: true
         example: b
@@ -142,9 +905,9 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      cohort_code:
+      exam_code:
         custom: []
-        name: cohort_code
+        name: exam_code
         description: 'Must not be greater than 50 characters.'
         required: true
         example: 'n'
@@ -153,26 +916,9 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      cohort_type:
+      exam_description:
         custom: []
-        name: cohort_type
-        description: ''
-        required: true
-        example: department
-        type: string
-        enumValues:
-          - team
-          - department
-          - batch
-          - class
-          - cohort
-          - group
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      cohort_description:
-        custom: []
-        name: cohort_description
+        name: exam_description
         description: ''
         required: false
         example: architecto
@@ -181,20 +927,160 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         deprecated: false
-      parent_cohort_id:
+      exam_type:
         custom: []
-        name: parent_cohort_id
-        description: 'Must be a valid UUID.'
-        required: false
-        example: a4855dc5-0acb-33c3-b921-f4291f719ca0
+        name: exam_type
+        description: ''
+        required: true
+        example: training
         type: string
+        enumValues:
+          - certification
+          - placement
+          - training
+          - evaluation
+          - practice
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      assessment_mode:
+        custom: []
+        name: assessment_mode
+        description: ''
+        required: false
+        example: hybrid
+        type: string
+        enumValues:
+          - online
+          - hybrid
+          - paper
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      total_questions:
+        custom: []
+        name: total_questions
+        description: 'Must be at least 1. Must not be greater than 500.'
+        required: true
+        example: 22
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      total_duration_minutes:
+        custom: []
+        name: total_duration_minutes
+        description: 'Must be at least 1. Must not be greater than 480.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      pass_mark_percentage:
+        custom: []
+        name: pass_mark_percentage
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: false
+        example: 16
+        type: number
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         deprecated: false
-      cohort_attributes:
+      difficulty_tier_level:
         custom: []
-        name: cohort_attributes
+        name: difficulty_tier_level
+        description: 'Must be at least 1. Must not be greater than 5.'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_adaptive_exam:
+        custom: []
+        name: is_adaptive_exam
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_randomized:
+        custom: []
+        name: is_randomized
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      allow_review_after_submit:
+        custom: []
+        name: allow_review_after_submit
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      allow_flagging_for_review:
+        custom: []
+        name: allow_flagging_for_review
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      timer_visible_to_candidate:
+        custom: []
+        name: timer_visible_to_candidate
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      show_correct_answers_after:
+        custom: []
+        name: show_correct_answers_after
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      security_protocols:
+        custom: []
+        name: security_protocols
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      exam_metadata:
+        custom: []
+        name: exam_metadata
         description: ''
         required: false
         example: null
@@ -204,13 +1090,64 @@ endpoints:
         nullable: true
         deprecated: false
     cleanBodyParameters:
-      cohort_name: b
-      cohort_code: 'n'
-      cohort_type: department
-      cohort_description: architecto
-      parent_cohort_id: a4855dc5-0acb-33c3-b921-f4291f719ca0
+      exam_name: b
+      exam_code: 'n'
+      exam_description: architecto
+      exam_type: training
+      assessment_mode: hybrid
+      total_questions: 22
+      total_duration_minutes: 7
+      pass_mark_percentage: 16
+      difficulty_tier_level: 2
+      is_adaptive_exam: false
+      is_randomized: false
+      allow_review_after_submit: true
+      allow_flagging_for_review: false
+      timer_visible_to_candidate: false
+      show_correct_answers_after: true
     fileParameters: []
     responses:
+      -
+        custom: []
+        status: 201
+        content: |-
+          {
+              "data": {
+                  "id": "5961f752-e2bd-42a2-9918-2b9cc7b46eea",
+                  "tenant_id": "00000000-0000-4000-8000-000000000001",
+                  "created_by_user_id": "cec0dcc3-f6c9-4085-b098-08817a540559",
+                  "exam_name": "b",
+                  "exam_code": "n",
+                  "exam_description": "architecto",
+                  "exam_type": "training",
+                  "assessment_mode": "hybrid",
+                  "total_questions": 22,
+                  "total_duration_minutes": 7,
+                  "pass_mark_percentage": 16,
+                  "difficulty_tier_level": 2,
+                  "is_adaptive_exam": false,
+                  "is_randomized": false,
+                  "allow_review_after_submit": true,
+                  "allow_flagging_for_review": false,
+                  "timer_visible_to_candidate": false,
+                  "show_correct_answers_after": true,
+                  "security_protocols": null,
+                  "exam_metadata": null,
+                  "exam_status": "draft",
+                  "is_published": false,
+                  "published_at": null,
+                  "archived_at": null,
+                  "created_at": "2026-08-17T14:38:40+00:00",
+                  "updated_at": "2026-08-17T14:38:40+00:00"
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '188'
+          access-control-allow-origin: '*'
+        description: null
       -
         custom: []
         status: 401
@@ -238,15 +1175,6 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
         content: |-
           {
               "error": {
@@ -256,6 +1184,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -284,7 +1224,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -292,10 +1232,10 @@ endpoints:
     custom: []
     httpMethods:
       - GET
-    uri: 'api/v1/cohorts/{cohortId}'
+    uri: 'api/v1/exams/{examId}'
     metadata:
       custom: []
-      groupName: Cohorts
+      groupName: ExamEngine
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -305,13 +1245,13 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      cohortId:
+      examId:
         custom: []
-        name: cohortId
+        name: examId
         description: ''
         required: true
         example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
@@ -321,7 +1261,7 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      cohortId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -355,10 +1295,18 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
+        content: |-
+          {
+              "error": {
+                  "code": "exam_not_found",
+                  "message": "Exam [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found."
+              }
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '187'
           access-control-allow-origin: '*'
         description: null
       -
@@ -373,6 +1321,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -401,7 +1361,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -409,10 +1369,10 @@ endpoints:
     custom: []
     httpMethods:
       - PATCH
-    uri: 'api/v1/cohorts/{cohortId}'
+    uri: 'api/v1/exams/{examId}'
     metadata:
       custom: []
-      groupName: Cohorts
+      groupName: ExamEngine
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -422,13 +1382,13 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      cohortId:
+      examId:
         custom: []
-        name: cohortId
+        name: examId
         description: ''
         required: true
         example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
@@ -438,13 +1398,13 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      cohortId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      cohort_name:
+      exam_name:
         custom: []
-        name: cohort_name
+        name: exam_name
         description: 'Must not be greater than 255 characters.'
         required: false
         example: b
@@ -453,9 +1413,9 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      cohort_code:
+      exam_code:
         custom: []
-        name: cohort_code
+        name: exam_code
         description: 'Must not be greater than 50 characters.'
         required: false
         example: 'n'
@@ -464,26 +1424,9 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      cohort_type:
+      exam_description:
         custom: []
-        name: cohort_type
-        description: ''
-        required: false
-        example: batch
-        type: string
-        enumValues:
-          - team
-          - department
-          - batch
-          - class
-          - cohort
-          - group
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      cohort_description:
-        custom: []
-        name: cohort_description
+        name: exam_description
         description: ''
         required: false
         example: architecto
@@ -492,20 +1435,127 @@ endpoints:
         exampleWasSpecified: false
         nullable: true
         deprecated: false
-      cohort_attributes:
+      exam_type:
         custom: []
-        name: cohort_attributes
+        name: exam_type
         description: ''
         required: false
-        example: null
-        type: object
+        example: practice
+        type: string
+        enumValues:
+          - certification
+          - placement
+          - training
+          - evaluation
+          - practice
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      assessment_mode:
+        custom: []
+        name: assessment_mode
+        description: ''
+        required: false
+        example: paper
+        type: string
+        enumValues:
+          - online
+          - hybrid
+          - paper
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      total_questions:
+        custom: []
+        name: total_questions
+        description: 'Must be at least 1. Must not be greater than 500.'
+        required: false
+        example: 22
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      total_duration_minutes:
+        custom: []
+        name: total_duration_minutes
+        description: 'Must be at least 1. Must not be greater than 480.'
+        required: false
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      pass_mark_percentage:
+        custom: []
+        name: pass_mark_percentage
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: false
+        example: 16
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      difficulty_tier_level:
+        custom: []
+        name: difficulty_tier_level
+        description: 'Must be at least 1. Must not be greater than 5.'
+        required: false
+        example: 2
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         deprecated: false
-      is_active:
+      is_adaptive_exam:
         custom: []
-        name: is_active
+        name: is_adaptive_exam
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      is_randomized:
+        custom: []
+        name: is_randomized
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      allow_review_after_submit:
+        custom: []
+        name: allow_review_after_submit
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      allow_flagging_for_review:
+        custom: []
+        name: allow_flagging_for_review
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      timer_visible_to_candidate:
+        custom: []
+        name: timer_visible_to_candidate
         description: ''
         required: false
         example: true
@@ -514,12 +1564,55 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
+      show_correct_answers_after:
+        custom: []
+        name: show_correct_answers_after
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      security_protocols:
+        custom: []
+        name: security_protocols
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      exam_metadata:
+        custom: []
+        name: exam_metadata
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
     cleanBodyParameters:
-      cohort_name: b
-      cohort_code: 'n'
-      cohort_type: batch
-      cohort_description: architecto
-      is_active: true
+      exam_name: b
+      exam_code: 'n'
+      exam_description: architecto
+      exam_type: practice
+      assessment_mode: paper
+      total_questions: 22
+      total_duration_minutes: 7
+      pass_mark_percentage: 16
+      difficulty_tier_level: 2
+      is_adaptive_exam: false
+      is_randomized: false
+      allow_review_after_submit: false
+      allow_flagging_for_review: false
+      timer_visible_to_candidate: true
+      show_correct_answers_after: false
     fileParameters: []
     responses:
       -
@@ -549,10 +1642,18 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '186'
           access-control-allow-origin: '*'
         description: null
       -
@@ -567,6 +1668,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -595,7 +1708,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -603,10 +1716,10 @@ endpoints:
     custom: []
     httpMethods:
       - DELETE
-    uri: 'api/v1/cohorts/{cohortId}'
+    uri: 'api/v1/exams/{examId}'
     metadata:
       custom: []
-      groupName: Cohorts
+      groupName: ExamEngine
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -616,13 +1729,13 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      cohortId:
+      examId:
         custom: []
-        name: cohortId
+        name: examId
         description: ''
         required: true
         example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
@@ -632,7 +1745,7 @@ endpoints:
         nullable: false
         deprecated: false
     cleanUrlParameters:
-      cohortId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -677,6 +1790,18 @@ endpoints:
         description: 'Not found'
       -
         custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
         status: 422
         content: |-
           {
@@ -703,7 +1828,281 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exams/{examId}/publish'
+    metadata:
+      custom: []
+      groupName: ExamEngine
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      examId:
+        custom: []
+        name: examId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "exam_not_found",
+                  "message": "Exam [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found."
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '185'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/exams/{examId}/archive'
+    metadata:
+      custom: []
+      groupName: ExamEngine
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      examId:
+        custom: []
+        name: examId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      examId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "exam_not_found",
+                  "message": "Exam [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found."
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '184'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null

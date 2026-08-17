@@ -1,24 +1,24 @@
-name: ManualEvaluation
+name: AssessmentResults
 description: ''
 endpoints:
   -
     custom: []
     httpMethods:
       - GET
-    uri: 'api/v1/exam-sessions/{sessionId}/pending-evaluations'
+    uri: 'api/v1/exam-sessions/{sessionId}/result'
     metadata:
       custom: []
-      groupName: ManualEvaluation
+      groupName: AssessmentResults
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'List all pending_review evaluations for the given session.'
-      description: 'Requires grading.evaluate OR grading.view permission (class-level gate).'
+      title: ''
+      description: ''
       authenticated: true
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -68,10 +68,18 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
+        content: |-
+          {
+              "error": {
+                  "code": "result_not_ready",
+                  "message": "No assessment result exists for session BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc yet."
+              }
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '168'
           access-control-allow-origin: '*'
         description: null
       -
@@ -86,6 +94,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -114,185 +134,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - PATCH
-    uri: 'api/v1/answer-evaluations/{evaluationId}/score'
-    metadata:
-      custom: []
-      groupName: ManualEvaluation
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: "Submit a human evaluator's score for a single pending_review evaluation."
-      description: |-
-        Requires grading.evaluate permission (enforced in SubmitEvaluationRequest::authorize()).
-        If this was the last pending item for the session, grade re-finalization
-        is triggered synchronously and the final grade becomes queryable immediately.
-      authenticated: true
-      deprecated: false
-    headers:
-      Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      evaluationId:
-        custom: []
-        name: evaluationId
-        description: ''
-        required: true
-        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      evaluationId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      score_awarded:
-        custom: []
-        name: score_awarded
-        description: 'Must be at least 0.'
-        required: true
-        example: 27
-        type: number
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      rubric_id:
-        custom: []
-        name: rubric_id
-        description: 'Must be a valid UUID.'
-        required: false
-        example: a4855dc5-0acb-33c3-b921-f4291f719ca0
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      rubric_criteria_json:
-        custom: []
-        name: rubric_criteria_json
-        description: ''
-        required: false
-        example: null
-        type: object
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      evaluator_comments:
-        custom: []
-        name: evaluator_comments
-        description: ''
-        required: false
-        example: null
-        type: object
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      requires_secondary_review:
-        custom: []
-        name: requires_secondary_review
-        description: ''
-        required: false
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-    cleanBodyParameters:
-      score_awarded: 27
-      rubric_id: a4855dc5-0acb-33c3-b921-f4291f719ca0
-      requires_secondary_review: true
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 401
-        content: |-
-          {
-              "error": {
-                  "code": "not_authenticated",
-                  "message": "Authentication required."
-              }
-          }
-        headers: []
-        description: Unauthenticated
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-              "error": {
-                  "code": "forbidden",
-                  "message": "You are not authorized to perform this action."
-              }
-          }
-        headers: []
-        description: Forbidden
-      -
-        custom: []
-        status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-      -
-        custom: []
-        status: 404
-        content: |-
-          {
-              "error": {
-                  "code": "not_found",
-                  "message": "The requested resource was not found."
-              }
-          }
-        headers: []
-        description: 'Not found'
-      -
-        custom: []
-        status: 422
-        content: |-
-          {
-              "error": {
-                  "code": "validation_failed",
-                  "message": "The given data was invalid."
-              }
-          }
-        headers: []
-        description: 'Validation error'
-      -
-        custom: []
-        status: 429
-        content: |-
-          {
-              "error": {
-                  "code": "rate_limited",
-                  "message": "Too many requests. Please try again later."
-              }
-          }
-        headers: []
-        description: 'Too many requests'
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null

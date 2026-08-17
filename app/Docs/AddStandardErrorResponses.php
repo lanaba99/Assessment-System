@@ -39,6 +39,12 @@ final class AddStandardErrorResponses extends Strategy
                 message: 'The requested resource was not found.',
             ),
             $this->errorResponse(
+                status: 409,
+                description: 'Conflict',
+                code: 'conflict',
+                message: 'The request conflicts with the current state of the resource.',
+            ),
+            $this->errorResponse(
                 status: 422,
                 description: 'Validation error',
                 code: 'validation_failed',

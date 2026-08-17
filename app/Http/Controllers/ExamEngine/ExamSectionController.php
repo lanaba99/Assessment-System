@@ -12,6 +12,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group ExamEngine
+ */
 class ExamSectionController extends Controller
 {
     use AuthorizesRequests;

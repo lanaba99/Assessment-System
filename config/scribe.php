@@ -134,13 +134,11 @@ return [
         'assets_directory' => null,
 
         // Middleware to attach to the docs endpoint (if `add_routes` is true).
-        // Left public by default: these docs (and the openapi/postman exports)
-        // are meant for the Web and Mobile teams building against this API,
-        // not end customers — there's no sensitive data in the docs
-        // themselves (all examples use placeholder tokens/UUIDs). If this
-        // needs to be gated later (e.g. before a public launch), add
-        // 'central.admin' or a basic-auth middleware here.
-        'middleware' => [],
+        // Public but unlisted: no auth wall, so the Web and Mobile teams can
+        // reach the docs without a session — but 'noindex.docs' keeps them
+        // out of search engines. If this needs a hard gate later (e.g.
+        // before a public launch), add 'central.admin' or basic-auth here.
+        'middleware' => ['noindex.docs'],
     ],
 
     'external' => [
@@ -271,7 +269,11 @@ return [
         'headers' => [
             ...Defaults::HEADERS_STRATEGIES,
             Strategies\StaticData::withSettings(data: [
-                'X-Tenant-ID' => '74497864-3f29-427a-a1f2-842b3f4aef47',
+                // Points at the seeded Docs Sandbox Tenant (see
+                // database/seeders/DocsSandboxTenantSeeder.php), not a
+                // hardcoded ID from someone's local database. Run the
+                // seeder locally before `scribe:generate`.
+                'X-Tenant-ID' => env('SCRIBE_TENANT_ID', '00000000-0000-4000-8000-000000000001'),
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ]),
@@ -300,14 +302,38 @@ return [
         // ),
 
     'responses' => [
+        // Central-domain-only routes (CentralAuth, CentralTenant — route
+        // names `api.central.*`) are reachable via EnsureCentralDomain,
+        // which just checks the request host against
+        // config('tenancy.central_domains'). Dispatching these against the
+        // default config('app.url') (http://localhost, a central domain)
+        // is already correct, so this entry doesn't override it.
         ...configureStrategy(
             Defaults::RESPONSES_STRATEGIES,
             Strategies\Responses\ResponseCalls::withSettings(
-                only: ['GET *', 'POST *', 'PUT *', 'PATCH *'],
+                only: ['api.central.*'],
                 config: [
                     'app.debug' => false,
                 ],
             ),
+        ),
+        // Every other documented endpoint (~114 routes in routes/tenant.php)
+        // is tenant-scoped and resolved by InitializeTenancyBySubdomain,
+        // which reads the leftmost label of the request host. Scribe's
+        // ResponseCalls strategy always dispatches against config('app.url')
+        // (see ResponseCalls::prepareRequest()), so left at its default
+        // central value, every tenant-scoped response call 404s before
+        // tenancy ever initializes. Point these at the seeded Docs Sandbox
+        // Tenant's subdomain instead (see
+        // database/seeders/DocsSandboxTenantSeeder.php) so they resolve to
+        // a real tenant and come back with real 2xx examples.
+        Strategies\Responses\ResponseCalls::withSettings(
+            except: ['api.central.*'],
+            only: ['GET *', 'POST *', 'PUT *', 'PATCH *'],
+            config: [
+                'app.debug' => false,
+                'app.url' => 'http://' . env('SCRIBE_TENANT_SUBDOMAIN', 'docs-sandbox') . '.localhost',
+            ],
         ),
         \App\Docs\AddStandardErrorResponses::class,
     ],
@@ -316,7 +342,12 @@ return [
     // For response calls, API resource responses and transformer responses,
     // Scribe will try to start database transactions, so no changes are persisted to your database.
     // Tell Scribe which connections should be transacted here. If you only use one db connection, you can leave this as is.
-    'database_connections_to_transact' => [config('database.default')],
+    // config('database.default') is resolved here at config-load time, i.e.
+    // before stancl/tenancy's DatabaseTenancyBootstrapper swaps the default
+    // connection to 'tenant' for a given request. Almost all documented
+    // endpoints are tenant-scoped, so 'tenant' must be listed explicitly or
+    // Scribe's response-call mutations on those routes are never rolled back.
+    'database_connections_to_transact' => [config('database.default'), 'tenant'],
 
     'fractal' => [
         // If you are using a custom serializer with league/fractal, you can specify it here.

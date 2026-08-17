@@ -1,14 +1,14 @@
-name: SecurityPolicy
+name: Eligibility
 description: ''
 endpoints:
   -
     custom: []
     httpMethods:
       - GET
-    uri: api/v1/security/policies
+    uri: api/v1/eligibility-chains
     metadata:
       custom: []
-      groupName: SecurityPolicy
+      groupName: Eligibility
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -18,11 +18,378 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+              "data": []
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '220'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/eligibility-chains
+    metadata:
+      custom: []
+      groupName: Eligibility
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      exam_id:
+        custom: []
+        name: exam_id
+        description: 'Must be a valid UUID.'
+        required: true
+        example: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      chain_step_number:
+        custom: []
+        name: chain_step_number
+        description: 'Must be at least 1.'
+        required: true
+        example: 67
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      prerequisite_exam_id:
+        custom: []
+        name: prerequisite_exam_id
+        description: 'Must be a valid UUID.'
+        required: false
+        example: c90237e9-ced5-3af6-88ea-84aeaa148878
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      condition_type:
+        custom: []
+        name: condition_type
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: i
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      condition_data:
+        custom: []
+        name: condition_data
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      logical_operator:
+        custom: []
+        name: logical_operator
+        description: ''
+        required: false
+        example: AND
+        type: string
+        enumValues:
+          - AND
+          - OR
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      min_score_required:
+        custom: []
+        name: min_score_required
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: false
+        example: 8
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_satisfied_override_available:
+        custom: []
+        name: is_satisfied_override_available
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      chain_metadata:
+        custom: []
+        name: chain_metadata
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      exam_id: 6ff8f7f6-1eb3-3525-be4a-3932c805afed
+      chain_step_number: 67
+      prerequisite_exam_id: c90237e9-ced5-3af6-88ea-84aeaa148878
+      condition_type: i
+      logical_operator: AND
+      min_score_required: 8
+      is_satisfied_override_available: true
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+      -
+        custom: []
+        status: 500
+        content: |-
+          {
+              "error": {
+                  "code": "internal_error",
+                  "message": "An unexpected error occurred."
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '219'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/eligibility-chains/{chainId}'
+    metadata:
+      custom: []
+      groupName: Eligibility
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      chainId:
+        custom: []
+        name: chainId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      chainId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -56,10 +423,18 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
+        content: |-
+          {
+              "error": {
+                  "code": "eligibility_chain_not_found",
+                  "message": "Eligibility chain BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found."
+              }
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '218'
           access-control-allow-origin: '*'
         description: null
       -
@@ -74,6 +449,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -102,7 +489,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null
@@ -110,10 +497,10 @@ endpoints:
     custom: []
     httpMethods:
       - PATCH
-    uri: api/v1/security/policies
+    uri: 'api/v1/eligibility-chains/{chainId}'
     metadata:
       custom: []
-      groupName: SecurityPolicy
+      groupName: Eligibility
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -123,138 +510,97 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      mfa_enabled:
+    urlParameters:
+      chainId:
         custom: []
-        name: mfa_enabled
+        name: chainId
         description: ''
-        required: false
-        example: false
-        type: boolean
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      mfa_method:
+    cleanUrlParameters:
+      chainId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      chain_step_number:
         custom: []
-        name: mfa_method
-        description: 'Must not be greater than 64 characters.'
+        name: chain_step_number
+        description: 'Must be at least 1.'
         required: false
-        example: b
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      prerequisite_exam_id:
+        custom: []
+        name: prerequisite_exam_id
+        description: 'Must be a valid UUID.'
+        required: false
+        example: a4855dc5-0acb-33c3-b921-f4291f719ca0
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         deprecated: false
-      password_min_length:
+      condition_type:
         custom: []
-        name: password_min_length
-        description: 'Must be at least 8. Must not be greater than 128.'
+        name: condition_type
+        description: 'Must not be greater than 100 characters.'
         required: false
-        example: 22
-        type: integer
+        example: z
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      password_require_uppercase:
+      condition_data:
         custom: []
-        name: password_require_uppercase
+        name: condition_data
         description: ''
         required: false
-        example: false
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      password_require_lowercase:
-        custom: []
-        name: password_require_lowercase
-        description: ''
-        required: false
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      password_require_numbers:
-        custom: []
-        name: password_require_numbers
-        description: ''
-        required: false
-        example: false
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      password_require_special_chars:
-        custom: []
-        name: password_require_special_chars
-        description: ''
-        required: false
-        example: false
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      password_expiry_days:
-        custom: []
-        name: password_expiry_days
-        description: 'Must be at least 1. Must not be greater than 3650.'
-        required: false
-        example: 7
-        type: integer
+        example: null
+        type: object
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         deprecated: false
-      password_history_count:
+      logical_operator:
         custom: []
-        name: password_history_count
-        description: 'Must be at least 0. Must not be greater than 24.'
+        name: logical_operator
+        description: ''
         required: false
-        example: 6
-        type: integer
-        enumValues: []
+        example: AND
+        type: string
+        enumValues:
+          - AND
+          - OR
         exampleWasSpecified: false
         nullable: true
         deprecated: false
-      session_timeout_minutes:
+      min_score_required:
         custom: []
-        name: session_timeout_minutes
-        description: 'Must be at least 5. Must not be greater than 1440.'
+        name: min_score_required
+        description: 'Must be at least 0. Must not be greater than 100.'
         required: false
         example: 17
-        type: integer
+        type: number
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         deprecated: false
-      session_absolute_timeout_hours:
+      is_satisfied_override_available:
         custom: []
-        name: session_absolute_timeout_hours
-        description: 'Must be at least 1. Must not be greater than 168.'
-        required: false
-        example: 15
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        deprecated: false
-      session_force_reauth_on_privilege_change:
-        custom: []
-        name: session_force_reauth_on_privilege_change
+        name: is_satisfied_override_available
         description: ''
         required: false
         example: false
@@ -263,81 +609,24 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         deprecated: false
-      ip_whitelisting_enabled:
+      chain_metadata:
         custom: []
-        name: ip_whitelisting_enabled
+        name: chain_metadata
         description: ''
         required: false
-        example: true
-        type: boolean
+        example: null
+        type: object
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      enable_biometric_auth:
-        custom: []
-        name: enable_biometric_auth
-        description: ''
-        required: false
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      enforce_tls_1_3_minimum:
-        custom: []
-        name: enforce_tls_1_3_minimum
-        description: ''
-        required: false
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      disable_weak_ciphers:
-        custom: []
-        name: disable_weak_ciphers
-        description: ''
-        required: false
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        deprecated: false
-      allowed_ip_ranges:
-        custom: []
-        name: allowed_ip_ranges
-        description: 'Must not be greater than 64 characters.'
-        required: false
-        example:
-          - 'y'
-        type: 'string[]'
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
+        nullable: true
         deprecated: false
     cleanBodyParameters:
-      mfa_enabled: false
-      mfa_method: b
-      password_min_length: 22
-      password_require_uppercase: false
-      password_require_lowercase: true
-      password_require_numbers: false
-      password_require_special_chars: false
-      password_expiry_days: 7
-      password_history_count: 6
-      session_timeout_minutes: 17
-      session_absolute_timeout_hours: 15
-      session_force_reauth_on_privilege_change: false
-      ip_whitelisting_enabled: true
-      enable_biometric_auth: true
-      enforce_tls_1_3_minimum: true
-      disable_weak_ciphers: true
-      allowed_ip_ranges:
-        - 'y'
+      chain_step_number: 16
+      prerequisite_exam_id: a4855dc5-0acb-33c3-b921-f4291f719ca0
+      condition_type: z
+      logical_operator: AND
+      min_score_required: 17
+      is_satisfied_override_available: false
     fileParameters: []
     responses:
       -
@@ -367,10 +656,18 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
+        content: |-
+          {
+              "error": {
+                  "code": "eligibility_chain_not_found",
+                  "message": "Eligibility chain BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found."
+              }
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '217'
           access-control-allow-origin: '*'
         description: null
       -
@@ -385,6 +682,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -413,7 +722,127 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/eligibility-chains/{chainId}'
+    metadata:
+      custom: []
+      groupName: Eligibility
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      chainId:
+        custom: []
+        name: chainId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      chainId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null

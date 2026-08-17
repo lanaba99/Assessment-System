@@ -18,6 +18,9 @@ use Illuminate\Http\Request;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group Workflows
+ */
 class ApprovalWorkflowController extends Controller
 {
     use AuthorizesRequests;

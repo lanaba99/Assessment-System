@@ -1,14 +1,14 @@
-name: AnalyticsDashboard
+name: PenaltyRules
 description: ''
 endpoints:
   -
     custom: []
     httpMethods:
       - GET
-    uri: api/v1/analytics/dashboard
+    uri: api/v1/penalty-rules
     metadata:
       custom: []
-      groupName: AnalyticsDashboard
+      groupName: PenaltyRules
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
@@ -18,11 +18,384 @@ endpoints:
       deprecated: false
     headers:
       Authorization: 'Bearer {SANCTUM_TOKEN}'
-      X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+              "data": []
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '160'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/v1/penalty-rules
+    metadata:
+      custom: []
+      groupName: PenaltyRules
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      penalty_name:
+        custom: []
+        name: penalty_name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      penalty_type:
+        custom: []
+        name: penalty_type
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      trigger_condition:
+        custom: []
+        name: trigger_condition
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      trigger_parameters:
+        custom: []
+        name: trigger_parameters
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      penalty_points:
+        custom: []
+        name: penalty_points
+        description: 'Must be at least 0.'
+        required: false
+        example: 12
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      penalty_percentage:
+        custom: []
+        name: penalty_percentage
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: false
+        example: 17
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_cumulative:
+        custom: []
+        name: is_cumulative
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      penalty_metadata:
+        custom: []
+        name: penalty_metadata
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      penalty_name: b
+      penalty_type: 'n'
+      trigger_condition: g
+      penalty_points: 12
+      penalty_percentage: 17
+      is_cumulative: false
+      is_active: true
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 201
+        content: |-
+          {
+              "data": {
+                  "penalty_rule_id": "97d7c1bd-1568-4ac7-87d0-3490084e428d",
+                  "penalty_name": "b",
+                  "penalty_type": "n",
+                  "trigger_condition": "g",
+                  "trigger_parameters": null,
+                  "penalty_points": 12,
+                  "penalty_percentage": 17,
+                  "is_cumulative": false,
+                  "is_active": true,
+                  "penalty_metadata": null
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '159'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/v1/penalty-rules/{ruleId}'
+    metadata:
+      custom: []
+      groupName: PenaltyRules
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      ruleId:
+        custom: []
+        name: ruleId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      ruleId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -56,10 +429,18 @@ endpoints:
       -
         custom: []
         status: 404
-        content: '{"error":{"code":"not_found","message":"The requested resource was not found."}}'
+        content: |-
+          {
+              "error": {
+                  "code": "penalty_rule_not_found",
+                  "message": "Penalty rule BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found."
+              }
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '158'
           access-control-allow-origin: '*'
         description: null
       -
@@ -74,6 +455,18 @@ endpoints:
           }
         headers: []
         description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
       -
         custom: []
         status: 422
@@ -102,7 +495,644 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/v1/penalty-rules/{ruleId}'
+    metadata:
+      custom: []
+      groupName: PenaltyRules
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      ruleId:
+        custom: []
+        name: ruleId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      ruleId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      penalty_name:
+        custom: []
+        name: penalty_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      penalty_type:
+        custom: []
+        name: penalty_type
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      trigger_condition:
+        custom: []
+        name: trigger_condition
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      trigger_parameters:
+        custom: []
+        name: trigger_parameters
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      penalty_points:
+        custom: []
+        name: penalty_points
+        description: 'Must be at least 0.'
+        required: false
+        example: 12
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      penalty_percentage:
+        custom: []
+        name: penalty_percentage
+        description: 'Must be at least 0. Must not be greater than 100.'
+        required: false
+        example: 17
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_cumulative:
+        custom: []
+        name: is_cumulative
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_active:
+        custom: []
+        name: is_active
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      penalty_metadata:
+        custom: []
+        name: penalty_metadata
+        description: ''
+        required: false
+        example: null
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      penalty_name: b
+      penalty_type: 'n'
+      trigger_condition: g
+      penalty_points: 12
+      penalty_percentage: 17
+      is_cumulative: false
+      is_active: true
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '157'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/penalty-rules/{ruleId}'
+    metadata:
+      custom: []
+      groupName: PenaltyRules
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      ruleId:
+        custom: []
+        name: ruleId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      ruleId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/penalty-rules/{ruleId}/activate'
+    metadata:
+      custom: []
+      groupName: PenaltyRules
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      ruleId:
+        custom: []
+        name: ruleId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      ruleId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "penalty_rule_not_found",
+                  "message": "Penalty rule BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found."
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '156'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: 'api/v1/penalty-rules/{ruleId}/deactivate'
+    metadata:
+      custom: []
+      groupName: PenaltyRules
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {SANCTUM_TOKEN}'
+      X-Tenant-ID: 00000000-0000-4000-8000-000000000001
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      ruleId:
+        custom: []
+        name: ruleId
+        description: ''
+        required: true
+        example: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      ruleId: BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 401
+        content: |-
+          {
+              "error": {
+                  "code": "not_authenticated",
+                  "message": "Authentication required."
+              }
+          }
+        headers: []
+        description: Unauthenticated
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+              "error": {
+                  "code": "forbidden",
+                  "message": "You are not authorized to perform this action."
+              }
+          }
+        headers: []
+        description: Forbidden
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "penalty_rule_not_found",
+                  "message": "Penalty rule BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found."
+              }
+          }
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '240'
+          x-ratelimit-remaining: '155'
+          access-control-allow-origin: '*'
+        description: null
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+              "error": {
+                  "code": "not_found",
+                  "message": "The requested resource was not found."
+              }
+          }
+        headers: []
+        description: 'Not found'
+      -
+        custom: []
+        status: 409
+        content: |-
+          {
+              "error": {
+                  "code": "conflict",
+                  "message": "The request conflicts with the current state of the resource."
+              }
+          }
+        headers: []
+        description: Conflict
+      -
+        custom: []
+        status: 422
+        content: |-
+          {
+              "error": {
+                  "code": "validation_failed",
+                  "message": "The given data was invalid."
+              }
+          }
+        headers: []
+        description: 'Validation error'
+      -
+        custom: []
+        status: 429
+        content: |-
+          {
+              "error": {
+                  "code": "rate_limited",
+                  "message": "Too many requests. Please try again later."
+              }
+          }
+        headers: []
+        description: 'Too many requests'
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|kdC16J6NGZCQR0k1O3xCuIfEwRKsxvSdiu41VjbK73da5158'
     controller: null
     method: null
     route: null

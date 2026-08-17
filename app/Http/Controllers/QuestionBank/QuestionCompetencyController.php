@@ -12,6 +12,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group QuestionBank
+ */
 class QuestionCompetencyController extends Controller
 {
     use AuthorizesRequests;

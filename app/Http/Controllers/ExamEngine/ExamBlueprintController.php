@@ -13,6 +13,9 @@ use Illuminate\Http\JsonResponse;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @group ExamEngine
+ */
 class ExamBlueprintController extends Controller
 {
     use AuthorizesRequests;

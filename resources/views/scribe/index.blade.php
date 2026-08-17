@@ -162,6 +162,31 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-certificates" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="certificates">
+                    <a href="#certificates">Certificates</a>
+                </li>
+                                    <ul id="tocify-subheader-certificates" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="certificates-GETapi-v1-certificates-verify--token-">
+                                <a href="#certificates-GETapi-v1-certificates-verify--token-">GET api/v1/certificates/verify/{token}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="certificates-GETapi-v1-certificates">
+                                <a href="#certificates-GETapi-v1-certificates">GET api/v1/certificates</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="certificates-GETapi-v1-certificates--certificateId-">
+                                <a href="#certificates-GETapi-v1-certificates--certificateId-">GET api/v1/certificates/{certificateId}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="certificates-POSTapi-v1-certificates--certificateId--regenerate">
+                                <a href="#certificates-POSTapi-v1-certificates--certificateId--regenerate">POST api/v1/certificates/{certificateId}/regenerate</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="certificates-POSTapi-v1-certificates--certificateId--revoke">
+                                <a href="#certificates-POSTapi-v1-certificates--certificateId--revoke">POST api/v1/certificates/{certificateId}/revoke</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="certificates-GETapi-v1-exam-sessions--sessionId--certificate">
+                                <a href="#certificates-GETapi-v1-exam-sessions--sessionId--certificate">GET api/v1/exam-sessions/{sessionId}/certificate</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-cohortmembers" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="cohortmembers">
                     <a href="#cohortmembers">CohortMembers</a>
@@ -246,74 +271,8 @@
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-certificates-verify--token-">
-                                <a href="#endpoints-GETapi-v1-certificates-verify--token-">GET api/v1/certificates/verify/{token}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-certificates">
-                                <a href="#endpoints-GETapi-v1-certificates">GET api/v1/certificates</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-certificates--certificateId-">
-                                <a href="#endpoints-GETapi-v1-certificates--certificateId-">GET api/v1/certificates/{certificateId}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-certificates--certificateId--regenerate">
-                                <a href="#endpoints-POSTapi-v1-certificates--certificateId--regenerate">POST api/v1/certificates/{certificateId}/regenerate</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-certificates--certificateId--revoke">
-                                <a href="#endpoints-POSTapi-v1-certificates--certificateId--revoke">POST api/v1/certificates/{certificateId}/revoke</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exam-sessions--sessionId--certificate">
-                                <a href="#endpoints-GETapi-v1-exam-sessions--sessionId--certificate">GET api/v1/exam-sessions/{sessionId}/certificate</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exams--examId--results-export">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exams--examId--results-export">
                                 <a href="#endpoints-GETapi-v1-exams--examId--results-export">GET api/v1/exams/{examId}/results/export</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-tenant-settings">
-                                <a href="#endpoints-GETapi-v1-tenant-settings">GET api/v1/tenant/settings</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-v1-tenant-settings">
-                                <a href="#endpoints-PATCHapi-v1-tenant-settings">PATCH api/v1/tenant/settings</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-questions--questionId--competencies">
-                                <a href="#endpoints-POSTapi-v1-questions--questionId--competencies">POST api/v1/questions/{questionId}/competencies</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-questions--questionId--competencies">
-                                <a href="#endpoints-GETapi-v1-questions--questionId--competencies">GET api/v1/questions/{questionId}/competencies</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-question-versions--versionId--approve">
-                                <a href="#endpoints-POSTapi-v1-question-versions--versionId--approve">POST api/v1/question-versions/{versionId}/approve</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-v1-question-versions--versionId--psychometrics">
-                                <a href="#endpoints-PATCHapi-v1-question-versions--versionId--psychometrics">PATCH api/v1/question-versions/{versionId}/psychometrics</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-exams--examId--sections">
-                                <a href="#endpoints-POSTapi-v1-exams--examId--sections">POST api/v1/exams/{examId}/sections</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exams--examId--sections">
-                                <a href="#endpoints-GETapi-v1-exams--examId--sections">GET api/v1/exams/{examId}/sections</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-exams--examId--blueprints">
-                                <a href="#endpoints-POSTapi-v1-exams--examId--blueprints">POST api/v1/exams/{examId}/blueprints</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-exams--examId--blueprints">
-                                <a href="#endpoints-GETapi-v1-exams--examId--blueprints">GET api/v1/exams/{examId}/blueprints</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-workflows">
-                                <a href="#endpoints-GETapi-v1-workflows">GET /api/v1/workflows</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-workflows">
-                                <a href="#endpoints-POSTapi-v1-workflows">POST api/v1/workflows</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-workflows--workflowId-">
-                                <a href="#endpoints-GETapi-v1-workflows--workflowId-">GET api/v1/workflows/{workflowId}</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-workflows--workflowId--approve">
-                                <a href="#endpoints-POSTapi-v1-workflows--workflowId--approve">POST api/v1/workflows/{workflowId}/approve</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-v1-workflows--workflowId--reject">
-                                <a href="#endpoints-POSTapi-v1-workflows--workflowId--reject">POST api/v1/workflows/{workflowId}/reject</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-v1-workflows--workflowId--history">
-                                <a href="#endpoints-GETapi-v1-workflows--workflowId--history">GET api/v1/workflows/{workflowId}/history</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -338,7 +297,19 @@
                     <a href="#examengine">ExamEngine</a>
                 </li>
                                     <ul id="tocify-subheader-examengine" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="examengine-GETapi-v1-exams">
+                                                    <li class="tocify-item level-2" data-unique="examengine-POSTapi-v1-exams--examId--sections">
+                                <a href="#examengine-POSTapi-v1-exams--examId--sections">POST api/v1/exams/{examId}/sections</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="examengine-GETapi-v1-exams--examId--sections">
+                                <a href="#examengine-GETapi-v1-exams--examId--sections">GET api/v1/exams/{examId}/sections</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="examengine-POSTapi-v1-exams--examId--blueprints">
+                                <a href="#examengine-POSTapi-v1-exams--examId--blueprints">POST api/v1/exams/{examId}/blueprints</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="examengine-GETapi-v1-exams--examId--blueprints">
+                                <a href="#examengine-GETapi-v1-exams--examId--blueprints">GET api/v1/exams/{examId}/blueprints</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="examengine-GETapi-v1-exams">
                                 <a href="#examengine-GETapi-v1-exams">GET api/v1/exams</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="examengine-POSTapi-v1-exams">
@@ -495,7 +466,19 @@
                     <a href="#questionbank">QuestionBank</a>
                 </li>
                                     <ul id="tocify-subheader-questionbank" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="questionbank-POSTapi-v1-questions-bulk-import">
+                                                    <li class="tocify-item level-2" data-unique="questionbank-POSTapi-v1-questions--questionId--competencies">
+                                <a href="#questionbank-POSTapi-v1-questions--questionId--competencies">POST api/v1/questions/{questionId}/competencies</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="questionbank-GETapi-v1-questions--questionId--competencies">
+                                <a href="#questionbank-GETapi-v1-questions--questionId--competencies">GET api/v1/questions/{questionId}/competencies</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="questionbank-POSTapi-v1-question-versions--versionId--approve">
+                                <a href="#questionbank-POSTapi-v1-question-versions--versionId--approve">POST api/v1/question-versions/{versionId}/approve</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="questionbank-PATCHapi-v1-question-versions--versionId--psychometrics">
+                                <a href="#questionbank-PATCHapi-v1-question-versions--versionId--psychometrics">PATCH api/v1/question-versions/{versionId}/psychometrics</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="questionbank-POSTapi-v1-questions-bulk-import">
                                 <a href="#questionbank-POSTapi-v1-questions-bulk-import">POST api/v1/questions/bulk-import</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="questionbank-GETapi-v1-questions">
@@ -576,6 +559,19 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-tenantsettings" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="tenantsettings">
+                    <a href="#tenantsettings">TenantSettings</a>
+                </li>
+                                    <ul id="tocify-subheader-tenantsettings" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="tenantsettings-GETapi-v1-tenant-settings">
+                                <a href="#tenantsettings-GETapi-v1-tenant-settings">GET api/v1/tenant/settings</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="tenantsettings-PATCHapi-v1-tenant-settings">
+                                <a href="#tenantsettings-PATCHapi-v1-tenant-settings">PATCH api/v1/tenant/settings</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-user" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="user">
                     <a href="#user">User</a>
@@ -604,6 +600,31 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-workflows" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="workflows">
+                    <a href="#workflows">Workflows</a>
+                </li>
+                                    <ul id="tocify-subheader-workflows" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="workflows-GETapi-v1-workflows">
+                                <a href="#workflows-GETapi-v1-workflows">GET /api/v1/workflows</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="workflows-POSTapi-v1-workflows">
+                                <a href="#workflows-POSTapi-v1-workflows">POST api/v1/workflows</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="workflows-GETapi-v1-workflows--workflowId-">
+                                <a href="#workflows-GETapi-v1-workflows--workflowId-">GET api/v1/workflows/{workflowId}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="workflows-POSTapi-v1-workflows--workflowId--approve">
+                                <a href="#workflows-POSTapi-v1-workflows--workflowId--approve">POST api/v1/workflows/{workflowId}/approve</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="workflows-POSTapi-v1-workflows--workflowId--reject">
+                                <a href="#workflows-POSTapi-v1-workflows--workflowId--reject">POST api/v1/workflows/{workflowId}/reject</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="workflows-GETapi-v1-workflows--workflowId--history">
+                                <a href="#workflows-GETapi-v1-workflows--workflowId--history">GET api/v1/workflows/{workflowId}/history</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
             </div>
 
     <ul class="toc-footer" id="toc-footer">
@@ -623,7 +644,7 @@
         <h1 id="introduction">Introduction</h1>
 <p>Tenant-scoped REST API for the Enterprise Assessment Engine (EAE) SaaS platform.</p>
 <aside>
-    <strong>Base URL</strong>: <code>http://alpha-engine.localhost:8000</code>
+    <strong>Base URL</strong>: <code>http://localhost</code>
 </aside>
 <pre><code>This documentation aims to provide all the information you need to work with our API.
 
@@ -669,21 +690,21 @@ Full details: see `API-CONTRACT.md` in the repository root.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/analytics/dashboard" \
+    --get "http://localhost/api/v1/analytics/dashboard" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/analytics/dashboard"
+    "http://localhost/api/v1/analytics/dashboard"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -697,6 +718,27 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-analytics-dashboard">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 146
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;total_finalized_results&quot;: 0,
+        &quot;average_percentage&quot;: 0
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -722,16 +764,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -741,14 +776,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -826,10 +861,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-analytics-dashboard"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -875,21 +910,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result" \
+    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -936,13 +971,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 168
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;result_not_ready&quot;,
+        &quot;message&quot;: &quot;No assessment result exists for session BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc yet.&quot;
     }
 }</code>
  </pre>
@@ -955,6 +992,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -1032,10 +1081,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--result"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1094,9 +1143,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/auth/login" \
+    "http://localhost/api/v1/auth/login" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1109,12 +1158,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/auth/login"
+    "http://localhost/api/v1/auth/login"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1134,6 +1183,27 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-login">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 239
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;invalid_credentials&quot;,
+        &quot;message&quot;: &quot;Invalid credentials.&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -1159,16 +1229,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -1178,14 +1241,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -1263,10 +1326,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-auth-login"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1345,9 +1408,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/auth/mfa/verify" \
+    "http://localhost/api/v1/auth/mfa/verify" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1359,12 +1422,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/auth/mfa/verify"
+    "http://localhost/api/v1/auth/mfa/verify"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1383,6 +1446,27 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-mfa-verify">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 5
+x-ratelimit-remaining: 4
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;mfa_session_not_eligible&quot;,
+        &quot;message&quot;: &quot;Session 6ff8f7f6-1eb3-3525-be4a-3932c805afed is not awaiting MFA verification.&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -1408,16 +1492,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -1427,14 +1504,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -1512,10 +1589,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-auth-mfa-verify"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1582,9 +1659,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/auth/password/forgot" \
+    "http://localhost/api/v1/auth/password/forgot" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1595,12 +1672,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/auth/password/forgot"
+    "http://localhost/api/v1/auth/password/forgot"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1618,6 +1695,26 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-password-forgot">
+            <blockquote>
+            <p>Example response (202):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 237
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;message&quot;: &quot;If the account exists, a password reset link has been sent.&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -1643,16 +1740,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -1662,14 +1752,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -1747,10 +1837,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-auth-password-forgot"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1805,9 +1895,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/auth/password/reset" \
+    "http://localhost/api/v1/auth/password/reset" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1820,12 +1910,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/auth/password/reset"
+    "http://localhost/api/v1/auth/password/reset"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1870,16 +1960,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -1889,14 +1972,47 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 5
+x-ratelimit-remaining: 3
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The token field must be at least 16 characters. (and 5 more errors)&quot;,
+        &quot;fields&quot;: {
+            &quot;token&quot;: [
+                &quot;The token field must be at least 16 characters.&quot;
+            ],
+            &quot;password&quot;: [
+                &quot;The password field must be at least 12 characters.&quot;,
+                &quot;The password field must contain at least one uppercase and one lowercase letter.&quot;,
+                &quot;The password field must contain at least one letter.&quot;,
+                &quot;The password field must contain at least one number.&quot;,
+                &quot;The password field confirmation does not match.&quot;
+            ]
+        }
     }
 }</code>
  </pre>
@@ -1974,10 +2090,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-auth-password-reset"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2056,9 +2172,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/auth/accept-invite" \
+    "http://localhost/api/v1/auth/accept-invite" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2071,12 +2187,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/auth/accept-invite"
+    "http://localhost/api/v1/auth/accept-invite"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2121,16 +2237,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -2140,14 +2249,47 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 5
+x-ratelimit-remaining: 2
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The token field must be at least 32 characters. (and 5 more errors)&quot;,
+        &quot;fields&quot;: {
+            &quot;token&quot;: [
+                &quot;The token field must be at least 32 characters.&quot;
+            ],
+            &quot;password&quot;: [
+                &quot;The password field must be at least 12 characters.&quot;,
+                &quot;The password field must contain at least one uppercase and one lowercase letter.&quot;,
+                &quot;The password field must contain at least one letter.&quot;,
+                &quot;The password field must contain at least one number.&quot;,
+                &quot;The password field confirmation does not match.&quot;
+            ]
+        }
     }
 }</code>
  </pre>
@@ -2225,10 +2367,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-auth-accept-invite"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2307,9 +2449,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/auth/logout" \
+    "http://localhost/api/v1/auth/logout" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2320,12 +2462,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/auth/logout"
+    "http://localhost/api/v1/auth/logout"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2343,6 +2485,20 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-logout">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 239
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+<code>Empty response</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -2368,16 +2524,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -2387,14 +2536,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -2472,10 +2621,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-auth-logout"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2530,9 +2679,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/auth/refresh" \
+    "http://localhost/api/v1/auth/refresh" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2543,12 +2692,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/auth/refresh"
+    "http://localhost/api/v1/auth/refresh"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2566,6 +2715,27 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-auth-refresh">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 238
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;{REDACTED}&quot;,
+        &quot;session_id&quot;: &quot;6ff8f7f6-1eb3-3525-be4a-3932c805afed&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -2591,16 +2761,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -2610,14 +2773,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -2695,10 +2858,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-auth-refresh"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2757,21 +2920,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/categories/tree" \
+    --get "http://localhost/api/v1/categories/tree" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/categories/tree"
+    "http://localhost/api/v1/categories/tree"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2785,6 +2948,34 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-categories-tree">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 208
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: &quot;a0838558-5b33-41b6-8ae2-549e46d93aed&quot;,
+            &quot;title&quot;: &quot;General Knowledge&quot;,
+            &quot;parent_id&quot;: null,
+            &quot;category_code&quot;: &quot;CAT-GEN&quot;,
+            &quot;hierarchy_level&quot;: 0,
+            &quot;is_active&quot;: true,
+            &quot;children&quot;: []
+        }
+    ]
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -2810,16 +3001,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -2829,14 +3013,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -2914,10 +3098,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-categories-tree"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2959,9 +3143,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/categories" \
+    "http://localhost/api/v1/categories" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2974,12 +3158,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/categories"
+    "http://localhost/api/v1/categories"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -3024,16 +3208,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -3043,14 +3220,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -3075,6 +3252,27 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;rate_limited&quot;,
         &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 207
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;internal_error&quot;,
+        &quot;message&quot;: &quot;An unexpected error occurred.&quot;
     }
 }</code>
  </pre>
@@ -3128,10 +3326,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-categories"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -3210,9 +3408,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move" \
+    "http://localhost/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -3223,12 +3421,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move"
+    "http://localhost/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -3259,6 +3457,27 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 206
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;http_error&quot;,
+        &quot;message&quot;: &quot;This action is unauthorized.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (403, Forbidden):</p>
         </blockquote>
                 <pre>
@@ -3271,16 +3490,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -3290,14 +3502,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -3375,10 +3587,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-categories--id--move"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -3446,21 +3658,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/categories/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -3507,6 +3719,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -3584,10 +3808,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-categories--id-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -3646,9 +3870,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/admin/auth/login" \
+    "http://localhost/api/v1/admin/auth/login" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -3660,12 +3884,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/admin/auth/login"
+    "http://localhost/api/v1/admin/auth/login"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -3736,6 +3960,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -3813,10 +4049,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-admin-auth-login"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -3887,21 +4123,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/admin/tenants" \
+    --get "http://localhost/api/v1/admin/tenants" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants"
+    "http://localhost/api/v1/admin/tenants"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -3967,6 +4203,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -4044,10 +4292,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-admin-tenants"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -4089,9 +4337,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants" \
+    "http://localhost/api/v1/admin/tenants" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -4108,12 +4356,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants"
+    "http://localhost/api/v1/admin/tenants"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4193,6 +4441,18 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (422, Validation error):</p>
         </blockquote>
                 <pre>
@@ -4266,10 +4526,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-admin-tenants"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -4420,21 +4680,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto" \
+    --get "http://localhost/api/v1/admin/tenants/architecto" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto"
+    "http://localhost/api/v1/admin/tenants/architecto"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4500,6 +4760,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -4577,10 +4849,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-admin-tenants--tenantId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -4635,9 +4907,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto" \
+    "http://localhost/api/v1/admin/tenants/architecto" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -4654,12 +4926,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto"
+    "http://localhost/api/v1/admin/tenants/architecto"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -4739,6 +5011,18 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (422, Validation error):</p>
         </blockquote>
                 <pre>
@@ -4812,10 +5096,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-admin-tenants--tenantId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -4969,21 +5253,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto/suspend" \
+    "http://localhost/api/v1/admin/tenants/architecto/suspend" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto/suspend"
+    "http://localhost/api/v1/admin/tenants/architecto/suspend"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -5049,6 +5333,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -5126,10 +5422,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--suspend"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -5184,21 +5480,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto/reactivate" \
+    "http://localhost/api/v1/admin/tenants/architecto/reactivate" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/admin/tenants/architecto/reactivate"
+    "http://localhost/api/v1/admin/tenants/architecto/reactivate"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -5264,6 +5560,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -5341,10 +5649,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-admin-tenants--tenantId--reactivate"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -5385,6 +5693,1393 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
+                <h1 id="certificates">Certificates</h1>
+
+    
+
+                                <h2 id="certificates-GETapi-v1-certificates-verify--token-">GET api/v1/certificates/verify/{token}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-certificates-verify--token-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/certificates/verify/architecto" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/certificates/verify/architecto"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-certificates-verify--token-">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 233
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;valid&quot;: false
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-certificates-verify--token-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-certificates-verify--token-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates-verify--token-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-certificates-verify--token-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-certificates-verify--token-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-certificates-verify--token-" data-method="GET"
+      data-path="api/v1/certificates/verify/{token}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates-verify--token-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/certificates/verify/{token}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="GETapi-v1-certificates-verify--token-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="certificates-GETapi-v1-certificates">GET api/v1/certificates</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-certificates">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/certificates" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/certificates"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-certificates">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 230
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;per_page&quot;: 15,
+        &quot;total&quot;: 0
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-certificates" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-certificates"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-certificates" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-certificates">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-certificates" data-method="GET"
+      data-path="api/v1/certificates"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/certificates</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-certificates"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-certificates"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="certificates-GETapi-v1-certificates--certificateId-">GET api/v1/certificates/{certificateId}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-certificates--certificateId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-certificates--certificateId-">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 229
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-certificates--certificateId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-certificates--certificateId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates--certificateId-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-certificates--certificateId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-certificates--certificateId-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-certificates--certificateId-" data-method="GET"
+      data-path="api/v1/certificates/{certificateId}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates--certificateId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/certificates/{certificateId}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="certificateId"                data-endpoint="GETapi-v1-certificates--certificateId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="certificates-POSTapi-v1-certificates--certificateId--regenerate">POST api/v1/certificates/{certificateId}/regenerate</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-certificates--certificateId--regenerate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/regenerate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/regenerate"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-certificates--certificateId--regenerate">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 228
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-certificates--certificateId--regenerate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-certificates--certificateId--regenerate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-certificates--certificateId--regenerate"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-certificates--certificateId--regenerate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-certificates--certificateId--regenerate">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-certificates--certificateId--regenerate" data-method="POST"
+      data-path="api/v1/certificates/{certificateId}/regenerate"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-certificates--certificateId--regenerate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/certificates/{certificateId}/regenerate</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="certificateId"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="certificates-POSTapi-v1-certificates--certificateId--revoke">POST api/v1/certificates/{certificateId}/revoke</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-certificates--certificateId--revoke">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/revoke" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/revoke"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "reason": "b"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-certificates--certificateId--revoke">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 227
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-certificates--certificateId--revoke" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-certificates--certificateId--revoke"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-certificates--certificateId--revoke"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-certificates--certificateId--revoke" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-certificates--certificateId--revoke">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-certificates--certificateId--revoke" data-method="POST"
+      data-path="api/v1/certificates/{certificateId}/revoke"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-certificates--certificateId--revoke', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/certificates/{certificateId}/revoke</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="certificateId"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 500 characters. Example: <code>b</code></p>
+        </div>
+        </form>
+
+                    <h2 id="certificates-GETapi-v1-exam-sessions--sessionId--certificate">GET api/v1/exam-sessions/{sessionId}/certificate</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-exam-sessions--sessionId--certificate">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/certificate" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/certificate"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-exam-sessions--sessionId--certificate">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 226
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-exam-sessions--sessionId--certificate" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-exam-sessions--sessionId--certificate"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exam-sessions--sessionId--certificate"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-exam-sessions--sessionId--certificate" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-exam-sessions--sessionId--certificate">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-exam-sessions--sessionId--certificate" data-method="GET"
+      data-path="api/v1/exam-sessions/{sessionId}/certificate"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--certificate', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/exam-sessions/{sessionId}/certificate</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>sessionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="sessionId"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
                 <h1 id="cohortmembers">CohortMembers</h1>
 
     
@@ -5403,21 +7098,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members" \
+    --get "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members"
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -5464,13 +7159,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 179
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;cohort_not_found&quot;,
+        &quot;message&quot;: &quot;Cohort [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -5483,6 +7180,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -5560,10 +7269,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-cohorts--cohortId--members"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -5618,9 +7327,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members" \
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -5632,12 +7341,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members"
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -5681,16 +7390,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -5700,14 +7402,40 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 178
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The selected user id is invalid.&quot;,
+        &quot;fields&quot;: {
+            &quot;user_id&quot;: [
+                &quot;The selected user id is invalid.&quot;
+            ]
+        }
     }
 }</code>
  </pre>
@@ -5785,10 +7513,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-cohorts--cohortId--members"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -5870,21 +7598,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/members/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -5931,6 +7659,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -6008,10 +7748,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-cohorts--cohortId--members--userId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -6082,21 +7822,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/cohorts" \
+    --get "http://localhost/api/v1/cohorts" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/cohorts"
+    "http://localhost/api/v1/cohorts"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -6110,6 +7850,43 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-cohorts">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 183
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: &quot;abd2d4ea-5085-41e9-bde6-3240a6a4001d&quot;,
+            &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+            &quot;created_by_user_id&quot;: &quot;cec0dcc3-f6c9-4085-b098-08817a540559&quot;,
+            &quot;parent_cohort_id&quot;: null,
+            &quot;cohort_name&quot;: &quot;Q2 Engineering Batch&quot;,
+            &quot;cohort_code&quot;: &quot;COH-Q2-ENG&quot;,
+            &quot;cohort_type&quot;: &quot;training&quot;,
+            &quot;cohort_description&quot;: &quot;Q2 engineering candidate cohort seeded for baseline development.&quot;,
+            &quot;hierarchy_level&quot;: 0,
+            &quot;cohort_attributes&quot;: {
+                &quot;cycle&quot;: &quot;Q2&quot;,
+                &quot;department&quot;: &quot;engineering&quot;
+            },
+            &quot;is_active&quot;: true,
+            &quot;created_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;,
+            &quot;updated_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;
+        }
+    ]
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -6135,16 +7912,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -6154,14 +7924,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -6239,10 +8009,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-cohorts"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -6284,9 +8054,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/cohorts" \
+    "http://localhost/api/v1/cohorts" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -6301,12 +8071,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/cohorts"
+    "http://localhost/api/v1/cohorts"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -6353,16 +8123,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -6372,14 +8135,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -6404,6 +8167,27 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;rate_limited&quot;,
         &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 182
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;internal_error&quot;,
+        &quot;message&quot;: &quot;An unexpected error occurred.&quot;
     }
 }</code>
  </pre>
@@ -6457,10 +8241,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-cohorts"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -6577,21 +8361,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -6638,13 +8422,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 181
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;cohort_not_found&quot;,
+        &quot;message&quot;: &quot;Cohort [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -6657,6 +8443,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -6734,10 +8532,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-cohorts--cohortId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -6792,29 +8590,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"cohort_name\": \"b\",
     \"cohort_code\": \"n\",
-    \"cohort_type\": \"batch\",
+    \"cohort_type\": \"group\",
     \"cohort_description\": \"architecto\",
-    \"is_active\": true
+    \"is_active\": false
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -6822,9 +8620,9 @@ const headers = {
 let body = {
     "cohort_name": "b",
     "cohort_code": "n",
-    "cohort_type": "batch",
+    "cohort_type": "group",
     "cohort_description": "architecto",
-    "is_active": true
+    "is_active": false
 };
 
 fetch(url, {
@@ -6869,6 +8667,8 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 180
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -6888,6 +8688,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -6965,10 +8777,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-cohorts--cohortId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -7039,10 +8851,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="cohort_type"                data-endpoint="PATCHapi-v1-cohorts--cohortId-"
-               value="batch"
+               value="group"
                data-component="body">
     <br>
-<p>Example: <code>batch</code></p>
+<p>Example: <code>group</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>team</code></li> <li><code>department</code></li> <li><code>batch</code></li> <li><code>class</code></li> <li><code>cohort</code></li> <li><code>group</code></li></ul>
         </div>
@@ -7090,7 +8902,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -7108,21 +8920,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/cohorts/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -7169,6 +8981,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -7246,10 +9070,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-cohorts--cohortId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -7308,21 +9132,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/competencies/tree" \
+    --get "http://localhost/api/v1/competencies/tree" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/competencies/tree"
+    "http://localhost/api/v1/competencies/tree"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -7336,6 +9160,49 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-competencies-tree">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 192
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: &quot;a410ee9d-b841-4968-9d59-bbe183c098a3&quot;,
+            &quot;name&quot;: &quot;Analytical Reasoning&quot;,
+            &quot;parent_id&quot;: null,
+            &quot;hierarchy_level&quot;: 0,
+            &quot;is_active&quot;: true,
+            &quot;children&quot;: []
+        },
+        {
+            &quot;id&quot;: &quot;685b0c93-7848-4a0d-8ea2-336484bbdf10&quot;,
+            &quot;name&quot;: &quot;Risk Management&quot;,
+            &quot;parent_id&quot;: null,
+            &quot;hierarchy_level&quot;: 0,
+            &quot;is_active&quot;: true,
+            &quot;children&quot;: []
+        },
+        {
+            &quot;id&quot;: &quot;f7ead04a-920e-4d79-b04c-12949db11c73&quot;,
+            &quot;name&quot;: &quot;Technical Proficiency&quot;,
+            &quot;parent_id&quot;: null,
+            &quot;hierarchy_level&quot;: 0,
+            &quot;is_active&quot;: true,
+            &quot;children&quot;: []
+        }
+    ]
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -7361,16 +9228,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -7380,14 +9240,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -7465,10 +9325,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-competencies-tree"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -7510,9 +9370,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/competencies" \
+    "http://localhost/api/v1/competencies" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -7525,12 +9385,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/competencies"
+    "http://localhost/api/v1/competencies"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -7575,16 +9435,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -7594,14 +9447,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -7626,6 +9479,27 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;rate_limited&quot;,
         &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 191
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;internal_error&quot;,
+        &quot;message&quot;: &quot;An unexpected error occurred.&quot;
     }
 }</code>
  </pre>
@@ -7679,10 +9553,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-competencies"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -7761,9 +9635,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move" \
+    "http://localhost/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -7774,12 +9648,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move"
+    "http://localhost/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/move"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -7810,6 +9684,27 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 190
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;http_error&quot;,
+        &quot;message&quot;: &quot;This action is unauthorized.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (403, Forbidden):</p>
         </blockquote>
                 <pre>
@@ -7822,16 +9717,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -7841,14 +9729,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -7926,10 +9814,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-competencies--id--move"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -7997,21 +9885,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/competencies/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -8058,6 +9946,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -8135,10 +10035,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-competencies--id-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -8197,21 +10097,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/eligibility-chains" \
+    --get "http://localhost/api/v1/eligibility-chains" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains"
+    "http://localhost/api/v1/eligibility-chains"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -8225,6 +10125,24 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-eligibility-chains">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 220
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -8250,16 +10168,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -8269,14 +10180,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -8354,10 +10265,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-eligibility-chains"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -8399,9 +10310,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains" \
+    "http://localhost/api/v1/eligibility-chains" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -8409,7 +10320,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"chain_step_number\": 67,
     \"prerequisite_exam_id\": \"c90237e9-ced5-3af6-88ea-84aeaa148878\",
     \"condition_type\": \"i\",
-    \"logical_operator\": \"OR\",
+    \"logical_operator\": \"AND\",
     \"min_score_required\": 8,
     \"is_satisfied_override_available\": true
 }"
@@ -8418,12 +10329,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains"
+    "http://localhost/api/v1/eligibility-chains"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -8433,7 +10344,7 @@ let body = {
     "chain_step_number": 67,
     "prerequisite_exam_id": "c90237e9-ced5-3af6-88ea-84aeaa148878",
     "condition_type": "i",
-    "logical_operator": "OR",
+    "logical_operator": "AND",
     "min_score_required": 8,
     "is_satisfied_override_available": true
 };
@@ -8472,16 +10383,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -8491,14 +10395,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -8523,6 +10427,27 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;rate_limited&quot;,
         &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 219
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;internal_error&quot;,
+        &quot;message&quot;: &quot;An unexpected error occurred.&quot;
     }
 }</code>
  </pre>
@@ -8576,10 +10501,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-eligibility-chains"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -8673,10 +10598,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="logical_operator"                data-endpoint="POSTapi-v1-eligibility-chains"
-               value="OR"
+               value="AND"
                data-component="body">
     <br>
-<p>Example: <code>OR</code></p>
+<p>Example: <code>AND</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>AND</code></li> <li><code>OR</code></li></ul>
         </div>
@@ -8742,21 +10667,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://localhost/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -8803,13 +10728,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 218
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;eligibility_chain_not_found&quot;,
+        &quot;message&quot;: &quot;Eligibility chain BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -8822,6 +10749,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -8899,10 +10838,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-eligibility-chains--chainId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -8957,30 +10896,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"chain_step_number\": 16,
     \"prerequisite_exam_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\",
     \"condition_type\": \"z\",
-    \"logical_operator\": \"OR\",
+    \"logical_operator\": \"AND\",
     \"min_score_required\": 17,
-    \"is_satisfied_override_available\": true
+    \"is_satisfied_override_available\": false
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -8989,9 +10928,9 @@ let body = {
     "chain_step_number": 16,
     "prerequisite_exam_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0",
     "condition_type": "z",
-    "logical_operator": "OR",
+    "logical_operator": "AND",
     "min_score_required": 17,
-    "is_satisfied_override_available": true
+    "is_satisfied_override_available": false
 };
 
 fetch(url, {
@@ -9036,13 +10975,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 217
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;eligibility_chain_not_found&quot;,
+        &quot;message&quot;: &quot;Eligibility chain BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -9055,6 +10996,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -9132,10 +11085,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -9230,10 +11183,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="logical_operator"                data-endpoint="PATCHapi-v1-eligibility-chains--chainId-"
-               value="OR"
+               value="AND"
                data-component="body">
     <br>
-<p>Example: <code>OR</code></p>
+<p>Example: <code>AND</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>AND</code></li> <li><code>OR</code></li></ul>
         </div>
@@ -9269,7 +11222,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>chain_metadata</code></b>&nbsp;&nbsp;
@@ -9299,21 +11252,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/eligibility-chains/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -9360,6 +11313,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -9437,10 +11402,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-eligibility-chains--chainId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -9485,1305 +11450,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="endpoints-GETapi-v1-certificates-verify--token-">GET api/v1/certificates/verify/{token}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-certificates-verify--token-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/certificates/verify/architecto" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/certificates/verify/architecto"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-certificates-verify--token-">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-certificates-verify--token-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-certificates-verify--token-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates-verify--token-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-certificates-verify--token-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-certificates-verify--token-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-certificates-verify--token-" data-method="GET"
-      data-path="api/v1/certificates/verify/{token}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates-verify--token-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/certificates/verify/{token}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates-verify--token-"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates-verify--token-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-certificates-verify--token-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-certificates-verify--token-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="token"                data-endpoint="GETapi-v1-certificates-verify--token-"
-               value="architecto"
-               data-component="url">
-    <br>
-<p>Example: <code>architecto</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-GETapi-v1-certificates">GET api/v1/certificates</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-certificates">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/certificates" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/certificates"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-certificates">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-certificates" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-certificates"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-certificates" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-certificates">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-certificates" data-method="GET"
-      data-path="api/v1/certificates"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/certificates</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-certificates"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-certificates"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        </form>
-
-                    <h2 id="endpoints-GETapi-v1-certificates--certificateId-">GET api/v1/certificates/{certificateId}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-certificates--certificateId-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-certificates--certificateId-">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-certificates--certificateId-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-certificates--certificateId-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-certificates--certificateId-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-certificates--certificateId-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-certificates--certificateId-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-certificates--certificateId-" data-method="GET"
-      data-path="api/v1/certificates/{certificateId}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-certificates--certificateId-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/certificates/{certificateId}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-certificates--certificateId-"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-certificates--certificateId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-certificates--certificateId-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-certificates--certificateId-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="certificateId"                data-endpoint="GETapi-v1-certificates--certificateId-"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-POSTapi-v1-certificates--certificateId--regenerate">POST api/v1/certificates/{certificateId}/regenerate</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-certificates--certificateId--regenerate">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/regenerate" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/regenerate"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-certificates--certificateId--regenerate">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-certificates--certificateId--regenerate" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-certificates--certificateId--regenerate"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-certificates--certificateId--regenerate"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-certificates--certificateId--regenerate" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-certificates--certificateId--regenerate">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-certificates--certificateId--regenerate" data-method="POST"
-      data-path="api/v1/certificates/{certificateId}/regenerate"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-certificates--certificateId--regenerate', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/certificates/{certificateId}/regenerate</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="certificateId"                data-endpoint="POSTapi-v1-certificates--certificateId--regenerate"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-POSTapi-v1-certificates--certificateId--revoke">POST api/v1/certificates/{certificateId}/revoke</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-certificates--certificateId--revoke">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/revoke" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"reason\": \"b\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/certificates/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/revoke"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "reason": "b"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-certificates--certificateId--revoke">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-certificates--certificateId--revoke" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-certificates--certificateId--revoke"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-certificates--certificateId--revoke"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-certificates--certificateId--revoke" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-certificates--certificateId--revoke">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-certificates--certificateId--revoke" data-method="POST"
-      data-path="api/v1/certificates/{certificateId}/revoke"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-certificates--certificateId--revoke', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/certificates/{certificateId}/revoke</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>certificateId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="certificateId"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="reason"                data-endpoint="POSTapi-v1-certificates--certificateId--revoke"
-               value="b"
-               data-component="body">
-    <br>
-<p>Must not be greater than 500 characters. Example: <code>b</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-GETapi-v1-exam-sessions--sessionId--certificate">GET api/v1/exam-sessions/{sessionId}/certificate</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-exam-sessions--sessionId--certificate">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/certificate" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/certificate"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-exam-sessions--sessionId--certificate">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-exam-sessions--sessionId--certificate" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-exam-sessions--sessionId--certificate"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-exam-sessions--sessionId--certificate"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-exam-sessions--sessionId--certificate" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-exam-sessions--sessionId--certificate">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-exam-sessions--sessionId--certificate" data-method="GET"
-      data-path="api/v1/exam-sessions/{sessionId}/certificate"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exam-sessions--sessionId--certificate', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/exam-sessions/{sessionId}/certificate</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>sessionId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="sessionId"                data-endpoint="GETapi-v1-exam-sessions--sessionId--certificate"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-GETapi-v1-exams--examId--results-export">GET api/v1/exams/{examId}/results/export</h2>
+                                <h2 id="endpoints-GETapi-v1-exams--examId--results-export">GET api/v1/exams/{examId}/results/export</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -10797,21 +11464,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/results/export" \
+    --get "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/results/export" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/results/export"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/results/export"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -10826,6 +11493,24 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exams--examId--results-export">
             <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">content-type: text/csv; charset=utf-8
+cache-control: no-cache, private
+content-disposition: attachment; filename=exam-BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc-results.csv
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 225
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">&quot;Candidate Name&quot;,&quot;Final Score&quot;,Grade,Passing,&quot;Graded At&quot;
+</code>
+ </pre>
+            <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
                 <pre>
@@ -10850,16 +11535,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -10869,14 +11547,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -10954,10 +11632,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId--results-export"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -10998,7 +11676,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-v1-tenant-settings">GET api/v1/tenant/settings</h2>
+                <h1 id="enrollments">Enrollments</h1>
+
+    
+
+                                <h2 id="enrollments-GETapi-v1-exams--examId--enrollments">GET api/v1/exams/{examId}/enrollments</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -11006,27 +11688,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-v1-tenant-settings">
+<span id="example-requests-GETapi-v1-exams--examId--enrollments">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/tenant/settings" \
+    --get "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/tenant/settings"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -11039,7 +11721,25 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-v1-tenant-settings">
+<span id="example-responses-GETapi-v1-exams--examId--enrollments">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 145
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -11065,16 +11765,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -11084,14 +11777,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -11120,34 +11813,34 @@ access-control-allow-origin: *
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-v1-tenant-settings" hidden>
+<span id="execution-results-GETapi-v1-exams--examId--enrollments" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-tenant-settings"></span>:
+                id="execution-response-status-GETapi-v1-exams--examId--enrollments"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-tenant-settings"
+    <pre class="json"><code id="execution-response-content-GETapi-v1-exams--examId--enrollments"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-v1-tenant-settings" hidden>
+<span id="execution-error-GETapi-v1-exams--examId--enrollments" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-tenant-settings">
+    <pre><code id="execution-error-message-GETapi-v1-exams--examId--enrollments">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-v1-tenant-settings" data-method="GET"
-      data-path="api/v1/tenant/settings"
+<form id="form-GETapi-v1-exams--examId--enrollments" data-method="GET"
+      data-path="api/v1/exams/{examId}/enrollments"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-tenant-settings', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exams--examId--enrollments', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/v1/tenant/settings</code></b>
+            <b><code>api/v1/exams/{examId}/enrollments</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -11156,7 +11849,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-tenant-settings"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exams--examId--enrollments"
                value="Bearer {SANCTUM_TOKEN}"
                data-component="header">
     <br>
@@ -11168,11 +11861,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-tenant-settings"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId--enrollments"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -11180,7 +11873,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-tenant-settings"
+                              name="Content-Type"                data-endpoint="GETapi-v1-exams--examId--enrollments"
                value="application/json"
                data-component="header">
     <br>
@@ -11192,15 +11885,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-tenant-settings"
+                              name="Accept"                data-endpoint="GETapi-v1-exams--examId--enrollments"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="examId"                data-endpoint="GETapi-v1-exams--examId--enrollments"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
 
-                    <h2 id="endpoints-PATCHapi-v1-tenant-settings">PATCH api/v1/tenant/settings</h2>
+                    <h2 id="enrollments-POSTapi-v1-exams--examId--enrollments">POST api/v1/exams/{examId}/enrollments</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -11208,306 +11914,47 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-PATCHapi-v1-tenant-settings">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/tenant/settings" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"organization_name\": \"b\",
-    \"organization_type\": \"n\",
-    \"primary_contact_email\": \"ashly64@example.com\",
-    \"primary_contact_phone\": \"v\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/tenant/settings"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "organization_name": "b",
-    "organization_type": "n",
-    "primary_contact_email": "ashly64@example.com",
-    "primary_contact_phone": "v"
-};
-
-fetch(url, {
-    method: "PATCH",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PATCHapi-v1-tenant-settings">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-PATCHapi-v1-tenant-settings" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PATCHapi-v1-tenant-settings"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-v1-tenant-settings"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-PATCHapi-v1-tenant-settings" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-v1-tenant-settings">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-PATCHapi-v1-tenant-settings" data-method="PATCH"
-      data-path="api/v1/tenant/settings"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-tenant-settings', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-purple">PATCH</small>
-            <b><code>api/v1/tenant/settings</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-tenant-settings"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-tenant-settings"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PATCHapi-v1-tenant-settings"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PATCHapi-v1-tenant-settings"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>organization_name</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="organization_name"                data-endpoint="PATCHapi-v1-tenant-settings"
-               value="b"
-               data-component="body">
-    <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>organization_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="organization_type"                data-endpoint="PATCHapi-v1-tenant-settings"
-               value="n"
-               data-component="body">
-    <br>
-<p>Must not be greater than 100 characters. Example: <code>n</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>primary_contact_email</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="primary_contact_email"                data-endpoint="PATCHapi-v1-tenant-settings"
-               value="ashly64@example.com"
-               data-component="body">
-    <br>
-<p>Must be a valid email address. Example: <code>ashly64@example.com</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>primary_contact_phone</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="primary_contact_phone"                data-endpoint="PATCHapi-v1-tenant-settings"
-               value="v"
-               data-component="body">
-    <br>
-<p>Must not be greater than 50 characters. Example: <code>v</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-v1-questions--questionId--competencies">POST api/v1/questions/{questionId}/competencies</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-questions--questionId--competencies">
+<span id="example-requests-POSTapi-v1-exams--examId--enrollments">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies" \
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"competency_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"weight_percentage\": 7,
-    \"is_primary_competency\": false
+    \"candidate_user_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"cohort_id\": \"6b72fe4a-5b40-307c-bc24-f79acf9a1bb9\",
+    \"start_window_date\": \"2026-08-17T14:38:41\",
+    \"end_window_date\": \"2052-09-09\",
+    \"max_attempts_allowed\": 2,
+    \"enrollment_notes\": \"g\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "competency_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "weight_percentage": 7,
-    "is_primary_competency": false
+    "candidate_user_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "cohort_id": "6b72fe4a-5b40-307c-bc24-f79acf9a1bb9",
+    "start_window_date": "2026-08-17T14:38:41",
+    "end_window_date": "2052-09-09",
+    "max_attempts_allowed": 2,
+    "enrollment_notes": "g"
 };
 
 fetch(url, {
@@ -11518,7 +11965,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-v1-questions--questionId--competencies">
+<span id="example-responses-POSTapi-v1-exams--examId--enrollments">
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -11544,16 +11991,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -11563,14 +12003,40 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 144
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The selected candidate user id is invalid.&quot;,
+        &quot;fields&quot;: {
+            &quot;candidate_user_id&quot;: [
+                &quot;The selected candidate user id is invalid.&quot;
+            ]
+        }
     }
 }</code>
  </pre>
@@ -11599,34 +12065,34 @@ access-control-allow-origin: *
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTapi-v1-questions--questionId--competencies" hidden>
+<span id="execution-results-POSTapi-v1-exams--examId--enrollments" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-questions--questionId--competencies"></span>:
+                id="execution-response-status-POSTapi-v1-exams--examId--enrollments"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-questions--questionId--competencies"
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-exams--examId--enrollments"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-v1-questions--questionId--competencies" hidden>
+<span id="execution-error-POSTapi-v1-exams--examId--enrollments" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-questions--questionId--competencies">
+    <pre><code id="execution-error-message-POSTapi-v1-exams--examId--enrollments">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-v1-questions--questionId--competencies" data-method="POST"
-      data-path="api/v1/questions/{questionId}/competencies"
+<form id="form-POSTapi-v1-exams--examId--enrollments" data-method="POST"
+      data-path="api/v1/exams/{examId}/enrollments"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-questions--questionId--competencies', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exams--examId--enrollments', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/v1/questions/{questionId}/competencies</code></b>
+            <b><code>api/v1/exams/{examId}/enrollments</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -11635,7 +12101,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exams--examId--enrollments"
                value="Bearer {SANCTUM_TOKEN}"
                data-component="header">
     <br>
@@ -11647,11 +12113,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -11659,7 +12125,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
                value="application/json"
                data-component="header">
     <br>
@@ -11671,7 +12137,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                              name="Accept"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
                value="application/json"
                data-component="header">
     <br>
@@ -11679,12 +12145,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>questionId</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="questionId"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                              name="examId"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
                value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
                data-component="url">
     <br>
@@ -11692,54 +12158,80 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>competency_id</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>candidate_user_id</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="competency_id"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                              name="candidate_user_id"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
                value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
                data-component="body">
     <br>
 <p>Must be a valid UUID. Must match an existing stored value. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>weight_percentage</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="weight_percentage"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
-               value="7"
-               data-component="body">
-    <br>
-<p>Must be at least 0. Must not be greater than 100. Example: <code>7</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>is_primary_competency</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
+            <b style="line-height: 2;"><code>cohort_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
 <i>optional</i> &nbsp;
  &nbsp;
-                <label data-endpoint="POSTapi-v1-questions--questionId--competencies" style="display: none">
-            <input type="radio" name="is_primary_competency"
-                   value="true"
-                   data-endpoint="POSTapi-v1-questions--questionId--competencies"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="POSTapi-v1-questions--questionId--competencies" style="display: none">
-            <input type="radio" name="is_primary_competency"
-                   value="false"
-                   data-endpoint="POSTapi-v1-questions--questionId--competencies"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
+                <input type="text" style="display: none"
+                              name="cohort_id"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
+               value="6b72fe4a-5b40-307c-bc24-f79acf9a1bb9"
+               data-component="body">
     <br>
-<p>Example: <code>false</code></p>
+<p>Must be a valid UUID. Example: <code>6b72fe4a-5b40-307c-bc24-f79acf9a1bb9</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>start_window_date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="start_window_date"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
+               value="2026-08-17T14:38:41"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Example: <code>2026-08-17T14:38:41</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>end_window_date</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="end_window_date"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
+               value="2052-09-09"
+               data-component="body">
+    <br>
+<p>Must be a valid date. Must be a date after or equal to <code>start_window_date</code>. Example: <code>2052-09-09</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>max_attempts_allowed</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="max_attempts_allowed"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
+               value="2"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Must not be greater than 10. Example: <code>2</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>enrollment_notes</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="enrollment_notes"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
+               value="g"
+               data-component="body">
+    <br>
+<p>Must not be greater than 1000 characters. Example: <code>g</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-v1-questions--questionId--competencies">GET api/v1/questions/{questionId}/competencies</h2>
+                    <h2 id="enrollments-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">DELETE api/v1/exams/{examId}/enrollments/{enrollmentId}</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -11747,40 +12239,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-v1-questions--questionId--competencies">
+<span id="example-requests-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies" \
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 
 fetch(url, {
-    method: "GET",
+    method: "DELETE",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-v1-questions--questionId--competencies">
+<span id="example-responses-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -11806,16 +12298,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -11825,14 +12310,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -11861,34 +12346,34 @@ access-control-allow-origin: *
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-v1-questions--questionId--competencies" hidden>
+<span id="execution-results-DELETEapi-v1-exams--examId--enrollments--enrollmentId-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-questions--questionId--competencies"></span>:
+                id="execution-response-status-DELETEapi-v1-exams--examId--enrollments--enrollmentId-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-questions--questionId--competencies"
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-v1-questions--questionId--competencies" hidden>
+<span id="execution-error-DELETEapi-v1-exams--examId--enrollments--enrollmentId-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-questions--questionId--competencies">
+    <pre><code id="execution-error-message-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-v1-questions--questionId--competencies" data-method="GET"
-      data-path="api/v1/questions/{questionId}/competencies"
+<form id="form-DELETEapi-v1-exams--examId--enrollments--enrollmentId-" data-method="DELETE"
+      data-path="api/v1/exams/{examId}/enrollments/{enrollmentId}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-questions--questionId--competencies', this);">
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-exams--examId--enrollments--enrollmentId-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
             </h3>
             <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/questions/{questionId}/competencies</code></b>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/exams/{examId}/enrollments/{enrollmentId}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -11897,7 +12382,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-questions--questionId--competencies"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
                value="Bearer {SANCTUM_TOKEN}"
                data-component="header">
     <br>
@@ -11909,11 +12394,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-questions--questionId--competencies"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+                              name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -11921,7 +12406,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
                value="application/json"
                data-component="header">
     <br>
@@ -11933,7 +12418,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+                              name="Accept"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
                value="application/json"
                data-component="header">
     <br>
@@ -11941,12 +12426,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>questionId</code></b>&nbsp;&nbsp;
+                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="questionId"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+                              name="examId"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>enrollmentId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="enrollmentId"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
                value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
                data-component="url">
     <br>
@@ -11954,500 +12451,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi-v1-question-versions--versionId--approve">POST api/v1/question-versions/{versionId}/approve</h2>
+                <h1 id="examengine">ExamEngine</h1>
 
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
+    
 
-
-
-<span id="example-requests-POSTapi-v1-question-versions--versionId--approve">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-question-versions--versionId--approve">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-question-versions--versionId--approve" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-question-versions--versionId--approve"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-question-versions--versionId--approve"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-question-versions--versionId--approve" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-question-versions--versionId--approve">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-question-versions--versionId--approve" data-method="POST"
-      data-path="api/v1/question-versions/{versionId}/approve"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-question-versions--versionId--approve', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/question-versions/{versionId}/approve</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-question-versions--versionId--approve"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>versionId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="versionId"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-PATCHapi-v1-question-versions--versionId--psychometrics">PATCH api/v1/question-versions/{versionId}/psychometrics</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-PATCHapi-v1-question-versions--versionId--psychometrics">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/psychometrics" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"difficulty_index\": 1,
-    \"discrimination_index\": 1,
-    \"sample_size\": 67,
-    \"correct_count\": 12
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/psychometrics"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "difficulty_index": 1,
-    "discrimination_index": 1,
-    "sample_size": 67,
-    "correct_count": 12
-};
-
-fetch(url, {
-    method: "PATCH",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PATCHapi-v1-question-versions--versionId--psychometrics">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-PATCHapi-v1-question-versions--versionId--psychometrics" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PATCHapi-v1-question-versions--versionId--psychometrics"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PATCHapi-v1-question-versions--versionId--psychometrics"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-PATCHapi-v1-question-versions--versionId--psychometrics" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PATCHapi-v1-question-versions--versionId--psychometrics">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-PATCHapi-v1-question-versions--versionId--psychometrics" data-method="PATCH"
-      data-path="api/v1/question-versions/{versionId}/psychometrics"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-question-versions--versionId--psychometrics', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-purple">PATCH</small>
-            <b><code>api/v1/question-versions/{versionId}/psychometrics</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>versionId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="versionId"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>difficulty_index</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="difficulty_index"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="1"
-               data-component="body">
-    <br>
-<p>Must be at least 0. Must not be greater than 1. Example: <code>1</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>discrimination_index</code></b>&nbsp;&nbsp;
-<small>number</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="discrimination_index"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="1"
-               data-component="body">
-    <br>
-<p>Must be at least 0. Must not be greater than 1. Example: <code>1</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>sample_size</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="sample_size"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="67"
-               data-component="body">
-    <br>
-<p>Must be at least 1. Example: <code>67</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>correct_count</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="correct_count"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
-               value="12"
-               data-component="body">
-    <br>
-<p>Must be at least 0. Example: <code>12</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-v1-exams--examId--sections">POST api/v1/exams/{examId}/sections</h2>
+                                <h2 id="examengine-POSTapi-v1-exams--examId--sections">POST api/v1/exams/{examId}/sections</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -12461,9 +12469,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections" \
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -12478,12 +12486,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -12538,6 +12546,8 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 201
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -12557,6 +12567,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -12634,10 +12656,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams--examId--sections"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -12739,7 +12761,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-v1-exams--examId--sections">GET api/v1/exams/{examId}/sections</h2>
+                    <h2 id="examengine-GETapi-v1-exams--examId--sections">GET api/v1/exams/{examId}/sections</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -12753,21 +12775,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections" \
+    --get "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sections"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -12781,6 +12803,24 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-exams--examId--sections">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 200
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -12806,16 +12846,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -12825,14 +12858,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -12910,10 +12943,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId--sections"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -12954,7 +12987,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-POSTapi-v1-exams--examId--blueprints">POST api/v1/exams/{examId}/blueprints</h2>
+                    <h2 id="examengine-POSTapi-v1-exams--examId--blueprints">POST api/v1/exams/{examId}/blueprints</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -12968,9 +13001,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints" \
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -12988,12 +13021,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -13043,16 +13076,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -13062,14 +13088,49 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 199
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The selected section id is invalid. (and 3 more errors)&quot;,
+        &quot;fields&quot;: {
+            &quot;section_id&quot;: [
+                &quot;The selected section id is invalid.&quot;
+            ],
+            &quot;competency_id&quot;: [
+                &quot;The selected competency id is invalid.&quot;
+            ],
+            &quot;max_questions_count&quot;: [
+                &quot;The max questions count field must be greater than or equal to 27.&quot;
+            ],
+            &quot;max_weight_percentage&quot;: [
+                &quot;The max weight percentage field must be greater than or equal to 22.&quot;
+            ]
+        }
     }
 }</code>
  </pre>
@@ -13147,10 +13208,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams--examId--blueprints"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -13288,7 +13349,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="endpoints-GETapi-v1-exams--examId--blueprints">GET api/v1/exams/{examId}/blueprints</h2>
+                    <h2 id="examengine-GETapi-v1-exams--examId--blueprints">GET api/v1/exams/{examId}/blueprints</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -13302,21 +13363,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints" \
+    --get "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/blueprints"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -13330,6 +13391,24 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-exams--examId--blueprints">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 198
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -13355,16 +13434,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -13374,14 +13446,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -13459,10 +13531,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId--blueprints"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -13503,2183 +13575,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                     </form>
 
-                    <h2 id="endpoints-GETapi-v1-workflows">GET /api/v1/workflows</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-<p>Single general-purpose list endpoint — filtered via query params, not
-one endpoint per status/type. All filters are optional:
-?status=pending          → workflows awaiting approval
-?status=approved         → already-approved workflows
-?status=rejected         → already-rejected workflows
-(no status)              → all workflows
-?workflow_type=...        → result_publication | exam_publication
-?resource_type=...        → filter by the resource's morph alias
-?resource_id=...          → workflows for one specific resource
-?per_page=...             → page size (default 15, max 100)</p>
-<p>Ownership scoping (Separation of Duties):</p>
-<ul>
-<li>Actors with workflows.approve (Tenant Admin) see every workflow
-in the tenant — they are the independent reviewer and must be
-able to find anything awaiting a decision.</li>
-<li>Actors WITHOUT workflows.approve, i.e. initiator-only roles like
-Technical Evaluator, are always scoped to workflows THEY
-initiated. This is enforced server-side (initiated_by_user_id is
-forced to the authenticated user's id) — it cannot be widened
-or bypassed via query params.</li>
-</ul>
-
-<span id="example-requests-GETapi-v1-workflows">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/workflows" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"status\": \"approved\",
-    \"workflow_type\": \"result_publication\",
-    \"resource_type\": \"architecto\",
-    \"resource_id\": \"architecto\",
-    \"per_page\": 22
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/workflows"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "status": "approved",
-    "workflow_type": "result_publication",
-    "resource_type": "architecto",
-    "resource_id": "architecto",
-    "per_page": 22
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-workflows">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-workflows" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-workflows"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-workflows" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-workflows">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-workflows" data-method="GET"
-      data-path="api/v1/workflows"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/workflows</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-workflows"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-workflows"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="status"                data-endpoint="GETapi-v1-workflows"
-               value="approved"
-               data-component="body">
-    <br>
-<p>Example: <code>approved</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>pending</code></li> <li><code>approved</code></li> <li><code>rejected</code></li></ul>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>workflow_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflow_type"                data-endpoint="GETapi-v1-workflows"
-               value="result_publication"
-               data-component="body">
-    <br>
-<p>Example: <code>result_publication</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>result_publication</code></li> <li><code>exam_publication</code></li></ul>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>resource_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="resource_type"                data-endpoint="GETapi-v1-workflows"
-               value="architecto"
-               data-component="body">
-    <br>
-<p>Example: <code>architecto</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>resource_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="resource_id"                data-endpoint="GETapi-v1-workflows"
-               value="architecto"
-               data-component="body">
-    <br>
-<p>Example: <code>architecto</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="per_page"                data-endpoint="GETapi-v1-workflows"
-               value="22"
-               data-component="body">
-    <br>
-<p>Must be at least 1. Must not be greater than 100. Example: <code>22</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-POSTapi-v1-workflows">POST api/v1/workflows</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-workflows">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/workflows" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"resource_type\": \"exam\",
-    \"resource_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"workflow_type\": \"result_publication\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/workflows"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "resource_type": "exam",
-    "resource_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "workflow_type": "result_publication"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-workflows">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-workflows" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-workflows"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-workflows" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-workflows">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-workflows" data-method="POST"
-      data-path="api/v1/workflows"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/workflows</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-workflows"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>resource_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="resource_type"                data-endpoint="POSTapi-v1-workflows"
-               value="exam"
-               data-component="body">
-    <br>
-<p>Example: <code>exam</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>assessment_result</code></li> <li><code>exam</code></li></ul>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>resource_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="resource_id"                data-endpoint="POSTapi-v1-workflows"
-               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
-               data-component="body">
-    <br>
-<p>Must be a valid UUID. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>workflow_type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflow_type"                data-endpoint="POSTapi-v1-workflows"
-               value="result_publication"
-               data-component="body">
-    <br>
-<p>Example: <code>result_publication</code></p>
-Must be one of:
-<ul style="list-style-type: square;"><li><code>result_publication</code></li> <li><code>exam_publication</code></li></ul>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-GETapi-v1-workflows--workflowId-">GET api/v1/workflows/{workflowId}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-workflows--workflowId-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-workflows--workflowId-">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-workflows--workflowId-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-workflows--workflowId-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows--workflowId-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-workflows--workflowId-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-workflows--workflowId-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-workflows--workflowId-" data-method="GET"
-      data-path="api/v1/workflows/{workflowId}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows--workflowId-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/workflows/{workflowId}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflowId"                data-endpoint="GETapi-v1-workflows--workflowId-"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-POSTapi-v1-workflows--workflowId--approve">POST api/v1/workflows/{workflowId}/approve</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-workflows--workflowId--approve">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-workflows--workflowId--approve">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-workflows--workflowId--approve" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-workflows--workflowId--approve"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows--workflowId--approve"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-workflows--workflowId--approve" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-workflows--workflowId--approve">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-workflows--workflowId--approve" data-method="POST"
-      data-path="api/v1/workflows/{workflowId}/approve"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows--workflowId--approve', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/workflows/{workflowId}/approve</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflowId"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="endpoints-POSTapi-v1-workflows--workflowId--reject">POST api/v1/workflows/{workflowId}/reject</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-workflows--workflowId--reject">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reject" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"reason\": \"b\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reject"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "reason": "b"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-workflows--workflowId--reject">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-workflows--workflowId--reject" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-workflows--workflowId--reject"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows--workflowId--reject"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-workflows--workflowId--reject" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-workflows--workflowId--reject">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-workflows--workflowId--reject" data-method="POST"
-      data-path="api/v1/workflows/{workflowId}/reject"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows--workflowId--reject', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/workflows/{workflowId}/reject</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows--workflowId--reject"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflowId"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="reason"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
-               value="b"
-               data-component="body">
-    <br>
-<p>Must be at least 3 characters. Must not be greater than 1000 characters. Example: <code>b</code></p>
-        </div>
-        </form>
-
-                    <h2 id="endpoints-GETapi-v1-workflows--workflowId--history">GET api/v1/workflows/{workflowId}/history</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-workflows--workflowId--history">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/history" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/history"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-workflows--workflowId--history">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-workflows--workflowId--history" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-workflows--workflowId--history"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows--workflowId--history"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-workflows--workflowId--history" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-workflows--workflowId--history">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-workflows--workflowId--history" data-method="GET"
-      data-path="api/v1/workflows/{workflowId}/history"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows--workflowId--history', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/workflows/{workflowId}/history</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows--workflowId--history"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows--workflowId--history"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-workflows--workflowId--history"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-workflows--workflowId--history"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="workflowId"                data-endpoint="GETapi-v1-workflows--workflowId--history"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                <h1 id="enrollments">Enrollments</h1>
-
-    
-
-                                <h2 id="enrollments-GETapi-v1-exams--examId--enrollments">GET api/v1/exams/{examId}/enrollments</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-v1-exams--examId--enrollments">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-v1-exams--examId--enrollments">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-v1-exams--examId--enrollments" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-v1-exams--examId--enrollments"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-v1-exams--examId--enrollments"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-GETapi-v1-exams--examId--enrollments" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-v1-exams--examId--enrollments">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-GETapi-v1-exams--examId--enrollments" data-method="GET"
-      data-path="api/v1/exams/{examId}/enrollments"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-exams--examId--enrollments', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/v1/exams/{examId}/enrollments</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-exams--examId--enrollments"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId--enrollments"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-v1-exams--examId--enrollments"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-v1-exams--examId--enrollments"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="examId"                data-endpoint="GETapi-v1-exams--examId--enrollments"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                    <h2 id="enrollments-POSTapi-v1-exams--examId--enrollments">POST api/v1/exams/{examId}/enrollments</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-v1-exams--examId--enrollments">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --data "{
-    \"candidate_user_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"cohort_id\": \"6b72fe4a-5b40-307c-bc24-f79acf9a1bb9\",
-    \"start_window_date\": \"2026-08-17T13:18:52\",
-    \"end_window_date\": \"2052-09-09\",
-    \"max_attempts_allowed\": 2,
-    \"enrollment_notes\": \"g\"
-}"
-</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "candidate_user_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "cohort_id": "6b72fe4a-5b40-307c-bc24-f79acf9a1bb9",
-    "start_window_date": "2026-08-17T13:18:52",
-    "end_window_date": "2052-09-09",
-    "max_attempts_allowed": 2,
-    "enrollment_notes": "g"
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-v1-exams--examId--enrollments">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-POSTapi-v1-exams--examId--enrollments" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-v1-exams--examId--enrollments"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-v1-exams--examId--enrollments"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-v1-exams--examId--enrollments" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-v1-exams--examId--enrollments">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-v1-exams--examId--enrollments" data-method="POST"
-      data-path="api/v1/exams/{examId}/enrollments"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-exams--examId--enrollments', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/v1/exams/{examId}/enrollments</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="examId"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>candidate_user_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="candidate_user_id"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
-               data-component="body">
-    <br>
-<p>Must be a valid UUID. Must match an existing stored value. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>cohort_id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="cohort_id"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="6b72fe4a-5b40-307c-bc24-f79acf9a1bb9"
-               data-component="body">
-    <br>
-<p>Must be a valid UUID. Example: <code>6b72fe4a-5b40-307c-bc24-f79acf9a1bb9</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>start_window_date</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="start_window_date"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="2026-08-17T13:18:52"
-               data-component="body">
-    <br>
-<p>Must be a valid date. Example: <code>2026-08-17T13:18:52</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>end_window_date</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="end_window_date"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="2052-09-09"
-               data-component="body">
-    <br>
-<p>Must be a valid date. Must be a date after or equal to <code>start_window_date</code>. Example: <code>2052-09-09</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>max_attempts_allowed</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="max_attempts_allowed"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="2"
-               data-component="body">
-    <br>
-<p>Must be at least 1. Must not be greater than 10. Example: <code>2</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>enrollment_notes</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="enrollment_notes"                data-endpoint="POSTapi-v1-exams--examId--enrollments"
-               value="g"
-               data-component="body">
-    <br>
-<p>Must not be greater than 1000 characters. Example: <code>g</code></p>
-        </div>
-        </form>
-
-                    <h2 id="enrollments-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">DELETE api/v1/exams/{examId}/enrollments/{enrollmentId}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
-    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/enrollments/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-);
-
-const headers = {
-    "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-
-fetch(url, {
-    method: "DELETE",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">
-            <blockquote>
-            <p>Example response (401, Unauthenticated):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_authenticated&quot;,
-        &quot;message&quot;: &quot;Authentication required.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (403, Forbidden):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;forbidden&quot;,
-        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (404, Not found):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (422, Validation error):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;validation_failed&quot;,
-        &quot;message&quot;: &quot;The given data was invalid.&quot;
-    }
-}</code>
- </pre>
-            <blockquote>
-            <p>Example response (429, Too many requests):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json" style="max-height: 300px;">{
-    &quot;error&quot;: {
-        &quot;code&quot;: &quot;rate_limited&quot;,
-        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-DELETEapi-v1-exams--examId--enrollments--enrollmentId-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-v1-exams--examId--enrollments--enrollmentId-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-DELETEapi-v1-exams--examId--enrollments--enrollmentId-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-v1-exams--examId--enrollments--enrollmentId-">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-DELETEapi-v1-exams--examId--enrollments--enrollmentId-" data-method="DELETE"
-      data-path="api/v1/exams/{examId}/enrollments/{enrollmentId}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-exams--examId--enrollments--enrollmentId-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-            </h3>
-            <p>
-            <small class="badge badge-red">DELETE</small>
-            <b><code>api/v1/exams/{examId}/enrollments/{enrollmentId}</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-               value="Bearer {SANCTUM_TOKEN}"
-               data-component="header">
-    <br>
-<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
-               data-component="header">
-    <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
-            </div>
-                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>examId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="examId"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>enrollmentId</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="enrollmentId"                data-endpoint="DELETEapi-v1-exams--examId--enrollments--enrollmentId-"
-               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
-               data-component="url">
-    <br>
-<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
-            </div>
-                    </form>
-
-                <h1 id="examengine">ExamEngine</h1>
-
-    
-
-                                <h2 id="examengine-GETapi-v1-exams">GET api/v1/exams</h2>
+                    <h2 id="examengine-GETapi-v1-exams">GET api/v1/exams</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -15693,21 +13589,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exams" \
+    --get "http://localhost/api/v1/exams" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams"
+    "http://localhost/api/v1/exams"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -15722,6 +13618,58 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-exams">
             <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 189
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: &quot;bb5300a3-fff8-424a-bc25-78b62a63f190&quot;,
+            &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+            &quot;created_by_user_id&quot;: &quot;cec0dcc3-f6c9-4085-b098-08817a540559&quot;,
+            &quot;exam_name&quot;: &quot;Alpha Foundational Adaptive Exam&quot;,
+            &quot;exam_code&quot;: &quot;EXAM-ALPHA-001&quot;,
+            &quot;exam_description&quot;: &quot;Seeded adaptive exam covering all three core competencies.&quot;,
+            &quot;exam_type&quot;: &quot;certification&quot;,
+            &quot;assessment_mode&quot;: &quot;online&quot;,
+            &quot;total_questions&quot;: 10,
+            &quot;total_duration_minutes&quot;: 30,
+            &quot;pass_mark_percentage&quot;: 60,
+            &quot;difficulty_tier_level&quot;: 3,
+            &quot;is_adaptive_exam&quot;: true,
+            &quot;is_randomized&quot;: true,
+            &quot;allow_review_after_submit&quot;: true,
+            &quot;allow_flagging_for_review&quot;: true,
+            &quot;timer_visible_to_candidate&quot;: true,
+            &quot;show_correct_answers_after&quot;: false,
+            &quot;security_protocols&quot;: {
+                &quot;webcam_required&quot;: true,
+                &quot;lockdown_browser&quot;: true
+            },
+            &quot;exam_metadata&quot;: {
+                &quot;seeded&quot;: true
+            },
+            &quot;exam_status&quot;: &quot;published&quot;,
+            &quot;is_published&quot;: true,
+            &quot;published_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;,
+            &quot;archived_at&quot;: null,
+            &quot;created_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;,
+            &quot;updated_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
                 <pre>
@@ -15746,16 +13694,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -15765,14 +13706,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -15850,10 +13791,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -15895,9 +13836,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exams" \
+    "http://localhost/api/v1/exams" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -15905,16 +13846,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"exam_code\": \"n\",
     \"exam_description\": \"architecto\",
     \"exam_type\": \"training\",
-    \"assessment_mode\": \"online\",
+    \"assessment_mode\": \"hybrid\",
     \"total_questions\": 22,
     \"total_duration_minutes\": 7,
     \"pass_mark_percentage\": 16,
     \"difficulty_tier_level\": 2,
-    \"is_adaptive_exam\": true,
+    \"is_adaptive_exam\": false,
     \"is_randomized\": false,
-    \"allow_review_after_submit\": false,
+    \"allow_review_after_submit\": true,
     \"allow_flagging_for_review\": false,
-    \"timer_visible_to_candidate\": true,
+    \"timer_visible_to_candidate\": false,
     \"show_correct_answers_after\": true
 }"
 </code></pre></div>
@@ -15922,12 +13863,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams"
+    "http://localhost/api/v1/exams"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -15937,16 +13878,16 @@ let body = {
     "exam_code": "n",
     "exam_description": "architecto",
     "exam_type": "training",
-    "assessment_mode": "online",
+    "assessment_mode": "hybrid",
     "total_questions": 22,
     "total_duration_minutes": 7,
     "pass_mark_percentage": 16,
     "difficulty_tier_level": 2,
-    "is_adaptive_exam": true,
+    "is_adaptive_exam": false,
     "is_randomized": false,
-    "allow_review_after_submit": false,
+    "allow_review_after_submit": true,
     "allow_flagging_for_review": false,
-    "timer_visible_to_candidate": true,
+    "timer_visible_to_candidate": false,
     "show_correct_answers_after": true
 };
 
@@ -15959,6 +13900,51 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-exams">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 188
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;5961f752-e2bd-42a2-9918-2b9cc7b46eea&quot;,
+        &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;created_by_user_id&quot;: &quot;cec0dcc3-f6c9-4085-b098-08817a540559&quot;,
+        &quot;exam_name&quot;: &quot;b&quot;,
+        &quot;exam_code&quot;: &quot;n&quot;,
+        &quot;exam_description&quot;: &quot;architecto&quot;,
+        &quot;exam_type&quot;: &quot;training&quot;,
+        &quot;assessment_mode&quot;: &quot;hybrid&quot;,
+        &quot;total_questions&quot;: 22,
+        &quot;total_duration_minutes&quot;: 7,
+        &quot;pass_mark_percentage&quot;: 16,
+        &quot;difficulty_tier_level&quot;: 2,
+        &quot;is_adaptive_exam&quot;: false,
+        &quot;is_randomized&quot;: false,
+        &quot;allow_review_after_submit&quot;: true,
+        &quot;allow_flagging_for_review&quot;: false,
+        &quot;timer_visible_to_candidate&quot;: false,
+        &quot;show_correct_answers_after&quot;: true,
+        &quot;security_protocols&quot;: null,
+        &quot;exam_metadata&quot;: null,
+        &quot;exam_status&quot;: &quot;draft&quot;,
+        &quot;is_published&quot;: false,
+        &quot;published_at&quot;: null,
+        &quot;archived_at&quot;: null,
+        &quot;created_at&quot;: &quot;2026-08-17T14:38:40+00:00&quot;,
+        &quot;updated_at&quot;: &quot;2026-08-17T14:38:40+00:00&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -15984,16 +13970,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -16003,14 +13982,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -16088,10 +14067,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -16175,10 +14154,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="assessment_mode"                data-endpoint="POSTapi-v1-exams"
-               value="online"
+               value="hybrid"
                data-component="body">
     <br>
-<p>Example: <code>online</code></p>
+<p>Example: <code>hybrid</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>online</code></li> <li><code>hybrid</code></li> <li><code>paper</code></li></ul>
         </div>
@@ -16250,7 +14229,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_randomized</code></b>&nbsp;&nbsp;
@@ -16294,7 +14273,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allow_flagging_for_review</code></b>&nbsp;&nbsp;
@@ -16338,7 +14317,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>show_correct_answers_after</code></b>&nbsp;&nbsp;
@@ -16402,21 +14381,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -16463,13 +14442,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 187
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;exam_not_found&quot;,
+        &quot;message&quot;: &quot;Exam [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -16482,6 +14463,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -16559,10 +14552,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exams--examId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -16617,9 +14610,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -16627,29 +14620,29 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"exam_code\": \"n\",
     \"exam_description\": \"architecto\",
     \"exam_type\": \"practice\",
-    \"assessment_mode\": \"hybrid\",
+    \"assessment_mode\": \"paper\",
     \"total_questions\": 22,
     \"total_duration_minutes\": 7,
     \"pass_mark_percentage\": 16,
     \"difficulty_tier_level\": 2,
-    \"is_adaptive_exam\": true,
+    \"is_adaptive_exam\": false,
     \"is_randomized\": false,
     \"allow_review_after_submit\": false,
-    \"allow_flagging_for_review\": true,
-    \"timer_visible_to_candidate\": false,
-    \"show_correct_answers_after\": true
+    \"allow_flagging_for_review\": false,
+    \"timer_visible_to_candidate\": true,
+    \"show_correct_answers_after\": false
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -16659,17 +14652,17 @@ let body = {
     "exam_code": "n",
     "exam_description": "architecto",
     "exam_type": "practice",
-    "assessment_mode": "hybrid",
+    "assessment_mode": "paper",
     "total_questions": 22,
     "total_duration_minutes": 7,
     "pass_mark_percentage": 16,
     "difficulty_tier_level": 2,
-    "is_adaptive_exam": true,
+    "is_adaptive_exam": false,
     "is_randomized": false,
     "allow_review_after_submit": false,
-    "allow_flagging_for_review": true,
-    "timer_visible_to_candidate": false,
-    "show_correct_answers_after": true
+    "allow_flagging_for_review": false,
+    "timer_visible_to_candidate": true,
+    "show_correct_answers_after": false
 };
 
 fetch(url, {
@@ -16714,6 +14707,8 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 186
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -16733,6 +14728,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -16810,10 +14817,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-exams--examId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -16910,10 +14917,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="assessment_mode"                data-endpoint="PATCHapi-v1-exams--examId-"
-               value="hybrid"
+               value="paper"
                data-component="body">
     <br>
-<p>Example: <code>hybrid</code></p>
+<p>Example: <code>paper</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>online</code></li> <li><code>hybrid</code></li> <li><code>paper</code></li></ul>
         </div>
@@ -16985,7 +14992,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_randomized</code></b>&nbsp;&nbsp;
@@ -17051,7 +15058,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>timer_visible_to_candidate</code></b>&nbsp;&nbsp;
@@ -17073,7 +15080,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>show_correct_answers_after</code></b>&nbsp;&nbsp;
@@ -17095,7 +15102,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>security_protocols</code></b>&nbsp;&nbsp;
@@ -17137,21 +15144,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -17198,6 +15205,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -17275,10 +15294,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-exams--examId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -17333,21 +15352,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/publish" \
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/publish" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/publish"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/publish"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -17394,13 +15413,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 185
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;exam_not_found&quot;,
+        &quot;message&quot;: &quot;Exam [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -17413,6 +15434,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -17490,10 +15523,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams--examId--publish"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -17548,21 +15581,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/archive" \
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/archive" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/archive"
+    "http://localhost/api/v1/exams/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/archive"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -17609,13 +15642,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 184
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;exam_not_found&quot;,
+        &quot;message&quot;: &quot;Exam [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -17628,6 +15663,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -17705,10 +15752,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exams--examId--archive"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -17783,13 +15830,13 @@ one endpoint per status. All filters are optional:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions" \
+    --get "http://localhost/api/v1/exam-sessions" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"status\": \"in_progress\",
+    \"status\": \"not_started\",
     \"exam_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"candidate_id\": \"6b72fe4a-5b40-307c-bc24-f79acf9a1bb9\",
     \"per_page\": 17
@@ -17799,18 +15846,18 @@ one endpoint per status. All filters are optional:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions"
+    "http://localhost/api/v1/exam-sessions"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "status": "in_progress",
+    "status": "not_started",
     "exam_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "candidate_id": "6b72fe4a-5b40-307c-bc24-f79acf9a1bb9",
     "per_page": 17
@@ -17825,6 +15872,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-exam-sessions">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 177
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;per_page&quot;: 17,
+        &quot;total&quot;: 0,
+        &quot;last_page&quot;: 1
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -17850,16 +15921,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -17869,14 +15933,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -17954,10 +16018,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -17991,10 +16055,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="status"                data-endpoint="GETapi-v1-exam-sessions"
-               value="in_progress"
+               value="not_started"
                data-component="body">
     <br>
-<p>Example: <code>in_progress</code></p>
+<p>Example: <code>not_started</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>not_started</code></li> <li><code>in_progress</code></li> <li><code>paused</code></li> <li><code>completed</code></li> <li><code>terminated</code></li></ul>
         </div>
@@ -18050,9 +16114,9 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions" \
+    "http://localhost/api/v1/exam-sessions" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -18063,12 +16127,12 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions"
+    "http://localhost/api/v1/exam-sessions"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -18111,16 +16175,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -18130,14 +16187,35 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 176
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;eligibility_violation&quot;,
+        &quot;message&quot;: &quot;Exam [6ff8f7f6-1eb3-3525-be4a-3932c805afed] is not published and cannot be started.&quot;
     }
 }</code>
  </pre>
@@ -18215,10 +16293,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -18273,21 +16351,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -18334,13 +16412,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 175
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -18353,6 +16433,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -18430,10 +16522,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -18488,21 +16580,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/current-question" \
+    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/current-question" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/current-question"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/current-question"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -18549,13 +16641,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 174
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -18568,6 +16662,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -18645,10 +16751,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--current-question"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -18703,9 +16809,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/responses" \
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/responses" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -18715,7 +16821,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"file_upload_url\": \"http:\\/\\/bailey.com\\/\",
     \"time_spent_seconds\": 77,
     \"time_elapsed_from_start_seconds\": 8,
-    \"is_flagged_for_review\": true,
+    \"is_flagged_for_review\": false,
     \"expected_item_version_lock\": 76
 }"
 </code></pre></div>
@@ -18723,12 +16829,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/responses"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/responses"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -18740,7 +16846,7 @@ let body = {
     "file_upload_url": "http:\/\/bailey.com\/",
     "time_spent_seconds": 77,
     "time_elapsed_from_start_seconds": 8,
-    "is_flagged_for_review": true,
+    "is_flagged_for_review": false,
     "expected_item_version_lock": 76
 };
 
@@ -18786,13 +16892,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 173
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -18805,6 +16913,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -18882,10 +17002,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--responses"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -19041,7 +17161,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>expected_item_version_lock</code></b>&nbsp;&nbsp;
@@ -19071,21 +17191,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/suspend" \
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/suspend" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/suspend"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/suspend"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -19132,13 +17252,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 172
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -19151,6 +17273,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -19228,10 +17362,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--suspend"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -19286,21 +17420,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/resume" \
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/resume" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/resume"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/resume"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -19347,13 +17481,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 171
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -19366,6 +17502,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -19443,10 +17591,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--resume"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -19501,21 +17649,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/complete" \
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/complete" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/complete"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/complete"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -19562,13 +17710,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 170
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -19581,6 +17731,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -19658,10 +17820,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--complete"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -19716,21 +17878,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/terminate" \
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/terminate" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/terminate"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/terminate"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -19777,13 +17939,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 169
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -19796,6 +17960,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -19873,10 +18049,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--terminate"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -19933,21 +18109,21 @@ and SessionRepository::updateHeartbeat for the concurrency rationale.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/heartbeat" \
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/heartbeat" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/heartbeat"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/heartbeat"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -19994,13 +18170,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 167
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -20013,6 +18191,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -20090,10 +18280,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--heartbeat"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -20152,21 +18342,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/identity/profile" \
+    --get "http://localhost/api/v1/identity/profile" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/identity/profile"
+    "http://localhost/api/v1/identity/profile"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -20180,6 +18370,39 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-identity-profile">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 214
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;cec0dcc3-f6c9-4085-b098-08817a540559&quot;,
+        &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;email&quot;: &quot;tenant.admin@alpha-engine.example&quot;,
+        &quot;first_name&quot;: &quot;Tenant&quot;,
+        &quot;last_name&quot;: &quot;Administrator&quot;,
+        &quot;external_employee_id&quot;: &quot;EMP-000001&quot;,
+        &quot;user_type&quot;: &quot;tenant_admin&quot;,
+        &quot;department_id&quot;: null,
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;is_active&quot;: true,
+        &quot;user_attributes&quot;: null,
+        &quot;last_login_at&quot;: null,
+        &quot;created_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;,
+        &quot;updated_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -20205,16 +18428,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -20224,14 +18440,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -20309,10 +18525,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-identity-profile"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -20354,9 +18570,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/identity/profile" \
+    "http://localhost/api/v1/identity/profile" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -20369,12 +18585,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/identity/profile"
+    "http://localhost/api/v1/identity/profile"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -20394,6 +18610,39 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PATCHapi-v1-identity-profile">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 213
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;cec0dcc3-f6c9-4085-b098-08817a540559&quot;,
+        &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;email&quot;: &quot;tenant.admin@alpha-engine.example&quot;,
+        &quot;first_name&quot;: &quot;b&quot;,
+        &quot;last_name&quot;: &quot;n&quot;,
+        &quot;external_employee_id&quot;: &quot;g&quot;,
+        &quot;user_type&quot;: &quot;tenant_admin&quot;,
+        &quot;department_id&quot;: null,
+        &quot;status&quot;: &quot;active&quot;,
+        &quot;is_active&quot;: true,
+        &quot;user_attributes&quot;: null,
+        &quot;last_login_at&quot;: null,
+        &quot;created_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;,
+        &quot;updated_at&quot;: &quot;2026-08-17T14:38:40+00:00&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -20419,16 +18668,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -20438,14 +18680,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -20523,10 +18765,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-identity-profile"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -20605,21 +18847,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/identity/permissions" \
+    --get "http://localhost/api/v1/identity/permissions" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/identity/permissions"
+    "http://localhost/api/v1/identity/permissions"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -20633,6 +18875,70 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-identity-permissions">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 210
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;permissions&quot;: [
+            &quot;exam_sessions.manage&quot;,
+            &quot;penalties.view&quot;,
+            &quot;tenant.manage&quot;,
+            &quot;users.viewAny&quot;,
+            &quot;questions.manage&quot;,
+            &quot;penalties.manage&quot;,
+            &quot;exams.publish&quot;,
+            &quot;proctoring.view&quot;,
+            &quot;exam_sessions.start&quot;,
+            &quot;grading.evaluate&quot;,
+            &quot;cohorts.view&quot;,
+            &quot;security_policies.view&quot;,
+            &quot;exams.manage&quot;,
+            &quot;exam_sessions.view&quot;,
+            &quot;users.view&quot;,
+            &quot;security_policies.update&quot;,
+            &quot;users.update&quot;,
+            &quot;roles.assign&quot;,
+            &quot;grading.publish&quot;,
+            &quot;competencies.manage&quot;,
+            &quot;categories.manage&quot;,
+            &quot;roles.create&quot;,
+            &quot;workflows.manage&quot;,
+            &quot;cohorts.manage&quot;,
+            &quot;users.deactivate&quot;,
+            &quot;cohorts.members.manage&quot;,
+            &quot;eligibility.manage&quot;,
+            &quot;workflows.approve&quot;,
+            &quot;roles.viewAny&quot;,
+            &quot;grading.view&quot;,
+            &quot;enrollments.manage&quot;,
+            &quot;eligibility.view&quot;,
+            &quot;roles.delete&quot;,
+            &quot;roles.update&quot;,
+            &quot;proctoring.ingest&quot;,
+            &quot;exams.view&quot;,
+            &quot;users.create&quot;,
+            &quot;users.resetPassword&quot;,
+            &quot;analytics.view&quot;,
+            &quot;roles.view&quot;
+        ],
+        &quot;roles&quot;: [
+            &quot;Tenant Admin&quot;
+        ]
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -20658,16 +18964,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -20677,14 +18976,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -20762,10 +19061,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-identity-permissions"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -20807,21 +19106,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/identity/sessions" \
+    --get "http://localhost/api/v1/identity/sessions" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/identity/sessions"
+    "http://localhost/api/v1/identity/sessions"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -20835,6 +19134,24 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-identity-sessions">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 209
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -20860,16 +19177,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -20879,14 +19189,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -20964,10 +19274,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-identity-sessions"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -21009,21 +19319,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/identity/sessions/all" \
+    "http://localhost/api/v1/identity/sessions/all" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/identity/sessions/all"
+    "http://localhost/api/v1/identity/sessions/all"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -21070,6 +19380,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -21147,10 +19469,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-identity-sessions-all"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -21192,21 +19514,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/identity/sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/identity/sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/identity/sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/identity/sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -21253,6 +19575,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -21330,10 +19664,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-identity-sessions--id-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -21392,21 +19726,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/pending-evaluations" \
+    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/pending-evaluations" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/pending-evaluations"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/pending-evaluations"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -21420,6 +19754,24 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--pending-evaluations">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 164
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -21445,16 +19797,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -21464,14 +19809,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -21549,10 +19894,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--pending-evaluations"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -21609,27 +19954,27 @@ is triggered synchronously and the final grade becomes queryable immediately.</p
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/answer-evaluations/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/score" \
+    "http://localhost/api/v1/answer-evaluations/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/score" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"score_awarded\": 27,
     \"rubric_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\",
-    \"requires_secondary_review\": true
+    \"requires_secondary_review\": false
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/answer-evaluations/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/score"
+    "http://localhost/api/v1/answer-evaluations/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/score"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -21637,7 +19982,7 @@ const headers = {
 let body = {
     "score_awarded": 27,
     "rubric_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0",
-    "requires_secondary_review": true
+    "requires_secondary_review": false
 };
 
 fetch(url, {
@@ -21682,6 +20027,8 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 163
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -21701,6 +20048,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -21778,10 +20137,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-answer-evaluations--evaluationId--score"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -21889,7 +20248,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
         </form>
 
@@ -21911,21 +20270,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/penalty-rules" \
+    --get "http://localhost/api/v1/penalty-rules" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules"
+    "http://localhost/api/v1/penalty-rules"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -21939,6 +20298,24 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-penalty-rules">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 160
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -21964,16 +20341,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -21983,14 +20353,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -22068,10 +20438,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-penalty-rules"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -22113,9 +20483,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules" \
+    "http://localhost/api/v1/penalty-rules" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -22124,7 +20494,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"trigger_condition\": \"g\",
     \"penalty_points\": 12,
     \"penalty_percentage\": 17,
-    \"is_cumulative\": true,
+    \"is_cumulative\": false,
     \"is_active\": true
 }"
 </code></pre></div>
@@ -22132,12 +20502,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules"
+    "http://localhost/api/v1/penalty-rules"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -22148,7 +20518,7 @@ let body = {
     "trigger_condition": "g",
     "penalty_points": 12,
     "penalty_percentage": 17,
-    "is_cumulative": true,
+    "is_cumulative": false,
     "is_active": true
 };
 
@@ -22161,6 +20531,35 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-penalty-rules">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 159
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;penalty_rule_id&quot;: &quot;97d7c1bd-1568-4ac7-87d0-3490084e428d&quot;,
+        &quot;penalty_name&quot;: &quot;b&quot;,
+        &quot;penalty_type&quot;: &quot;n&quot;,
+        &quot;trigger_condition&quot;: &quot;g&quot;,
+        &quot;trigger_parameters&quot;: null,
+        &quot;penalty_points&quot;: 12,
+        &quot;penalty_percentage&quot;: 17,
+        &quot;is_cumulative&quot;: false,
+        &quot;is_active&quot;: true,
+        &quot;penalty_metadata&quot;: null
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -22186,16 +20585,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -22205,14 +20597,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -22290,10 +20682,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-penalty-rules"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -22412,7 +20804,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>is_active</code></b>&nbsp;&nbsp;
@@ -22464,21 +20856,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -22525,13 +20917,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 158
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;penalty_rule_not_found&quot;,
+        &quot;message&quot;: &quot;Penalty rule BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -22544,6 +20938,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -22621,10 +21027,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-penalty-rules--ruleId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -22679,9 +21085,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -22691,19 +21097,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"penalty_points\": 12,
     \"penalty_percentage\": 17,
     \"is_cumulative\": false,
-    \"is_active\": false
+    \"is_active\": true
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -22715,7 +21121,7 @@ let body = {
     "penalty_points": 12,
     "penalty_percentage": 17,
     "is_cumulative": false,
-    "is_active": false
+    "is_active": true
 };
 
 fetch(url, {
@@ -22760,6 +21166,8 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 157
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -22779,6 +21187,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -22856,10 +21276,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-penalty-rules--ruleId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -23013,7 +21433,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>penalty_metadata</code></b>&nbsp;&nbsp;
@@ -23043,21 +21463,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -23104,6 +21524,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -23181,10 +21613,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-penalty-rules--ruleId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -23239,21 +21671,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/activate" \
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/activate" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/activate"
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/activate"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -23300,13 +21732,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 156
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;penalty_rule_not_found&quot;,
+        &quot;message&quot;: &quot;Penalty rule BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -23319,6 +21753,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -23396,10 +21842,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-penalty-rules--ruleId--activate"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -23454,21 +21900,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate" \
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate"
+    "http://localhost/api/v1/penalty-rules/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -23515,13 +21961,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 155
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;penalty_rule_not_found&quot;,
+        &quot;message&quot;: &quot;Penalty rule BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -23534,6 +21982,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -23611,10 +22071,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-penalty-rules--ruleId--deactivate"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -23673,21 +22133,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sanctions" \
+    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sanctions" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sanctions"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/sanctions"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -23701,6 +22161,24 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-exam-sessions--sessionId--sanctions">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 154
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -23726,16 +22204,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -23745,14 +22216,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -23830,10 +22301,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--sanctions"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -23888,9 +22359,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/sanctions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/void" \
+    "http://localhost/api/v1/sanctions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/void" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -23901,12 +22372,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/sanctions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/void"
+    "http://localhost/api/v1/sanctions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/void"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -23957,6 +22428,8 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 153
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -23976,6 +22449,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -24053,10 +22538,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-sanctions--sanctionId--void"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -24130,14 +22615,14 @@ attribution) lives in ProctoringService — this method stays thin.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events" \
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"event_type\": \"b\",
-    \"event_timestamp\": \"2026-08-17T13:18:51\",
+    \"event_timestamp\": \"2026-08-17T14:38:40\",
     \"event_category\": \"n\",
     \"severity_level\": \"critical\",
     \"detection_confidence_score\": 0,
@@ -24149,19 +22634,19 @@ attribution) lives in ProctoringService — this method stays thin.</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
     "event_type": "b",
-    "event_timestamp": "2026-08-17T13:18:51",
+    "event_timestamp": "2026-08-17T14:38:40",
     "event_category": "n",
     "severity_level": "critical",
     "detection_confidence_score": 0,
@@ -24211,13 +22696,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 166
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -24230,6 +22717,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -24307,10 +22806,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--proctor-events"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -24369,10 +22868,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="event_timestamp"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--proctor-events"
-               value="2026-08-17T13:18:51"
+               value="2026-08-17T14:38:40"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-08-17T13:18:51</code></p>
+<p>Must be a valid date. Example: <code>2026-08-17T14:38:40</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>event_category</code></b>&nbsp;&nbsp;
@@ -24477,21 +22976,21 @@ is enforced by the policy gate in the form request or caller.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events" \
+    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/proctor-events"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -24538,13 +23037,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 165
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;session_not_found&quot;,
+        &quot;message&quot;: &quot;Exam session [BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc] not found.&quot;
     }
 }</code>
  </pre>
@@ -24557,6 +23058,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -24634,10 +23147,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--proctor-events"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -24682,7 +23195,1047 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="questionbank-POSTapi-v1-questions-bulk-import">POST api/v1/questions/bulk-import</h2>
+                                <h2 id="questionbank-POSTapi-v1-questions--questionId--competencies">POST api/v1/questions/{questionId}/competencies</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-questions--questionId--competencies">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"competency_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"weight_percentage\": 7,
+    \"is_primary_competency\": false
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "competency_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "weight_percentage": 7,
+    "is_primary_competency": false
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-questions--questionId--competencies">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 205
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The selected competency id is invalid.&quot;,
+        &quot;fields&quot;: {
+            &quot;competency_id&quot;: [
+                &quot;The selected competency id is invalid.&quot;
+            ]
+        }
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-questions--questionId--competencies" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-questions--questionId--competencies"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-questions--questionId--competencies"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-questions--questionId--competencies" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-questions--questionId--competencies">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-questions--questionId--competencies" data-method="POST"
+      data-path="api/v1/questions/{questionId}/competencies"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-questions--questionId--competencies', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/questions/{questionId}/competencies</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>questionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="questionId"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>competency_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="competency_id"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Must match an existing stored value. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>weight_percentage</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="weight_percentage"                data-endpoint="POSTapi-v1-questions--questionId--competencies"
+               value="7"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 100. Example: <code>7</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_primary_competency</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="POSTapi-v1-questions--questionId--competencies" style="display: none">
+            <input type="radio" name="is_primary_competency"
+                   value="true"
+                   data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-v1-questions--questionId--competencies" style="display: none">
+            <input type="radio" name="is_primary_competency"
+                   value="false"
+                   data-endpoint="POSTapi-v1-questions--questionId--competencies"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
+        </form>
+
+                    <h2 id="questionbank-GETapi-v1-questions--questionId--competencies">GET api/v1/questions/{questionId}/competencies</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-questions--questionId--competencies">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/competencies"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-questions--questionId--competencies">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 204
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: []
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-questions--questionId--competencies" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-questions--questionId--competencies"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-questions--questionId--competencies"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-questions--questionId--competencies" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-questions--questionId--competencies">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-questions--questionId--competencies" data-method="GET"
+      data-path="api/v1/questions/{questionId}/competencies"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-questions--questionId--competencies', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/questions/{questionId}/competencies</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>questionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="questionId"                data-endpoint="GETapi-v1-questions--questionId--competencies"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="questionbank-POSTapi-v1-question-versions--versionId--approve">POST api/v1/question-versions/{versionId}/approve</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-question-versions--versionId--approve">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-question-versions--versionId--approve">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 203
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-question-versions--versionId--approve" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-question-versions--versionId--approve"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-question-versions--versionId--approve"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-question-versions--versionId--approve" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-question-versions--versionId--approve">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-question-versions--versionId--approve" data-method="POST"
+      data-path="api/v1/question-versions/{versionId}/approve"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-question-versions--versionId--approve', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/question-versions/{versionId}/approve</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>versionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="versionId"                data-endpoint="POSTapi-v1-question-versions--versionId--approve"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="questionbank-PATCHapi-v1-question-versions--versionId--psychometrics">PATCH api/v1/question-versions/{versionId}/psychometrics</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-v1-question-versions--versionId--psychometrics">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://localhost/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/psychometrics" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"difficulty_index\": 1,
+    \"discrimination_index\": 1,
+    \"sample_size\": 67,
+    \"correct_count\": 12
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/question-versions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/psychometrics"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "difficulty_index": 1,
+    "discrimination_index": 1,
+    "sample_size": 67,
+    "correct_count": 12
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-v1-question-versions--versionId--psychometrics">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 202
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-v1-question-versions--versionId--psychometrics" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-v1-question-versions--versionId--psychometrics"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-v1-question-versions--versionId--psychometrics"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-v1-question-versions--versionId--psychometrics" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-v1-question-versions--versionId--psychometrics">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-v1-question-versions--versionId--psychometrics" data-method="PATCH"
+      data-path="api/v1/question-versions/{versionId}/psychometrics"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-question-versions--versionId--psychometrics', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/question-versions/{versionId}/psychometrics</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>versionId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="versionId"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>difficulty_index</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="difficulty_index"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 1. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>discrimination_index</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="discrimination_index"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="1"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Must not be greater than 1. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>sample_size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="sample_size"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="67"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>67</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>correct_count</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="correct_count"                data-endpoint="PATCHapi-v1-question-versions--versionId--psychometrics"
+               value="12"
+               data-component="body">
+    <br>
+<p>Must be at least 0. Example: <code>12</code></p>
+        </div>
+        </form>
+
+                    <h2 id="questionbank-POSTapi-v1-questions-bulk-import">POST api/v1/questions/bulk-import</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -24696,22 +24249,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/questions/bulk-import" \
+    "http://localhost/api/v1/questions/bulk-import" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "file=@/tmp/phpioc145juregre0fg09W" </code></pre></div>
+    --form "file=@/tmp/phptdfc103ufhkkf4l8TjA" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/questions/bulk-import"
+    "http://localhost/api/v1/questions/bulk-import"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "multipart/form-data",
     "Accept": "application/json",
 };
@@ -24753,16 +24306,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -24772,14 +24318,40 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 197
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The file field must be a file of type: csv, txt.&quot;,
+        &quot;fields&quot;: {
+            &quot;file&quot;: [
+                &quot;The file field must be a file of type: csv, txt.&quot;
+            ]
+        }
     }
 }</code>
  </pre>
@@ -24857,10 +24429,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-questions-bulk-import"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -24897,7 +24469,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be a file. Must not be greater than 5120 kilobytes. Example: <code>/tmp/phpioc145juregre0fg09W</code></p>
+<p>Must be a file. Must not be greater than 5120 kilobytes. Example: <code>/tmp/phptdfc103ufhkkf4l8TjA</code></p>
         </div>
         </form>
 
@@ -24915,14 +24487,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/questions" \
+    --get "http://localhost/api/v1/questions" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"category_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
-    \"bloom_level\": 4,
+    \"bloom_level\": 1,
     \"type\": \"essay\",
     \"per_page\": 7
 }"
@@ -24931,19 +24503,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/questions"
+    "http://localhost/api/v1/questions"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
     "category_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
-    "bloom_level": 4,
+    "bloom_level": 1,
     "type": "essay",
     "per_page": 7
 };
@@ -24957,6 +24529,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-questions">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 196
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;per_page&quot;: 7,
+        &quot;total&quot;: 0,
+        &quot;last_page&quot;: 1
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -24982,16 +24578,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -25001,14 +24590,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -25086,10 +24675,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-questions"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -25135,10 +24724,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bloom_level"                data-endpoint="GETapi-v1-questions"
-               value="4"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>1</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>1</code></li> <li><code>2</code></li> <li><code>3</code></li> <li><code>4</code></li> <li><code>5</code></li> <li><code>6</code></li></ul>
         </div>
@@ -25184,20 +24773,20 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/questions" \
+    "http://localhost/api/v1/questions" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"category_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
     \"title\": \"g\",
-    \"type\": \"mcq\",
+    \"type\": \"short_answer\",
     \"question_text\": \"architecto\",
     \"stem\": \"architecto\",
-    \"bloom_level\": 1,
+    \"bloom_level\": 2,
     \"difficulty_level\": 2,
-    \"correct_answer\": false,
+    \"correct_answer\": true,
     \"accepted_answers\": [
         \"g\"
     ],
@@ -25220,12 +24809,12 @@ Must be one of:
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/questions"
+    "http://localhost/api/v1/questions"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -25233,12 +24822,12 @@ const headers = {
 let body = {
     "category_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
     "title": "g",
-    "type": "mcq",
+    "type": "short_answer",
     "question_text": "architecto",
     "stem": "architecto",
-    "bloom_level": 1,
+    "bloom_level": 2,
     "difficulty_level": 2,
-    "correct_answer": false,
+    "correct_answer": true,
     "accepted_answers": [
         "g"
     ],
@@ -25291,16 +24880,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -25310,14 +24892,43 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 195
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The choices field must have at least 2 items. (and 1 more error)&quot;,
+        &quot;fields&quot;: {
+            &quot;choices&quot;: [
+                &quot;The choices field must have at least 2 items.&quot;
+            ],
+            &quot;psychometrics.discrimination_index&quot;: [
+                &quot;The psychometrics.discrimination index field must be between -1 and 1.&quot;
+            ]
+        }
     }
 }</code>
  </pre>
@@ -25395,10 +25006,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-questions"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -25456,10 +25067,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="type"                data-endpoint="POSTapi-v1-questions"
-               value="mcq"
+               value="short_answer"
                data-component="body">
     <br>
-<p>Example: <code>mcq</code></p>
+<p>Example: <code>short_answer</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>mcq</code></li> <li><code>true_false</code></li> <li><code>short_answer</code></li> <li><code>essay</code></li></ul>
         </div>
@@ -25494,10 +25105,10 @@ Must be one of:
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bloom_level"                data-endpoint="POSTapi-v1-questions"
-               value="1"
+               value="2"
                data-component="body">
     <br>
-<p>Example: <code>1</code></p>
+<p>Example: <code>2</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>1</code></li> <li><code>2</code></li> <li><code>3</code></li> <li><code>4</code></li> <li><code>5</code></li> <li><code>6</code></li></ul>
         </div>
@@ -25591,7 +25202,7 @@ Must be one of:
             <code>false</code>
         </label>
     <br>
-<p>This field is required when <code>type</code> is <code>true_false</code>. Example: <code>false</code></p>
+<p>This field is required when <code>type</code> is <code>true_false</code>. Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>accepted_answers</code></b>&nbsp;&nbsp;
@@ -25697,21 +25308,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -25758,13 +25369,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 194
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;question_not_found&quot;,
+        &quot;message&quot;: &quot;Question not found.&quot;
     }
 }</code>
  </pre>
@@ -25777,6 +25390,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -25854,10 +25479,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-questions--id-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -25912,15 +25537,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"title\": \"b\",
     \"category_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\",
-    \"bloom_level\": 4,
+    \"bloom_level\": 1,
     \"difficulty_level\": 1,
     \"question_text\": \"architecto\",
     \"stem\": \"architecto\",
@@ -25928,7 +25553,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"accepted_answers\": [
         \"n\"
     ],
-    \"match_mode\": \"exact\",
+    \"match_mode\": \"case_insensitive\",
     \"psychometrics\": {
         \"p_value\": 0,
         \"discrimination_index\": 358981420.16336,
@@ -25947,12 +25572,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -25960,7 +25585,7 @@ const headers = {
 let body = {
     "title": "b",
     "category_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0",
-    "bloom_level": 4,
+    "bloom_level": 1,
     "difficulty_level": 1,
     "question_text": "architecto",
     "stem": "architecto",
@@ -25968,7 +25593,7 @@ let body = {
     "accepted_answers": [
         "n"
     ],
-    "match_mode": "exact",
+    "match_mode": "case_insensitive",
     "psychometrics": {
         "p_value": 0,
         "discrimination_index": 358981420.16336,
@@ -26005,6 +25630,27 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 193
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;http_error&quot;,
+        &quot;message&quot;: &quot;This action is unauthorized.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (403, Forbidden):</p>
         </blockquote>
                 <pre>
@@ -26017,16 +25663,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -26036,14 +25675,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -26125,10 +25764,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PUTapi-v1-questions--id-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -26199,10 +25838,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bloom_level"                data-endpoint="PUTapi-v1-questions--id-"
-               value="4"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>1</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>1</code></li> <li><code>2</code></li> <li><code>3</code></li> <li><code>4</code></li> <li><code>5</code></li> <li><code>6</code></li></ul>
         </div>
@@ -26343,10 +25982,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="match_mode"                data-endpoint="PUTapi-v1-questions--id-"
-               value="exact"
+               value="case_insensitive"
                data-component="body">
     <br>
-<p>Example: <code>exact</code></p>
+<p>Example: <code>case_insensitive</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>exact</code></li> <li><code>case_insensitive</code></li></ul>
         </div>
@@ -26426,21 +26065,21 @@ Must be one of:
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/questions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -26487,6 +26126,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -26564,10 +26215,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-questions--id-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -26626,21 +26277,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publish" \
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publish" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publish"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publish"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -26687,6 +26338,8 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 162
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
@@ -26706,6 +26359,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -26783,10 +26448,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-exam-sessions--sessionId--result-publish"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -26841,21 +26506,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publication-status" \
+    --get "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publication-status" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publication-status"
+    "http://localhost/api/v1/exam-sessions/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/result/publication-status"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -26902,13 +26567,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 161
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;result_not_found&quot;,
+        &quot;message&quot;: &quot;No assessment result exists for session BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc.&quot;
     }
 }</code>
  </pre>
@@ -26921,6 +26588,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -26998,10 +26677,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-exam-sessions--sessionId--result-publication-status"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -27060,9 +26739,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/roles" \
+    --get "http://localhost/api/v1/roles" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -27073,12 +26752,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/roles"
+    "http://localhost/api/v1/roles"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -27096,6 +26775,45 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-roles">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 224
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;role_id&quot;: &quot;ec98e340-8657-46d4-8996-1d82f68eb23b&quot;,
+            &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+            &quot;role_name&quot;: &quot;Proctor&quot;,
+            &quot;description&quot;: &quot;Live session monitoring and integrity enforcement.&quot;,
+            &quot;role_category&quot;: &quot;supervisory&quot;,
+            &quot;is_custom_role&quot;: false,
+            &quot;is_system_role&quot;: true,
+            &quot;role_metadata&quot;: {
+                &quot;seeded&quot;: true
+            },
+            &quot;created_at&quot;: &quot;2026-08-17T14:17:12.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-08-17T14:17:12.000000Z&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;per_page&quot;: 1,
+        &quot;total&quot;: 4,
+        &quot;last_page&quot;: 4
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -27121,16 +26839,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -27140,14 +26851,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -27225,10 +26936,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-roles"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -27283,9 +26994,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/roles" \
+    "http://localhost/api/v1/roles" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -27299,12 +27010,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/roles"
+    "http://localhost/api/v1/roles"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -27325,6 +27036,29 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-v1-roles">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 223
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;role_id&quot;: &quot;c6e00e8c-167b-4de9-a1b2-e430e6a3d731&quot;,
+        &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;role_name&quot;: &quot;b&quot;,
+        &quot;role_category&quot;: &quot;d&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -27350,16 +27084,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -27369,14 +27096,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -27454,10 +27181,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-roles"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -27558,9 +27285,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -27573,12 +27300,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -27611,6 +27338,27 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 222
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;http_error&quot;,
+        &quot;message&quot;: &quot;This action is unauthorized.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (403, Forbidden):</p>
         </blockquote>
                 <pre>
@@ -27623,16 +27371,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -27642,14 +27383,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -27727,10 +27468,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-roles--roleId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -27834,21 +27575,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -27895,6 +27636,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -27972,10 +27725,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-roles--roleId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -28030,21 +27783,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -28091,13 +27844,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 221
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;role_not_found&quot;,
+        &quot;message&quot;: &quot;Role BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -28110,6 +27865,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -28187,10 +27954,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-roles--roleId--users--userId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -28257,21 +28024,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/roles/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -28318,6 +28085,18 @@ fetch(url, {
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -28395,10 +28174,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="DELETEapi-v1-roles--roleId--users--userId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -28469,21 +28248,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/security/policies" \
+    --get "http://localhost/api/v1/security/policies" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/security/policies"
+    "http://localhost/api/v1/security/policies"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -28497,6 +28276,45 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-security-policies">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 216
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;policy_id&quot;: &quot;fca9d4df-6344-4525-90a2-b5555f72dac8&quot;,
+        &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;mfa_enabled&quot;: false,
+        &quot;mfa_method&quot;: null,
+        &quot;password_min_length&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_require_uppercase&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_require_lowercase&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_require_numbers&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_require_special_chars&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_expiry_days&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_history_count&quot;: &quot;{REDACTED}&quot;,
+        &quot;session_timeout_minutes&quot;: 60,
+        &quot;session_absolute_timeout_hours&quot;: 12,
+        &quot;session_force_reauth_on_privilege_change&quot;: true,
+        &quot;ip_whitelisting_enabled&quot;: false,
+        &quot;enable_biometric_auth&quot;: false,
+        &quot;enforce_tls_1_3_minimum&quot;: true,
+        &quot;disable_weak_ciphers&quot;: true,
+        &quot;allowed_ip_ranges&quot;: null,
+        &quot;updated_at&quot;: &quot;2026-08-17T14:17:12+00:00&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -28522,16 +28340,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -28541,14 +28352,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -28626,10 +28437,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-security-policies"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -28671,28 +28482,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/security/policies" \
+    "http://localhost/api/v1/security/policies" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
     \"mfa_enabled\": false,
     \"mfa_method\": \"b\",
     \"password_min_length\": 22,
-    \"password_require_uppercase\": false,
+    \"password_require_uppercase\": true,
     \"password_require_lowercase\": true,
     \"password_require_numbers\": false,
-    \"password_require_special_chars\": false,
+    \"password_require_special_chars\": true,
     \"password_expiry_days\": 7,
     \"password_history_count\": 6,
     \"session_timeout_minutes\": 17,
     \"session_absolute_timeout_hours\": 15,
     \"session_force_reauth_on_privilege_change\": false,
     \"ip_whitelisting_enabled\": true,
-    \"enable_biometric_auth\": true,
-    \"enforce_tls_1_3_minimum\": true,
-    \"disable_weak_ciphers\": true,
+    \"enable_biometric_auth\": false,
+    \"enforce_tls_1_3_minimum\": false,
+    \"disable_weak_ciphers\": false,
     \"allowed_ip_ranges\": [
         \"y\"
     ]
@@ -28702,12 +28513,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/security/policies"
+    "http://localhost/api/v1/security/policies"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -28716,19 +28527,19 @@ let body = {
     "mfa_enabled": false,
     "mfa_method": "b",
     "password_min_length": 22,
-    "password_require_uppercase": false,
+    "password_require_uppercase": true,
     "password_require_lowercase": true,
     "password_require_numbers": false,
-    "password_require_special_chars": false,
+    "password_require_special_chars": true,
     "password_expiry_days": 7,
     "password_history_count": 6,
     "session_timeout_minutes": 17,
     "session_absolute_timeout_hours": 15,
     "session_force_reauth_on_privilege_change": false,
     "ip_whitelisting_enabled": true,
-    "enable_biometric_auth": true,
-    "enforce_tls_1_3_minimum": true,
-    "disable_weak_ciphers": true,
+    "enable_biometric_auth": false,
+    "enforce_tls_1_3_minimum": false,
+    "disable_weak_ciphers": false,
     "allowed_ip_ranges": [
         "y"
     ]
@@ -28743,6 +28554,47 @@ fetch(url, {
 </span>
 
 <span id="example-responses-PATCHapi-v1-security-policies">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 215
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;policy_id&quot;: &quot;fca9d4df-6344-4525-90a2-b5555f72dac8&quot;,
+        &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;mfa_enabled&quot;: false,
+        &quot;mfa_method&quot;: &quot;b&quot;,
+        &quot;password_min_length&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_require_uppercase&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_require_lowercase&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_require_numbers&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_require_special_chars&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_expiry_days&quot;: &quot;{REDACTED}&quot;,
+        &quot;password_history_count&quot;: &quot;{REDACTED}&quot;,
+        &quot;session_timeout_minutes&quot;: 17,
+        &quot;session_absolute_timeout_hours&quot;: 15,
+        &quot;session_force_reauth_on_privilege_change&quot;: false,
+        &quot;ip_whitelisting_enabled&quot;: true,
+        &quot;enable_biometric_auth&quot;: false,
+        &quot;enforce_tls_1_3_minimum&quot;: false,
+        &quot;disable_weak_ciphers&quot;: false,
+        &quot;allowed_ip_ranges&quot;: [
+            &quot;y&quot;
+        ],
+        &quot;updated_at&quot;: &quot;2026-08-17T14:38:39+00:00&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -28768,16 +28620,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -28787,14 +28632,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -28872,10 +28717,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-security-policies"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -28968,7 +28813,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_require_lowercase</code></b>&nbsp;&nbsp;
@@ -29034,7 +28879,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_expiry_days</code></b>&nbsp;&nbsp;
@@ -29148,7 +28993,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>enforce_tls_1_3_minimum</code></b>&nbsp;&nbsp;
@@ -29170,7 +29015,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>disable_weak_ciphers</code></b>&nbsp;&nbsp;
@@ -29192,7 +29037,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allowed_ip_ranges</code></b>&nbsp;&nbsp;
@@ -29228,21 +29073,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/system/status" \
+    --get "http://localhost/api/v1/system/status" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/system/status"
+    "http://localhost/api/v1/system/status"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -29256,6 +29101,29 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-system-status">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 234
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;status&quot;: &quot;ok&quot;,
+        &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;database&quot;: &quot;connected&quot;,
+        &quot;timestamp&quot;: &quot;2026-08-17T14:38:39+00:00&quot;
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -29281,16 +29149,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -29300,14 +29161,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -29385,10 +29246,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-system-status"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -29416,6 +29277,511 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                <h1 id="tenantsettings">TenantSettings</h1>
+
+    
+
+                                <h2 id="tenantsettings-GETapi-v1-tenant-settings">GET api/v1/tenant/settings</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-tenant-settings">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/tenant/settings" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/tenant/settings"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-tenant-settings">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 212
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;organization_name&quot;: &quot;Docs Sandbox Org&quot;,
+        &quot;organization_type&quot;: &quot;sandbox&quot;,
+        &quot;primary_contact_email&quot;: &quot;docs-sandbox@example.test&quot;,
+        &quot;primary_contact_phone&quot;: &quot;+1-555-0199&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-tenant-settings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-tenant-settings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-tenant-settings"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-tenant-settings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-tenant-settings">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-tenant-settings" data-method="GET"
+      data-path="api/v1/tenant/settings"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-tenant-settings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/tenant/settings</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-tenant-settings"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-tenant-settings"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-tenant-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-tenant-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="tenantsettings-PATCHapi-v1-tenant-settings">PATCH api/v1/tenant/settings</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-v1-tenant-settings">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://localhost/api/v1/tenant/settings" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"organization_name\": \"b\",
+    \"organization_type\": \"n\",
+    \"primary_contact_email\": \"ashly64@example.com\",
+    \"primary_contact_phone\": \"v\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/tenant/settings"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "organization_name": "b",
+    "organization_type": "n",
+    "primary_contact_email": "ashly64@example.com",
+    "primary_contact_phone": "v"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-v1-tenant-settings">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 211
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+        &quot;organization_name&quot;: &quot;b&quot;,
+        &quot;organization_type&quot;: &quot;n&quot;,
+        &quot;primary_contact_email&quot;: &quot;ashly64@example.com&quot;,
+        &quot;primary_contact_phone&quot;: &quot;v&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-v1-tenant-settings" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-v1-tenant-settings"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-v1-tenant-settings"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-v1-tenant-settings" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-v1-tenant-settings">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-v1-tenant-settings" data-method="PATCH"
+      data-path="api/v1/tenant/settings"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-tenant-settings', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/tenant/settings</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PATCHapi-v1-tenant-settings"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>organization_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization_name"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>organization_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="organization_type"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="n"
+               data-component="body">
+    <br>
+<p>Must not be greater than 100 characters. Example: <code>n</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>primary_contact_email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="primary_contact_email"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="ashly64@example.com"
+               data-component="body">
+    <br>
+<p>Must be a valid email address. Example: <code>ashly64@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>primary_contact_phone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="primary_contact_phone"                data-endpoint="PATCHapi-v1-tenant-settings"
+               value="v"
+               data-component="body">
+    <br>
+<p>Must not be greater than 50 characters. Example: <code>v</code></p>
+        </div>
+        </form>
+
                 <h1 id="user">User</h1>
 
     
@@ -29434,9 +29800,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/users" \
+    "http://localhost/api/v1/users" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -29453,12 +29819,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/users"
+    "http://localhost/api/v1/users"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -29507,16 +29873,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -29526,14 +29885,44 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 237
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The password field must be at least 12 characters. (and 4 more errors)&quot;,
+        &quot;fields&quot;: {
+            &quot;password&quot;: [
+                &quot;The password field must be at least 12 characters.&quot;,
+                &quot;The password field must contain at least one uppercase and one lowercase letter.&quot;,
+                &quot;The password field must contain at least one letter.&quot;,
+                &quot;The password field must contain at least one number.&quot;,
+                &quot;The password field confirmation does not match.&quot;
+            ]
+        }
     }
 }</code>
  </pre>
@@ -29611,10 +30000,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-users"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -29753,9 +30142,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/users" \
+    --get "http://localhost/api/v1/users" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -29766,12 +30155,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/users"
+    "http://localhost/api/v1/users"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -29789,6 +30178,50 @@ fetch(url, {
 </span>
 
 <span id="example-responses-GETapi-v1-users">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 236
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: &quot;81aacb18-4b68-4d79-aaf3-5faf4ab317ea&quot;,
+            &quot;tenant_id&quot;: &quot;00000000-0000-4000-8000-000000000001&quot;,
+            &quot;external_employee_id&quot;: &quot;EMP-000104&quot;,
+            &quot;email&quot;: &quot;candidate.4@alpha-engine.example&quot;,
+            &quot;first_name&quot;: &quot;Candidate4&quot;,
+            &quot;last_name&quot;: &quot;Engineer&quot;,
+            &quot;user_type&quot;: &quot;examinee&quot;,
+            &quot;department_id&quot;: null,
+            &quot;status&quot;: &quot;active&quot;,
+            &quot;is_active&quot;: true,
+            &quot;activated_at&quot;: &quot;2026-08-17T14:17:13.000000Z&quot;,
+            &quot;deactivated_at&quot;: null,
+            &quot;user_attributes&quot;: null,
+            &quot;email_verified_at&quot;: &quot;2026-08-17T14:17:13.000000Z&quot;,
+            &quot;created_at&quot;: &quot;2026-08-17T14:17:13.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2026-08-17T14:17:13.000000Z&quot;,
+            &quot;last_login_at&quot;: null
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;per_page&quot;: 1,
+        &quot;total&quot;: 8,
+        &quot;last_page&quot;: 8
+    }
+}</code>
+ </pre>
             <blockquote>
             <p>Example response (401, Unauthenticated):</p>
         </blockquote>
@@ -29814,16 +30247,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -29833,14 +30259,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -29918,10 +30344,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-users"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -29976,9 +30402,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/users/invite" \
+    "http://localhost/api/v1/users/invite" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -29994,12 +30420,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/users/invite"
+    "http://localhost/api/v1/users/invite"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -30047,16 +30473,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -30066,14 +30485,35 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 235
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;user_already_exists&quot;,
+        &quot;message&quot;: &quot;SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`tenant_00000000-0000-4000-8000-000000000001`.`users`, CONSTRAINT `users_department_id_foreign` FOREIGN KEY (`department_id`) REFERENCES `departments` (`department_id`) ON DELETE SET NULL ON U) (Connection: tenant, Host: 127.0.0.1, Port: 3306, Database: tenant_00000000-0000-4000-8000-000000000001, SQL: insert into `users` (`first_name`, `last_name`, `external_employee_id`, `user_type`, `department_id`, `user_attributes`, `email`, `password_hash`, `is_active`, `status`, `activated_at`, `tenant_id`, `id`, `updated_at`, `created_at`) values (m, i, y, v, 5707ca55-f609-3528-be8b-1baeaee1567e, ?, gbailey@example.net, $2y$12$0ylYIxQ.HZN.GOXLMuJI/O/Q8so9i/6pWiFMz6hsrx7BmQWSvhLTe, 0, pending, ?, 00000000-0000-4000-8000-000000000001, 33421132-5447-4d0c-8554-622f4239a0d9, 2026-08-17 14:38:39, 2026-08-17 14:38:39))&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -30151,10 +30591,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-users-invite"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -30281,21 +30721,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --get "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -30342,13 +30782,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 234
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;user_not_found&quot;,
+        &quot;message&quot;: &quot;User BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -30361,6 +30803,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -30438,10 +30892,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="GETapi-v1-users--userId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -30496,9 +30950,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
-    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -30515,12 +30969,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -30577,13 +31031,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 233
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;user_not_found&quot;,
+        &quot;message&quot;: &quot;User BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -30596,6 +31052,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -30673,10 +31141,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="PATCHapi-v1-users--userId-"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -30838,9 +31306,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reset-password" \
+    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reset-password" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -30851,12 +31319,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reset-password"
+    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reset-password"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -30887,6 +31355,27 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 232
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;http_error&quot;,
+        &quot;message&quot;: &quot;This action is unauthorized.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
             <p>Example response (403, Forbidden):</p>
         </blockquote>
                 <pre>
@@ -30899,16 +31388,9 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (404, Not found):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
@@ -30918,14 +31400,14 @@ access-control-allow-origin: *
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Not found):</p>
+            <p>Example response (409, Conflict):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -31003,10 +31485,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-users--userId--reset-password"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -31074,21 +31556,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate" \
+    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate" \
     --header "Authorization: Bearer {SANCTUM_TOKEN}" \
-    --header "X-Tenant-ID: 74497864-3f29-427a-a1f2-842b3f4aef47" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://alpha-engine.localhost:8000/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate"
+    "http://localhost/api/v1/users/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/deactivate"
 );
 
 const headers = {
     "Authorization": "Bearer {SANCTUM_TOKEN}",
-    "X-Tenant-ID": "74497864-3f29-427a-a1f2-842b3f4aef47",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -31135,13 +31617,15 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 231
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;error&quot;: {
-        &quot;code&quot;: &quot;not_found&quot;,
-        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+        &quot;code&quot;: &quot;user_not_found&quot;,
+        &quot;message&quot;: &quot;User BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
     }
 }</code>
  </pre>
@@ -31154,6 +31638,18 @@ access-control-allow-origin: *
     &quot;error&quot;: {
         &quot;code&quot;: &quot;not_found&quot;,
         &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
     }
 }</code>
  </pre>
@@ -31231,10 +31727,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="X-Tenant-ID"                data-endpoint="POSTapi-v1-users--userId--deactivate"
-               value="74497864-3f29-427a-a1f2-842b3f4aef47"
+               value="00000000-0000-4000-8000-000000000001"
                data-component="header">
     <br>
-<p>Example: <code>74497864-3f29-427a-a1f2-842b3f4aef47</code></p>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -31268,6 +31764,1543 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="userId"                data-endpoint="POSTapi-v1-users--userId--deactivate"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                <h1 id="workflows">Workflows</h1>
+
+    
+
+                                <h2 id="workflows-GETapi-v1-workflows">GET /api/v1/workflows</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Single general-purpose list endpoint — filtered via query params, not
+one endpoint per status/type. All filters are optional:
+?status=pending          → workflows awaiting approval
+?status=approved         → already-approved workflows
+?status=rejected         → already-rejected workflows
+(no status)              → all workflows
+?workflow_type=...        → result_publication | exam_publication
+?resource_type=...        → filter by the resource's morph alias
+?resource_id=...          → workflows for one specific resource
+?per_page=...             → page size (default 15, max 100)</p>
+<p>Ownership scoping (Separation of Duties):</p>
+<ul>
+<li>Actors with workflows.approve (Tenant Admin) see every workflow
+in the tenant — they are the independent reviewer and must be
+able to find anything awaiting a decision.</li>
+<li>Actors WITHOUT workflows.approve, i.e. initiator-only roles like
+Technical Evaluator, are always scoped to workflows THEY
+initiated. This is enforced server-side (initiated_by_user_id is
+forced to the authenticated user's id) — it cannot be widened
+or bypassed via query params.</li>
+</ul>
+
+<span id="example-requests-GETapi-v1-workflows">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/workflows" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"status\": \"rejected\",
+    \"workflow_type\": \"exam_publication\",
+    \"resource_type\": \"architecto\",
+    \"resource_id\": \"architecto\",
+    \"per_page\": 22
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/workflows"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "status": "rejected",
+    "workflow_type": "exam_publication",
+    "resource_type": "architecto",
+    "resource_id": "architecto",
+    "per_page": 22
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-workflows">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 152
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;per_page&quot;: 22,
+        &quot;total&quot;: 0,
+        &quot;last_page&quot;: 1
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-workflows" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-workflows"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-workflows" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-workflows">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-workflows" data-method="GET"
+      data-path="api/v1/workflows"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/workflows</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-workflows"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-workflows"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="GETapi-v1-workflows"
+               value="rejected"
+               data-component="body">
+    <br>
+<p>Example: <code>rejected</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>pending</code></li> <li><code>approved</code></li> <li><code>rejected</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>workflow_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflow_type"                data-endpoint="GETapi-v1-workflows"
+               value="exam_publication"
+               data-component="body">
+    <br>
+<p>Example: <code>exam_publication</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>result_publication</code></li> <li><code>exam_publication</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>resource_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="resource_type"                data-endpoint="GETapi-v1-workflows"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>resource_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="resource_id"                data-endpoint="GETapi-v1-workflows"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-v1-workflows"
+               value="22"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Must not be greater than 100. Example: <code>22</code></p>
+        </div>
+        </form>
+
+                    <h2 id="workflows-POSTapi-v1-workflows">POST api/v1/workflows</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-workflows">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/workflows" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"resource_type\": \"assessment_result\",
+    \"resource_id\": \"6ff8f7f6-1eb3-3525-be4a-3932c805afed\",
+    \"workflow_type\": \"result_publication\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/workflows"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "resource_type": "assessment_result",
+    "resource_id": "6ff8f7f6-1eb3-3525-be4a-3932c805afed",
+    "workflow_type": "result_publication"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-workflows">
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 151
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;workflow_id&quot;: &quot;5e648edd-b2ec-44f2-870a-ed8e42f05c75&quot;,
+        &quot;resource_type&quot;: &quot;assessment_result&quot;,
+        &quot;resource_id&quot;: &quot;6ff8f7f6-1eb3-3525-be4a-3932c805afed&quot;,
+        &quot;workflow_type&quot;: &quot;result_publication&quot;,
+        &quot;current_workflow_status&quot;: &quot;pending&quot;,
+        &quot;current_stage_key&quot;: null,
+        &quot;workflow_initiated_at&quot;: &quot;2026-08-17T14:38:41+00:00&quot;,
+        &quot;workflow_completed_at&quot;: null,
+        &quot;workflow_metadata&quot;: []
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-workflows" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-workflows"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-workflows" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-workflows">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-workflows" data-method="POST"
+      data-path="api/v1/workflows"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/workflows</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-workflows"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>resource_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="resource_type"                data-endpoint="POSTapi-v1-workflows"
+               value="assessment_result"
+               data-component="body">
+    <br>
+<p>Example: <code>assessment_result</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>assessment_result</code></li> <li><code>exam</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>resource_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="resource_id"                data-endpoint="POSTapi-v1-workflows"
+               value="6ff8f7f6-1eb3-3525-be4a-3932c805afed"
+               data-component="body">
+    <br>
+<p>Must be a valid UUID. Example: <code>6ff8f7f6-1eb3-3525-be4a-3932c805afed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>workflow_type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflow_type"                data-endpoint="POSTapi-v1-workflows"
+               value="result_publication"
+               data-component="body">
+    <br>
+<p>Example: <code>result_publication</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>result_publication</code></li> <li><code>exam_publication</code></li></ul>
+        </div>
+        </form>
+
+                    <h2 id="workflows-GETapi-v1-workflows--workflowId-">GET api/v1/workflows/{workflowId}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-workflows--workflowId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-workflows--workflowId-">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 150
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;workflow_not_found&quot;,
+        &quot;message&quot;: &quot;Workflow BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-workflows--workflowId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-workflows--workflowId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows--workflowId-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-workflows--workflowId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-workflows--workflowId-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-workflows--workflowId-" data-method="GET"
+      data-path="api/v1/workflows/{workflowId}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows--workflowId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/workflows/{workflowId}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflowId"                data-endpoint="GETapi-v1-workflows--workflowId-"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="workflows-POSTapi-v1-workflows--workflowId--approve">POST api/v1/workflows/{workflowId}/approve</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-workflows--workflowId--approve">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/approve"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-workflows--workflowId--approve">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 149
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-workflows--workflowId--approve" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-workflows--workflowId--approve"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows--workflowId--approve"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-workflows--workflowId--approve" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-workflows--workflowId--approve">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-workflows--workflowId--approve" data-method="POST"
+      data-path="api/v1/workflows/{workflowId}/approve"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows--workflowId--approve', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/workflows/{workflowId}/approve</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflowId"                data-endpoint="POSTapi-v1-workflows--workflowId--approve"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="workflows-POSTapi-v1-workflows--workflowId--reject">POST api/v1/workflows/{workflowId}/reject</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-workflows--workflowId--reject">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reject" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"reason\": \"b\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/reject"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "reason": "b"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-workflows--workflowId--reject">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 148
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-workflows--workflowId--reject" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-workflows--workflowId--reject"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-workflows--workflowId--reject"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-workflows--workflowId--reject" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-workflows--workflowId--reject">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-workflows--workflowId--reject" data-method="POST"
+      data-path="api/v1/workflows/{workflowId}/reject"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-workflows--workflowId--reject', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/workflows/{workflowId}/reject</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflowId"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
+               data-component="url">
+    <br>
+<p>Example: <code>BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>reason</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="reason"                data-endpoint="POSTapi-v1-workflows--workflowId--reject"
+               value="b"
+               data-component="body">
+    <br>
+<p>Must be at least 3 characters. Must not be greater than 1000 characters. Example: <code>b</code></p>
+        </div>
+        </form>
+
+                    <h2 id="workflows-GETapi-v1-workflows--workflowId--history">GET api/v1/workflows/{workflowId}/history</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-workflows--workflowId--history">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/history" \
+    --header "Authorization: Bearer {SANCTUM_TOKEN}" \
+    --header "X-Tenant-ID: 00000000-0000-4000-8000-000000000001" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/v1/workflows/BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc/history"
+);
+
+const headers = {
+    "Authorization": "Bearer {SANCTUM_TOKEN}",
+    "X-Tenant-ID": "00000000-0000-4000-8000-000000000001",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-workflows--workflowId--history">
+            <blockquote>
+            <p>Example response (401, Unauthenticated):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_authenticated&quot;,
+        &quot;message&quot;: &quot;Authentication required.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Forbidden):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;forbidden&quot;,
+        &quot;message&quot;: &quot;You are not authorized to perform this action.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 240
+x-ratelimit-remaining: 147
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;workflow_not_found&quot;,
+        &quot;message&quot;: &quot;Workflow BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;not_found&quot;,
+        &quot;message&quot;: &quot;The requested resource was not found.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (409, Conflict):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;conflict&quot;,
+        &quot;message&quot;: &quot;The request conflicts with the current state of the resource.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Validation error):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;validation_failed&quot;,
+        &quot;message&quot;: &quot;The given data was invalid.&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (429, Too many requests):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: {
+        &quot;code&quot;: &quot;rate_limited&quot;,
+        &quot;message&quot;: &quot;Too many requests. Please try again later.&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-workflows--workflowId--history" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-workflows--workflowId--history"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-workflows--workflowId--history"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-workflows--workflowId--history" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-workflows--workflowId--history">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-workflows--workflowId--history" data-method="GET"
+      data-path="api/v1/workflows/{workflowId}/history"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-workflows--workflowId--history', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/workflows/{workflowId}/history</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="Bearer {SANCTUM_TOKEN}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {SANCTUM_TOKEN}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>X-Tenant-ID</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="X-Tenant-ID"                data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="00000000-0000-4000-8000-000000000001"
+               data-component="header">
+    <br>
+<p>Example: <code>00000000-0000-4000-8000-000000000001</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-workflows--workflowId--history"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>workflowId</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workflowId"                data-endpoint="GETapi-v1-workflows--workflowId--history"
                value="BcECdBDA-CdED-bFEA-CbCE-BcCdeBfbbebc"
                data-component="url">
     <br>
