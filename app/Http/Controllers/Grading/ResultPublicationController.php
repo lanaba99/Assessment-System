@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Grading;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\Grading\Contracts\ResultPublicationService;
 use App\Domains\Grading\Exceptions\AssessmentResultNotFoundException;
 use App\Domains\Grading\Exceptions\PenaltyProcessingPendingException;
@@ -30,6 +31,7 @@ use App\Domains\Grading\Services\CertificateGenerationService;
 class ResultPublicationController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly ResultPublicationService $publicationService,
@@ -101,13 +103,5 @@ class ResultPublicationController extends Controller
             'published_at' => $result->published_at?->format(DateTimeInterface::ATOM),
             'result_calculated_at' => $result->result_calculated_at?->format(DateTimeInterface::ATOM),
         ];
-    }
-
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse(
-            ['error' => ['code' => $code, 'message' => $message]],
-            $status,
-        );
     }
 }

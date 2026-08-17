@@ -8,6 +8,7 @@ use App\Domains\Identity\Contracts\UserManagementService;
 use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
 use App\Domains\Identity\Models\User;
 use App\Domains\Identity\Repositories\UserRepository;
+use App\Http\Concerns\BuildsApiResponses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Identity\InviteUserRequest;
 use App\Http\Requests\Identity\PaginatedIndexRequest;
@@ -28,6 +29,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly UserManagementService $userService,
@@ -222,15 +224,5 @@ class UserController extends Controller
         }
 
         return $target;
-    }
-
-    /**
-     * @param  array<string, mixed>  $extras
-     */
-    private function error(string $code, string $message, int $status, array $extras = []): JsonResponse
-    {
-        return new JsonResponse([
-            'error' => array_merge(['code' => $code, 'message' => $message], $extras),
-        ], $status);
     }
 }

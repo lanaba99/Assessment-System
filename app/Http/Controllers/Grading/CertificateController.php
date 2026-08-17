@@ -112,13 +112,15 @@ public function index(Request $request): JsonResponse
         $certificate = Certificate::query()->where('certificate_code', $token)->first();
 
         if ($certificate === null) {
-            return new JsonResponse(['valid' => false], Response::HTTP_NOT_FOUND);
+            return new JsonResponse(['data' => ['valid' => false]], Response::HTTP_NOT_FOUND);
         }
 
         return new JsonResponse([
-            'valid' => $certificate->verification_status === 'valid',
-            'certificate_code' => $certificate->certificate_code,
-            'issued_at' => $certificate->issued_at,
+            'data' => [
+                'valid' => $certificate->verification_status === 'valid',
+                'certificate_code' => $certificate->certificate_code,
+                'issued_at' => $certificate->issued_at,
+            ],
         ]);
     }
 }

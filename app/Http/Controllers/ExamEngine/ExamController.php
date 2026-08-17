@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\ExamEngine;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\ExamEngine\Contracts\ExamEngineService;
 use App\Domains\ExamEngine\Exceptions\BlueprintNotFeasibleException;
 use App\Domains\ExamEngine\Exceptions\ExamNotFoundException;
@@ -26,6 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ExamController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly ExamEngineService $examEngine,
@@ -161,14 +163,6 @@ class ExamController extends Controller
         return new JsonResponse(
             ['data' => new ExamResource($archived)],
             Response::HTTP_OK,
-        );
-    }
-
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse(
-            ['error' => ['code' => $code, 'message' => $message]],
-            $status,
         );
     }
 }

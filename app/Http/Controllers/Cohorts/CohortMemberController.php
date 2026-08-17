@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Cohorts;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\Cohorts\Contracts\CohortManagementService;
 use App\Domains\Cohorts\Contracts\CohortMemberService;
 use App\Domains\Cohorts\Exceptions\CohortNotFoundException;
@@ -24,6 +25,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CohortMemberController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly CohortManagementService $cohorts,
@@ -96,13 +98,5 @@ class CohortMemberController extends Controller
         }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
-    }
-
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse(
-            ['error' => ['code' => $code, 'message' => $message]],
-            $status,
-        );
     }
 }

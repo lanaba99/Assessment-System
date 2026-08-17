@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Identity;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\Identity\Contracts\RoleManagementService;
 use App\Domains\Identity\Models\Role;
 use App\Domains\Identity\Models\User;
@@ -26,6 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
 class RoleController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly RoleManagementService $roleService,
@@ -186,12 +188,5 @@ class RoleController extends Controller
         }
 
         return $role;
-    }
-
-    private function error(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse([
-            'error' => ['code' => $code, 'message' => $message],
-        ], $status);
     }
 }

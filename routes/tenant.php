@@ -57,6 +57,7 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 Route::middleware([
     'api',
+    'throttle:tenant-api',
     InitializeTenancyBySubdomain::class,
     PreventAccessFromCentralDomains::class,
 ])
@@ -139,10 +140,12 @@ Route::middleware([
 
             Route::post('certificates/{certificateId}/regenerate', [CertificateController::class, 'regenerate'])
                 ->whereUuid('certificateId')
+                ->middleware('idempotent')
                 ->name('api.v1.certificates.regenerate');
 
             Route::post('certificates/{certificateId}/revoke', [CertificateController::class, 'revoke'])
                 ->whereUuid('certificateId')
+                ->middleware('idempotent')
                 ->name('api.v1.certificates.revoke');
                 
             Route::get('exam-sessions/{sessionId}/certificate', [CertificateController::class, 'download'])
@@ -471,6 +474,7 @@ Route::middleware([
                 // Proctoring events — submitted by the browser agent during the session
                 Route::post('{sessionId}/proctor-events', [ProctorEventController::class, 'store'])
                     ->whereUuid('sessionId')
+                    ->middleware('idempotent')
                     ->name('api.v1.exam-sessions.proctor-events.store');
 
                 Route::get('{sessionId}/proctor-events', [ProctorEventController::class, 'index'])
@@ -564,10 +568,12 @@ Route::middleware([
 
                 Route::post('{workflowId}/approve', [ApprovalWorkflowController::class, 'approve'])
                     ->whereUuid('workflowId')
+                    ->middleware('idempotent')
                     ->name('api.v1.workflows.approve');
 
                 Route::post('{workflowId}/reject', [ApprovalWorkflowController::class, 'reject'])
                      ->whereUuid('workflowId')
+                     ->middleware('idempotent')
                      ->name('api.v1.workflows.reject');
                      
                 Route::get('{workflowId}/history', [ApprovalWorkflowController::class, 'history'])

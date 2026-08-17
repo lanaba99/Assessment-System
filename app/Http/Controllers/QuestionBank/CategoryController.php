@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\QuestionBank;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\QuestionBank\Contracts\CategoryTreeService;
 use App\Domains\QuestionBank\Exceptions\CategoryNotEmptyException;
 use App\Domains\QuestionBank\Models\Category;
@@ -27,6 +28,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CategoryController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly CategoryTreeService $categoryTree,
@@ -106,15 +108,5 @@ class CategoryController extends Controller
         }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
-    }
-
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse([
-            'error' => [
-                'code' => $code,
-                'message' => $message,
-            ],
-        ], $status);
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\ExamSession;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\ExamSession\Contracts\EnrollmentService;
 use App\Domains\ExamSession\Exceptions\EnrollmentAlreadyExistsException;
 use App\Domains\ExamSession\Exceptions\EnrollmentNotFoundException;
@@ -23,6 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EnrollmentController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly EnrollmentService $enrollmentService,
@@ -76,13 +78,5 @@ class EnrollmentController extends Controller
         }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
-    }
-
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse(
-            ['error' => ['code' => $code, 'message' => $message]],
-            $status,
-        );
     }
 }

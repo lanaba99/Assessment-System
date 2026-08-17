@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\QuestionBank;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\QuestionBank\Contracts\QuestionManagementService;
 use App\Domains\QuestionBank\Models\Question;
 use App\Domains\QuestionBank\Repositories\QuestionRepository;
@@ -27,6 +28,7 @@ use App\Http\Requests\QuestionBank\BulkImportQuestionsRequest;
 class QuestionController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly QuestionManagementService $questions,
@@ -159,15 +161,5 @@ class QuestionController extends Controller
         }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
-    }
-
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse([
-            'error' => [
-                'code' => $code,
-                'message' => $message,
-            ],
-        ], $status);
     }
 }

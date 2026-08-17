@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Grading;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\Grading\Contracts\ManualEvaluationService;
 use App\Domains\Grading\Exceptions\EvaluationNotFoundException;
 use App\Domains\Grading\Exceptions\InvalidEvaluationStateException;
@@ -25,6 +26,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ManualEvaluationController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly ManualEvaluationService $service,
@@ -75,14 +77,6 @@ class ManualEvaluationController extends Controller
         return new JsonResponse(
             ['data' => new AnswerEvaluationResource($updated)],
             Response::HTTP_OK,
-        );
-    }
-
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse(
-            ['error' => ['code' => $code, 'message' => $message]],
-            $status,
         );
     }
 }

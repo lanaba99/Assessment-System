@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Proctoring;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\ExamSession\Exceptions\SessionNotFoundException;
 use App\Domains\Proctoring\Contracts\ProctoringService;
 use App\Domains\Proctoring\Exceptions\SessionNotProctorableException;
@@ -24,6 +25,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ProctorEventController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly ProctoringService $proctoring,
@@ -84,13 +86,6 @@ class ProctorEventController extends Controller
         return new JsonResponse(
             ['data' => ProctorLogResource::collection($logs)->resolve()],
             Response::HTTP_OK,
-        );
-    }
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse(
-            ['error' => ['code' => $code, 'message' => $message]],
-            $status,
         );
     }
 }

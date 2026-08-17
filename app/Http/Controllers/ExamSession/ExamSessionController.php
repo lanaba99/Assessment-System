@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\ExamSession;
 
+use App\Http\Concerns\BuildsApiResponses;
 
 use App\Domains\ExamSession\Contracts\ExamSessionService;
 use App\Domains\ExamSession\Exceptions\EligibilityViolationException;
@@ -34,6 +35,7 @@ use App\Http\Resources\CandidateQuestionResource;
 class ExamSessionController extends Controller
 {
     use AuthorizesRequests;
+    use BuildsApiResponses;
 
     public function __construct(
         private readonly ExamSessionService $sessionService,
@@ -329,14 +331,6 @@ class ExamSessionController extends Controller
         return new JsonResponse(
             ['data' => ExamSessionResource::make($view)->resolve()],
             Response::HTTP_OK,
-        );
-    }
-
-    private function errorResponse(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse(
-            ['error' => ['code' => $code, 'message' => $message]],
-            $status,
         );
     }
 }

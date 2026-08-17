@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Identity;
 
+use App\Http\Concerns\BuildsApiResponses;
 use App\Domains\Identity\Contracts\AuthenticationService;
 use App\Domains\Identity\Contracts\AuthorizationService;
 use App\Domains\Identity\Contracts\UserManagementService;
@@ -20,6 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class IdentityController extends Controller
 {
+    use BuildsApiResponses;
     public function __construct(
         private readonly UserManagementService $userService,
         private readonly AuthorizationService $authorizationService,
@@ -128,12 +130,5 @@ class IdentityController extends Controller
         $actor->tokens()->delete();
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);
-    }
-
-    private function error(string $code, string $message, int $status): JsonResponse
-    {
-        return new JsonResponse([
-            'error' => ['code' => $code, 'message' => $message],
-        ], $status);
     }
 }
