@@ -39,8 +39,10 @@ class ProctorEventController extends Controller
      */
     public function store(LogProctorEventRequest $request, string $sessionId): JsonResponse
     {
-        // machine to machine permission, not given to any human user, enforced by the policy gate
-        $this->authorize('ingestEvents', ProctorLog::class);
+        // Enforced by ProctoringPolicy::ingestEvents — allows either the
+        // proctoring tool (proctoring.ingest permission) or the owning
+        // candidate for their own, non-terminal session.
+        $this->authorize('ingestEvents', [ProctorLog::class, $sessionId]);
 
         $tenantId = (string) tenant()->getKey();
 

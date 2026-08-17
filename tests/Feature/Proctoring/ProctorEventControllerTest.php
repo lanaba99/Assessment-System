@@ -47,9 +47,9 @@ it('ingests a proctoring event when the actor has proctoring.ingest', function (
     expect(ProctorLog::query()->where('session_id', $session->session_id)->exists())->toBeTrue();
 });
 
-it('denies ingesting an event when the actor lacks proctoring.ingest', function (): void {
+it('allows a candidate with no proctoring.ingest permission to ingest an event for their own active session', function (): void {
     $candidate = $this->createUser($this->tenantA, password: 'CandidatePass1!');
-    // no permissions granted — proves the ProctoringPolicy fix is wired correctly
+    // deliberately no permissions granted — proves the ownership path, not the permission path
     Sanctum::actingAs($candidate);
 
     $exam = $this->createExam($this->tenantA, (string) $candidate->id);
@@ -61,8 +61,54 @@ it('denies ingesting an event when the actor lacks proctoring.ingest', function 
         (string) $candidate->id,
     );
 
+    $response = $this->postJson("/api/v1/exam-sessions/{$session->session_id}/proctor-events", [
+        'event_type' => 'app_backgrounded',
+        'event_timestamp' => now()->toIso8601String(),
+        'severity_level' => 'warning',
+    ]);
+
+    $response->assertCreated()->assertJsonPath('data.event_type', 'app_backgrounded');
+
+    expect(ProctorLog::query()->where('session_id', $session->session_id)->exists())->toBeTrue();
+});
+
+it('denies a candidate from ingesting an event for another candidate\'s session', function (): void {
+    $owner = $this->createUser($this->tenantA, password: 'OwnerPass1!');
+    $intruder = $this->createUser($this->tenantA, password: 'IntruderPass1!');
+
+    $exam = $this->createExam($this->tenantA, (string) $owner->id);
+    $enrollment = $this->createEnrollment($this->tenantA, $exam->exam_id, (string) $owner->id);
+    $session = $this->createExamSession(
+        $this->tenantA,
+        $exam->exam_id,
+        $enrollment->enrollment_id,
+        (string) $owner->id,
+    );
+
+    Sanctum::actingAs($intruder);
+
     $this->postJson("/api/v1/exam-sessions/{$session->session_id}/proctor-events", [
-        'event_type' => 'tab_switch',
+        'event_type' => 'app_backgrounded',
+        'event_timestamp' => now()->toIso8601String(),
+    ])->assertForbidden();
+});
+
+it('denies a candidate from ingesting an event for their own session once it is completed', function (): void {
+    $candidate = $this->createUser($this->tenantA, password: 'CandidatePass1!');
+    Sanctum::actingAs($candidate);
+
+    $exam = $this->createExam($this->tenantA, (string) $candidate->id);
+    $enrollment = $this->createEnrollment($this->tenantA, $exam->exam_id, (string) $candidate->id);
+    $session = $this->createExamSession(
+        $this->tenantA,
+        $exam->exam_id,
+        $enrollment->enrollment_id,
+        (string) $candidate->id,
+        ['session_state' => 'completed'],
+    );
+
+    $this->postJson("/api/v1/exam-sessions/{$session->session_id}/proctor-events", [
+        'event_type' => 'app_backgrounded',
         'event_timestamp' => now()->toIso8601String(),
     ])->assertForbidden();
 });
