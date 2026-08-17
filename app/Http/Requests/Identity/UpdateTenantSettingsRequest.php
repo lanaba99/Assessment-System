@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Identity;
 
-use App\Domains\Identity\Contracts\AuthorizationService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTenantSettingsRequest extends FormRequest
@@ -16,13 +15,8 @@ class UpdateTenantSettingsRequest extends FormRequest
             return false;
         }
 
-        return app(AuthorizationService::class)->userHasPermission(
-            (string) tenant()->getKey(),
-            (string) $user->id,
-            'tenant.manage',
-        );
+        return app(\App\Domains\Identity\Policies\TenantSettingsPolicy::class)->manage($user);
     }
-
     /**
      * @return array<string, mixed>
      */

@@ -26,7 +26,7 @@ class TenantSettingsController extends Controller
             return $this->error('not_authenticated', 'Authentication required.', Response::HTTP_UNAUTHORIZED);
         }
 
-        if (! $this->auth->userHasPermission((string) tenant()->getKey(), (string) $actor->id, 'tenant.manage')) {
+        if (! app(\App\Domains\Identity\Policies\TenantSettingsPolicy::class)->manage($actor)) {
             return $this->error('forbidden', 'You do not have permission to view tenant settings.', Response::HTTP_FORBIDDEN);
         }
 
