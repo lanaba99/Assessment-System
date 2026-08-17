@@ -66,4 +66,39 @@ trait UsesWorkflowsSchema
             });
         }
     }
+
+    /**
+     * @return array{admin: \App\Domains\Identity\Models\User, workflowId: string}
+     */
+
+    protected function initiateWorkflowForHistoryTest(): array
+    {
+        ['candidate' => $candidate, 'exam' => $exam, 'session' => $session] = $this->prepareGradingSession();
+        $admin = $this->createUser($this->tenantA);
+        $this->grantPermissionsToUser($admin, ['grading.publish', 'workflows.manage', 'workflows.approve']);
+
+        $this->createAssessmentResult(
+            $this->tenantA,
+            (string) $session->session_id,
+            (string) $candidate->id,
+            (string) $exam->exam_id,
+            ['result_status' => \App\Domains\Grading\DTOs\AssessmentSummary::STATUS_FINAL],
+        );
+
+        $result = \App\Domains\Grading\Models\AssessmentResult::query()
+            ->where('session_id', $session->session_id)
+            ->firstOrFail();
+
+        \Laravel\Sanctum\Sanctum::actingAs($admin);
+
+        $initiate = $this->postJson('/api/v1/workflows', [
+            'resource_type' => 'assessment_result',
+            'resource_id' => (string) $result->result_id,
+            'workflow_type' => 'result_publication',
+        ])->assertCreated();
+
+        $workflowId = $initiate->json('data.workflow_id');
+
+        return compact('admin', 'workflowId');
+    }
 }

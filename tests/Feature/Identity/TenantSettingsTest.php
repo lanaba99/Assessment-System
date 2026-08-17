@@ -7,6 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Laravel\Sanctum\Sanctum;
+use Stancl\Tenancy\Contracts\Tenant as TenantContract;
 use Tests\Feature\Identity\UsesIdentitySchema;
 
 uses(UsesIdentitySchema::class);
@@ -16,16 +17,20 @@ beforeEach(function (): void {
     $this->withoutTenancyIdentificationMiddleware();
     $this->initializeTenantContext($this->tenantA);
 });
+
 /**
- * IMPORTANT: this inserts via the raw query builder, not
- * Tenant::query()->create()/forceCreate(). Creating a Tenant through
- * Eloquent fires the model's `created` event, which stancl/tenancy hooks
- * to provision a REAL per-tenant database (it will try to open an actual
- * MySQL connection and fail in this sqlite-only test environment — this
- * is exactly what happened on the first attempt). A raw insert never
- * fires Eloquent events, so no provisioning side effect occurs. Reads
- * afterward go through the Tenant model normally (retrieval doesn't fire
- * creation events, so that's safe).
+ * initializeTenantContext() (in UsesIdentitySchema) binds its mock under
+ * Stancl\Tenancy\Contracts\Tenant::class — the INTERFACE — because that's
+ * what it imports as `Tenant`. The app's tenant() helper resolves through
+ * that same interface. Binding under App\Models\Tenant::class (the
+ * concrete class) instead, as an earlier version of this helper did,
+ * silently registers under a key nothing reads — the controller keeps
+ * seeing the original mock. This version binds under the correct
+ * interface key. Inserting via the raw query builder (not
+ * Tenant::query()->create()/forceCreate()) still matters too: creating a
+ * Tenant through Eloquent fires the `created` event, which stancl/tenancy
+ * hooks to provision a real per-tenant database — it will try to open an
+ * actual MySQL connection and fail in this sqlite-only test environment.
  */
 function bindRealTenant(string $tenantId, array $attributes = []): Tenant
 {
@@ -71,7 +76,7 @@ function bindRealTenant(string $tenantId, array $attributes = []): Tenant
     }
 
     $tenant = Tenant::query()->find($tenantId);
-    app()->instance(Tenant::class, $tenant);
+    app()->instance(TenantContract::class, $tenant);
 
     return $tenant;
 }

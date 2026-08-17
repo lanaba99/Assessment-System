@@ -17,39 +17,10 @@ beforeEach(function (): void {
     $this->initializeTenantContext($this->tenantA);
 });
 
-function initiateWorkflowForHistoryTest($test): array
-{
-    ['candidate' => $candidate, 'exam' => $exam, 'session' => $session] = $test->prepareGradingSession();
-    $admin = $test->createUser($test->tenantA);
-    $test->grantPermissionsToUser($admin, ['grading.publish', 'workflows.manage', 'workflows.approve']);
 
-    $test->createAssessmentResult(
-        $test->tenantA,
-        (string) $session->session_id,
-        (string) $candidate->id,
-        (string) $exam->exam_id,
-        ['result_status' => AssessmentSummary::STATUS_FINAL],
-    );
-
-    $result = \App\Domains\Grading\Models\AssessmentResult::query()
-        ->where('session_id', $session->session_id)
-        ->firstOrFail();
-
-    Sanctum::actingAs($admin);
-
-    $initiate = $test->postJson('/api/v1/workflows', [
-        'resource_type' => 'assessment_result',
-        'resource_id' => (string) $result->result_id,
-        'workflow_type' => 'result_publication',
-    ])->assertCreated();
-
-    $workflowId = $initiate->json('data.workflow_id');
-
-    return compact('admin', 'workflowId');
-}
 
 it('returns paginated history for an authorized actor', function (): void {
-    ['admin' => $admin, 'workflowId' => $workflowId] = initiateWorkflowForHistoryTest($this);
+    ['admin' => $admin, 'workflowId' => $workflowId] = $this->initiateWorkflowForHistoryTest();
 
     Sanctum::actingAs($admin);
     $this->postJson('/api/v1/workflows/' . $workflowId . '/approve')->assertOk();
@@ -61,20 +32,21 @@ it('returns paginated history for an authorized actor', function (): void {
             'meta' => ['current_page', 'per_page', 'total', 'last_page'],
         ]);
 
-    // initiate + approve = 2 history rows, newest first.
-    expect($response->json('meta.total'))->toBe(2);
+    // initiate() does not write a history row — only approve()/reject() do.
+    expect($response->json('meta.total'))->toBe(1);
     expect($response->json('data.0.workflow_id'))->toBe($workflowId);
+    expect($response->json('data.0.action_type'))->toBe('approved');
 });
 
 it('returns 401 for an unauthenticated request', function (): void {
-    ['workflowId' => $workflowId] = initiateWorkflowForHistoryTest($this);
+    ['workflowId' => $workflowId] = $this->initiateWorkflowForHistoryTest();
 
     $this->getJson('/api/v1/workflows/' . $workflowId . '/history')
         ->assertUnauthorized();
 });
 
 it('returns 403 for an actor without workflows.manage or workflows.approve', function (): void {
-    ['workflowId' => $workflowId] = initiateWorkflowForHistoryTest($this);
+    ['workflowId' => $workflowId] = $this->initiateWorkflowForHistoryTest();
 
     $outsider = $this->createUser($this->tenantA);
     $this->grantPermissionsToUser($outsider, ['grading.view']);
@@ -94,10 +66,10 @@ it('returns 404 for a workflow that does not exist', function (): void {
 });
 
 it('returns an empty list when a workflow has no history rows', function (): void {
-    ['admin' => $admin, 'workflowId' => $workflowId] = initiateWorkflowForHistoryTest($this);
+    ['admin' => $admin, 'workflowId' => $workflowId] = $this->initiateWorkflowForHistoryTest();
 
-    // initiate() always writes one row — delete it to prove the endpoint
-    // tolerates a genuinely empty collection rather than assuming >=1.
+    // initiate() writes zero history rows (only approve()/reject() do) — this
+    // delete is a no-op given that, but keeps the test explicit about intent.
     WorkflowHistory::query()->where('workflow_id', $workflowId)->delete();
 
     Sanctum::actingAs($admin);
@@ -108,21 +80,23 @@ it('returns an empty list when a workflow has no history rows', function (): voi
         ->assertJsonPath('meta.total', 0);
 });
 
-it('returns a populated, newest-first history after initiate, approve', function (): void {
-    ['admin' => $admin, 'workflowId' => $workflowId] = initiateWorkflowForHistoryTest($this);
+it('records the correct action_type, actor, and state transition after approve', function (): void {
+    ['admin' => $admin, 'workflowId' => $workflowId] = $this->initiateWorkflowForHistoryTest();
 
     Sanctum::actingAs($admin);
     $this->postJson('/api/v1/workflows/' . $workflowId . '/approve')->assertOk();
 
     $response = $this->getJson('/api/v1/workflows/' . $workflowId . '/history')->assertOk();
 
-    $actionTypes = collect($response->json('data'))->pluck('action_type')->all();
-    expect($actionTypes[0])->toBe('approved');
-    expect($actionTypes)->toContain('initiated');
+    expect($response->json('meta.total'))->toBe(1)
+        ->and($response->json('data.0.action_type'))->toBe('approved')
+        ->and($response->json('data.0.old_state'))->toBe('pending')
+        ->and($response->json('data.0.new_state'))->toBe('approved')
+        ->and($response->json('data.0.actor_user_id'))->toBe((string) $admin->id);
 });
 
 it('never returns another tenant workflow history', function (): void {
-    ['workflowId' => $workflowId] = initiateWorkflowForHistoryTest($this);
+    ['workflowId' => $workflowId] = $this->initiateWorkflowForHistoryTest();
 
     $this->initializeTenantContext($this->tenantB);
     $userB = $this->createUser($this->tenantB);
