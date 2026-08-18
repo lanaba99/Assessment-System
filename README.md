@@ -114,6 +114,27 @@ Once the Landlord is initialized, you must apply the schemas to the tenant datab
 
 ---
 
+## Developer Handoff, API Docs & Sandbox
+
+For Web/Mobile teams building against this API:
+
+* **Developer handoff docs:** [`docs/API_HANDOFF.md`](docs/API_HANDOFF.md) — start here. Also
+  covers auth ([`docs/AUTHENTICATION.md`](docs/AUTHENTICATION.md)), tenancy
+  ([`docs/TENANCY.md`](docs/TENANCY.md)), errors/rate-limiting/idempotency/pagination
+  ([`docs/ERRORS_AND_VALIDATION.md`](docs/ERRORS_AND_VALIDATION.md)), the exam flow
+  ([`docs/EXAM_FLOW.md`](docs/EXAM_FLOW.md)), and results/certificates
+  ([`docs/RESULTS_AND_CERTIFICATES.md`](docs/RESULTS_AND_CERTIFICATES.md)).
+* **Full contract reference:** [`API-CONTRACT.md`](API-CONTRACT.md).
+* **Interactive/machine-readable docs** (generate with `sail artisan scribe:generate`):
+  `GET /docs` (HTML), `GET /docs.openapi` (OpenAPI 3.0.3), `GET /docs.postman` (Postman
+  collection). Public but `noindex`.
+* **Docs Sandbox Tenant** — a stable, reproducible, fake-data-only tenant for local development:
+  `sail artisan sandbox:setup` (first time) / `sail artisan sandbox:reset` (wipe & reseed). See
+  [`docs/ENVIRONMENT_SETUP.md`](docs/ENVIRONMENT_SETUP.md) for the full walkthrough and a
+  login → exam → result → certificate test scenario.
+
+---
+
 ## Troubleshooting
 
 * **"Connection Refused" (MySQL):**
