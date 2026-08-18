@@ -40,7 +40,13 @@ services:
         depends_on:
             - mysql
             - redis
-        command: php artisan queue:work --queue=grading --tries=3 --backoff=5
+        # Every queue name any ShouldQueue listener/job in this app actually
+        # uses (grading, psychometrics, penalties, analytics) — previously
+        # only "grading" was listed here, so the other three silently never
+        # got processed by this worker at all. --tries/--backoff here are
+        # this worker's own retry defaults; each listener still declares its
+        # own $tries/$backoff too (Laravel uses the job's own value when set).
+        command: php artisan queue:work --queue=grading,psychometrics,penalties,analytics --tries=3 --backoff=5
         restart: unless-stopped
     mysql:
         image: 'mysql:8.4'

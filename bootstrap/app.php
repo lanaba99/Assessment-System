@@ -5,6 +5,10 @@ use App\Domains\ExamEngine\Exceptions\InvalidExamStateException;
 use App\Domains\Identity\Exceptions\InvalidInviteTokenException;
 use App\Domains\Identity\Exceptions\PasswordPolicyViolationException;
 use App\Domains\QuestionBank\Exceptions\CategoryNotEmptyException;
+use App\Http\Middleware\EnsureCentralAdmin;
+use App\Http\Middleware\EnsureIdempotency;
+use App\Http\Middleware\NoIndexDocs;
+use App\Http\Middleware\SecurityHeaders;
 use App\Http\Middleware\ThrottleLoginMiddleware;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
@@ -12,8 +16,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Http\Request;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
@@ -29,10 +33,26 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'throttle.login' => ThrottleLoginMiddleware::class,
-            'central.admin' => \App\Http\Middleware\EnsureCentralAdmin::class,
-            'idempotent' => \App\Http\Middleware\EnsureIdempotency::class,
-            'noindex.docs' => \App\Http\Middleware\NoIndexDocs::class,
+            'central.admin' => EnsureCentralAdmin::class,
+            'idempotent' => EnsureIdempotency::class,
+            'noindex.docs' => NoIndexDocs::class,
         ]);
+
+        // Baseline response security headers on every request. Additive only —
+        // see SecurityHeaders' own docblock for why HSTS is conditional.
+        $middleware->append(SecurityHeaders::class);
+
+        // Trusts NO proxies by default (empty array => $request->ip() reflects
+        // the real TCP peer, identical to not registering this middleware at
+        // all — zero behavior change today). A production deployment sitting
+        // behind a real load balancer/reverse proxy must set TRUSTED_PROXIES
+        // (comma-separated IPs/CIDRs) so $request->ip() and scheme detection
+        // reflect the real client rather than the proxy. Deliberately not
+        // guessing real proxy IP ranges here — see docs/SECURITY_BASELINE.md.
+        $middleware->trustProxies(at: array_values(array_filter(array_map(
+            'trim',
+            explode(',', (string) env('TRUSTED_PROXIES', '')),
+        ))));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (InvalidExamStateException $e, Request $request) {
@@ -219,7 +239,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Last resort — an unhandled Throwable. In production this hides
         // internals behind a generic message; in debug mode it still lets
         // Laravel's default detailed handler take over.
-        $exceptions->render(function (\Throwable $e, Request $request) {
+        $exceptions->render(function (Throwable $e, Request $request) {
             if (! $request->expectsJson() && ! $request->is('api/*')) {
                 return null;
             }
@@ -236,4 +256,3 @@ return Application::configure(basePath: dirname(__DIR__))
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         });
     })->create();
-    
