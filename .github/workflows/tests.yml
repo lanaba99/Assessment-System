@@ -1,4 +1,4 @@
-name: Run Identity & Permission Contract Tests
+name: CI
 
 on:
   push:
@@ -7,37 +7,204 @@ on:
     branches: [ "main" ]
 
 jobs:
-  laravel-tests:
+  tests:
+    name: Tests (SQLite)
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.4' # the version on my DELL G15 
-        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
-        coverage: none
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+          coverage: none
 
-    - name: Copy Environment File
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+      - name: Copy Environment File
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-    - name: Install Composer Dependencies
-      run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Install Composer Dependencies
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-    - name: Generate Application Key
-      run: php artisan key:generate
+      - name: Generate Application Key
+        run: php artisan key:generate
 
-    - name: Create SQLite Database for Testing
-      run: |
-        mkdir -p database
-        touch database/database.sqlite
+      - name: Create SQLite Database for Testing
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
 
-    - name: Execute Automated Permission Tests
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: |
-        php artisan test tests/Feature/Identity/PolicyPermissionSyncTest.php
-        php artisan test tests/Feature/Identity/RolePermissionContractTest.php
+      - name: PHP Syntax Check
+        run: find app -name '*.php' -print0 | xargs -0 -n1 -P4 php -l
+
+      # Non-blocking for now: no pint.json exists yet, so this runs on Pint's
+      # default ruleset, which currently flags pre-existing style issues in a
+      # large share of app/ that predate this workflow and are unrelated to
+      # any single change. Report-only until a dedicated reformatting pass
+      # lands — promote to a hard gate (drop continue-on-error) after that.
+      - name: Code Style Check (Pint)
+        run: vendor/bin/pint --test
+        continue-on-error: true
+
+      - name: Targeted Contract Tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: |
+          php artisan test tests/Feature/Identity/PolicyPermissionSyncTest.php
+          php artisan test tests/Feature/Identity/RolePermissionContractTest.php
+
+      # Deliberately no DB_CONNECTION/DB_DATABASE override here, unlike the
+      # targeted-tests step above: phpunit.xml already sets DB_DATABASE=:memory:,
+      # which every test file's schema-boot trait assumes (unconditional
+      # Schema::create calls, no hasTable() guard) since each connection starts
+      # blank. Pointing this step at the same on-disk database.sqlite file the
+      # targeted step uses makes all ~40 files share one persistent database and
+      # collide on "table already exists".
+      #
+      # Invokes the Pest binary directly rather than `artisan test`: the
+      # latter shells out to a child process that does NOT inherit
+      # `-d memory_limit=...` set on the parent `php` invocation, so the run
+      # still hits PHP's 128M default and dies partway through — confirmed by
+      # actually hitting this locally before switching to this form.
+      - name: Full Test Suite
+        run: php -d memory_limit=1G vendor/bin/pest
+
+  migrations-and-docs:
+    name: Migrations, Sandbox & API Docs (MySQL)
+    runs-on: ubuntu-latest
+
+    # CI-only, ephemeral, isolated service containers — destroyed with the runner.
+    # Never points at any development or production database.
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: ci-only-not-a-real-secret
+          MYSQL_DATABASE: assessment_ci
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd="redis-cli ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: assessment_ci
+      DB_USERNAME: root
+      DB_PASSWORD: ci-only-not-a-real-secret
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, redis
+          coverage: none
+
+      - name: Copy Environment File
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Install Composer Dependencies
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Generate Application Key
+        run: php artisan key:generate
+
+      - name: Wait for MySQL
+        run: |
+          for i in $(seq 1 30); do
+            mysqladmin ping -h127.0.0.1 -P3306 -uroot -pci-only-not-a-real-secret --silent && break
+            echo "Waiting for MySQL... ($i)"
+            sleep 2
+          done
+
+      - name: Run Landlord Migrations
+        run: php artisan migrate --path=database/migrations/landlord --force
+
+      - name: Seed Landlord
+        run: php artisan db:seed --class=LandlordSeeder --force
+
+      - name: Validate Tenant Migrations Run Cleanly
+        run: php artisan tenants:migrate --force
+
+      - name: Set Up Docs Sandbox Tenant
+        run: php artisan sandbox:setup
+
+      - name: Generate API Docs (OpenAPI + Postman)
+        run: php artisan scribe:generate
+
+      - name: Validate OpenAPI & Postman Output
+        run: |
+          php <<'PHP'
+          <?php
+          require __DIR__ . '/vendor/autoload.php';
+
+          use Symfony\Component\Yaml\Yaml;
+
+          $openapiPath = 'storage/app/private/scribe/openapi.yaml';
+          $postmanPath = 'storage/app/private/scribe/collection.json';
+
+          $fail = static function (string $message): never {
+              fwrite(STDERR, "VALIDATION FAILED: {$message}\n");
+              exit(1);
+          };
+
+          if (! file_exists($openapiPath)) {
+              $fail("Missing {$openapiPath}");
+          }
+
+          if (! file_exists($postmanPath)) {
+              $fail("Missing {$postmanPath}");
+          }
+
+          $openapi = Yaml::parseFile($openapiPath);
+
+          foreach (['openapi', 'info', 'paths'] as $key) {
+              if (! array_key_exists($key, $openapi)) {
+                  $fail("OpenAPI spec is missing top-level key: {$key}");
+              }
+          }
+
+          $pathCount = count($openapi['paths']);
+
+          // Sanity floor, not an exact match: many of the ~125 registered
+          // routes collapse onto a shared path (different HTTP methods on the
+          // same URI), so the real path count is always lower than the route
+          // count. This just catches "generation silently produced almost
+          // nothing" (e.g. every response call failing and Scribe dropping
+          // those routes), not small day-to-day route-count drift.
+          if ($pathCount < 40) {
+              $fail("OpenAPI spec only documents {$pathCount} paths — expected well over 40 given ~125 registered API routes. Generation likely failed for most routes.");
+          }
+
+          echo "OpenAPI OK: {$pathCount} documented paths.\n";
+
+          $postman = json_decode(file_get_contents($postmanPath), true);
+
+          if (json_last_error() !== JSON_ERROR_NONE) {
+              $fail('Postman collection is not valid JSON: ' . json_last_error_msg());
+          }
+
+          if (! isset($postman['item']) || ! is_array($postman['item']) || count($postman['item']) === 0) {
+              $fail('Postman collection has no top-level items.');
+          }
+
+          echo 'Postman collection OK: ' . count($postman['item']) . " top-level items.\n";
+          PHP

@@ -164,3 +164,52 @@ session.
 No secrets are baked into generated docs — `SCRIBE_TENANT_ID` is a fixed placeholder UUID, not a
 real credential, and the auth section documents the header format
 (`Authorization: Bearer {token}`) without embedding a real token.
+
+## Running CI checks locally
+
+`.github/workflows/tests.yml` runs two jobs on every push/PR to `main`. Reproduce either one
+locally before pushing:
+
+### `tests` job (SQLite, no external services needed)
+
+```
+cp .env.example .env
+php artisan key:generate
+mkdir -p database && touch database/database.sqlite
+
+find app -name '*.php' -print0 | xargs -0 -n1 -P4 php -l   # syntax check
+vendor/bin/pint --test                                      # style check (non-mutating, non-blocking in CI for now —
+                                                              # no pint.json exists yet, so this currently flags a large
+                                                              # amount of pre-existing style debt across app/; it's
+                                                              # report-only until a dedicated reformatting pass lands)
+
+DB_CONNECTION=sqlite DB_DATABASE=database/database.sqlite \
+  php artisan test tests/Feature/Identity/PolicyPermissionSyncTest.php \
+                    tests/Feature/Identity/RolePermissionContractTest.php  # targeted contract tests
+
+php -d memory_limit=1G vendor/bin/pest                        # full suite — needs >128M memory_limit;
+                                                                # uses phpunit.xml's :memory: DB (don't
+                                                                # override DB_DATABASE for this one), and
+                                                                # calls the pest binary directly because
+                                                                # `artisan test` spawns a child process that
+                                                                # doesn't inherit -d memory_limit
+```
+
+### `migrations-and-docs` job (needs a real MySQL — use Sail, not sqlite)
+
+This job exists specifically to prove the *real* migration files (not the in-memory test-schema
+stubs the Pest suite uses) still run cleanly, and that a real, seeded, MySQL-backed sandbox
+tenant can generate live API docs end to end. Run it against your own Sail stack:
+
+```
+sail artisan migrate --path=database/migrations/landlord --force
+sail artisan db:seed --class=LandlordSeeder --force
+sail artisan tenants:migrate --force
+sail artisan sandbox:setup
+sail artisan scribe:generate
+```
+
+Then confirm `storage/app/private/scribe/openapi.yaml` and `.../collection.json` exist and are
+non-trivial (dozens of documented paths, not a handful) — that's exactly what the CI job's
+validation step checks automatically after generation.
+
