@@ -53,6 +53,7 @@ trait UsesAdaptiveCatSchema
             '2026_05_16_000140_create_categories_table.php',
             '2026_05_16_000150_create_questions_table.php',
             '2026_05_16_000160_create_question_versions_table.php',
+            '2026_05_16_000180_create_question_options_table.php',
             '2026_05_19_000010_create_question_psychometrics_table.php',
             // Alter — adds deleted_at to questions/question_versions/categories.
             // Guarded with hasTable()/hasColumn(), safe to always include.
