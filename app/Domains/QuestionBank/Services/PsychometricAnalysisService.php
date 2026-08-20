@@ -55,8 +55,29 @@ class PsychometricAnalysisService
     private function recalibrateVersion(string $tenantId, string $versionId): void
     {
         DB::transaction(function () use ($tenantId, $versionId): void {
+            $existing = $this->psychometricsRepository->findByVersionIdForUpdate($versionId);
+
             $samples = $this->buildSamples($tenantId, $versionId);
             $metrics = $this->computeMetrics($versionId, $samples);
+
+            // Guard against downgrading a calibrated question (manually bootstrapped
+            // via PATCH .../psychometrics, or previously calibrated from real data)
+            // back to uncalibrated just because *this* recalculation doesn't yet see
+            // MIN_SAMPLES_FOR_CALIBRATION real samples. Item selection requires
+            // is_calibrated=true (see QuestionBankServiceImpl::meetsDiscriminationFloor
+            // and QuestionBankRepository::findEligibleVersionsForCompetencies), so an
+            // unconditional overwrite here would make the question permanently
+            // unselectable: no session could ever be created to produce the additional
+            // real samples needed to reach the threshold again. Once real evidence
+            // catches up to the threshold, the computed metrics become authoritative
+            // and are written through as normal.
+            if ($existing !== null
+                && $existing->is_calibrated
+                && $metrics->sampleSize < self::MIN_SAMPLES_FOR_CALIBRATION
+            ) {
+                return;
+            }
+
             $this->psychometricsRepository->upsert($tenantId, $metrics);
         });
     }
