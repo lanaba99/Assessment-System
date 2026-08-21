@@ -30,6 +30,10 @@ class Certificate extends Model
         'session_id',
     ];
 
+    protected $hidden = [
+        'result',
+    ];
+
     protected $fillable = [
         'candidate_user_id',
         'assessment_result_id',
