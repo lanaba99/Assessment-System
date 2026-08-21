@@ -36,7 +36,7 @@ public function index(Request $request): JsonResponse
         $canViewAll = app(\App\Domains\Identity\Contracts\AuthorizationService::class)
             ->userHasPermission($tenantId, (string) $actor->id, 'grading.view');
 
-        $query = Certificate::query()->where('tenant_id', $tenantId);
+        $query = Certificate::query()->with('result')->where('tenant_id', $tenantId);
 
         if (! $canViewAll) {
             $query->where('candidate_user_id', $actor->id);
@@ -56,7 +56,7 @@ public function index(Request $request): JsonResponse
 
     public function show(string $certificateId): JsonResponse
     {
-        $certificate = Certificate::query()->findOrFail($certificateId);
+        $certificate = Certificate::query()->with('result')->findOrFail($certificateId);
         $this->authorize('view', $certificate);
 
         return new JsonResponse(['data' => $certificate], Response::HTTP_OK);

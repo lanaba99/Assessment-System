@@ -26,6 +26,10 @@ class Certificate extends Model
 
     public $timestamps = false;
 
+    protected $appends = [
+        'session_id',
+    ];
+
     protected $fillable = [
         'candidate_user_id',
         'assessment_result_id',
@@ -65,5 +69,10 @@ class Certificate extends Model
     public function exam(): BelongsTo
     {
         return $this->belongsTo(Exam::class, 'exam_id', 'exam_id');
+    }
+
+    public function getSessionIdAttribute(): ?string
+    {
+        return $this->result?->session_id;
     }
 }
